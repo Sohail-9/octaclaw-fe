@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ───────────────────────────────────────────────── */
+:root {
+  /* Brand colors – update after PRD */
+  --clr-primary:   220 90% 56%;   /* placeholder: vivid blue */
+  --clr-secondary: 260 80% 60%;   /* placeholder: purple */
+  --clr-accent:    165 80% 48%;   /* placeholder: teal/green */
+
+  /* Neutral */
+  --clr-bg:        222 20% 7%;    /* near-black background */
+  --clr-surface:   222 18% 11%;   /* card / panel */
+  --clr-border:    220 15% 20%;
+  --clr-text:      220 15% 92%;
+  --clr-muted:     220 10% 55%;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Map brand tokens to Tailwind utilities */
+  --color-primary:   hsl(var(--clr-primary));
+  --color-secondary: hsl(var(--clr-secondary));
+  --color-accent:    hsl(var(--clr-accent));
+  --color-bg:        hsl(var(--clr-bg));
+  --color-surface:   hsl(var(--clr-surface));
+  --color-border:    hsl(var(--clr-border));
+  --color-text:      hsl(var(--clr-text));
+  --color-muted:     hsl(var(--clr-muted));
+}
+
+/* ─── Base ────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: hsl(var(--clr-bg));
+  color: hsl(var(--clr-text));
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--clr-bg));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--clr-border));
+  border-radius: 3px;
+}
+
+/* ─── Selection ───────────────────────────────────────────────────── */
+::selection {
+  background-color: hsl(var(--clr-primary) / 0.3);
+  color: hsl(var(--clr-text));
+}
