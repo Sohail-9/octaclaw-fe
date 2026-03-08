@@ -38,7 +38,7 @@ Layout Structure:
    Minimal top navigation.
 
 Left:
-OctaClaw (logo text)
+OctaClaw (Cute blue octopus logo)
 
 Right:
 Product

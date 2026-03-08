@@ -1,67 +1,206 @@
 @import "tailwindcss";
 
-/* ─── Design Tokens ───────────────────────────────────────────────── */
+/* ─── OctaClaw Design Tokens ──────────────────────────────────────── */
 :root {
-  /* Brand colors – update after PRD */
-  --clr-primary:   220 90% 56%;   /* placeholder: vivid blue */
-  --clr-secondary: 260 80% 60%;   /* placeholder: purple */
-  --clr-accent:    165 80% 48%;   /* placeholder: teal/green */
+  /* PRD exact brand colors */
+  --bg: #0B0B0F;
+  --purple: #7C3AED;
+  --blue: #3B82F6;
+  --purple-lt: #9F67FF;
+  --blue-lt: #60A5FA;
 
-  /* Neutral */
-  --clr-bg:        222 20% 7%;    /* near-black background */
-  --clr-surface:   222 18% 11%;   /* card / panel */
-  --clr-border:    220 15% 20%;
-  --clr-text:      220 15% 92%;
-  --clr-muted:     220 10% 55%;
+  /* Surfaces */
+  --surface: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #F1F5F9;
+  --muted: #64748B;
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), var(--font-space), ui-sans-serif, system-ui, sans-serif;
 
-  /* Map brand tokens to Tailwind utilities */
-  --color-primary:   hsl(var(--clr-primary));
-  --color-secondary: hsl(var(--clr-secondary));
-  --color-accent:    hsl(var(--clr-accent));
-  --color-bg:        hsl(var(--clr-bg));
-  --color-surface:   hsl(var(--clr-surface));
-  --color-border:    hsl(var(--clr-border));
-  --color-text:      hsl(var(--clr-text));
-  --color-muted:     hsl(var(--clr-muted));
+  /* Tailwind color aliases */
+  --color-purple: #7C3AED;
+  --color-blue: #3B82F6;
+  --color-purple-lt: #9F67FF;
+  --color-blue-lt: #60A5FA;
+  --color-surface: rgba(255, 255, 255, 0.04);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-muted: #64748B;
 }
 
-/* ─── Base ────────────────────────────────────────────────────────── */
-*,
-*::before,
-*::after {
+/* ─── Base ───────────────────────────────────────────────────────── */
+html,
+body {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html {
   color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: hsl(var(--clr-bg));
-  color: hsl(var(--clr-text));
+  background-color: #0B0B0F;
+  color: #F1F5F9;
   font-family: var(--font-sans);
-  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* ─── Scrollbar ───────────────────────────────────────────────────── */
+/* ─── Grid overlay background ────────────────────────────────────── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── Glow blob utilities ────────────────────────────────────────── */
+.glow-purple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.35) 0%, transparent 70%);
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+.glow-blue {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.28) 0%, transparent 70%);
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+/* ─── Text gradient ──────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #9F67FF 0%, #60A5FA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-rev {
+  background: linear-gradient(135deg, #60A5FA 0%, #9F67FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glass card ─────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Button primary ─────────────────────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(135deg, #7C3AED, #3B82F6);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 12px 28px;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 24px rgba(124, 58, 237, 0.4);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 0 36px rgba(124, 58, 237, 0.6);
+}
+
+/* ─── Button ghost ───────────────────────────────────────────────── */
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: #F1F5F9;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 12px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
+
 ::-webkit-scrollbar-track {
-  background: hsl(var(--clr-bg));
+  background: #0B0B0F;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--clr-border));
+  background: rgba(124, 58, 237, 0.4);
   border-radius: 3px;
 }
 
-/* ─── Selection ───────────────────────────────────────────────────── */
+/* ─── Selection ──────────────────────────────────────────────────── */
 ::selection {
-  background-color: hsl(var(--clr-primary) / 0.3);
-  color: hsl(var(--clr-text));
+  background: rgba(124, 58, 237, 0.35);
+  color: #fff;
+}
+
+/* ─── Canvas node animation ──────────────────────────────────────── */
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+
+  33% {
+    transform: translateY(-18px) translateX(10px);
+  }
+
+  66% {
+    transform: translateY(8px) translateX(-8px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes line-draw {
+  from {
+    stroke-dashoffset: 400;
+    opacity: 0;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+    opacity: 0.35;
+  }
+}
+
+@keyframes badge-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.9);
+  }
 }
