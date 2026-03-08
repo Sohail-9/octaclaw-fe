@@ -12,8 +12,23 @@ export default function CTASection() {
     e.preventDefault();
     if (!email) return;
     setStatus("loading");
-    // Simulate API call
-    setTimeout(() => setStatus("success"), 1500);
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -92,6 +107,16 @@ export default function CTASection() {
               className="mt-4 text-[#a78bfa] text-sm"
             >
                 Thank you! We’ll be in touch soon.
+            </motion.p>
+          )}
+
+          {status === "error" && (
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-4 text-[#94a3b8] text-sm"
+            >
+              Something went wrong. Please try again.
             </motion.p>
           )}
 
