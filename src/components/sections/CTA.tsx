@@ -74,6 +74,7 @@ export default function CTASection() {
               <input
                 type="email"
                 required
+                aria-label="Email address"
                 placeholder="Enter your email"
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/50 focus:border-[#7C3AED] transition-all bg-opacity-10 backdrop-blur-sm"
                 value={email}

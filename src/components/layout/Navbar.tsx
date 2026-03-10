@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-    { label: "Product", href: "#product" },
     { label: "Features", href: "#features" },
 ];
 
@@ -33,46 +32,9 @@ export default function Navbar() {
                 <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
                     {/* Logo */}
                     <a href="#" className="flex items-center gap-2.5 group">
-                        {/* Cute octopus SVG logo */}
-                        <div className="relative w-8 h-8">
-                            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
-                                {/* Glow behind */}
-                                <circle cx="16" cy="14" r="10" fill="url(#logoGlow)" opacity="0.3" />
-                                {/* Body */}
-                                <ellipse cx="16" cy="13" rx="8" ry="7.5" fill="url(#bodyGrad)" />
-                                {/* Eyes */}
-                                <circle cx="13" cy="12" r="1.8" fill="white" />
-                                <circle cx="19" cy="12" r="1.8" fill="white" />
-                                <circle cx="13.5" cy="12.3" r="0.9" fill="#1e1b4b" />
-                                <circle cx="19.5" cy="12.3" r="0.9" fill="#1e1b4b" />
-                                {/* Shine */}
-                                <circle cx="14" cy="11.6" r="0.4" fill="white" opacity="0.8" />
-                                <circle cx="20" cy="11.6" r="0.4" fill="white" opacity="0.8" />
-                                {/* Tentacles */}
-                                <path d="M9 19 Q7 22 9 25 Q10 22 9 19Z" fill="url(#tentGrad)" />
-                                <path d="M12 20.5 Q11 24 13 26 Q13.5 23 12 20.5Z" fill="url(#tentGrad)" />
-                                <path d="M16 21 Q15.5 25 17 27 Q17.5 24 16 21Z" fill="url(#tentGrad)" />
-                                <path d="M20 20.5 Q21 24 19 26 Q18.5 23 20 20.5Z" fill="url(#tentGrad)" />
-                                <path d="M23 19 Q25 22 23 25 Q22 22 23 19Z" fill="url(#tentGrad)" />
-                                {/* Blush */}
-                                <ellipse cx="11" cy="14.5" rx="1.5" ry="0.8" fill="#f9a8d4" opacity="0.5" />
-                                <ellipse cx="21" cy="14.5" rx="1.5" ry="0.8" fill="#f9a8d4" opacity="0.5" />
-                                <defs>
-                                    <radialGradient id="logoGlow" cx="50%" cy="50%" r="50%">
-                                        <stop offset="0%" stopColor="#7C3AED" />
-                                        <stop offset="100%" stopColor="transparent" />
-                                    </radialGradient>
-                                    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="#9F67FF" />
-                                        <stop offset="100%" stopColor="#3B82F6" />
-                                    </linearGradient>
-                                    <linearGradient id="tentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stopColor="#7C3AED" />
-                                        <stop offset="100%" stopColor="#3B82F6" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
+                        <span className="text-xl leading-none" aria-hidden="true">
+                            🐙
+                        </span>
                         <span
                             className="text-white font-semibold text-lg tracking-tight"
                             style={{ fontFamily: "var(--font-space)" }}
