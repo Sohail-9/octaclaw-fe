@@ -208,6 +208,7 @@ function StatCard({ icon, label, value, className = "", delay = 0, reduceMotion 
 /* ─── Hero ──────────────────────────────────────────────────────── */
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
+  const reduceMotion = !!shouldReduceMotion;
   const [copied, setCopied] = useState(false);
 
   const FADE_UP: Variants = {
@@ -394,7 +395,7 @@ export default function HeroSection() {
           label="Status"
           value="Private beta"
           delay={1.0}
-          reduceMotion={shouldReduceMotion}
+          reduceMotion={reduceMotion}
         />
       </div>
       <div className="absolute right-[4%] top-[28%] hidden lg:block">
@@ -403,7 +404,7 @@ export default function HeroSection() {
           label="Access"
           value="Limited seats"
           delay={1.2}
-          reduceMotion={shouldReduceMotion}
+          reduceMotion={reduceMotion}
         />
       </div>
       <div className="absolute left-[6%] bottom-[22%] hidden xl:block">
@@ -412,7 +413,7 @@ export default function HeroSection() {
           label="Models supported"
           value="Your preferred LLMs"
           delay={1.4}
-          reduceMotion={shouldReduceMotion}
+          reduceMotion={reduceMotion}
         />
       </div>
 
