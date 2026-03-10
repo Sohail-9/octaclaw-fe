@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, type Variants } from "framer-motion";
-import { ArrowRight, Play, Sparkles, Zap, Network } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { motion, type Variants, useReducedMotion } from "framer-motion";
+import { ArrowRight, Play, Sparkles, Zap, Network, Copy, Check } from "lucide-react";
 
 /* ─── Animated node-network canvas ─────────────────────────────── */
 interface Node {
@@ -22,8 +22,15 @@ const NODE_COLORS = ["#9F67FF", "#60A5FA", "#a78bfa", "#93c5fd", "#7C3AED", "#3B
 
 function NetworkCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const prefersReducedMotion = useRef(false);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      prefersReducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+
+    if (prefersReducedMotion.current) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -177,16 +184,17 @@ interface StatCardProps {
   value: string;
   className?: string;
   delay?: number;
+  reduceMotion?: boolean;
 }
 
-function StatCard({ icon, label, value, className = "", delay = 0 }: StatCardProps) {
+function StatCard({ icon, label, value, className = "", delay = 0, reduceMotion = false }: StatCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ delay, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={`glass rounded-xl px-4 py-3 flex items-center gap-3 ${className}`}
-      style={{ animation: `float-slow ${4 + delay}s ease-in-out infinite` }}
+      style={reduceMotion ? undefined : { animation: `float-slow ${4 + delay}s ease-in-out infinite` }}
     >
       <div className="text-purple-400">{icon}</div>
       <div>
@@ -198,16 +206,29 @@ function StatCard({ icon, label, value, className = "", delay = 0 }: StatCardPro
 }
 
 /* ─── Hero ──────────────────────────────────────────────────────── */
-const FADE_UP: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.12, duration: 0.7, ease: "easeOut" },
-  }),
-};
-
 export default function HeroSection() {
+  const shouldReduceMotion = useReducedMotion();
+  const [copied, setCopied] = useState(false);
+
+  const FADE_UP: Variants = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 24 },
+    show: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.12, duration: shouldReduceMotion ? 0.01 : 0.7, ease: "easeOut" },
+    }),
+  };
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText("npm i -g octaclaw");
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
+    } catch {
+      setCopied(false);
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -242,24 +263,10 @@ export default function HeroSection() {
       {/* ── Content ── */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center gap-6 pt-24 pb-16">
 
-        {/* Badge */}
-        <motion.div
-          custom={0}
-          variants={FADE_UP}
-          initial="hidden"
-          animate="show"
-          className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs font-medium text-[#c4b5fd] border border-[#7C3AED]/30"
-          style={{ animation: "badge-glow 3s ease-in-out infinite" }}
-        >
-          <Sparkles size={12} className="text-[#9F67FF]" />
-          Private Beta
-          <span className="w-1.5 h-1.5 rounded-full bg-[#9F67FF] animate-pulse" />
-        </motion.div>
-
         {/* Headline */}
         <div className="flex flex-col items-center gap-1">
           <motion.h1
-            custom={1}
+            custom={0}
             variants={FADE_UP}
             initial="hidden"
             animate="show"
@@ -269,7 +276,7 @@ export default function HeroSection() {
             The Spatial Workspace
           </motion.h1>
           <motion.h1
-            custom={2}
+            custom={1}
             variants={FADE_UP}
             initial="hidden"
             animate="show"
@@ -279,6 +286,16 @@ export default function HeroSection() {
             for AI Collaboration
           </motion.h1>
         </div>
+
+        <motion.p
+          custom={2}
+          variants={FADE_UP}
+          initial="hidden"
+          animate="show"
+          className="text-sm sm:text-base text-[#cbd5f5] max-w-2xl"
+        >
+          A visual workspace to design, connect, and run AI agents as a team.
+        </motion.p>
 
         {/* Subtext */}
         <motion.p
@@ -320,13 +337,46 @@ export default function HeroSection() {
           </button>
         </motion.div>
 
-        {/* Trust line */}
+        {/* Quick start */}
         <motion.div
           custom={5}
           variants={FADE_UP}
           initial="hidden"
           animate="show"
-          className="flex items-center gap-5 text-xs text-[#64748B] pt-1"
+          className="mt-4 w-full max-w-xl"
+        >
+          <div className="glass border border-white/10 rounded-2xl px-4 py-3 sm:px-5 sm:py-4 text-left">
+            <div className="flex items-center justify-between gap-3">
+              <div className="text-[11px] uppercase tracking-widest text-[#64748B]">
+                Quick start
+              </div>
+              {copied && <div className="text-xs text-[#a78bfa]">Copied</div>}
+            </div>
+            <div className="mt-2 flex items-center gap-3">
+              <code className="font-mono text-sm text-[#e2e8f0]">npm i -g octaclaw</code>
+              <button
+                type="button"
+                onClick={handleCopy}
+                aria-label="Copy command"
+                className="ml-auto inline-flex items-center justify-center w-7 h-7 rounded-md border border-white/10 hover:border-white/20 transition-colors"
+              >
+                {copied ? (
+                  <Check size={12} className="text-[#7C3AED]" />
+                ) : (
+                  <Copy size={12} className="text-[#94a3b8]" />
+                )}
+              </button>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Trust line */}
+        <motion.div
+          custom={6}
+          variants={FADE_UP}
+          initial="hidden"
+          animate="show"
+          className="hidden items-center gap-5 text-xs text-[#64748B] pt-1"
         >
           {["Private beta", "Early access", "Limited seats"].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
@@ -344,6 +394,7 @@ export default function HeroSection() {
           label="Status"
           value="Private beta"
           delay={1.0}
+          reduceMotion={shouldReduceMotion}
         />
       </div>
       <div className="absolute right-[4%] top-[28%] hidden lg:block">
@@ -352,6 +403,7 @@ export default function HeroSection() {
           label="Access"
           value="Limited seats"
           delay={1.2}
+          reduceMotion={shouldReduceMotion}
         />
       </div>
       <div className="absolute left-[6%] bottom-[22%] hidden xl:block">
@@ -360,6 +412,7 @@ export default function HeroSection() {
           label="Models supported"
           value="Your preferred LLMs"
           delay={1.4}
+          reduceMotion={shouldReduceMotion}
         />
       </div>
 
