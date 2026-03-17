@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, type Variants, useReducedMotion } from "framer-motion";
-import { ArrowRight, Play, Sparkles, Zap, Network, Copy, Check } from "lucide-react";
+import { ArrowRight, Play, Sparkles, Zap, Network } from "lucide-react";
 
 /* ─── Animated node-network canvas ─────────────────────────────── */
 interface Node {
@@ -209,7 +209,6 @@ function StatCard({ icon, label, value, className = "", delay = 0, reduceMotion 
 export default function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
   const reduceMotion = !!shouldReduceMotion;
-  const [copied, setCopied] = useState(false);
 
   const FADE_UP: Variants = {
     hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 24 },
@@ -218,16 +217,6 @@ export default function HeroSection() {
       y: 0,
       transition: { delay: i * 0.12, duration: shouldReduceMotion ? 0.01 : 0.7, ease: "easeOut" },
     }),
-  };
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText("npm i -g octaclaw");
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1600);
-    } catch {
-      setCopied(false);
-    }
   };
 
   return (
@@ -336,39 +325,6 @@ export default function HeroSection() {
             </div>
             Watch Demo
           </button>
-        </motion.div>
-
-        {/* Quick start */}
-        <motion.div
-          custom={5}
-          variants={FADE_UP}
-          initial="hidden"
-          animate="show"
-          className="mt-4 w-full max-w-xl"
-        >
-          <div className="glass border border-white/10 rounded-2xl px-4 py-3 sm:px-5 sm:py-4 text-left">
-            <div className="flex items-center justify-between gap-3">
-              <div className="text-[11px] uppercase tracking-widest text-[#64748B]">
-                Quick start
-              </div>
-              {copied && <div className="text-xs text-[#a78bfa]">Copied</div>}
-            </div>
-            <div className="mt-2 flex items-center gap-3">
-              <code className="font-mono text-sm text-[#e2e8f0]">npm i -g octaclaw</code>
-              <button
-                type="button"
-                onClick={handleCopy}
-                aria-label="Copy command"
-                className="ml-auto inline-flex items-center justify-center w-7 h-7 rounded-md border border-white/10 hover:border-white/20 transition-colors"
-              >
-                {copied ? (
-                  <Check size={12} className="text-[#7C3AED]" />
-                ) : (
-                  <Copy size={12} className="text-[#94a3b8]" />
-                )}
-              </button>
-            </div>
-          </div>
         </motion.div>
 
         {/* Trust line */}
