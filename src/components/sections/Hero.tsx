@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion, type Variants, useReducedMotion } from "framer-motion";
-import { ArrowRight, Play, Sparkles, Zap, Network } from "lucide-react";
+import { ArrowRight, Sparkles, Zap, Network } from "lucide-react";
 
 /* ─── Animated node-network canvas ─────────────────────────────── */
 interface Node {
@@ -316,15 +316,6 @@ export default function HeroSection() {
             Join Waitlist
             <ArrowRight size={15} />
           </a>
-          <button
-            id="hero-watch-demo"
-            className="btn-ghost inline-flex items-center gap-2 text-sm"
-          >
-            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-white/10 border border-white/20">
-              <Play size={10} fill="white" className="text-white ml-0.5" />
-            </div>
-            Watch Demo
-          </button>
         </motion.div>
 
         {/* Trust line */}

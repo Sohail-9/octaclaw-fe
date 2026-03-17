@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
-const NAV_LINKS = [
-    { label: "Features", href: "#features" },
-];
+const NAV_LINKS: { label: string; href: string }[] = [];
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
