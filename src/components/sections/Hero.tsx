@@ -256,24 +256,27 @@ export default function HeroSection() {
         {/* Headline */}
         <div className="flex flex-col items-center gap-1">
           <motion.h1
-            custom={0}
-            variants={FADE_UP}
-            initial="hidden"
-            animate="show"
-            className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-[1.05]"
+            className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.05]"
             style={{ fontFamily: "var(--font-space)" }}
           >
-            The Spatial Workspace
-          </motion.h1>
-          <motion.h1
-            custom={1}
-            variants={FADE_UP}
-            initial="hidden"
-            animate="show"
-            className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] text-gradient"
-            style={{ fontFamily: "var(--font-space)" }}
-          >
-            for AI Collaboration
+            <motion.span
+              custom={0}
+              variants={FADE_UP}
+              initial="hidden"
+              animate="show"
+              className="block text-white"
+            >
+              The Spatial Workspace
+            </motion.span>
+            <motion.span
+              custom={1}
+              variants={FADE_UP}
+              initial="hidden"
+              animate="show"
+              className="block text-gradient"
+            >
+              for AI Collaboration
+            </motion.span>
           </motion.h1>
         </div>
 

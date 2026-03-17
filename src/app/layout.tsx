@@ -19,6 +19,21 @@ export const metadata: Metadata = {
   description:
     "Design, connect, and run AI agents in a visual workspace. Build intelligent workflows for the next generation of teams.",
   keywords: ["octaclaw", "AI workspace", "AI agents", "spatial AI", "AI collaboration"],
+  metadataBase: new URL("https://octaclaw.com"),
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title: "OctaClaw – The Spatial Workspace for AI Collaboration",
     description:
