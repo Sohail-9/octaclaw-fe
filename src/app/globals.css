@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0d0818;
-  --surface: #130d24;
+  --bg: #252527;
+  --surface: #252527;
   --purple: #7c3aff;
   --purple-mid: #a855f7;
   --purple-light: #c084fc;
@@ -60,7 +60,7 @@ h6 {
     radial-gradient(ellipse 45% 40% at 75% 8%, rgba(168, 85, 247, 0.35) 0%, transparent 65%),
     radial-gradient(ellipse 34% 30% at 12% 92%, rgba(168, 85, 247, 0.38) 0%, transparent 62%),
     radial-gradient(ellipse 22% 20% at 18% 88%, rgba(124, 58, 255, 0.22) 0%, transparent 65%),
-    #0d0818;
+    #252527;
 }
 
 /* ── Glow orbs ── */

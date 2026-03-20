@@ -7,7 +7,7 @@ type FooterProps = {
 export default function Footer({ minimal = false }: FooterProps) {
   if (minimal) {
     return (
-      <footer className="relative border-t border-white/10 bg-[#0d0818] py-8">
+      <footer className="relative border-t border-white/10 bg-[#252527] py-8">
         <div className="max-w-7xl mx-auto px-6 text-center text-sm text-[#b9b2cf]">
           © {new Date().getFullYear()} OctaClaw
         </div>
@@ -16,7 +16,7 @@ export default function Footer({ minimal = false }: FooterProps) {
   }
 
   return (
-    <footer className="relative border-t border-white/10 py-8 bg-[#100a1e]">
+    <footer className="relative border-t border-white/10 py-8 bg-[#252527]">
       <div className="max-w-7xl mx-auto px-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <span className="text-xl text-white font-extrabold tracking-tight font-[family-name:var(--font-syne)]">
           OctaClaw
