@@ -9,7 +9,7 @@ import CTASection from "@/components/sections/CTA";
 export default function AgentPage() {
   return (
     <main>
-      <Navbar logoHref="/" ctaHref="/" ctaLabel="Join Waitlist" />
+      <Navbar logoHref="/" ctaHref="/" ctaLabel="Join Waitlist" ctaLabelMobile="Waitlist" />
       <div className="agent-page-flow relative overflow-hidden">
         <div className="glow-orb-1" />
         <div className="glow-orb-2" />

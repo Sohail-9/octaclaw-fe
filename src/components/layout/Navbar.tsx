@@ -9,12 +9,14 @@ type NavbarProps = {
   logoHref?: string;
   ctaHref?: string;
   ctaLabel?: string;
+  ctaLabelMobile?: string;
 };
 
 export default function Navbar({
   logoHref = "/",
   ctaHref = "#waitlist",
   ctaLabel = "Request Early Access",
+  ctaLabelMobile,
 }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
 
@@ -29,23 +31,33 @@ export default function Navbar({
       initial={{ y: -36, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b pt-[env(safe-area-inset-top)] transition-all duration-300 ${
         scrolled
-          ? "bg-[#252527]/85 border-white/10"
+          ? "bg-[#252527]/85 border-white/10 backdrop-blur-md"
           : "bg-transparent border-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-3">
         <Link
           href={logoHref}
-          className="inline-flex items-center gap-2 text-lg text-white font-extrabold tracking-tight font-[family-name:var(--font-syne)]"
+          className="min-w-0 inline-flex items-center gap-2 text-base sm:text-lg text-white font-extrabold tracking-tight font-[family-name:var(--font-syne)]"
         >
-          <Image src="/logo.png" alt="OctaClaw logo" width={44} height={44} className="h-11 w-11 object-contain" />
-          OctaClaw
+          <Image
+            src="/logo.png"
+            alt="OctaClaw logo"
+            width={44}
+            height={44}
+            className="h-10 w-10 sm:h-11 sm:w-11 object-contain"
+          />
+          <span className="hidden sm:inline truncate">OctaClaw</span>
         </Link>
 
-        <Link href={ctaHref} className="btn-primary text-sm">
-          {ctaLabel}
+        <Link
+          href={ctaHref}
+          className="btn-primary inline-flex h-10 sm:h-11 items-center justify-center whitespace-nowrap rounded-xl px-3 sm:px-4 text-sm"
+        >
+          <span className="sm:hidden">{ctaLabelMobile ?? ctaLabel}</span>
+          <span className="hidden sm:inline">{ctaLabel}</span>
         </Link>
       </nav>
     </motion.header>

@@ -69,7 +69,7 @@ export default function CTASection() {
             <button
               type="submit"
               disabled={status === "loading" || status === "success"}
-              className="btn-primary inline-flex h-[50px] items-center justify-center gap-2 whitespace-nowrap"
+              className="btn-primary inline-flex h-[50px] items-center justify-center gap-2 whitespace-nowrap rounded-xl px-5"
             >
               {status === "loading" ? (
                 <Loader2 className="animate-spin" size={18} />

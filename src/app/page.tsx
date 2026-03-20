@@ -24,7 +24,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navbar logoHref="/" ctaHref="/product" ctaLabel="View Product" />
+      <Navbar logoHref="/" ctaHref="/product" ctaLabel="View Product" ctaLabelMobile="Product" />
       <HomeWaitlistHero />
       <Footer minimal />
     </main>
