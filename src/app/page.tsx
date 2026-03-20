@@ -1,7 +1,7 @@
 import Script from "next/script";
 import { Navbar, Footer } from "@/components/layout";
 import HeroSection from "@/components/sections/Hero";
-import SocialProofSection from "@/components/sections/SocialProof";
+import ProductDemoSection from "@/components/sections/ProductDemo";
 import FeaturesSection from "@/components/sections/Features";
 import CTASection from "@/components/sections/CTA";
 
@@ -12,7 +12,7 @@ export default function Home() {
     name: "OctaClaw",
     url: "https://octaclaw.com",
     description:
-      "Design, connect, and run AI agents in a visual workspace. Build intelligent workflows for the next generation of teams.",
+      "OctaClaw lets teams design, run, and debug multi-agent DAG execution on a canvas.",
     publisher: {
       "@type": "Organization",
       name: "OctaClaw",
@@ -29,7 +29,7 @@ export default function Home() {
       />
       <Navbar />
       <HeroSection />
-      <SocialProofSection />
+      <ProductDemoSection />
       <FeaturesSection />
       <CTASection />
       <Footer />

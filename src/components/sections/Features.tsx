@@ -1,84 +1,72 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Maximize, Cpu, ShieldCheck } from "lucide-react";
+import { Gauge, ShieldCheck, GitBranch } from "lucide-react";
 
-const features = [
+const featureCards = [
   {
-    title: "Visual AI Workspace",
-    description: "Design AI workflows using a spatial canvas interface.",
-    icon: <Maximize className="text-purple-400 mb-4" size={32} />,
-    delay: 0.1,
+    icon: Gauge,
+    title: "Ship agent flows in hours",
+    description:
+      "Go from idea to first execution quickly, so you can validate your use case before the week is gone.",
   },
   {
-    title: "Composable AI Systems",
-    description: "Connect tools, models, and workflows visually.",
-    icon: <Cpu className="text-blue-400 mb-4" size={32} />,
-    delay: 0.3,
+    icon: ShieldCheck,
+    title: "Catch failures before customers do",
+    description:
+      "Step-level traces show exactly where runs break, so your team fixes bad branches fast instead of guessing.",
   },
   {
-    title: "Built for AI Builders",
-    description: "Designed for developers experimenting with next-generation AI systems.",
-    icon: <ShieldCheck className="text-purple-400 mb-4" size={32} />,
-    delay: 0.5,
+    icon: GitBranch,
+    title: "Scale experiments without chaos",
+    description:
+      "Run multiple DAG paths and compare outcomes in one place, so every launch uses evidence instead of intuition.",
   },
 ];
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="relative py-32 bg-[#0B0B0F] overflow-hidden">
-      {/* Background accents */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-[#7C3AED]/30 to-transparent" />
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#7C3AED]/10 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="relative max-w-7xl mx-auto px-6 z-10">
-        <div className="text-center mb-20">
+    <section id="features" className="relative py-20 sm:py-24 px-6 bg-[#120c21]">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-bold text-white mb-6"
-            style={{ fontFamily: "var(--font-space)" }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl sm:text-5xl font-extrabold text-white"
           >
-            Build AI Systems <span className="text-gradient">Visually</span>
+            Built for fast execution
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[#94a3b8] max-w-2xl mx-auto text-lg"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-3 max-w-2xl mx-auto text-[#c9c2df]"
           >
-            Everything you need to design, deploy, and scale intelligent agent networks — without the complexity.
+            Plan, run, and improve your agent DAGs without rebuilding the same logic every sprint.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: feature.delay }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="glass p-8 rounded-2xl border border-white/10 hover:border-[#7C3AED]/50 transition-all group relative overflow-hidden"
-            >
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div className="relative z-10">
-                {feature.icon}
-                <h3 className="text-xl font-semibold text-white mb-3" style={{ fontFamily: "var(--font-space)" }}>
-                  {feature.title}
-                </h3>
-                <p className="text-[#94a3b8] leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {featureCards.map((card, index) => {
+            const Icon = card.icon;
+            return (
+              <motion.article
+                key={card.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="oc-card p-7"
+              >
+                <Icon size={28} className="text-[#7c3aff]" />
+                <h3 className="mt-4 text-xl font-extrabold text-white">{card.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#c9c2df]">{card.description}</p>
+              </motion.article>
+            );
+          })}
         </div>
       </div>
     </section>

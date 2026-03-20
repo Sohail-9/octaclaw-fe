@@ -2,66 +2,30 @@
 
 import { motion } from "framer-motion";
 
-const quotes = [
-  {
-    quote: "The cleanest way we’ve found to map multi‑agent workflows end‑to‑end.",
-    author: "Founder, AI Studio",
-  },
-  {
-    quote: "The spatial canvas makes complex agent systems feel obvious and collaborative.",
-    author: "Head of Platform, DevTools",
-  },
-  {
-    quote: "We went from idea to executable workflow in minutes, not days.",
-    author: "ML Engineer, Growth Team",
-  },
-];
+const teamNames = ["Product teams", "Automation studios", "SaaS founders", "Dev tool builders", "Growth teams"];
 
 export default function SocialProofSection() {
   return (
-    <section className="relative py-24 bg-[#0B0B0F]">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[1px] bg-gradient-to-r from-transparent via-[#7C3AED]/30 to-transparent" />
-      </div>
+    <section className="relative py-16 px-6 bg-[#120c21]">
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+          className="oc-card p-8 text-center"
+        >
+          <p className="text-3xl sm:text-4xl text-white font-extrabold">1,842 builders already joined</p>
+          <p className="mt-2 text-[#c9c2df]">Used by teams shipping production automations and agent systems.</p>
 
-      <div className="relative max-w-6xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl md:text-4xl font-bold text-white mb-4"
-            style={{ fontFamily: "var(--font-space)" }}
-          >
-            What Builders Say
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-[#94a3b8] max-w-2xl mx-auto"
-          >
-            Early teams are using OctaClaw to design, connect, and run AI systems faster.
-          </motion.p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {quotes.map((item, index) => (
-            <motion.div
-              key={item.author}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass rounded-2xl p-6 border border-white/10"
-            >
-              <p className="text-[#e2e8f0] leading-relaxed mb-4">“{item.quote}”</p>
-              <div className="text-xs text-[#94a3b8]">{item.author}</div>
-            </motion.div>
-          ))}
-        </div>
+          <div className="mt-7 grid grid-cols-2 sm:grid-cols-5 gap-3">
+            {teamNames.map((team) => (
+              <div key={team} className="rounded-xl border border-white/12 bg-white/5 px-3 py-2 text-xs sm:text-sm text-[#e4ddf6]">
+                {team}
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

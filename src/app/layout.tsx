@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Syne } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,17 +8,18 @@ const inter = Inter({
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-space",
+  variable: "--font-syne",
+  weight: ["700", "800"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "OctaClaw – The Spatial Workspace for AI Collaboration",
+  title: "OctaClaw | Run Agent DAGs on a Canvas",
   description:
-    "Design, connect, and run AI agents in a visual workspace. Build intelligent workflows for the next generation of teams.",
-  keywords: ["octaclaw", "AI workspace", "AI agents", "spatial AI", "AI collaboration"],
+    "Design, run, and debug agent DAG execution on one canvas. Join the OctaClaw waitlist for early access.",
+  keywords: ["octaclaw", "agent dag", "agent orchestration", "canvas", "debugging"],
   metadataBase: new URL("https://octaclaw.com"),
   alternates: {
     canonical: "/",
@@ -35,18 +36,18 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "OctaClaw – The Spatial Workspace for AI Collaboration",
+    title: "OctaClaw | Run Agent DAGs on a Canvas",
     description:
-      "Design, connect, and run AI agents in a visual workspace. Build intelligent workflows for the next generation of teams.",
+      "Design, run, and debug agent DAG execution on one canvas. Join the OctaClaw waitlist for early access.",
     url: "https://octaclaw.com",
     siteName: "OctaClaw",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "OctaClaw – The Spatial Workspace for AI Collaboration",
+    title: "OctaClaw | Run Agent DAGs on a Canvas",
     description:
-      "Design, connect, and run AI agents in a visual workspace.",
+      "Design, run, and debug agent DAG execution on one canvas. Join the OctaClaw waitlist for early access.",
   },
 };
 
@@ -57,7 +58,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${syne.variable} antialiased`}>
+        <div className="grain-overlay" />
         {children}
       </body>
     </html>
