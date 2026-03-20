@@ -38,12 +38,11 @@ function getNode(id: string) {
 
 export default function ProductDemoSection() {
   return (
-    <section id="demo" className="relative overflow-hidden py-20 sm:py-24 px-6 bg-[#0D0818]">
-      <div className="glow-orb-1" />
+    <section id="demo" className="relative overflow-hidden py-16 sm:py-20 px-6">
       <div className="max-w-6xl mx-auto">
 
         <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-5xl text-white font-extrabold">
+          <h2 className="text-3xl sm:text-5xl text-white font-semibold tracking-[-0.01em]">
             See it in action
           </h2>
           <p className="mt-3 text-[#cec6e6] max-w-2xl mx-auto text-base sm:text-lg">
@@ -64,7 +63,8 @@ export default function ProductDemoSection() {
             background:
               "radial-gradient(ellipse 65% 55% at 80% 0%, rgba(124,58,255,0.45) 0%, transparent 68%)," +
               "radial-gradient(ellipse 40% 35% at 70% 6%, rgba(168,85,247,0.30) 0%, transparent 62%)," +
-              "radial-gradient(ellipse 28% 22% at 10% 95%, rgba(192,132,252,0.18) 0%, transparent 58%)," +
+              "radial-gradient(ellipse 30% 24% at 10% 95%, rgba(168,85,247,0.32) 0%, transparent 60%)," +
+              "radial-gradient(ellipse 22% 18% at 16% 90%, rgba(124,58,255,0.18) 0%, transparent 64%)," +
               "#0D0818",
           }}
         >

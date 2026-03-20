@@ -31,16 +31,17 @@ type FeaturesSectionProps = {
 export default function FeaturesSection({ light = false }: FeaturesSectionProps) {
   const sectionClasses = light
     ? "relative py-20 sm:py-24 px-6 bg-[#faf5ff]"
-    : "relative py-20 sm:py-24 px-6 bg-[#120c21]";
-  const titleClass = light ? "text-3xl sm:text-5xl font-extrabold text-[#1b1033]" : "text-3xl sm:text-5xl font-extrabold text-white";
+    : "relative py-16 sm:py-20 px-6";
+  const titleClass = light
+    ? "text-3xl sm:text-5xl font-semibold tracking-[-0.01em] text-[#1b1033]"
+    : "text-3xl sm:text-5xl font-semibold tracking-[-0.01em] text-white";
   const bodyClass = light ? "mt-3 max-w-2xl mx-auto text-[#4b3a72]" : "mt-3 max-w-2xl mx-auto text-[#c9c2df]";
   const cardClass = light ? "oc-card-light p-7" : "oc-card p-7";
-  const cardTitleClass = light ? "mt-4 text-xl font-extrabold text-[#1b1033]" : "mt-4 text-xl font-extrabold text-white";
+  const cardTitleClass = light ? "mt-4 text-xl font-semibold text-[#1b1033]" : "mt-4 text-xl font-semibold text-white";
   const cardBodyClass = light ? "mt-3 text-sm leading-relaxed text-[#4b3a72]" : "mt-3 text-sm leading-relaxed text-[#c9c2df]";
 
   return (
     <section id="features" className={sectionClasses}>
-      {!light && <div className="glow-orb-3" />}
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <motion.h2

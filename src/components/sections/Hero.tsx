@@ -17,17 +17,14 @@ export default function HeroSection({
   secondaryLabel = "Watch the DAG run",
 }: HeroSectionProps) {
   return (
-    <section id="hero" className="hero-glow relative overflow-hidden pt-32 pb-24 sm:pt-36 sm:pb-28">
-      <div className="glow-orb-1" />
-      <div className="glow-orb-2" />
-      <div className="glow-orb-3" />
+    <section id="hero" className="relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-24">
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="inline-flex rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-[#ded8f0]"
+          className="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm text-[#efeaff] shadow-[0_0_0_1px_rgba(168,85,247,0.12),0_10px_30px_rgba(124,58,255,0.14)]"
         >
           Private beta • Multi-agent DAG orchestrator
         </motion.p>
@@ -36,7 +33,7 @@ export default function HeroSection({
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.05 }}
-          className="mt-6 text-4xl sm:text-6xl lg:text-7xl leading-[1.05] font-semibold text-white"
+          className="mt-7 text-4xl sm:text-6xl lg:text-7xl leading-[1.08] sm:leading-[1.03] font-medium tracking-[-0.01em] text-white"
         >
           Your agents are stuck in scripts.
         </motion.h1>
@@ -57,11 +54,17 @@ export default function HeroSection({
           transition={{ duration: 0.55, delay: 0.22 }}
           className="mt-8 flex flex-col sm:flex-row justify-center gap-3"
         >
-          <a href={primaryHref} className="btn-primary inline-flex items-center justify-center gap-2 text-sm sm:text-base">
+          <a
+            href={primaryHref}
+            className="btn-primary inline-flex h-12 items-center justify-center gap-2 rounded-xl px-5 py-0 leading-none text-sm sm:text-base"
+          >
             {primaryLabel}
             <ArrowRight size={16} />
           </a>
-          <a href={secondaryHref} className="btn-secondary inline-flex items-center justify-center text-sm sm:text-base">
+          <a
+            href={secondaryHref}
+            className="btn-secondary inline-flex h-12 items-center justify-center rounded-xl px-5 py-0 leading-none text-sm sm:text-base"
+          >
             {secondaryLabel}
           </a>
         </motion.div>

@@ -33,8 +33,7 @@ export default function CTASection() {
   };
 
   return (
-    <section id="waitlist" className="relative overflow-hidden py-20 sm:py-24 px-6 bg-[#120c21]">
-      <div className="glow-orb-1" />
+    <section id="waitlist" className="relative overflow-hidden py-16 sm:py-20 px-6">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
