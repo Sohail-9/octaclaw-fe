@@ -3,8 +3,19 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Navbar() {
+type NavbarProps = {
+  logoHref?: string;
+  ctaHref?: string;
+  ctaLabel?: string;
+};
+
+export default function Navbar({
+  logoHref = "/",
+  ctaHref = "#waitlist",
+  ctaLabel = "Request Early Access",
+}: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -20,22 +31,22 @@ export default function Navbar() {
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? "bg-[#0d0818]/85 backdrop-blur-xl border-white/10"
+          ? "bg-[#0d0818]/85 border-white/10"
           : "bg-transparent border-transparent"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a
-          href="#hero"
+        <Link
+          href={logoHref}
           className="inline-flex items-center gap-2 text-lg text-white font-extrabold tracking-tight font-[family-name:var(--font-syne)]"
         >
-          <Image src="/logo.png" alt="OctaClaw logo" width={26} height={26} className="h-6 w-6 rounded-sm object-contain" />
+          <Image src="/logo.png" alt="OctaClaw logo" width={44} height={44} className="h-11 w-11 object-contain" />
           OctaClaw
-        </a>
+        </Link>
 
-        <a href="#waitlist" className="btn-primary text-sm">
-          Request Early Access
-        </a>
+        <Link href={ctaHref} className="btn-primary text-sm">
+          {ctaLabel}
+        </Link>
       </nav>
     </motion.header>
   );

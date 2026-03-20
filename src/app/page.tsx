@@ -1,9 +1,6 @@
 import Script from "next/script";
 import { Navbar, Footer } from "@/components/layout";
-import HeroSection from "@/components/sections/Hero";
-import ProductDemoSection from "@/components/sections/ProductDemo";
-import FeaturesSection from "@/components/sections/Features";
-import CTASection from "@/components/sections/CTA";
+import HomeWaitlistHero from "@/components/sections/HomeWaitlistHero";
 
 export default function Home() {
   const jsonLd = {
@@ -27,12 +24,9 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navbar />
-      <HeroSection />
-      <ProductDemoSection />
-      <FeaturesSection />
-      <CTASection />
-      <Footer />
+      <Navbar logoHref="/" ctaHref="/product" ctaLabel="View Product" />
+      <HomeWaitlistHero />
+      <Footer minimal />
     </main>
   );
 }

@@ -3,10 +3,24 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  primaryHref?: string;
+  secondaryHref?: string;
+  primaryLabel?: string;
+  secondaryLabel?: string;
+};
+
+export default function HeroSection({
+  primaryHref = "#waitlist",
+  secondaryHref = "#demo",
+  primaryLabel = "Join the Priority Waitlist",
+  secondaryLabel = "Watch the DAG run",
+}: HeroSectionProps) {
   return (
     <section id="hero" className="hero-glow relative overflow-hidden pt-32 pb-24 sm:pt-36 sm:pb-28">
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(13,8,24,0.55)_100%)]" />
+      <div className="glow-orb-1" />
+      <div className="glow-orb-2" />
+      <div className="glow-orb-3" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <motion.p
@@ -43,12 +57,12 @@ export default function HeroSection() {
           transition={{ duration: 0.55, delay: 0.22 }}
           className="mt-8 flex flex-col sm:flex-row justify-center gap-3"
         >
-          <a href="#waitlist" className="btn-primary inline-flex items-center justify-center gap-2 text-sm sm:text-base">
-            Join the Priority Waitlist
+          <a href={primaryHref} className="btn-primary inline-flex items-center justify-center gap-2 text-sm sm:text-base">
+            {primaryLabel}
             <ArrowRight size={16} />
           </a>
-          <a href="#demo" className="btn-secondary inline-flex items-center justify-center text-sm sm:text-base">
-            Watch the DAG run
+          <a href={secondaryHref} className="btn-secondary inline-flex items-center justify-center text-sm sm:text-base">
+            {secondaryLabel}
           </a>
         </motion.div>
 

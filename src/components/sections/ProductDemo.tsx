@@ -38,7 +38,8 @@ function getNode(id: string) {
 
 export default function ProductDemoSection() {
   return (
-    <section id="demo" className="relative py-20 sm:py-24 px-6 bg-[#0D0818]">
+    <section id="demo" className="relative overflow-hidden py-20 sm:py-24 px-6 bg-[#0D0818]">
+      <div className="glow-orb-1" />
       <div className="max-w-6xl mx-auto">
 
         <div className="text-center mb-10">
@@ -110,14 +111,6 @@ export default function ProductDemoSection() {
                 <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
                   <path d="M1 2L8 5L1 8" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                 </marker>
-                <filter id="fg" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3.5" result="b" />
-                  <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
-                <filter id="fp" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="4.5" result="b" />
-                  <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-                </filter>
               </defs>
 
               {/* Edges - calculated from node coordinates, always connected */}
@@ -177,7 +170,7 @@ export default function ProductDemoSection() {
                 const textCol = isDone ? "#ECFDF5" : isRunning ? "#F5F3FF" : "#D1D5DB";
 
                 return (
-                  <g key={node.id} filter={isDone ? "url(#fg)" : isRunning ? "url(#fp)" : undefined}>
+                  <g key={node.id}>
                     {isRunning && (
                       <rect
                         x={x - 3} y={y - 3}

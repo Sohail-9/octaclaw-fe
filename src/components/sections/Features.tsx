@@ -24,9 +24,23 @@ const featureCards = [
   },
 ];
 
-export default function FeaturesSection() {
+type FeaturesSectionProps = {
+  light?: boolean;
+};
+
+export default function FeaturesSection({ light = false }: FeaturesSectionProps) {
+  const sectionClasses = light
+    ? "relative py-20 sm:py-24 px-6 bg-[#faf5ff]"
+    : "relative py-20 sm:py-24 px-6 bg-[#120c21]";
+  const titleClass = light ? "text-3xl sm:text-5xl font-extrabold text-[#1b1033]" : "text-3xl sm:text-5xl font-extrabold text-white";
+  const bodyClass = light ? "mt-3 max-w-2xl mx-auto text-[#4b3a72]" : "mt-3 max-w-2xl mx-auto text-[#c9c2df]";
+  const cardClass = light ? "oc-card-light p-7" : "oc-card p-7";
+  const cardTitleClass = light ? "mt-4 text-xl font-extrabold text-[#1b1033]" : "mt-4 text-xl font-extrabold text-white";
+  const cardBodyClass = light ? "mt-3 text-sm leading-relaxed text-[#4b3a72]" : "mt-3 text-sm leading-relaxed text-[#c9c2df]";
+
   return (
-    <section id="features" className="relative py-20 sm:py-24 px-6 bg-[#120c21]">
+    <section id="features" className={sectionClasses}>
+      {!light && <div className="glow-orb-3" />}
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <motion.h2
@@ -34,7 +48,7 @@ export default function FeaturesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-5xl font-extrabold text-white"
+            className={titleClass}
           >
             Built for fast execution
           </motion.h2>
@@ -43,7 +57,7 @@ export default function FeaturesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-3 max-w-2xl mx-auto text-[#c9c2df]"
+            className={bodyClass}
           >
             Plan, run, and improve your agent DAGs without rebuilding the same logic every sprint.
           </motion.p>
@@ -59,11 +73,11 @@ export default function FeaturesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="oc-card p-7"
+                className={cardClass}
               >
                 <Icon size={28} className="text-[#7c3aff]" />
-                <h3 className="mt-4 text-xl font-extrabold text-white">{card.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#c9c2df]">{card.description}</p>
+                <h3 className={cardTitleClass}>{card.title}</h3>
+                <p className={cardBodyClass}>{card.description}</p>
               </motion.article>
             );
           })}

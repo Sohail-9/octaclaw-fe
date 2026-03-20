@@ -1,6 +1,20 @@
 import { Github, Linkedin, Twitter } from "lucide-react";
 
-export default function Footer() {
+type FooterProps = {
+  minimal?: boolean;
+};
+
+export default function Footer({ minimal = false }: FooterProps) {
+  if (minimal) {
+    return (
+      <footer className="relative py-8">
+        <div className="max-w-7xl mx-auto px-6 text-center text-sm text-[#b9b2cf]">
+          © {new Date().getFullYear()} OctaClaw
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <footer className="relative border-t border-white/10 py-10 bg-[#100a1e]">
       <div className="max-w-7xl mx-auto px-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">

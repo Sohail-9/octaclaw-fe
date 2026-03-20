@@ -6,7 +6,8 @@ const teamNames = ["Product teams", "Automation studios", "SaaS founders", "Dev 
 
 export default function SocialProofSection() {
   return (
-    <section className="relative py-16 px-6 bg-[#120c21]">
+    <section className="relative overflow-hidden py-16 px-6 bg-[#120c21]">
+      <div className="glow-orb-3" />
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 14 }}

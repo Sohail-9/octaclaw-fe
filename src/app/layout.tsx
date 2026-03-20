@@ -16,7 +16,7 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "OctaClaw | Run Agent DAGs on a Canvas",
+  title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
   description:
     "Design, run, and debug agent DAG execution on one canvas. Join the OctaClaw waitlist for early access.",
   keywords: ["octaclaw", "agent dag", "agent orchestration", "canvas", "debugging"],
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "OctaClaw | Run Agent DAGs on a Canvas",
+    title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
     description:
       "Design, run, and debug agent DAG execution on one canvas. Join the OctaClaw waitlist for early access.",
     url: "https://octaclaw.com",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OctaClaw | Run Agent DAGs on a Canvas",
+    title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
     description:
       "Design, run, and debug agent DAG execution on one canvas. Join the OctaClaw waitlist for early access.",
   },
@@ -59,7 +59,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.variable} ${syne.variable} antialiased`}>
-        <div className="grain-overlay" />
         {children}
       </body>
     </html>
