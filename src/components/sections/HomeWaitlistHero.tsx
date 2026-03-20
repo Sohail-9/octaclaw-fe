@@ -62,7 +62,7 @@ export default function HomeWaitlistHero() {
           transition={{ duration: 0.55, delay: 0.14 }}
           className="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-[#d9d2ee]"
         >
-          Design, run, and debug multi-agent DAG execution on a shared canvas — with full visibility and collaboration
+          Design, run, and debug multi-agent DAG execution on a shared Spatial Workspace — with full visibility and collaboration
           built in.
         </motion.p>
 
