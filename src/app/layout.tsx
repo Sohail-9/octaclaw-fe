@@ -19,9 +19,13 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
   description:
-    "Design, run, and debug agent DAG execution on one Spatial Workspace. Join the OctaClaw waitlist for early access.",
+    "Most AI tools are built for solo use. OctaClaw is built for teams — a live spatial environment where humans and agents work side by side.",
   keywords: ["octaclaw", "agent dag", "agent orchestration", "Spatial Workspace", "debugging"],
   metadataBase: new URL("https://octaclaw.com"),
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
   alternates: {
     canonical: "/",
   },
@@ -39,16 +43,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
     description:
-      "Design, run, and debug agent DAG execution on one Spatial Workspace. Join the OctaClaw waitlist for early access.",
+      "Most AI tools are built for solo use. OctaClaw is built for teams.",
     url: "https://octaclaw.com",
     siteName: "OctaClaw",
+    images: [{ url: "https://octaclaw.com/og-image.png", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
     description:
-      "Design, run, and debug agent DAG execution on one Spatial Workspace. Join the OctaClaw waitlist for early access.",
+      "Most AI tools are built for solo use. OctaClaw is built for teams.",
+    images: ["https://octaclaw.com/og-image.png"],
   },
 };
 
