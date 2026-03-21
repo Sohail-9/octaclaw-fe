@@ -4,16 +4,16 @@ import { motion } from "framer-motion";
 
 const steps = [
   {
-    title: "Map work in one Spatial Workspace",
-    description: "Create DAGs visually and assign humans and agents to each stage of execution.",
+    title: "Scaffold your Spatial Office",
+    description: "Initialize your 2D workspace and physically drop diverse AI agents into their dedicated desks.",
   },
   {
-    title: "Run with full visibility",
-    description: "Watch runs live, inspect node-level traces, and catch failures before they ship.",
+    title: "Watch execution unfold live",
+    description: "Deploy workflows from the Command Center. Watch as your agents walk, work, and collaborate in real-time.",
   },
   {
-    title: "Collaborate and iterate",
-    description: "Comment in context, replay paths, and improve workflows with the whole team aligned.",
+    title: "Intercept and guide mid-run",
+    description: "Walk your avatar up to any agent's radius to open their panel. Inspect logs or inject prompts on the fly.",
   },
 ];
 

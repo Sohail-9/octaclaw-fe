@@ -8,7 +8,7 @@ const featureCards = [
     icon: Gauge,
     title: "Ship agent flows in hours",
     description:
-      "Go from idea to first execution quickly, so you can validate your use case before the week is gone.",
+      "Go from idea to first execution quickly, so you can validate your use case before the week is gone. One command kicks off a full DAG. No boilerplate.",
   },
   {
     icon: ShieldCheck,
@@ -20,7 +20,7 @@ const featureCards = [
     icon: GitBranch,
     title: "Scale experiments without chaos",
     description:
-      "Run multiple DAG paths and compare outcomes in one place, so every launch uses evidence instead of intuition.",
+      "Run multiple DAG paths and compare outcomes in one place, so every launch uses evidence instead of intuition. Run `octa run` with any recipe and compare results side by side.",
   },
 ];
 

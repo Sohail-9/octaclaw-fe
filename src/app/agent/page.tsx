@@ -1,10 +1,12 @@
 import { Navbar, Footer } from "@/components/layout";
 import HeroSection from "@/components/sections/Hero";
-import ProductDemoSection from "@/components/sections/ProductDemo";
+import QuickStartSection from "@/components/sections/QuickStart";
+import ProximityFeatureSection from "@/components/sections/ProximityFeatureSection";
 import FeaturesSection from "@/components/sections/Features";
-import SpatialWorkspaceSection from "@/components/sections/SpatialWorkspace";
+
 import HowItWorksSection from "@/components/sections/HowItWorks";
-import CTASection from "@/components/sections/CTA";
+import CLIReferenceSection from "@/components/sections/CLIReferenceSection";
+
 
 export default function AgentPage() {
   return (
@@ -14,12 +16,14 @@ export default function AgentPage() {
         <div className="glow-orb-1" />
         <div className="glow-orb-2" />
         <div className="glow-orb-3" />
-        <HeroSection primaryHref="/" primaryLabel="Join Waitlist" secondaryHref="#demo" secondaryLabel="Watch the DAG run" />
-        <ProductDemoSection />
+        <HeroSection primaryHref="/" primaryLabel="Join Waitlist" secondaryHref="#proximity" secondaryLabel="See it in action" />
+        <QuickStartSection />
+        <ProximityFeatureSection />
         <FeaturesSection />
-        <SpatialWorkspaceSection />
+
         <HowItWorksSection />
-        <CTASection />
+        <CLIReferenceSection />
+
       </div>
       <Footer />
     </main>

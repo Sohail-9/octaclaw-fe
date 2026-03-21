@@ -1,5 +1,7 @@
 import { Github, Linkedin, Twitter } from "lucide-react";
 
+import Image from "next/image";
+
 type FooterProps = {
   minimal?: boolean;
 };
@@ -16,11 +18,22 @@ export default function Footer({ minimal = false }: FooterProps) {
   }
 
   return (
-    <footer className="relative border-t border-white/10 py-8 bg-[#252527]">
+    <footer className="relative border-t border-white/10 py-10 bg-[#252527]">
       <div className="max-w-7xl mx-auto px-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <span className="text-xl text-white font-extrabold tracking-tight font-[family-name:var(--font-syne)]">
-          OctaClaw
-        </span>
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt="OctaClaw logo"
+              width={24}
+              height={24}
+              className="object-contain"
+            />
+            <span className="text-xl text-white font-extrabold tracking-tight font-[family-name:var(--font-syne)]">
+              OctaClaw
+            </span>
+          </div>
+        </div>
 
         <a href="mailto:contact@octaclaw.com" className="text-sm text-[#d8d4e5] hover:text-white transition-colors">
           contact@octaclaw.com
