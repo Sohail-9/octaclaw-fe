@@ -85,7 +85,7 @@ Three feature cards in a responsive grid.
 Card 1
 Title: Spatial AI Workspace
 Description:
-Design complex AI workflows using a visual spatial canvas.
+Design complex AI workflows using a visual spatial Spatial Workspace.
 
 Card 2
 Title: Autonomous AI Agents

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const steps = [
   {
-    title: "Map work in one canvas",
+    title: "Map work in one Spatial Workspace",
     description: "Create DAGs visually and assign humans and agents to each stage of execution.",
   },
   {

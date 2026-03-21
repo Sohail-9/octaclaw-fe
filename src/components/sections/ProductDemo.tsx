@@ -93,7 +93,7 @@ export default function ProductDemoSection() {
             </span>
           </div>
 
-          {/* SVG canvas */}
+          {/* SVG Spatial Workspace */}
           <div className="relative w-full" style={{ paddingBottom: "40%" }}>
             <svg
               className="absolute inset-0 w-full h-full"

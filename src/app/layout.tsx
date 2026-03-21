@@ -19,8 +19,8 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
   description:
-    "Design, run, and debug agent DAG execution on one canvas. Join the OctaClaw waitlist for early access.",
-  keywords: ["octaclaw", "agent dag", "agent orchestration", "canvas", "debugging"],
+    "Design, run, and debug agent DAG execution on one Spatial Workspace. Join the OctaClaw waitlist for early access.",
+  keywords: ["octaclaw", "agent dag", "agent orchestration", "Spatial Workspace", "debugging"],
   metadataBase: new URL("https://octaclaw.com"),
   alternates: {
     canonical: "/",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
     description:
-      "Design, run, and debug agent DAG execution on one canvas. Join the OctaClaw waitlist for early access.",
+      "Design, run, and debug agent DAG execution on one Spatial Workspace. Join the OctaClaw waitlist for early access.",
     url: "https://octaclaw.com",
     siteName: "OctaClaw",
     type: "website",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
     description:
-      "Design, run, and debug agent DAG execution on one canvas. Join the OctaClaw waitlist for early access.",
+      "Design, run, and debug agent DAG execution on one Spatial Workspace. Join the OctaClaw waitlist for early access.",
   },
 };
 

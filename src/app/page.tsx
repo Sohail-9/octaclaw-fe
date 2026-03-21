@@ -9,7 +9,7 @@ export default function Home() {
     name: "OctaClaw",
     url: "https://octaclaw.com",
     description:
-      "OctaClaw lets teams design, run, and debug multi-agent DAG execution on a canvas.",
+      "OctaClaw lets teams design, run, and debug multi-agent DAG execution on a Spatial Workspace.",
     publisher: {
       "@type": "Organization",
       name: "OctaClaw",
