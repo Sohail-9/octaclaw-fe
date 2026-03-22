@@ -12,18 +12,15 @@ export default function AgentPage() {
   return (
     <main>
       <Navbar logoHref="/" ctaHref="/" ctaLabel="Join Waitlist" ctaLabelMobile="Waitlist" />
-      <div className="agent-page-flow relative overflow-hidden">
-        <div className="glow-orb-1" />
-        <div className="glow-orb-2" />
-        <div className="glow-orb-3" />
+      <div className="relative pt-12">
         <HeroSection primaryHref="/" primaryLabel="Join Waitlist" secondaryHref="#proximity" secondaryLabel="See it in action" />
-        <QuickStartSection />
-        <ProximityFeatureSection />
-        <FeaturesSection />
-
-        <HowItWorksSection />
-        <CLIReferenceSection />
-
+        <div className="pb-16">
+          <QuickStartSection />
+          <ProximityFeatureSection />
+          <FeaturesSection />
+          <HowItWorksSection />
+          <CLIReferenceSection />
+        </div>
       </div>
       <Footer />
     </main>

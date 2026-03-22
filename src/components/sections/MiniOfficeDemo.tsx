@@ -34,9 +34,9 @@ interface Teammate {
 // ─── Office layout ───────────────────────────────────────────
 const FLOOR_ROOMS = [
   { x: 1, y: 1, w: 8, h: 5, label: "Research Lab", color: "rgba(124,58,255,0.06)" },
-  { x: 11, y: 1, w: 8, h: 5, label: "Build Zone", color: "rgba(16,185,129,0.06)" },
-  { x: 1, y: 8, w: 8, h: 5, label: "QA Room", color: "rgba(251,146,60,0.06)" },
-  { x: 11, y: 8, w: 8, h: 5, label: "Command Center", color: "rgba(99,102,241,0.08)" },
+  { x: 11, y: 1, w: 8, h: 5, label: "Build Zone", color: "rgba(168,85,247,0.06)" },
+  { x: 1, y: 8, w: 8, h: 5, label: "QA Room", color: "rgba(139,92,246,0.06)" },
+  { x: 11, y: 8, w: 8, h: 5, label: "Command Center", color: "rgba(124,58,255,0.08)" },
 ];
 
 const AGENTS: Agent[] = [
@@ -53,8 +53,8 @@ const AGENTS: Agent[] = [
     id: "builder",
     label: "Builder",
     desk: { x: 13, y: 2 },
-    color: "#22c55e",
-    glowColor: "rgba(34,197,94,0.4)",
+    color: "#c084fc",
+    glowColor: "rgba(192,132,252,0.4)",
     status: "done",
     strategy: "Writing Code",
   },
@@ -62,8 +62,8 @@ const AGENTS: Agent[] = [
     id: "tester",
     label: "Tester",
     desk: { x: 2, y: 9 },
-    color: "#f97316",
-    glowColor: "rgba(249,115,22,0.4)",
+    color: "#e9d5ff",
+    glowColor: "rgba(233,213,255,0.4)",
     status: "pending",
     strategy: "Awaiting Build",
   },
@@ -71,8 +71,8 @@ const AGENTS: Agent[] = [
     id: "ceo",
     label: "CEO Desk",
     desk: { x: 13, y: 9 },
-    color: "#6366f1",
-    glowColor: "rgba(99,102,241,0.4)",
+    color: "#7c3aff",
+    glowColor: "rgba(124,58,255,0.4)",
     status: "idle",
     strategy: "Command Center",
   },
@@ -133,9 +133,9 @@ function nearestAgent(pos: Pos): Agent | null {
 // ─── Status helpers ───────────────────────────────────────────
 function statusColor(status: string) {
   if (status === "running") return "#a855f7";
-  if (status === "done") return "#22c55e";
-  if (status === "pending") return "#f97316";
-  return "#6366f1";
+  if (status === "done") return "#c084fc";
+  if (status === "pending") return "#e9d5ff";
+  return "#7c3aff";
 }
 
 function statusDot(status: string) {
@@ -391,8 +391,8 @@ export default function MiniOfficeDemo({ mode = "proximity" }: { mode?: Mode }) 
                   stroke="white" strokeWidth="1" opacity="0.75" />
                 <defs>
                   <radialGradient id="tmb-grad">
-                    <stop offset="0%" stopColor="#06b6d4" />
-                    <stop offset="100%" stopColor="#0369a1" />
+                    <stop offset="0%" stopColor="#c084fc" />
+                    <stop offset="100%" stopColor="#7c3aff" />
                   </radialGradient>
                 </defs>
                 <text x={tc} y={td + 3.5} textAnchor="middle"
@@ -481,10 +481,10 @@ export default function MiniOfficeDemo({ mode = "proximity" }: { mode?: Mode }) 
           {mode === "multiplayer" && (
             <g transform={`translate(${W - 72}, ${H - 18})`}>
               <rect width="68" height="12" rx="6" fill="rgba(0,0,0,0.5)" />
-              <circle cx="10" cy="6" r="2.5" fill="#22c55e">
+              <circle cx="10" cy="6" r="2.5" fill="#a855f7">
                 <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite" />
               </circle>
-              <text x="17" y="9.5" fontFamily="monospace" fontSize="6" fill="rgba(34,197,94,0.8)">
+              <text x="17" y="9.5" fontFamily="monospace" fontSize="6" fill="rgba(168,85,247,0.8)">
                 3 online · live sync
               </text>
             </g>
@@ -497,9 +497,9 @@ export default function MiniOfficeDemo({ mode = "proximity" }: { mode?: Mode }) 
       <div className="flex items-center gap-4 px-4 py-2 border-t border-white/5">
         {[
           { col: "#a855f7", label: "running" },
-          { col: "#22c55e", label: "done" },
-          { col: "#f97316", label: "pending" },
-          { col: "#6366f1", label: "idle" },
+          { col: "#c084fc", label: "done" },
+          { col: "#e9d5ff", label: "pending" },
+          { col: "#7c3aff", label: "idle" },
         ].map(({ col, label }) => (
           <div key={label} className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: col }} />

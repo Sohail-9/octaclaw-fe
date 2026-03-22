@@ -30,26 +30,24 @@ type FeaturesSectionProps = {
 
 export default function FeaturesSection({ light = false }: FeaturesSectionProps) {
   const sectionClasses = light
-    ? "relative py-20 sm:py-24 px-6 bg-[#faf5ff]"
-    : "relative py-16 sm:py-20 px-6";
-  const titleClass = light
-    ? "text-3xl sm:text-5xl font-semibold tracking-[-0.01em] text-[#1b1033]"
-    : "text-3xl sm:text-5xl font-semibold tracking-[-0.01em] text-white";
-  const bodyClass = light ? "mt-3 max-w-2xl mx-auto text-[#4b3a72]" : "mt-3 max-w-2xl mx-auto text-[#c9c2df]";
-  const cardClass = light ? "oc-card-light p-7" : "oc-card p-7";
-  const cardTitleClass = light ? "mt-4 text-xl font-semibold text-[#1b1033]" : "mt-4 text-xl font-semibold text-white";
-  const cardBodyClass = light ? "mt-3 text-sm leading-relaxed text-[#4b3a72]" : "mt-3 text-sm leading-relaxed text-[#c9c2df]";
+    ? "relative py-16 sm:py-20 px-6 surface-low"
+    : "relative py-12 sm:py-16 px-6";
+  const titleClass = "text-3xl sm:text-5xl font-semibold tracking-[-0.01em] text-white";
+  const bodyClass = "mt-3 max-w-2xl mx-auto text-text-muted";
+  const cardClass = "glass-card p-8";
+  const cardTitleClass = "text-xl font-bold text-white font-heading";
+  const cardBodyClass = "mt-4 text-text-muted leading-relaxed";
 
   return (
     <section id="features" className={sectionClasses}>
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className={titleClass}
+            className={`${titleClass} font-heading font-bold`}
           >
             Built for fast execution
           </motion.h2>
@@ -58,13 +56,13 @@ export default function FeaturesSection({ light = false }: FeaturesSectionProps)
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className={bodyClass}
+            className={`${bodyClass} text-lg sm:text-xl`}
           >
             Plan, run, and improve your agent DAGs without rebuilding the same logic every sprint.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {featureCards.map((card, index) => {
             const Icon = card.icon;
             return (
@@ -74,11 +72,13 @@ export default function FeaturesSection({ light = false }: FeaturesSectionProps)
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className={cardClass}
+                className="glass-card p-8"
               >
-                <Icon size={28} className="text-[#7c3aff]" />
-                <h3 className={cardTitleClass}>{card.title}</h3>
-                <p className={cardBodyClass}>{card.description}</p>
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+                  <Icon size={24} className="text-primary-light" />
+                </div>
+                <h3 className="text-xl font-bold text-white font-heading">{card.title}</h3>
+                <p className="mt-4 text-text-muted leading-relaxed">{card.description}</p>
               </motion.article>
             );
           })}

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Activity } from "lucide-react";
 
 type HeroSectionProps = {
   primaryHref?: string;
@@ -17,68 +17,63 @@ export default function HeroSection({
   secondaryLabel = "Watch gameplay",
 }: HeroSectionProps) {
   return (
-    <section id="hero" className="relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-24">
-
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 18 }}
+    <section id="hero" className="relative overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-24 px-6">
+      <div className="relative z-10 max-w-6xl mx-auto text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.05 }}
-          className="mt-7 text-4xl sm:text-6xl lg:text-7xl leading-[1.08] sm:leading-[1.03] font-medium tracking-[-0.01em] text-white"
+          transition={{ duration: 0.4 }}
+          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1.5 px-4 text-xs font-medium uppercase tracking-[0.2em] text-primary-light"
         >
-          The first 2D spatial office for your AI agents.
+          <Activity size={12} />
+          Now in Private Beta
+        </motion.p>
+        
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="mt-10 text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-white font-heading leading-[1.1]"
+        >
+          The first 2D spatial office <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50">
+            for your AI agents.
+          </span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.14 }}
-          className="mt-6 max-w-3xl mx-auto text-base sm:text-xl text-[#dfdaf0]"
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mt-10 max-w-3xl mx-auto text-lg sm:text-2xl text-text-muted leading-relaxed"
         >
           OctaClaw puts your team and your AI agents in the same spatial environment. See who&apos;s working on what, jump
-          into any agent&apos;s run, and collaborate with your team - all in one living workspace.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.17 }}
-          className="mt-5 max-w-3xl mx-auto text-base sm:text-lg text-[#b9b2cf]"
-        >
-          Teams running AI agents today are flying blind. No visibility, no collaboration, no way to know what broke until a user reports it. OctaClaw changes that.
+          into any agent&apos;s run, and collaborate in real-time.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.22 }}
-          className="mt-8 flex flex-col sm:flex-row justify-center gap-3"
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="mt-12 flex flex-col sm:flex-row justify-center gap-4"
         >
           <a
             href={primaryHref}
-            className="btn-primary inline-flex h-12 items-center justify-center gap-2 rounded-xl px-5 py-0 leading-none text-sm sm:text-base"
+            className="btn-primary group h-14 px-8 rounded-2xl flex items-center justify-center gap-2 text-lg transition-all duration-300"
           >
             {primaryLabel}
-            <ArrowRight size={16} />
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </a>
+          
           {secondaryLabel && secondaryHref && (
             <a
               href={secondaryHref}
-              className="btn-secondary inline-flex h-12 items-center justify-center rounded-xl px-5 py-0 leading-none text-sm sm:text-base"
+              className="btn-secondary h-14 px-8 rounded-2xl flex items-center justify-center text-lg border-white/10 hover:bg-white/5"
             >
               {secondaryLabel}
             </a>
           )}
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.35, duration: 0.5 }}
-          className="mt-5 text-sm text-[#b9b2cf]"
-        >
-          Limited beta seats this month.
-        </motion.p>
       </div>
     </section>
   );

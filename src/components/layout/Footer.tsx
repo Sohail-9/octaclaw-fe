@@ -9,8 +9,8 @@ type FooterProps = {
 export default function Footer({ minimal = false }: FooterProps) {
   if (minimal) {
     return (
-      <footer className="relative border-t border-white/10 bg-[#252527] py-8">
-        <div className="max-w-7xl mx-auto px-6 text-center text-sm text-[#b9b2cf]">
+      <footer className="relative py-12 border-t border-white/5 surface-base">
+        <div className="max-w-7xl mx-auto px-6 text-center text-sm text-text-muted font-medium">
           © {new Date().getFullYear()} OctaClaw
         </div>
       </footer>
@@ -18,42 +18,48 @@ export default function Footer({ minimal = false }: FooterProps) {
   }
 
   return (
-    <footer className="relative border-t border-white/10 py-10 bg-[#252527]">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2">
+    <footer className="relative py-20 border-t border-white/5 surface-base">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-3">
             <Image
               src="/logo.png"
               alt="OctaClaw logo"
-              width={24}
-              height={24}
+              width={32}
+              height={32}
               className="object-contain"
             />
-            <span className="text-xl text-white font-extrabold tracking-tight font-[family-name:var(--font-syne)]">
+            <span className="text-2xl text-white font-bold tracking-tight font-heading">
               OctaClaw
             </span>
           </div>
+          <p className="text-sm text-text-muted max-w-xs mt-2">
+            The spatial intelligence layer for high-performance AI agent teams.
+          </p>
         </div>
 
-        <a href="mailto:contact@octaclaw.com" className="text-sm text-[#d8d4e5] hover:text-white transition-colors">
-          contact@octaclaw.com
-        </a>
+        <div className="flex flex-col md:items-end gap-6">
+          <a href="mailto:contact@octaclaw.com" className="text-base font-medium text-white/80 hover:text-accent-cyan transition-colors">
+            contact@octaclaw.com
+          </a>
 
-        <div className="flex items-center gap-4 text-[#b1a8c9]">
-          <a href="https://x.com/octaclaww" target="_blank" rel="noreferrer" aria-label="X" className="hover:text-white transition-colors">
-            <Twitter size={17} />
-          </a>
-          <a href="https://github.com/0xLabs-Org" target="_blank" rel="noreferrer" aria-label="GitHub" className="hover:text-white transition-colors">
-            <Github size={17} />
-          </a>
-          <a href="https://linkedin.com/company/octaclaw" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-white transition-colors">
-            <Linkedin size={17} />
-          </a>
+          <div className="flex items-center gap-6 text-text-muted">
+            <a href="https://x.com/octaclaww" target="_blank" rel="noreferrer" aria-label="X" className="hover:text-accent-cyan transition-all transform hover:scale-110">
+              <Twitter size={20} />
+            </a>
+            <a href="https://github.com/0xLabs-Org" target="_blank" rel="noreferrer" aria-label="GitHub" className="hover:text-accent-cyan transition-all transform hover:scale-110">
+              <Github size={20} />
+            </a>
+            <a href="https://linkedin.com/company/octaclaw" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-accent-cyan transition-all transform hover:scale-110">
+              <Linkedin size={20} />
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mt-4 text-xs text-[#8c84a8]">
-        © {new Date().getFullYear()} OctaClaw. All rights reserved.
+      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 text-xs text-text-muted/50 tracking-widest uppercase flex justify-between">
+        <span>© {new Date().getFullYear()} OctaClaw.</span>
+        <span>Built for the future of work.</span>
       </div>
     </footer>
   );

@@ -33,148 +33,134 @@ export default function HomeWaitlistHero() {
   };
 
   return (
-    <section id="waitlist" className="hero-glow relative overflow-hidden pt-28 pb-14 sm:pt-32 sm:pb-20 px-6">
-      <div className="glow-orb-1 opacity-60" />
-      <div className="glow-orb-2 opacity-60" />
-      <div className="glow-orb-3 opacity-60" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[800px] h-[500px] bg-[#7c3aff]/10 blur-[120px] rounded-full pointer-events-none" />
-
+    <section id="waitlist" className="relative overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-24 px-6">
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
           {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55 }}
-            className="text-center lg:text-left pt-8 lg:pt-0"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center lg:text-left"
           >
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm text-[#efeaff] shadow-[0_0_0_1px_rgba(168,85,247,0.12),0_10px_30px_rgba(124,58,255,0.14)]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.15em] text-[#a855f7] shadow-sm"
             >
-              OctaClaw private waitlist
+              <Sparkles size={14} />
+              Private Beta Access
             </motion.p>
 
             <motion.h1
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.05 }}
-              className="mt-7 text-4xl sm:text-5xl lg:text-6xl xl:text-6xl leading-[1.08] sm:leading-[1.05] font-medium tracking-tight text-white"
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="mt-8 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white font-heading"
             >
-              Your team. Your agents. One spatial environment.
+              Your team. Your agents. <br className="hidden sm:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">
+                One spatial environment.
+              </span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.14 }}
-              className="mt-6 mb-8 max-w-xl mx-auto lg:mx-0 text-base sm:text-lg text-[#d9d2ee] leading-relaxed"
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="mt-8 mb-10 max-w-xl mx-auto lg:mx-0 text-lg sm:text-xl text-text-muted leading-relaxed"
             >
-              Teams running AI agents today are flying blind. No visibility, no collaboration, no way to know what broke until a user reports it. OctaClaw changes that.
+              Teams running AI agents today are flying blind. OctaClaw provides the visibility and collaboration layer needed to ship production-ready agentic workflows.
             </motion.p>
-
-            <motion.ul 
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.18 }}
-              className="space-y-3 mb-10 text-left max-w-xl mx-auto lg:mx-0 hidden sm:block"
-            >
-              {[
-                "Visualize complex multi-agent DAGs instantly",
-                "Approve or reject agent actions in real-time"
-              ].map((item, i) => (
-                <li key={i} className="flex items-center text-[#c9c2df] text-base">
-                  <CheckCircle2 className="w-5 h-5 mr-3 text-[#7c3aff] shrink-0" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </motion.ul>
 
             <motion.form
               onSubmit={handleSubmit}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.22 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
               className="max-w-md mx-auto lg:mx-0"
             >
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-2 rounded-2xl border border-white/15 bg-white/5 p-2 shadow-[0_12px_40px_rgba(0,0,0,0.25)]">
+              <div className="flex flex-col sm:flex-row gap-3 p-2 glass rounded-2xl border border-white/10 shadow-2xl">
                 <input
                   type="email"
                   required
-                  aria-label="Email address"
-                  placeholder="you@company.com"
+                  placeholder="name@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={status === "loading" || status === "success"}
-                  className="w-full h-12 rounded-xl border border-white/10 bg-white/5 px-4 py-0 text-white placeholder-[#a59cbf] leading-none focus:outline-none focus:ring-2 focus:ring-[#a855f7]/35"
+                  className="w-full h-12 bg-transparent px-4 text-white placeholder-white/30 outline-none"
                 />
 
                 <button
                   type="submit"
                   disabled={status === "loading" || status === "success"}
-                  className="btn-primary inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-5 py-0 leading-none"
+                  className="btn-primary group h-12 px-6 rounded-xl flex items-center justify-center gap-2 transition-all duration-300"
                 >
                   {status === "loading" ? (
                     <Loader2 className="animate-spin" size={18} />
                   ) : status === "success" ? (
-                    "You are on the list"
+                    "Joined"
                   ) : (
                     <>
-                      Join waitlist
-                      <ArrowRight size={16} />
+                      Join Waitlist
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                     </>
                   )}
                 </button>
               </div>
-
-              <p className="mt-3 text-sm text-[#b9b2cf] text-center lg:text-left">
-                No spam. One early-access invite when it&apos;s your turn.
-              </p>
             </motion.form>
-
-            {status === "error" && <p className="mt-2 text-sm text-[#b8b0d1] text-center lg:text-left">Something failed. Please try again.</p>}
           </motion.div>
 
           {/* Visual Canvas Mockup */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55, delay: 0.2 }}
-            className="mt-8 lg:mt-0"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
           >
-            <MiniOfficeDemo mode="multiplayer" />
+            <div className="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-30" />
+            <div className="glass-card p-2 rounded-2xl border border-white/5 relative z-10">
+              <MiniOfficeDemo mode="multiplayer" />
+            </div>
           </motion.div>
 
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.32 }}
-          className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 text-left"
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          <article className="oc-card p-6">
-            <Sparkles className="text-[#c084fc]" size={22} />
-            <h3 className="mt-4 text-lg font-semibold text-white">A calmer way to build agents</h3>
-            <p className="mt-2 text-sm leading-relaxed text-[#c9c2df]">
-              Keep your team and runs in one spatial view — fewer tabs, more shared context.
+          <article className="glass-card p-8">
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+              <BrainCircuit className="text-primary-light" size={24} />
+            </div>
+            <h3 className="text-xl font-bold text-white font-heading">A calmer way to build agents</h3>
+            <p className="mt-4 text-text-muted leading-relaxed">
+              Keep your team and runs in one spatial view — fewer tabs, more shared context for complex multi-agent runs.
             </p>
           </article>
-          <article className="oc-card p-6">
-            <Timer className="text-[#a855f7]" size={22} />
-            <h3 className="mt-4 text-lg font-semibold text-white">Trace every node, instantly</h3>
-            <p className="mt-2 text-sm leading-relaxed text-[#c9c2df]">
-              Debug step-by-step execution with the right level of detail at the moment you need it.
+          
+          <article className="glass-card p-8">
+            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
+              <Activity className="text-primary-light" size={24} />
+            </div>
+            <h3 className="text-xl font-bold text-white font-heading">Trace every node, instantly</h3>
+            <p className="mt-4 text-text-muted leading-relaxed">
+              Debug step-by-step execution with a spatial timeline. See exactly what each agent is thinking and doing.
             </p>
           </article>
-          <article className="oc-card p-6">
-            <ShieldCheck className="text-[#7c3aff]" size={22} />
-            <h3 className="mt-4 text-lg font-semibold text-white">Built for production workflows</h3>
-            <p className="mt-2 text-sm leading-relaxed text-[#c9c2df]">
-              Collaborate, iterate, and ship with guardrails — not brittle scripts and guesswork.
+          
+          <article className="glass-card p-8">
+            <div className="w-12 h-12 rounded-xl bg-primary-mid/10 flex items-center justify-center mb-6">
+              <ShieldCheck className="text-primary-mid" size={24} />
+            </div>
+            <h3 className="text-xl font-bold text-white font-heading">Built for production reliability</h3>
+            <p className="mt-4 text-text-muted leading-relaxed">
+              Collaborate on mission-critical agentic workflows with confidence. Real-time approval gates and observability.
             </p>
           </article>
         </motion.div>

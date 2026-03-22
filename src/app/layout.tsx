@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Syne } from "next/font/google";
+import { Inter, Syne, Space_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -13,6 +13,12 @@ const syne = Syne({
   subsets: ["latin"],
   variable: "--font-syne",
   weight: ["500", "600", "700", "800"],
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
   display: "swap",
 });
 
@@ -58,6 +64,8 @@ export const metadata: Metadata = {
   },
 };
 
+import BackgroundEffects from "@/components/layout/BackgroundEffects";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,7 +73,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} ${syne.variable} antialiased`}>
+      <body className={`${inter.variable} ${syne.variable} ${spaceGrotesk.variable} antialiased`}>
+        <BackgroundEffects />
         {children}
         <Analytics />
       </body>
