@@ -33,7 +33,7 @@ export default function HomeWaitlistHero() {
   };
 
   return (
-    <section id="waitlist" className="relative overflow-hidden pt-24 pb-16 sm:pt-32 sm:pb-24 px-6">
+    <section id="waitlist" className="relative overflow-hidden pt-36 pb-20 sm:pt-48 sm:pb-32 px-6">
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
@@ -145,8 +145,8 @@ export default function HomeWaitlistHero() {
           </article>
           
           <article className="glass-card p-8">
-            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-              <Activity className="text-primary-light" size={24} />
+            <div className="w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center mb-6">
+              <Activity className="text-accent-cyan" size={24} />
             </div>
             <h3 className="text-xl font-bold text-white font-heading">Trace every node, instantly</h3>
             <p className="mt-4 text-text-muted leading-relaxed">

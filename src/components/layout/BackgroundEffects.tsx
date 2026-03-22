@@ -11,7 +11,7 @@ const BackgroundEffects = () => {
         style={{
           background: `
             radial-gradient(circle at 0% 0%, rgba(124, 58, 255, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 100% 100%, rgba(124, 58, 255, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 100% 100%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
             radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
             radial-gradient(circle at 0% 100%, rgba(124, 58, 255, 0.12) 0%, transparent 40%)
           `,
@@ -21,7 +21,7 @@ const BackgroundEffects = () => {
 
       {/* Floating Orbs */}
       <Orb color="rgba(124, 58, 255, 0.4)" size="40vw" top="-10%" left="-10%" duration="25s" delay="0s" />
-      <Orb color="rgba(168, 85, 247, 0.2)" size="35vw" top="40%" right="-5%" duration="30s" delay="-5s" />
+      <Orb color="rgba(0, 245, 255, 0.2)" size="35vw" top="40%" right="-5%" duration="30s" delay="-5s" />
       <Orb color="rgba(168, 85, 247, 0.3)" size="30vw" bottom="-5%" left="20%" duration="28s" delay="-10s" />
 
       {/* Grain Overlay */}

@@ -10,7 +10,7 @@ import CLIReferenceSection from "@/components/sections/CLIReferenceSection";
 
 export default function AgentPage() {
   return (
-    <main>
+    <main className="bg-[#252527] min-h-screen relative z-10">
       <Navbar logoHref="/" ctaHref="/" ctaLabel="Join Waitlist" ctaLabelMobile="Waitlist" />
       <div className="relative pt-12">
         <HeroSection primaryHref="/" primaryLabel="Join Waitlist" secondaryHref="#proximity" secondaryLabel="See it in action" />
