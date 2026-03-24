@@ -43,7 +43,7 @@ export default function Navbar({
           className="min-w-0 inline-flex items-center gap-2 text-base sm:text-lg text-white font-extrabold tracking-tight font-[family-name:var(--font-syne)]"
         >
           <Image
-            src="/logo.png"
+            src="/logo-v2.png"
             alt="OctaClaw logo"
             width={44}
             height={44}

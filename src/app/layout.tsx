@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   keywords: ["octaclaw", "agent dag", "agent orchestration", "Spatial Workspace", "debugging"],
   metadataBase: new URL("https://octaclaw.com"),
   icons: {
-    icon: "/icon.png",
-    apple: "/apple-icon.png",
+    icon: "/logo-v2.png",
+    apple: "/logo-v2.png",
   },
   alternates: {
     canonical: "/",
