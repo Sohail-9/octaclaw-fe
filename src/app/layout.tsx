@@ -52,7 +52,7 @@ export const metadata: Metadata = {
       "Most AI tools are built for solo use. OctaClaw is built for teams.",
     url: "https://octaclaw.com",
     siteName: "OctaClaw",
-    images: [{ url: "https://octaclaw.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/logo-v2.png", width: 800, height: 800 }],
     type: "website",
   },
   twitter: {
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
     description:
       "Most AI tools are built for solo use. OctaClaw is built for teams.",
-    images: ["https://octaclaw.com/og-image.png"],
+    images: ["/logo-v2.png"],
   },
 };
 

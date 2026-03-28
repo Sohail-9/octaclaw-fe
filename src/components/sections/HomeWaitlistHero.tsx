@@ -33,10 +33,10 @@ export default function HomeWaitlistHero() {
 
   return (
     <section id="waitlist" className="relative pt-48 pb-48 px-6 bg-[#252527] overflow-hidden min-h-screen flex flex-col items-center">
-      
+
       {/* ── Airy Minimalist Content ── */}
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
-        
+
         {/* Blur-in Header */}
         <div className="blur-in-header">
           <h1 className="text-6xl sm:text-8xl font-bold tracking-tight text-[#f8fafc] font-heading leading-[1.1]">
@@ -49,18 +49,18 @@ export default function HomeWaitlistHero() {
         </div>
 
         {/* Magnetic Expanding Input */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
           className="mt-16 w-full max-w-lg"
         >
-          <form 
-            onSubmit={handleSubmit} 
+          <form
+            onSubmit={handleSubmit}
             className="relative flex flex-col sm:flex-row gap-4 items-center"
           >
-            <motion.div 
-              animate={{ 
+            <motion.div
+              animate={{
                 scale: isFocused ? 1.05 : 1,
                 backgroundColor: isFocused ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.03)"
               }}
@@ -92,10 +92,10 @@ export default function HomeWaitlistHero() {
               {status === "idle" && <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />}
             </button>
           </form>
-          
+
           <AnimatePresence>
             {status === "success" && (
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-4 text-sm font-medium text-[#f8fafc]"
@@ -108,7 +108,7 @@ export default function HomeWaitlistHero() {
 
         {/* Bento-Lite Layout */}
         <div className="mt-48 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
-          
+
           <div className="md:col-span-2 p-10 rounded-[40px] bg-[#14121b]/40 backdrop-blur-3xl border border-white/5 flex flex-col justify-between min-h-[300px] text-left">
             <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center">
               <Shield className="text-white" size={24} />
@@ -120,7 +120,7 @@ export default function HomeWaitlistHero() {
           </div>
 
           <div className="p-10 rounded-[40px] bg-[#2b2933]/20 border border-white/5 flex flex-col justify-between min-h-[300px] text-left">
-             <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center">
+            <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center">
               <Zap className="text-white" size={24} />
             </div>
             <div>
@@ -131,11 +131,6 @@ export default function HomeWaitlistHero() {
 
         </div>
 
-        <div className="mt-20 flex flex-wrap justify-center gap-3 opacity-30">
-           {["Linear", "OpenAI", "Vercel", "Apple", "Stripe"].map((brand) => (
-             <span key={brand} className="text-sm font-black uppercase tracking-[0.4em] text-white underline decoration-transparent">{brand}</span>
-           ))}
-        </div>
 
       </div>
     </section>

@@ -35,8 +35,8 @@ export default function Navbar({
     >
       <nav
         className={`max-w-5xl mx-auto h-16 flex items-center justify-between gap-3 px-6 rounded-2xl pointer-events-auto transition-all duration-500 border border-white/0 ${scrolled
-            ? "glass-card border-white/10 shadow-2xl py-2"
-            : "bg-transparent border-transparent py-4"
+          ? "glass-card border-white/10 shadow-2xl py-2"
+          : "bg-transparent border-transparent py-4"
           }`}
       >
         <Link
