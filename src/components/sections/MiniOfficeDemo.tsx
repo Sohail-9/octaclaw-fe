@@ -149,7 +149,7 @@ function statusDot(status: string) {
 }
 
 // ─── Component ───────────────────────────────────────────────
-export default function MiniOfficeDemo({ mode = "proximity" }: { mode?: Mode }) {
+export default function MiniOfficeDemo({ mode = "proximity", showToolbar = true }: { mode?: Mode; showToolbar?: boolean }) {
   const [step, setStep] = useState(0);
   const [tmAStep, setTmAStep] = useState(0);
   const [tmBStep, setTmBStep] = useState(0);
@@ -213,20 +213,22 @@ export default function MiniOfficeDemo({ mode = "proximity" }: { mode?: Mode }) 
       }}
     >
       {/* Toolbar */}
-      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/5">
-        <div className="flex gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
-          <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
-          <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+      {showToolbar && (
+        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/5">
+          <div className="flex gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
+          </div>
+          <span className="ml-2 text-[9px] font-mono tracking-widest uppercase text-white/20">
+            {mode === "proximity" ? "octaclaw · office · live" : "octaclaw · command center · 3 online"}
+          </span>
+          <div className="ml-auto flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-[9px] text-emerald-400/70 font-mono">connected</span>
+          </div>
         </div>
-        <span className="ml-2 text-[9px] font-mono tracking-widest uppercase text-white/20">
-          {mode === "proximity" ? "octaclaw · office · live" : "octaclaw · command center · 3 online"}
-        </span>
-        <div className="ml-auto flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[9px] text-emerald-400/70 font-mono">connected</span>
-        </div>
-      </div>
+      )}
 
       {/* SVG Office */}
       <div className="relative overflow-hidden" style={{ paddingBottom: `${(H / W) * 100}%` }}>

@@ -1,25 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0f0d16;
+  --bg: #0b0b0f;
   --surface: #14121b;
   --surface-low: #1c1a24;
   --surface-high: #2b2933;
   --surface-highest: #36333e;
-  
-  --primary: #7c3aff;
+
+  --primary: #7c3aed;
   --primary-mid: #a855f7;
   --primary-light: #c084fc;
+  --secondary: #3b82f6;
+  --tertiary: #00f5ff;
   --accent-cyan: #00f5ff;
-  
-  --text: #f5f3ff;
-  --text-muted: rgba(245, 243, 255, 0.6);
+  --cyber-mint: #10b981;
+
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
   --border-shimmer: rgba(124, 58, 255, 0.15);
+
+  --glass-bg: rgba(20, 18, 27, 0.4);
+  --glass-blur: blur(24px);
 }
 
 @theme inline {
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-space-grotesk), var(--font-syne);
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 }
 
 * {
@@ -35,13 +42,14 @@ body {
 html {
   color-scheme: dark;
   scroll-behavior: smooth;
+  background-color: var(--bg);
 }
 
 body {
   min-height: 100vh;
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-inter);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
@@ -53,15 +61,37 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-space-grotesk), var(--font-syne);
+  font-family: var(--font-heading);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+/* ── Grain Texture Overlay ── */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* ── The No-Line Rule: Tonal Surfaces ── */
-.surface-base { background-color: var(--surface); }
-.surface-low { background-color: var(--surface-low); }
-.surface-high { background-color: var(--surface-high); }
+.surface-base {
+  background-color: var(--surface);
+}
+
+.surface-low {
+  background-color: var(--surface-low);
+}
+
+.surface-high {
+  background-color: var(--surface-high);
+}
 
 /* ── Glassmorphism ── */
 .glass {
@@ -69,7 +99,7 @@ h6 {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-shimmer);
-  box-shadow: 
+  box-shadow:
     inset 0 1px 1px rgba(214, 186, 255, 0.1),
     0 4px 24px rgba(0, 0, 0, 0.2);
 }
@@ -79,7 +109,7 @@ h6 {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-shimmer);
-  box-shadow: 
+  box-shadow:
     inset 0 1px 1px rgba(214, 186, 255, 0.1),
     0 4px 24px rgba(0, 0, 0, 0.2);
   border-radius: 24px;
@@ -90,7 +120,7 @@ h6 {
   background: rgba(20, 18, 27, 0.6);
   border-color: rgba(124, 58, 255, 0.3);
   transform: translateY(-4px);
-  box-shadow: 
+  box-shadow:
     0 12px 40px rgba(124, 58, 255, 0.15),
     0 0 20px rgba(124, 58, 255, 0.1);
 }
@@ -98,13 +128,25 @@ h6 {
 /* ── Grain & Texture ── */
 /* ── Animations ── */
 @keyframes float-orb {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(15vw, -10vh) scale(1.15); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(15vw, -10vh) scale(1.15);
+  }
 }
 
 /* ── Spacing Scale ── */
-.spacing-lg { margin-top: 5rem; margin-bottom: 5rem; }
-.spacing-xl { margin-top: 10rem; margin-bottom: 10rem; }
+.spacing-lg {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.spacing-xl {
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+}
 
 .oc-card {
   background: var(--surface);
@@ -121,21 +163,62 @@ h6 {
   transform: translateY(-6px);
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--primary-mid));
-  color: #fff;
-  font-weight: 700;
-  border: 0;
-  box-shadow: 0 10px 25px rgba(124, 58, 255, 0.3);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
+/* ── Dark Mode Premium Base ── */
+:root {
+  --bg-premium: #0a0a0a;
+  --accent-cta: #7c3aed;
+  --accent-glow: rgba(124, 58, 237, 0.4);
 }
 
-.btn-primary:hover {
-  transform: scale(1.02) translateY(-2px);
-  box-shadow: 
-    0 0 25px rgba(124, 58, 255, 0.5), 
-    0 15px 35px rgba(124, 58, 255, 0.4);
+.bg-dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: text-shimmer 3s infinite linear;
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-input:focus-within {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-cta);
+  box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.btn-premium {
+  background: white;
+  color: black;
+  font-weight: 900;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-premium:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
 }
 
 .btn-secondary {
@@ -203,4 +286,44 @@ h6 {
 ::selection {
   background: rgba(124, 58, 255, 0.3);
   color: #fff;
+}
+/* ── Minimalist Utility Extensions ── */
+@keyframes blur-in {
+  0% { opacity: 0; filter: blur(20px); transform: translateY(10px); }
+  100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+.blur-in-header {
+  animation: blur-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes shimmer-btn {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer-btn-light {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-btn-light::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer-btn 2.5s infinite linear;
+}
+
+.squircle-card {
+  border-radius: 40px;
 }
