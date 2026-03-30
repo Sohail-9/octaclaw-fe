@@ -6,7 +6,7 @@ import { useRef } from "react";
 
 export default function HeroSection({
   primaryHref = "#waitlist",
-  secondaryHref = "#orchestrate",
+  secondaryHref = "#proximity",
   primaryLabel = "Join the Priority Waitlist",
   secondaryLabel = "Watch Demo",
 }: {
@@ -99,12 +99,7 @@ export default function HeroSection({
         </motion.div>
       </motion.div>
 
-      {/* Floating Meta Data */}
-      <div className="absolute bottom-10 left-10 hidden xl:flex flex-col gap-4 text-[10px] uppercase tracking-[0.4em] text-white/20 font-bold pointer-events-none">
-        <div>Session: Authenticated</div>
-        <div>System: Nominal</div>
-        <div>Uptime: 99.99%</div>
-      </div>
+
     </section>
   );
 }

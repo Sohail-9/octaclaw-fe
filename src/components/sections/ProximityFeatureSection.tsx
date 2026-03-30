@@ -5,7 +5,7 @@ import CosmicTerminalDemo from "@/components/sections/CosmicTerminalDemo";
 
 export default function ProximityFeatureSection() {
   return (
-    <section id="orchestrate" className="relative py-20 sm:py-32 px-6 overflow-hidden">
+    <section id="proximity" className="relative py-20 sm:py-32 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-center">
 
@@ -21,7 +21,7 @@ export default function ProximityFeatureSection() {
               Cosmic Command
             </div>
             <h2 className="text-5xl sm:text-6xl text-white font-bold tracking-tight mb-8 leading-[1.1] font-heading" style={{ fontFamily: "var(--font-space-grotesk)" }}>
-              Real-time Agent <br className="hidden sm:block" /> Orchestration.
+              Cosmic Command. <br className="hidden sm:block" /> Real-time Orchestration.
             </h2>
             <div className="space-y-6 text-lg sm:text-xl text-[#CFC2D5] leading-relaxed mb-10" style={{ fontFamily: "var(--font-manrope)" }}>
               <p>

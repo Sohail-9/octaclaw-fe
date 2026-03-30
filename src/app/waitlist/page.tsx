@@ -19,16 +19,19 @@ export default function WaitlistPage() {
   };
 
   return (
-    <main className="bg-[#0E0E0F] min-h-screen relative">
-      <div className="absolute inset-0 bg-dot-grid opacity-10 pointer-events-none" />
+    <main className="bg-[#0E0E0F] min-h-screen relative z-10 flex flex-col">
       <Script
         id="jsonld-octaclaw"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navbar logoHref="/" ctaHref="/product" ctaLabel="View Product" ctaLabelMobile="Product" />
-      <HomeWaitlistHero />
-      <Footer minimal />
+      <Navbar logoHref="/" ctaHref="/" ctaLabel="Back to Home" ctaLabelMobile="Home" />
+      <div className="flex-1 flex flex-col pt-12 pb-24">
+        <HomeWaitlistHero />
+      </div>
+      <div className="mt-auto border-t border-[#40485d]/30">
+        <Footer minimal />
+      </div>
     </main>
   );
 }

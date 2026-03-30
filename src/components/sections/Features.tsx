@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Gauge, ShieldCheck, GitBranch, Terminal, Layout, Shield } from "lucide-react";
+import { GitBranch, Database, Shield, Zap, Terminal } from "lucide-react";
 
 export default function FeaturesSection() {
   return (
     <section id="features" className="relative py-24 sm:py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 sm:mb-24">
-          <div className="max-w-2xl">
+          <div className="max-w-3xl">
             <motion.h2
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -16,8 +16,8 @@ export default function FeaturesSection() {
               transition={{ duration: 0.6 }}
               className="text-4xl sm:text-6xl font-black text-white font-heading leading-none"
             >
-              Engineered for <br />
-              <span className="text-tertiary">Autonomous Flow.</span>
+              The Next-Generation <br />
+              <span className="text-tertiary">DAG Orchestrator.</span>
             </motion.h2>
           </div>
           <motion.p
@@ -25,16 +25,16 @@ export default function FeaturesSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-md text-lg text-text-muted font-medium"
+            className="max-w-md text-lg text-text-muted font-medium font-manrope"
           >
-            Plan, run, and improve your agent DAGs without rebuilding the same logic every sprint.
+            Built from the ground up for massive concurrency. OctaClaw replaces linear chat-loops with a high-bandwidth node execution engine.
           </motion.p>
         </div>
 
         {/* ── Bento Grid ── */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           
-          {/* Main Feature: Spatial Workspace (Col Span 8) */}
+          {/* Main Feature: Graph Orchestration (Col Span 8) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -43,31 +43,36 @@ export default function FeaturesSection() {
           >
             <div className="relative z-10">
               <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/20">
-                <Layout size={24} className="text-primary-light" />
+                <GitBranch size={24} className="text-primary-light" />
               </div>
-              <h3 className="text-3xl font-bold text-white font-heading tracking-tight">Spatial Workspace</h3>
-              <p className="mt-4 text-text-muted text-lg max-w-sm">
-                Design complex AI workflows using a visual spatial workspace. Coordinate agents in three dimensions.
+              <h3 className="text-3xl font-bold text-white font-heading tracking-tight">GraphPlanner & WorkerPools</h3>
+              <p className="mt-4 text-text-muted text-lg max-w-md font-manrope">
+                Stop waiting for slow sequential generation. Our `GraphPlanner` automatically decomposes complex goals into a Directed Acyclic Graph (DAG) for concurrent execution across a threaded `WorkerPool`.
               </p>
             </div>
             
             {/* Visual Preview */}
             <div className="absolute top-1/2 right-0 w-1/2 h-full -rotate-12 translate-y-8 pointer-events-none opacity-40 group-hover:opacity-60 group-hover:rotate-0 transition-all duration-700">
                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-tertiary/10 rounded-3xl border border-white/5 backdrop-blur-sm p-4">
-                  <div className="flex flex-col gap-3">
-                    <div className="h-4 w-3/4 bg-white/10 rounded-full animate-pulse" />
-                    <div className="h-4 w-1/2 bg-white/5 rounded-full" />
-                    <div className="mt-4 grid grid-cols-4 gap-2">
-                       {Array.from({length: 8}).map((_, i) => (
-                         <div key={i} className="aspect-square bg-primary/20 rounded-lg border border-primary/10" />
-                       ))}
+                  <div className="flex flex-col gap-3 font-mono text-xs text-primary-light/80">
+                    <div className="bg-black/40 p-2 rounded-lg border border-white/5">
+                      {"{ node: 'Research', depends_on: [] }"}
+                    </div>
+                    <div className="bg-black/40 p-2 rounded-lg border border-white/5 ml-4">
+                      {"{ node: 'Write', depends_on: ['Research'] }"}
+                    </div>
+                    <div className="bg-black/40 p-2 rounded-lg border border-white/5 ml-4">
+                      {"{ node: 'Code', depends_on: ['Research'] }"}
+                    </div>
+                    <div className="bg-black/40 p-2 rounded-lg border border-white/5 ml-8 mt-2">
+                       {"{ node: 'Review', depends_on: ['Write', 'Code'] }"}
                     </div>
                   </div>
                </div>
             </div>
           </motion.div>
 
-          {/* Side Feature: Autonomous Agents (Col Span 4) */}
+          {/* Side Feature: Unified Memory (Col Span 4) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -77,43 +82,34 @@ export default function FeaturesSection() {
           >
             <div>
               <div className="w-12 h-12 rounded-2xl bg-tertiary/20 flex items-center justify-center mb-6 border border-tertiary/20">
-                <Terminal size={24} className="text-tertiary" />
+                <Database size={24} className="text-tertiary" />
               </div>
-              <h3 className="text-2xl font-bold text-white font-heading">Autonomous Agents</h3>
-              <p className="mt-3 text-text-muted">
-                Deploy agents that collaborate and execute workflows automatically.
+              <h3 className="text-2xl font-bold text-white font-heading">HNSW Vector Memory</h3>
+              <p className="mt-3 text-text-muted font-manrope">
+                Native `MemoryService` using `hnswlib-node` for deep semantic retrieval and automated Reflexion loop learning.
               </p>
-            </div>
-            
-            {/* Mini Terminal Preview */}
-            <div className="mt-8 p-3 rounded-xl bg-black/40 font-mono text-[10px] text-cyber-mint/80 border border-white/5">
-              <div>$ octa run agent-alpha</div>
-              <div className="mt-1 flex gap-2">
-                <div className="h-2 w-2 rounded-full bg-cyber-mint animate-pulse" />
-                <span>executing workspace_init...</span>
-              </div>
             </div>
           </motion.div>
 
-          {/* Bottom Card 1: Enterprise (Col Span 4) */}
+          {/* Bottom Card 1: Checkpointing (Col Span 4) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="md:col-span-4 group relative overflow-hidden rounded-[32px] surface-high p-8 flex flex-col items-center text-center justify-center"
+            className="md:col-span-4 group relative overflow-hidden rounded-[32px] surface-high p-8 flex flex-col items-center text-center justify-center cursor-default"
           >
              <div className="relative">
                 <div className="absolute inset-0 bg-primary/30 blur-2xl rounded-full scale-150 animate-pulse" />
                 <Shield size={48} className="text-primary-light relative z-10" />
              </div>
-             <h3 className="mt-6 text-xl font-bold text-white font-heading">Enterprise Grade</h3>
-             <p className="mt-2 text-text-muted text-sm">
-                Private models & scalable infrastructure.
+             <h3 className="mt-6 text-xl font-bold text-white font-heading">Durable Checkpoints</h3>
+             <p className="mt-2 text-text-muted text-sm font-manrope">
+                Never lose a multi-hour swarm run. Atomic state-saving allows you to `octa chat --resume` effortlessly.
              </p>
           </motion.div>
 
-          {/* Bottom Card 2: Visibility (Col Span 8) */}
+          {/* Bottom Card 2: 2D Spatial Observability (Col Span 8) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,8 +118,10 @@ export default function FeaturesSection() {
             className="md:col-span-8 group relative overflow-hidden rounded-[32px] bg-gradient-to-r from-surface-high to-surface-low p-8 sm:p-12 flex flex-col md:flex-row items-center gap-8"
           >
              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white font-heading italic tracking-tight">Full Visibility Tracing</h3>
-                <p className="mt-4 text-text-muted">Step-level traces show exactly where runs break. Catch failures before your customers do.</p>
+                <h3 className="text-2xl font-bold text-white font-heading tracking-tight">2D Spatial Observability</h3>
+                <p className="mt-4 text-text-muted font-manrope">
+                  Built-in `OctaClaw-office` dashboard gives your team a top-down view of the swarm. Monitor live WebSockets, walk up to agent vectors, and intercept runs directly via a 2D tile-map interface.
+                </p>
              </div>
              <div className="flex gap-2">
                 {Array.from({length: 4}).map((_, i) => (
