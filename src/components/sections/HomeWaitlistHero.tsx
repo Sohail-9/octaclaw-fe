@@ -32,19 +32,19 @@ export default function HomeWaitlistHero() {
   };
 
   return (
-    <section id="waitlist" className="relative pt-48 pb-48 px-6 bg-[#252527] overflow-hidden min-h-screen flex flex-col items-center">
+    <section id="waitlist" className="relative pt-48 pb-48 px-6 bg-[#0E0E0F] overflow-hidden min-h-screen flex flex-col items-center">
 
       {/* ── Airy Minimalist Content ── */}
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
 
         {/* Blur-in Header */}
         <div className="blur-in-header">
-          <h1 className="text-6xl sm:text-8xl font-bold tracking-tight text-[#f8fafc] font-heading leading-[1.1]">
+          <h1 className="text-6xl sm:text-8xl font-bold tracking-tight text-[#f8fafc] font-heading leading-[1.1]" style={{ fontFamily: "var(--font-space-grotesk)" }}>
             Standardize <br />
             <span className="text-[#94a3b8]">Autonomous Intelligence.</span>
           </h1>
-          <p className="mt-10 max-w-xl mx-auto text-xl sm:text-2xl text-[#94a3b8] font-medium leading-relaxed tracking-tight">
-            OctaClaw is the professional spatial layer for multi-agent orchestration. Built for architects, not just builders.
+          <p className="mt-10 max-w-xl mx-auto text-xl sm:text-2xl text-[#94a3b8] font-medium leading-relaxed tracking-tight" style={{ fontFamily: "var(--font-manrope)" }}>
+            OctaClaw is the professional orchestration layer for multi-agent systems. Built for elite architects, not just builders.
           </p>
         </div>
 
@@ -109,23 +109,23 @@ export default function HomeWaitlistHero() {
         {/* Bento-Lite Layout */}
         <div className="mt-48 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
 
-          <div className="md:col-span-2 p-10 rounded-[40px] bg-[#14121b]/40 backdrop-blur-3xl border border-white/5 flex flex-col justify-between min-h-[300px] text-left">
+          <div className="md:col-span-2 p-10 rounded-[40px] bg-[#131314]/40 backdrop-blur-3xl border border-white/5 flex flex-col justify-between min-h-[300px] text-left">
             <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center">
               <Shield className="text-white" size={24} />
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-white tracking-tight">Enterprise Infrastructure</h3>
+              <h3 className="text-2xl font-bold text-white tracking-tight" style={{ fontFamily: "var(--font-space-grotesk)" }}>Global Infrastructure</h3>
               <p className="mt-4 text-lg text-[#94a3b8] max-w-md">Private models, SOC2 compliance, and dedicated compute for mission-critical swarms.</p>
             </div>
           </div>
 
-          <div className="p-10 rounded-[40px] bg-[#2b2933]/20 border border-white/5 flex flex-col justify-between min-h-[300px] text-left">
+          <div className="p-10 rounded-[40px] bg-[#1C1B1C]/20 border border-white/5 flex flex-col justify-between min-h-[300px] text-left">
             <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center">
               <Zap className="text-white" size={24} />
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-white tracking-tight">Zero-Latency</h3>
-              <p className="mt-4 text-lg text-[#94a3b8]">Real-time spatial visualization of every agent decision.</p>
+              <h3 className="text-2xl font-bold text-white tracking-tight" style={{ fontFamily: "var(--font-space-grotesk)" }}>Zero-Latency Sync</h3>
+              <p className="mt-4 text-lg text-[#94a3b8]">Real-time step-by-step collaborative tracing of every agent decision.</p>
             </div>
           </div>
 

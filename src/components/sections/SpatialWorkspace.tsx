@@ -21,13 +21,13 @@ export default function SpatialWorkspaceSection() {
             className="max-w-xl"
           >
             <div className="inline-flex rounded-full border border-[#7c3aff]/30 bg-[#7c3aff]/10 px-3 py-1.5 text-sm font-medium text-[#c4a1ff] mb-6">
-              Spatial Intelligence
+              Execution Graphs
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-5xl text-white font-medium tracking-tight mb-6 leading-tight">
-              The shared room for <br className="hidden sm:block" /> humans and agents.
+              The execution graph for <br className="hidden sm:block" /> humans and agents.
             </h2>
             <p className="text-lg sm:text-lg text-[#dfdaf0] leading-relaxed mb-8">
-              OctaClaw gives your team and agents one spatial workspace. You can see every active run, jump into any node, discuss issues in context, and move from alert to fix without switching tools.
+              OctaClaw gives your team and agents one unified orchestration graph. You can see every active run, jump into any node, discuss issues in context, and move from alert to fix without switching tools.
             </p>
             
             <ul className="space-y-4">

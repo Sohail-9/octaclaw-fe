@@ -19,7 +19,7 @@ export default function WaitlistPage() {
   };
 
   return (
-    <main className="bg-[#252527] min-h-screen relative">
+    <main className="bg-[#0E0E0F] min-h-screen relative">
       <div className="absolute inset-0 bg-dot-grid opacity-10 pointer-events-none" />
       <Script
         id="jsonld-octaclaw"

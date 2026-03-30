@@ -4,24 +4,26 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const INITIAL_LOGS = [
-  { time: "00:00", level: "info", text: "agent_01 initialized...", delay: 500 },
-  { time: "00:01", level: "status", text: "Allocating spatial memory graph.", delay: 800 },
-  { time: "00:02", level: "network", text: "Connecting to remote tools...", delay: 1200 },
-  { time: "00:03", level: "success", text: "Execution environment secured.", delay: 1800 },
-  { time: "00:05", level: "info", text: "Beginning recursive task breakdown.", delay: 2400 },
-  { time: "00:07", level: "status", text: "Spawned child_agent_alpha for research.", delay: 3500 },
-  { time: "00:08", level: "data", text: "Retrieving context from vector DB.", delay: 4200 },
-  { time: "00:11", level: "status", text: "Awaiting asynchronous tool completion...", delay: 5500 },
+  { time: "00:00", level: "system", node: "DAG_Runner", text: "Compiled 3 workflow nodes. Initializing swarm...", delay: 500 },
+  { time: "00:01", level: "info", node: "Agent:Research", text: "Booting semantic search tools...", delay: 800 },
+  { time: "00:01", level: "info", node: "Agent:Writer", text: "Awaiting Research dependency...", delay: 900 },
+  { time: "00:02", level: "network", node: "Agent:Research", text: "Querying vector database endpoints...", delay: 1400 },
+  { time: "00:04", level: "success", node: "Agent:Research", text: "Context retrieved. Yielding payload to graph.", delay: 2200 },
+  { time: "00:04", level: "status", node: "DAG_Runner", text: "Node 'Research' complete. Parralelizing 'Writer' & 'Reviewer'.", delay: 2400 },
+  { time: "00:05", level: "info", node: "Agent:Writer", text: "Context received. Synthesizing draft...", delay: 3000 },
+  { time: "00:05", level: "info", node: "Agent:Reviewer", text: "Analyzing semantic parameters...", delay: 3200 },
+  { time: "00:07", level: "success", node: "Agent:Writer", text: "Draft generated. Passing to Reviewer.", delay: 4500 },
+  { time: "00:08", level: "success", node: "Agent:Reviewer", text: "Quality checks passed. DAG Execution Complete.", delay: 5500 },
 ];
 
 export default function CosmicTerminalDemo({ mode = "execution" }: { mode?: "execution" | "multiplayer" }) {
   const [typedCommand, setTypedCommand] = useState("");
   const [showCommand, setShowCommand] = useState(false);
-  const [logs, setLogs] = useState<{ time: string; level: string; text: string }[]>([]);
+  const [logs, setLogs] = useState<{ time: string; level: string; node: string; text: string }[]>([]);
 
   useEffect(() => {
     // Type out the command
-    const command = mode === "execution" ? "octa run agent" : "octa sync --team";
+    const command = mode === "execution" ? "octa run swarm.yaml" : "octa sync --team";
     let i = 0;
     const typeInterval = setInterval(() => {
       setTypedCommand(command.slice(0, i + 1));
@@ -94,7 +96,7 @@ export default function CosmicTerminalDemo({ mode = "execution" }: { mode?: "exe
 
         {/* Content Area */}
         <div 
-          className="flex-1 p-6 overflow-y-auto"
+          className="flex-1 p-6 overflow-y-auto w-full overflow-x-hidden"
           style={{ fontFamily: "var(--font-manrope)" }}
         >
           <div className="flex flex-col space-y-5">
@@ -117,22 +119,26 @@ export default function CosmicTerminalDemo({ mode = "execution" }: { mode?: "exe
                   if (log.level === "info") levelColor = "#DEB7FF";
                   if (log.level === "success") levelColor = "#7B2CBF"; // using primary_container equivalent for accent
                   if (log.level === "network") levelColor = "#E0B6FF";
+                  if (log.level === "system") levelColor = "#FFFFFF";
 
                   return (
                     <motion.div 
                       key={idx}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="flex items-start gap-4 text-sm"
+                      className="flex items-start gap-3 sm:gap-4 text-xs sm:text-sm"
                     >
                       <span style={{ color: "#4C4353" }} className="shrink-0">
                         {log.time}
                       </span>
                       <span 
                         style={{ color: levelColor }}
-                        className="font-medium shrink-0 w-[55px]"
+                        className="font-medium shrink-0 w-[60px] sm:w-[80px]"
                       >
                         [{log.level}]
+                      </span>
+                      <span className="shrink-0 w-[100px] sm:w-[120px]" style={{ color: "#988D9E", fontFamily: "var(--font-mono)" }}>
+                        {log.node}
                       </span>
                       <span style={{ color: "#CFC2D5" }}>
                         {log.text}
@@ -148,7 +154,8 @@ export default function CosmicTerminalDemo({ mode = "execution" }: { mode?: "exe
                     transition={{ delay: 0.5 }}
                     className="flex items-start gap-4 text-sm mt-4"
                   >
-                     <span className="text-white">_</span>
+                     <span style={{ color: "#DEB7FF", fontFamily: "var(--font-space-grotesk)" }} className="font-semibold text-[15px]">[root@octaclaw]~:</span>
+                     <motion.span animate={{ opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 0.8 }} className="inline-block w-2 bg-[#DEB7FF] h-4 ml-0.5 align-middle mt-[2px]" />
                   </motion.div>
                 )}
               </div>

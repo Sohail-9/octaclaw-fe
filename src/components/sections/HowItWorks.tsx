@@ -33,7 +33,7 @@ export default function HowItWorksSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
-              className="glass-card p-8 group overflow-hidden"
+              className="glass-card p-8 group overflow-hidden relative"
             >
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-xs font-bold text-primary-light bg-primary/10 px-2 py-0.5 rounded uppercase tracking-widest">
@@ -43,7 +43,7 @@ export default function HowItWorksSection() {
               </div>
               <h3 className="text-xl text-white font-bold font-heading">{step.title}</h3>
               <p className="mt-4 text-text-muted leading-relaxed">{step.description}</p>
-              
+
               <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                 <span className="text-6xl font-black font-heading">{index + 1}</span>
               </div>
