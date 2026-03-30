@@ -18,7 +18,7 @@ export default function Footer({ minimal = false }: FooterProps) {
   }
 
   return (
-    <footer className="relative py-20 border-t border-white/5 surface-base">
+    <footer className="relative py-20 border-t border-white/5 surface-base bg-[#0c1324]">
       <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
@@ -39,18 +39,18 @@ export default function Footer({ minimal = false }: FooterProps) {
         </div>
 
         <div className="flex flex-col md:items-end gap-6">
-          <a href="mailto:contact@octaclaw.com" className="text-base font-medium text-white/80 hover:text-accent-cyan transition-colors">
+          <a href="mailto:contact@octaclaw.com" className="text-base font-medium text-white/80 hover:text-secondary transition-colors">
             contact@octaclaw.com
           </a>
 
           <div className="flex items-center gap-6 text-text-muted">
-            <a href="https://x.com/octaclaww" target="_blank" rel="noreferrer" aria-label="X" className="hover:text-accent-cyan transition-all transform hover:scale-110">
+            <a href="https://x.com/octaclaww" target="_blank" rel="noreferrer" aria-label="X" className="hover:text-secondary transition-all transform hover:scale-110">
               <Twitter size={20} />
             </a>
-            <a href="https://github.com/0xLabs-Org" target="_blank" rel="noreferrer" aria-label="GitHub" className="hover:text-accent-cyan transition-all transform hover:scale-110">
+            <a href="https://github.com/0xLabs-Org" target="_blank" rel="noreferrer" aria-label="GitHub" className="hover:text-secondary transition-all transform hover:scale-110">
               <Github size={20} />
             </a>
-            <a href="https://linkedin.com/company/octaclaw" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-accent-cyan transition-all transform hover:scale-110">
+            <a href="https://linkedin.com/company/octaclaw" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-secondary transition-all transform hover:scale-110">
               <Linkedin size={20} />
             </a>
           </div>

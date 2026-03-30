@@ -27,7 +27,7 @@ const PILLARS = [
   {
     title: "Phase 3: Scale to $1M ARR",
     metrics: "Target: 3,500+ Active Seats",
-    icon: <TrendingUp className="text-cyber-mint" size={24} />,
+    icon: <TrendingUp className="text-secondary" size={24} />,
     items: [
       "Managed Cloud SaaS Hosted Platform",
       "Swarm Freemium Model ($50-500/seat)",
@@ -40,8 +40,8 @@ export default function RoadmapSection() {
   return (
     <section id="roadmap" className="relative py-24 sm:py-32 px-6 overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-tertiary/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/5 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-20 max-w-3xl mx-auto">

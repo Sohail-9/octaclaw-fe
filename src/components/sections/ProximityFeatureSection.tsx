@@ -17,13 +17,13 @@ export default function ProximityFeatureSection() {
             transition={{ duration: 0.8 }}
             className="max-w-xl"
           >
-            <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#DEB7FF] mb-8">
+            <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary mb-8">
               Cosmic Command
             </div>
             <h2 className="text-5xl sm:text-6xl text-white font-bold tracking-tight mb-8 leading-[1.1] font-heading" style={{ fontFamily: "var(--font-space-grotesk)" }}>
               Cosmic Command. <br className="hidden sm:block" /> Real-time Orchestration.
             </h2>
-            <div className="space-y-6 text-lg sm:text-xl text-[#CFC2D5] leading-relaxed mb-10" style={{ fontFamily: "var(--font-manrope)" }}>
+            <div className="space-y-6 text-lg sm:text-xl text-text-muted leading-relaxed mb-10" style={{ fontFamily: "var(--font-manrope)" }}>
               <p>
                 Stop hiding complexity behind abstract dashboards. OctaClaw exposes the actual intelligence graph of your orchestrations in a beautifully spatial terminal.
               </p>

@@ -15,7 +15,7 @@ type NavbarProps = {
 export default function Navbar({
   logoHref = "/",
   ctaHref = "#waitlist",
-  ctaLabel = "Request Early Access",
+  ctaLabel = "Join Waitlist",
   ctaLabelMobile,
 }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
