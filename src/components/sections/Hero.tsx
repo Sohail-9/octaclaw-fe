@@ -119,9 +119,9 @@ export default function HeroSection({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1.5 px-4 text-xs font-bold uppercase tracking-[0.3em] text-tertiary"
+          className="inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/5 py-1.5 px-4 text-[10px] font-bold uppercase tracking-[0.4em] text-text-muted glass-micro-border"
         >
-          <div className="h-1.5 w-1.5 rounded-full bg-tertiary animate-pulse" />
+          <div className="h-1.5 w-1.5 rounded-full bg-primary-light animate-pulse" />
           Neural Workspace Live
         </motion.div>
         
@@ -129,10 +129,10 @@ export default function HeroSection({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-12 text-6xl sm:text-8xl lg:text-9xl font-black tracking-tighter text-white font-heading leading-[0.9] text-balance"
+          className="mt-12 text-6xl sm:text-8xl lg:text-9xl font-black tracking-tighter text-white font-heading leading-[0.95] text-balance"
         >
           Synthesize <br className="hidden sm:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/20">
+          <span className="text-vivid-gradient">
             Agents.
           </span>
         </motion.h1>
@@ -141,7 +141,7 @@ export default function HeroSection({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-12 max-w-2xl mx-auto text-xl sm:text-2xl text-text-muted leading-tight font-medium"
+          className="mt-12 max-w-2xl mx-auto text-xl sm:text-2xl text-text-muted leading-snug font-medium"
         >
           Orchestrate multi-agent swarms with zero-latency spatial reasoning. The next dimension of autonomous intelligence is here.
         </motion.p>
@@ -154,19 +154,19 @@ export default function HeroSection({
         >
           <LinkButton
             href={primaryHref}
-            className="relative group btn-primary h-16 px-10 rounded-2xl flex items-center justify-center gap-3 text-lg font-bold transition-all duration-500 overflow-hidden shadow-[0_0_30px_rgba(124,58,237,0.3)] hover:shadow-[0_0_50px_rgba(124,58,237,0.5)]"
+            className="btn-premium flex items-center justify-center gap-3 text-lg"
           >
             <Zap size={22} className="relative z-10 fill-current" />
             <span className="relative z-10">{primaryLabel}</span>
-            <div className="absolute inset-0 bg-white/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
           </LinkButton>
           
           <LinkButton
             href={secondaryHref}
-            className="btn-secondary h-16 px-10 rounded-2xl flex items-center justify-center gap-3 text-lg font-bold border-white/10 glass-card"
+            className="btn-premium-secondary flex items-center justify-center gap-3 text-lg"
           >
             <Cpu size={22} />
             {secondaryLabel}
+            <ArrowRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
           </LinkButton>
         </motion.div>
       </motion.div>

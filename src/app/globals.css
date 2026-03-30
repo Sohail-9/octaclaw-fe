@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0b0b0f;
-  --surface: #14121b;
-  --surface-low: #1c1a24;
-  --surface-high: #2b2933;
-  --surface-highest: #36333e;
+  --bg: #0E0E0F;
+  --surface: #131314;
+  --surface-low: #1C1B1C;
+  --surface-high: #2A2A2B;
+  --surface-highest: #353436;
 
-  --primary: #7c3aed;
+  --primary: #7b2cbf;
   --primary-mid: #a855f7;
   --primary-light: #c084fc;
   --secondary: #3b82f6;
@@ -16,7 +16,7 @@
   --cyber-mint: #10b981;
 
   --text: #f8fafc;
-  --text-muted: #94a3b8;
+  --text-muted: #a1a1aa;
   --border-shimmer: rgba(124, 58, 255, 0.15);
 
   --glass-bg: rgba(20, 18, 27, 0.4);
@@ -108,21 +108,28 @@ h6 {
   background: rgba(20, 18, 27, 0.4);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border-shimmer);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    inset 0 1px 1px rgba(214, 186, 255, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05),
     0 4px 24px rgba(0, 0, 0, 0.2);
   border-radius: 24px;
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.glass-card:hover {
-  background: rgba(20, 18, 27, 0.6);
-  border-color: rgba(124, 58, 255, 0.3);
-  transform: translateY(-4px);
-  box-shadow:
-    0 12px 40px rgba(124, 58, 255, 0.15),
-    0 0 20px rgba(124, 58, 255, 0.1);
+.glass-micro-border {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.top-edge-highlight {
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.text-vivid-gradient {
+  background: linear-gradient(to right, #ffffff, #c084fc, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
 /* ── Grain & Texture ── */
@@ -165,9 +172,9 @@ h6 {
 
 /* ── Dark Mode Premium Base ── */
 :root {
-  --bg-premium: #0a0a0a;
-  --accent-cta: #7c3aed;
-  --accent-glow: rgba(124, 58, 237, 0.4);
+  --bg-premium: #0E0E0F;
+  --accent-cta: #7b2cbf;
+  --accent-glow: rgba(123, 44, 191, 0.4);
 }
 
 .bg-dot-grid {
@@ -212,24 +219,28 @@ h6 {
 .btn-premium {
   background: white;
   color: black;
-  font-weight: 900;
+  font-weight: 800;
+  border-radius: 12px;
+  padding: 1rem 2rem;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-premium:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
 }
 
-.btn-secondary {
+.btn-premium-secondary {
   background: rgba(255, 255, 255, 0.03);
   color: var(--text);
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
-.btn-secondary:hover {
+.btn-premium-secondary:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.2);
 }
