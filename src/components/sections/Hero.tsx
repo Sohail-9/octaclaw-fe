@@ -43,12 +43,12 @@ export default function HeroSection({
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 gap-12 items-center">
           
           {/* Left Content */}
           <motion.div 
             style={{ opacity, scale }} 
-            className="flex flex-col items-start text-left"
+            className="flex flex-col items-center text-center max-w-4xl mx-auto"
           >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -77,7 +77,7 @@ export default function HeroSection({
               className="mt-8 max-w-xl text-xl sm:text-2xl text-[#CFC2D5] leading-snug font-medium"
               style={{ fontFamily: "var(--font-manrope)" }}
             >
-              Manage multi-agent swarms with absolute precision. The professional-grade spatial orchestrator for elite intelligence teams.
+              Manage multi-agent swarms with spatial precision. The operating system for the next generation of AI workforce.
             </motion.p>
 
             <motion.div
@@ -109,49 +109,6 @@ export default function HeroSection({
             </motion.div>
           </motion.div>
 
-          {/* Right Visual (Cosmic Glass Card) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: 50 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:block relative"
-          >
-            <div className="glass-card aspect-square w-full max-w-[500px] p-8 flex flex-col justify-between overflow-hidden relative">
-              {/* Decorative elements */}
-              <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/20 blur-[80px] rounded-full" />
-              <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-secondary/10 blur-[60px] rounded-full" />
-              
-              <div className="relative z-10 flex flex-col gap-6">
-                <div className="flex items-center justify-between">
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-primary">System Status</div>
-                  <div className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
-                </div>
-                <div className="text-4xl font-black text-white/90">99.99%</div>
-                <div className="h-[1px] w-full bg-white/5" />
-                <div className="space-y-4">
-                   <div className="flex items-center justify-between text-[11px] text-text-muted">
-                      <span>Uptime</span>
-                      <span className="text-white">Active</span>
-                   </div>
-                   <div className="flex items-center justify-between text-[11px] text-text-muted">
-                      <span>Node Latency</span>
-                      <span className="text-white">12ms</span>
-                   </div>
-                </div>
-              </div>
-
-              <div className="mt-auto relative z-10">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/5 backdrop-blur-md">
-                   <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                        <Cpu size={16} className="text-primary" />
-                      </div>
-                      <div className="text-xs font-bold text-white">Quantum Core v2.4</div>
-                   </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
 
         </div>
       </div>

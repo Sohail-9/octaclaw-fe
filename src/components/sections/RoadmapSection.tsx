@@ -70,7 +70,7 @@ export default function RoadmapSection() {
             transition={{ delay: 0.1 }}
             className="mt-6 text-lg text-text-muted font-manrope font-medium"
           >
-            OctaClaw holds undeniable technical superiority over the linear agent frameworks currently dominating the market space. Here is our 12-to-24 month strategic roadmap to capture massive enterprise value and reach Series A scale.
+            The Future of Swarm Intelligence. A 24-month strategic roadmap to capture the enterprise agent layer and reach Series A scale.
           </motion.p>
         </div>
 

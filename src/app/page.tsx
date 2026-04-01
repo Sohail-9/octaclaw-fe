@@ -14,9 +14,9 @@ export default function AgentPage() {
         <HeroSection primaryHref="/waitlist" primaryLabel="Join Waitlist" secondaryHref="#proximity" secondaryLabel="See it in action" />
         <div className="pb-16">
           <ProximityFeatureSection />
+          <HowItWorksSection />
           <FeaturesSection />
           <RoadmapSection />
-          <HowItWorksSection />
         </div>
       </div>
       <Footer />
