@@ -16,8 +16,8 @@ export default function FeaturesSection() {
               transition={{ duration: 0.6 }}
               className="text-4xl sm:text-6xl font-black text-white font-heading leading-none"
             >
-              The Next-Generation <br />
-              <span className="text-tertiary">DAG Orchestrator.</span>
+              Enterprise-Grade <br />
+              <span className="text-tertiary">Agent Orchestration.</span>
             </motion.h2>
           </div>
           <motion.p
@@ -27,7 +27,7 @@ export default function FeaturesSection() {
             transition={{ duration: 0.6 }}
             className="max-w-md text-lg text-text-muted font-medium font-manrope"
           >
-            Built from the ground up for massive concurrency. OctaClaw replaces linear chat-loops with a high-bandwidth node execution engine.
+            Built for massive concurrency, replacing slow sequential AI wrappers with a parallel execution engine.
           </motion.p>
         </div>
 
@@ -45,9 +45,9 @@ export default function FeaturesSection() {
               <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/20">
                 <GitBranch size={24} className="text-primary-light" />
               </div>
-              <h3 className="text-3xl font-bold text-white font-heading tracking-tight">GraphPlanner & WorkerPools</h3>
+              <h3 className="text-3xl font-bold text-white font-heading tracking-tight">Parallel Execution Engine</h3>
               <p className="mt-4 text-text-muted text-lg max-w-md font-manrope">
-                Stop waiting for slow sequential generation. Our `GraphPlanner` automatically decomposes complex goals into a Directed Acyclic Graph (DAG) for concurrent execution across a threaded `WorkerPool`.
+                Stop waiting for slow, one-at-a-time chat generation. Our engine automatically breaks down complex goals and executes them concurrently across a swarm of agents.
               </p>
             </div>
             
@@ -84,9 +84,9 @@ export default function FeaturesSection() {
               <div className="w-12 h-12 rounded-2xl bg-tertiary/20 flex items-center justify-center mb-6 border border-tertiary/20">
                 <Database size={24} className="text-tertiary" />
               </div>
-              <h3 className="text-2xl font-bold text-white font-heading">HNSW Vector Memory</h3>
+              <h3 className="text-2xl font-bold text-white font-heading">Infinite Context Memory</h3>
               <p className="mt-3 text-text-muted font-manrope">
-                Native `MemoryService` using `hnswlib-node` for deep semantic retrieval and automated Reflexion loop learning.
+                Native semantic retrieval allows your agents to learn from past runs. No more starting from scratch every time you deploy a workflow.
               </p>
             </div>
           </motion.div>
@@ -103,9 +103,9 @@ export default function FeaturesSection() {
                 <div className="absolute inset-0 bg-primary/30 blur-2xl rounded-full scale-150 animate-pulse" />
                 <Shield size={48} className="text-primary-light relative z-10" />
              </div>
-             <h3 className="mt-6 text-xl font-bold text-white font-heading">Durable Checkpoints</h3>
+             <h3 className="mt-6 text-xl font-bold text-white font-heading">Fault-Tolerant Runs</h3>
              <p className="mt-2 text-text-muted text-sm font-manrope">
-                Never lose a multi-hour swarm run. Atomic state-saving allows you to `octa chat --resume` effortlessly.
+                Never lose progress on a multi-hour autonomous task. Atomic state-saving allows you to pause, inspect, and resume workflows effortlessly.
              </p>
           </motion.div>
 
@@ -118,9 +118,9 @@ export default function FeaturesSection() {
             className="md:col-span-8 group relative overflow-hidden rounded-[32px] bg-gradient-to-r from-surface-high to-surface-low p-8 sm:p-12 flex flex-col md:flex-row items-center gap-8"
           >
              <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white font-heading tracking-tight">2D Spatial Observability</h3>
+                <h3 className="text-2xl font-bold text-white font-heading tracking-tight">Visual Observability</h3>
                 <p className="mt-4 text-text-muted font-manrope">
-                  Built-in `OctaClaw-office` dashboard gives your team a top-down view of the swarm. Monitor live WebSockets, walk up to agent vectors, and intercept runs directly via a 2D tile-map interface.
+                  Stop staring at terminal logs. Our spatial dashboard gives your team a top-down view of the swarm. Monitor active agents and intercept workflows in real-time.
                 </p>
              </div>
              <div className="flex gap-2">
