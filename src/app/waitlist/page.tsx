@@ -19,7 +19,7 @@ export default function WaitlistPage() {
   };
 
   return (
-    <main className="bg-[#0E0E0F] min-h-screen relative z-10 flex flex-col">
+    <main className="bg-bg min-h-screen relative z-10 flex flex-col">
       <Script
         id="jsonld-octaclaw"
         type="application/ld+json"
@@ -29,7 +29,7 @@ export default function WaitlistPage() {
       <div className="flex-1 flex flex-col pt-12 pb-24">
         <HomeWaitlistHero />
       </div>
-      <div className="mt-auto border-t border-[#40485d]/30">
+      <div className="mt-auto border-t border-white/5">
         <Footer minimal />
       </div>
     </main>

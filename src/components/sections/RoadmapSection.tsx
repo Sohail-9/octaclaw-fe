@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LineChart, BarChart3, TrendingUp, Layers, Code, Globe } from "lucide-react";
+import { LineChart, BarChart3, TrendingUp, Code, Globe, Server } from "lucide-react";
 
 const PILLARS = [
   {
     title: "Phase 1: Foundation",
     metrics: "Target: MVP Resilience",
-    icon: <Code className="text-primary-light" size={24} />,
+    icon: <Code className="text-white" size={20} />,
     items: [
       "No-Code Visual Architect Dashboard",
       "Comprehensive E2E Workflow Testing",
@@ -17,7 +17,7 @@ const PILLARS = [
   {
     title: "Phase 2: Expansion",
     metrics: "Target: Market Penetration",
-    icon: <Globe className="text-tertiary" size={24} />,
+    icon: <Globe className="text-white" size={20} />,
     items: [
       "Multi-Channel Slack/Email Adapters",
       "Enterprise RBAC & Audit Logging",
@@ -25,12 +25,12 @@ const PILLARS = [
     ],
   },
   {
-    title: "Phase 3: Scale to $1M ARR",
-    metrics: "Target: 3,500+ Active Seats",
-    icon: <TrendingUp className="text-secondary" size={24} />,
+    title: "Phase 3: Scale",
+    metrics: "Target: Network Effects",
+    icon: <TrendingUp className="text-secondary" size={20} />,
     items: [
       "Managed Cloud SaaS Hosted Platform",
-      "Swarm Freemium Model ($50-500/seat)",
+      "Swarm Execution Edge Distribution",
       "Agent vs Agent Global Marketplace",
     ],
   },
@@ -38,39 +38,35 @@ const PILLARS = [
 
 export default function RoadmapSection() {
   return (
-    <section id="roadmap" className="relative py-24 sm:py-32 px-6 overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/5 blur-[150px] rounded-full pointer-events-none" />
-
+    <section id="roadmap" className="relative py-24 sm:py-32 px-6 overflow-hidden border-t border-white/5 bg-surface">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-20 max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/5 py-1.5 px-4 text-xs font-bold uppercase tracking-[0.2em] text-primary-light mb-6"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1.5 px-4 text-[10px] font-bold uppercase tracking-widest text-text-muted mb-6"
           >
-            <LineChart size={14} />
-            Investor Thesis
+            <LineChart size={14} className="text-secondary" />
+            Infrastructure Roadmap
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl sm:text-6xl text-white font-bold tracking-tight font-heading leading-tight"
+            className="text-4xl sm:text-5xl text-white font-medium tracking-tight font-heading leading-tight"
           >
             The Path to <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-primary-light">Market Leadership.</span>
+            <span className="text-text-muted">Market Leadership.</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mt-6 text-lg text-text-muted font-manrope font-medium"
+            className="mt-6 text-base text-text-muted font-sans font-normal"
           >
-            The Future of Swarm Intelligence. A 24-month strategic roadmap to capture the enterprise agent layer and reach Series A scale.
+            A strategic timeline to capture the enterprise coordination layer. Evolving from robust local execution to a globally distributed multi-agent swarm matrix.
           </motion.p>
         </div>
 
@@ -78,26 +74,26 @@ export default function RoadmapSection() {
           {PILLARS.map((pillar, idx) => (
             <motion.div
               key={pillar.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="group surface-low rounded-3xl p-8 border border-white/5 hover:border-primary/30 transition-all duration-300 flex flex-col h-full"
+              className="group bg-surface-low rounded-2xl p-8 sm:p-10 border border-white/5 hover:border-white/10 transition-colors flex flex-col h-full"
             >
-              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6">
+              <div className="w-10 h-10 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center mb-8 shrink-0">
                 {pillar.icon}
               </div>
               
-              <h3 className="text-2xl font-bold text-white font-heading mb-2">{pillar.title}</h3>
-              <div className="text-sm font-bold text-primary-light/80 font-mono tracking-tight mb-6 flex items-center gap-2">
-                <BarChart3 size={14} />
+              <h3 className="text-xl font-medium text-white font-heading mb-2">{pillar.title}</h3>
+              <div className="text-[11px] font-medium text-text-muted font-mono tracking-widest uppercase mb-8 flex items-center gap-2 border-b border-white/5 pb-4">
+                <Server size={12} className="text-text-muted/50" />
                 {pillar.metrics}
               </div>
               
               <ul className="space-y-4 flex-grow">
                 {pillar.items.map((item, i) => (
-                  <li key={i} className="flex items-start text-text-muted font-manrope text-sm leading-relaxed">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 mt-2 mr-3 shrink-0 group-hover:bg-primary-light transition-colors" />
+                  <li key={i} className="flex items-start text-text-muted font-sans text-sm leading-relaxed">
+                    <span className="text-white/20 mt-0.5 mr-3 font-mono text-[10px] group-hover:text-secondary transition-colors">0{i+1}</span>
                     {item}
                   </li>
                 ))}
@@ -106,8 +102,6 @@ export default function RoadmapSection() {
           ))}
         </div>
         
-
-
       </div>
     </section>
   );

@@ -9,15 +9,36 @@ export default function HomeWaitlistHero() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     setStatus("loading");
-    setTimeout(() => {
+    setMessage("");
+
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to initialize protocol.");
+      }
+
       setStatus("success");
-      setMessage("Access logged. Awaiting genesis sequence.");
+      if (data.message === "Already on the waitlist") {
+        setMessage("Credentials verified. Already in terminal queue.");
+      } else {
+        setMessage("Access logged. Awaiting genesis sequence.");
+      }
       setEmail("");
-    }, 1200);
+    } catch (error: any) {
+      setStatus("error");
+      setMessage(error.message || "Connection refused. Please try again.");
+    }
   };
 
   return (

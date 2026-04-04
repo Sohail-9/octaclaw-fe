@@ -1,52 +1,61 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Copy, Navigation, Zap } from "lucide-react";
 
 const steps = [
   {
-    title: "Scaffold your Spatial Office",
-    description: "Initialize your 2D workspace and physically drop diverse AI agents into their dedicated desks.",
+    title: "Configure Initialization",
+    description: "Define the DAG configuration in JSON/YAML. Declare specialist roles, tools, and execution boundaries.",
+    icon: <Copy size={20} className="text-secondary" />,
   },
   {
-    title: "Watch execution unfold live",
-    description: "Deploy workflows from the Command Center. Watch as your agents walk, work, and collaborate in real-time.",
+    title: "Deploy Target Workflow",
+    description: "Launch execution from the CLI or dashboard. The engine automatically threads and isolates parallel routines.",
+    icon: <Navigation size={20} className="text-white" />,
   },
   {
-    title: "Intercept and guide mid-run",
-    description: "Walk your avatar up to any agent's radius to open their panel. Inspect logs or inject prompts on the fly.",
+    title: "Intercept & Steer",
+    description: "Observe live network telemetry. Inject context, manipulate vector states, or approve destructive actions mid-flight.",
+    icon: <Zap size={20} className="text-white" />,
   },
 ];
 
 export default function HowItWorksSection() {
   return (
-    <section id="howitworks" className="relative py-16 sm:py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20">
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white font-heading">How it works</h2>
+    <section id="howitworks" className="relative py-16 sm:py-24 px-6 border-t border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16 sm:mb-24">
+          <motion.h2 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-5xl font-medium tracking-tight text-white font-heading"
+          >
+            Lifecycle Architecture
+          </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((step, index) => (
             <motion.article
               key={step.title}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-              className="glass-card p-8 group overflow-hidden relative"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-surface-low border border-white/5 p-8 sm:p-10 rounded-2xl group overflow-hidden relative hover:border-white/10 transition-colors"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-xs font-bold text-primary-light bg-primary/10 px-2 py-0.5 rounded uppercase tracking-widest">
-                  Step {index + 1}
-                </span>
-                <div className="h-[1px] flex-grow bg-white/5" />
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 rounded-full border border-white/10 bg-white/5 flex items-center justify-center shrink-0">
+                  {step.icon}
+                </div>
+                <div className="text-[10px] font-bold text-text-muted/60 uppercase tracking-widest font-mono">
+                  Phase 0{index + 1}
+                </div>
               </div>
-              <h3 className="text-xl text-white font-bold font-heading">{step.title}</h3>
-              <p className="mt-4 text-text-muted leading-relaxed">{step.description}</p>
-
-              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                <span className="text-6xl font-black font-heading">{index + 1}</span>
-              </div>
+              <h3 className="text-xl text-white font-medium font-heading tracking-tight mb-4 group-hover:text-secondary transition-colors">{step.title}</h3>
+              <p className="text-sm text-text-muted leading-relaxed font-sans">{step.description}</p>
             </motion.article>
           ))}
         </div>
