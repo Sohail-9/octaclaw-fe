@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0c1324;
-  --surface: #0c1324;
-  --surface-low: #151b2d;
-  --surface-high: #23293c;
-  --surface-highest: #2e3447;
-  --surface-container-lowest: #070d1f;
+  --bg: #030712;
+  --surface: #030712;
+  --surface-low: #080c16;
+  --surface-high: #111827;
+  --surface-highest: #1f2937;
+  --surface-container-lowest: #000000;
 
-  --primary: #ddb7ff;
-  --primary-mid: #b76dff;
-  --primary-light: #f0dbff;
-  --secondary: #5de6ff;
-  --tertiary: #c0c1ff;
-  --accent-cyan: #5de6ff;
+  --primary: #ffffff;
+  --primary-mid: #cbd5e1;
+  --primary-light: #f8fafc;
+  --secondary: #2563eb;
+  --tertiary: #94a3b8;
+  --accent-cyan: #2563eb;
 
-  --text: #dce1fb;
-  --text-muted: #cfc2d6;
-  --border-shimmer: rgba(221, 183, 255, 0.15);
+  --text: #f9fafb;
+  --text-muted: #9ca3af;
+  --border-shimmer: rgba(255, 255, 255, 0.06);
 
-  --glass-bg: rgba(46, 52, 71, 0.4);
-  --glass-blur: blur(24px);
+  --glass-bg: rgba(3, 7, 18, 0.6);
+  --glass-blur: blur(32px);
 }
 
 @theme inline {
@@ -172,9 +172,9 @@ h6 {
 
 /* ── Dark Mode Premium Base ── */
 :root {
-  --bg-premium: #0E0E0F;
-  --accent-cta: #7b2cbf;
-  --accent-glow: rgba(123, 44, 191, 0.4);
+  --bg-premium: #000000;
+  --accent-cta: #ffffff;
+  --accent-glow: rgba(255, 255, 255, 0.1);
 }
 
 .bg-dot-grid {

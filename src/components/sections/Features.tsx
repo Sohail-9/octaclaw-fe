@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GitBranch, Database, Shield, Zap, Terminal } from "lucide-react";
+import { GitBranch, Database, Shield, GlobeLock, Users } from "lucide-react";
 
 export default function FeaturesSection() {
   return (
@@ -10,130 +10,131 @@ export default function FeaturesSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 sm:mb-24">
           <div className="max-w-3xl">
             <motion.h2
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-4xl sm:text-6xl font-black text-white font-heading leading-none"
+              className="text-4xl sm:text-5xl font-medium text-white font-heading leading-[1.1] tracking-tight"
             >
               Enterprise-Grade <br />
-              <span className="text-tertiary">Agent Orchestration.</span>
+              <span className="text-text-muted">Agent Orchestration.</span>
             </motion.h2>
           </div>
           <motion.p
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-md text-lg text-text-muted font-medium font-manrope"
+            className="max-w-md text-base text-text-muted font-normal font-sans"
           >
-            Built for massive concurrency, replacing slow sequential AI wrappers with a parallel execution engine.
+            Built for massive concurrency, replacing slow sequential wrappers with a highly-available parallel execution engine.
           </motion.p>
         </div>
 
-        {/* ── Bento Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        {/* ── Minimal Bento Grid ── */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
           
           {/* Main Feature: Graph Orchestration (Col Span 8) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="md:col-span-8 group relative overflow-hidden rounded-[32px] surface-low p-8 sm:p-12 min-h-[400px] flex flex-col justify-between"
+            className="md:col-span-8 group relative overflow-hidden rounded-[24px] bg-surface-low border border-white/5 p-8 sm:p-10 min-h-[360px] flex flex-col justify-between hover:border-white/10 transition-colors"
           >
-            <div className="relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/20">
-                <GitBranch size={24} className="text-primary-light" />
+            <div className="relative z-10 max-w-lg">
+              <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 border border-white/10 group-hover:bg-white/10 transition-colors">
+                <GitBranch size={18} className="text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-white font-heading tracking-tight">Parallel Execution Engine</h3>
-              <p className="mt-4 text-text-muted text-lg max-w-md font-manrope">
-                Stop waiting for slow, one-at-a-time chat generation. Our engine automatically breaks down complex goals and executes them concurrently across a swarm of agents.
+              <h3 className="text-2xl font-medium text-white font-heading tracking-tight">Graph Orchestration</h3>
+              <p className="mt-3 text-text-muted text-base font-sans leading-relaxed">
+                Execute non-linear task dependencies with automated error recovery. Built natively for parallel threads.
               </p>
             </div>
             
-            {/* Visual Preview */}
-            <div className="absolute top-1/2 right-0 w-1/2 h-full -rotate-12 translate-y-8 pointer-events-none opacity-40 group-hover:opacity-60 group-hover:rotate-0 transition-all duration-700">
-               <div className="w-full h-full bg-gradient-to-br from-primary/20 to-tertiary/10 rounded-3xl border border-white/5 backdrop-blur-sm p-4">
-                  <div className="flex flex-col gap-3 font-mono text-xs text-primary-light/80">
-                    <div className="bg-black/40 p-2 rounded-lg border border-white/5">
-                      {"{ node: 'Research', depends_on: [] }"}
-                    </div>
-                    <div className="bg-black/40 p-2 rounded-lg border border-white/5 ml-4">
-                      {"{ node: 'Write', depends_on: ['Research'] }"}
-                    </div>
-                    <div className="bg-black/40 p-2 rounded-lg border border-white/5 ml-4">
-                      {"{ node: 'Code', depends_on: ['Research'] }"}
-                    </div>
-                    <div className="bg-black/40 p-2 rounded-lg border border-white/5 ml-8 mt-2">
-                       {"{ node: 'Review', depends_on: ['Write', 'Code'] }"}
-                    </div>
+            {/* Visual Abstract Layer */}
+            <div className="absolute right-0 bottom-0 top-1/4 w-1/2 opacity-30 pointer-events-none group-hover:opacity-60 transition-opacity duration-700">
+               <div className="flex flex-col gap-2 font-mono text-[10px] text-white/50 p-6">
+                  <div className="bg-black/60 p-2.5 rounded-md border border-white/10 backdrop-blur-md w-4/5">
+                    "node": "Planner", "threads": 4
+                  </div>
+                  <div className="bg-black/60 p-2.5 rounded-md border border-white/10 backdrop-blur-md ml-4 w-4/5">
+                    "node": "Scraper", "depends": ["Planner"]
+                  </div>
+                  <div className="bg-black/60 p-2.5 rounded-md border border-secondary/30 backdrop-blur-md ml-8 w-4/5 text-secondary">
+                    "status": "Awaiting Execution"
                   </div>
                </div>
             </div>
           </motion.div>
 
-          {/* Side Feature: Unified Memory (Col Span 4) */}
+          {/* Side Feature: Swarm Specialists (Col Span 4) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="md:col-span-4 group relative overflow-hidden rounded-[32px] surface-high p-8 flex flex-col justify-between"
+            className="md:col-span-4 group relative overflow-hidden rounded-[24px] bg-surface-low border border-white/5 p-8 flex flex-col justify-between hover:border-white/10 transition-colors"
           >
             <div>
-              <div className="w-12 h-12 rounded-2xl bg-tertiary/20 flex items-center justify-center mb-6 border border-tertiary/20">
-                <Database size={24} className="text-tertiary" />
+              <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 border border-white/10 group-hover:bg-white/10 transition-colors">
+                <Users size={18} className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white font-heading">Infinite Context Memory</h3>
-              <p className="mt-3 text-text-muted font-manrope">
-                Native semantic retrieval allows your agents to learn from past runs. No more starting from scratch every time you deploy a workflow.
+              <h3 className="text-xl font-medium text-white font-heading tracking-tight">Swarm Specialists</h3>
+              <p className="mt-3 text-text-muted font-sans text-sm leading-relaxed">
+                Deploy customized role-based agents (Builders, Reviewers) that seamlessly coordinate in isolated environments.
               </p>
             </div>
           </motion.div>
 
-          {/* Bottom Card 1: Checkpointing (Col Span 4) */}
+          {/* Bottom Card 1: Unified Memory (Col Span 4) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="md:col-span-4 group relative overflow-hidden rounded-[32px] surface-high p-8 flex flex-col items-center text-center justify-center cursor-default"
+            className="md:col-span-4 group relative overflow-hidden rounded-[24px] bg-surface-low border border-white/5 p-8 flex flex-col items-center text-center justify-center hover:border-white/10 transition-colors"
           >
-             <div className="relative">
-                <div className="absolute inset-0 bg-primary/30 blur-2xl rounded-full scale-150 animate-pulse" />
-                <Shield size={48} className="text-primary-light relative z-10" />
+             <div className="mb-5 text-text-muted group-hover:text-white transition-colors duration-500">
+                <Database strokeWidth={1} size={32} />
              </div>
-             <h3 className="mt-6 text-xl font-bold text-white font-heading">Fault-Tolerant Runs</h3>
-             <p className="mt-2 text-text-muted text-sm font-manrope">
-                Never lose progress on a multi-hour autonomous task. Atomic state-saving allows you to pause, inspect, and resume workflows effortlessly.
+             <h3 className="text-lg font-medium text-white font-heading tracking-tight">Unified Reflexion</h3>
+             <p className="mt-2 text-text-muted text-sm font-sans leading-relaxed">
+                Long-term persistence matching across sessions with episodic memory hashes.
              </p>
           </motion.div>
 
-          {/* Bottom Card 2: 2D Spatial Observability (Col Span 8) */}
+          {/* Bottom Card 2: Checkpointing (Col Span 4) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="md:col-span-8 group relative overflow-hidden rounded-[32px] bg-gradient-to-r from-surface-high to-surface-low p-8 sm:p-12 flex flex-col md:flex-row items-center gap-8"
+            className="md:col-span-4 group relative overflow-hidden rounded-[24px] bg-surface-low border border-white/5 p-8 flex flex-col items-center text-center justify-center hover:border-white/10 transition-colors"
           >
-             <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white font-heading tracking-tight">Visual Observability</h3>
-                <p className="mt-4 text-text-muted font-manrope">
-                  Stop staring at terminal logs. Our spatial dashboard gives your team a top-down view of the swarm. Monitor active agents and intercept workflows in real-time.
-                </p>
+             <div className="mb-5 text-text-muted group-hover:text-white transition-colors duration-500">
+                <Shield strokeWidth={1} size={32} />
              </div>
-             <div className="flex gap-2">
-                {Array.from({length: 4}).map((_, i) => (
-                  <div key={i} className="w-1.5 h-12 bg-primary/20 rounded-full overflow-hidden">
-                    <motion.div 
-                      className="w-full bg-primary"
-                      animate={{ height: ["0%", "80%", "30%", "100%", "50%"] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
-                    />
-                  </div>
-                ))}
+             <h3 className="text-lg font-medium text-white font-heading tracking-tight">Durable States</h3>
+             <p className="mt-2 text-text-muted text-sm font-sans leading-relaxed">
+                Immutable workflow states allowing deterministic resuming on runtime faults.
+             </p>
+          </motion.div>
+
+          {/* Bottom Card 3: Local-First (Col Span 4) */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="md:col-span-4 group relative overflow-hidden rounded-[24px] bg-surface-low border border-white/5 p-8 flex flex-col items-center text-center justify-center hover:border-white/10 transition-colors"
+          >
+             <div className="mb-5 text-text-muted group-hover:text-secondary transition-colors duration-500">
+                <GlobeLock strokeWidth={1} size={32} />
              </div>
+             <h3 className="text-lg font-medium text-white font-heading tracking-tight">Zero-Trust Environment</h3>
+             <p className="mt-2 text-text-muted text-sm font-sans leading-relaxed">
+                Secure local-first execution. Keep sensitive prompt intellectual property completely on-premise.
+             </p>
           </motion.div>
 
         </div>

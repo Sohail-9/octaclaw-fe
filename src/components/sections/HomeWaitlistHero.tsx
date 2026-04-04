@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Sparkles, TerminalSquare, Share2, Orbit, ShieldCheck } from "lucide-react";
+import { ArrowRight, Terminal } from "lucide-react";
 
 export default function HomeWaitlistHero() {
   const [email, setEmail] = useState("");
@@ -15,64 +15,66 @@ export default function HomeWaitlistHero() {
     setStatus("loading");
     setTimeout(() => {
       setStatus("success");
-      setMessage("Transmission received. Welcome to the elite roster.");
+      setMessage("Access logged. Awaiting genesis sequence.");
       setEmail("");
     }, 1200);
   };
 
   return (
-    <section className="relative w-full flex-1 overflow-hidden font-manrope">
-      {/* ── Deep Space Background Layer ── */}
-      <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-        <div className="absolute w-[120vw] h-[60vh] top-0 bg-gradient-to-b from-[#ba9eff]/10 to-transparent blur-[160px] opacity-70" />
-        <div className="absolute w-[60vw] h-[60vw] right-[-20%] bottom-[-20%] bg-[#53ddfc]/10 blur-[200px] rounded-full mix-blend-screen opacity-60" />
+    <section className="relative w-full flex-1 overflow-hidden font-sans min-h-[85vh]">
+      {/* ── Deep Obsidian Minimal Background Layer ── */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-hidden">
+        {/* Soft, ultra-diffuse center glow */}
+        <div className="absolute w-[60vw] h-[60vh] top-[10%] bg-secondary/5 blur-[120px] rounded-full opacity-40 mix-blend-screen" />
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: "radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 1) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-16 h-full flex flex-col lg:flex-row gap-16 items-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 h-full flex flex-col lg:flex-row gap-16 items-center">
         
         {/* Left Column: Typography & Form */}
-        <div className="w-full lg:w-1/2 flex flex-col text-left">
-          
+        <div className="w-full lg:w-[45%] flex flex-col text-left">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="inline-flex items-center gap-2 rounded-full py-1.5 px-4 text-xs font-bold uppercase tracking-[0.2em] mb-6 text-[#53ddfc] border border-[#53ddfc]/20 bg-[#091328]/80 backdrop-blur-md">
-              <Orbit size={14} className="animate-spin-slow" />
-              The Celestial Conductor
+            <div className="inline-flex items-center gap-2 rounded-full py-1.5 px-3 text-[10px] font-medium uppercase tracking-widest mb-6 text-text-muted border border-white/10 bg-black/40 backdrop-blur-md">
+              <Terminal size={12} className="text-secondary" />
+              Early Access Registration
             </div>
             
             <h1 
-              className="text-5xl sm:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-[#a3aac4] font-heading leading-[1.1] tracking-[-0.02em] mb-6"
-              style={{ fontFamily: 'var(--font-space-grotesk)' }}
+              className="text-5xl sm:text-7xl font-medium tracking-tight text-white font-heading leading-[1.05] mb-6"
             >
-              Orchestrate Swarms.
-              <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ba9eff] to-[#8455ef]">
-                Don't chat with bots.
-              </span>
+              The Swarm <br className="hidden sm:block" />
+              is Waiting.
             </h1>
 
-            <p className="text-lg text-[#a3aac4] max-w-xl mb-12 leading-relaxed font-manrope">
-              Gain exclusive access to the enterprise-grade DAG engine. OctaClaw drops the linear abstraction, offering a truly parallel worker-pool execution environment.
+            <p className="text-lg text-text-muted max-w-lg mb-10 leading-relaxed font-sans">
+              Enter your credentials to queue for the private enterprise deployment of the OctaClaw DAG execution engine.
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="w-full max-w-md relative"
           >
-            <form onSubmit={handleSubmit} className="relative z-20 flex flex-col sm:flex-row gap-4">
-              <div className="relative flex-1 group">
+            <form onSubmit={handleSubmit} className="relative z-20 flex flex-col gap-4 w-full">
+              <div className="relative group w-full">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="commander@enterprise.gov"
-                  className="w-full h-14 bg-transparent border-b-2 border-[#40485d] px-2 text-[#dee5ff] outline-none transition-colors duration-300 placeholder:text-[#6d758c] font-manrope focus:border-[#53ddfc]"
+                  placeholder="name@enterprise.com"
+                  className="w-full h-12 bg-black/40 border border-white/10 rounded-lg px-4 text-white text-sm outline-none transition-all duration-300 placeholder:text-text-muted/50 font-sans focus:border-secondary focus:bg-black/60 shadow-[inset_0_1px_4px_rgba(0,0,0,0.5)]"
                   disabled={status === "loading" || status === "success"}
                 />
               </div>
@@ -80,25 +82,24 @@ export default function HomeWaitlistHero() {
               <button
                 type="submit"
                 disabled={status === "loading" || status === "success" || !email}
-                className="h-14 px-8 rounded-md bg-[#ba9eff] text-[#39008c] font-bold font-manrope shadow-[0_0_0_0_rgba(186,158,255,0)] hover:shadow-[0_0_24px_rgba(186,158,255,0.3)] transition-all duration-300 flex items-center justify-center min-w-[160px] disabled:opacity-50 disabled:cursor-not-allowed group relative overflow-hidden"
+                className="h-12 w-full rounded-lg bg-white text-black text-sm font-semibold hover:bg-gray-200 transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed group"
               >
-                <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
                 <AnimatePresence mode="wait">
                   {status === "idle" && (
                     <motion.span key="txt" initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }} className="flex items-center gap-2">
-                       Request Protocol <ArrowRight size={18} />
+                       Initialize Protocol <ArrowRight size={16} />
                     </motion.span>
                   )}
                   {status === "loading" && (
-                    <motion.div key="spin" initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }} className="flex gap-1.5">
-                       <span className="w-2 h-2 rounded-full bg-[#39008c] animate-bounce" style={{ animationDelay: "0ms" }} />
-                       <span className="w-2 h-2 rounded-full bg-[#39008c] animate-bounce" style={{ animationDelay: "150ms" }} />
-                       <span className="w-2 h-2 rounded-full bg-[#39008c] animate-bounce" style={{ animationDelay: "300ms" }} />
+                    <motion.div key="spin" initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }} className="flex gap-2">
+                       <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "0ms" }} />
+                       <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "150ms" }} />
+                       <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "300ms" }} />
                     </motion.div>
                   )}
                   {status === "success" && (
-                    <motion.span key="check" initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }} className="flex items-center gap-2 text-[#2b006e]">
-                       <Sparkles size={18} /> Logged
+                    <motion.span key="check" initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }} className="flex items-center gap-2">
+                       Queue Position Secured.
                     </motion.span>
                   )}
                 </AnimatePresence>
@@ -108,96 +109,62 @@ export default function HomeWaitlistHero() {
             <AnimatePresence>
               {message && (
                 <motion.p
-                  initial={{ opacity: 0, y: -10 }}
+                  initial={{ opacity: 0, y: -5 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`mt-4 text-sm font-medium ${status === "success" ? "text-[#53ddfc]" : "text-[#ff6e84]"} font-manrope`}
+                  className={`mt-4 text-xs font-medium ${status === "success" ? "text-text-muted" : "text-error"} font-mono`}
                 >
-                  {message}
+                  <span className="text-secondary">$</span> {message}
                 </motion.p>
               )}
             </AnimatePresence>
           </motion.div>
         </div>
 
-        {/* Right Column: Floating Intelligence Glass Layers */}
-        <div className="w-full lg:w-1/2 relative h-[500px] hidden md:block">
-          {/* Base Layer Card */}
+        {/* Right Column: Sleek Realistic Terminal UI */}
+        <div className="w-full lg:w-[55%] relative h-[450px] hidden md:flex items-center justify-end">
           <motion.div 
-             initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
-             animate={{ opacity: 1, scale: 1, rotate: 0 }}
+             initial={{ opacity: 0, x: 20 }}
+             animate={{ opacity: 1, x: 0 }}
              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-             className="absolute top-10 right-10 w-[420px] rounded-2xl bg-[#0f1930] border border-[#40485d]/30 p-8 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] z-10"
+             className="w-full max-w-lg rounded-xl bg-black border border-white/10 shadow-[0_24px_80px_-12px_rgba(0,0,0,1)] z-10 font-mono overflow-hidden"
           >
-             <div className="flex items-center justify-between mb-8">
-                <span className="text-[#53ddfc] text-[10px] font-bold tracking-widest uppercase font-heading">
-                   SYSTEM CONFIG
+             {/* Terminal Header */}
+             <div className="flex items-center px-4 py-3 border-b border-white/5 bg-white/[0.02]">
+                <div className="flex gap-2 mr-4">
+                   <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                   <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                   <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                </div>
+                <span className="text-[10px] text-text-muted/70 tracking-widest uppercase flex-1 text-center pr-8">
+                   octaclaw_daemon ~ zsh
                 </span>
-                <span className="w-2 h-2 rounded-full bg-[#53ddfc] shadow-[0_0_8px_#53ddfc] animate-pulse" />
              </div>
              
-             <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="mt-1 shrink-0 text-[#ba9eff]">
-                    <TerminalSquare size={20} />
-                  </div>
-                  <div>
-                    <h4 className="text-[#dee5ff] font-bold text-sm mb-1">DAG GraphPlanner</h4>
-                    <p className="text-[#a3aac4] text-xs leading-relaxed">Decomposes string intents into parallelizable subroutines across threaded worker pools.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="mt-1 shrink-0 text-[#ba9eff]">
-                    <Share2 size={20} />
-                  </div>
-                  <div>
-                    <h4 className="text-[#dee5ff] font-bold text-sm mb-1">WorkerPool Concurrency</h4>
-                    <p className="text-[#a3aac4] text-xs leading-relaxed">Scale execution automatically based on available local or cloud-provisioned cores.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="mt-1 shrink-0 text-[#ba9eff]">
-                    <ShieldCheck size={20} />
-                  </div>
-                  <div>
-                    <h4 className="text-[#dee5ff] font-bold text-sm mb-1">HNSW Vector Memory</h4>
-                    <p className="text-[#a3aac4] text-xs leading-relaxed">Native vector similarity search integrated tightly with episodic swarm learning.</p>
-                  </div>
-                </div>
-             </div>
-          </motion.div>
-
-          {/* Elevated Floating Glass Card */}
-          <motion.div 
-             initial={{ opacity: 0, y: 40 }}
-             animate={{ opacity: 1, y: [0, -10, 0] }}
-             transition={{ duration: 6, opacity: { duration: 1, delay: 0.6 }, y: { repeat: Infinity, duration: 6, ease: "easeInOut" } }}
-             className="absolute -bottom-4 right-20 w-[300px] rounded-xl bg-[#192540]/60 backdrop-blur-[24px] border border-[#40485d]/50 p-6 shadow-[0_24px_48px_rgba(0,0,0,0.4)] z-20"
-          >
-             <div className="flex items-center gap-3 mb-4">
-               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#ba9eff] to-[#8455ef] flex items-center justify-center shadow-inner">
-                 <TerminalSquare size={16} className="text-[#39008c]" />
-               </div>
-               <div>
-                  <div className="text-[10px] text-[#a3aac4] uppercase tracking-widest">Active Task</div>
-                  <div className="text-sm font-bold text-[#dee5ff]">Compile Checkpoint</div>
-               </div>
-             </div>
-             
-             <div className="w-full h-1.5 bg-[#091328] rounded-full overflow-hidden">
-               <motion.div 
-                 className="h-full bg-[#53ddfc]" 
-                 initial={{ width: "20%" }}
-                 animate={{ width: "85%" }}
-                 transition={{ duration: 2, delay: 1, ease: "circOut" }}
-               />
-             </div>
-             <div className="mt-3 flex justify-between text-[10px] text-[#a3aac4]">
-               <span>ETA: 1.2s</span>
-               <span className="text-[#ba9eff]">Parallelized</span>
+             {/* Terminal Body */}
+             <div className="p-6 space-y-2 text-[11px] text-text-muted/80 leading-relaxed min-h-[300px]">
+                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 1.0}}>
+                  <span className="text-white/40">~</span> <span className="text-secondary">octaclaw</span> up -d --workers=8
+                </motion.div>
+                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 1.5}}>
+                  [OK] Daemon bound to tcp://0.0.0.0:4040
+                </motion.div>
+                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 2.0}}>
+                  [OK] Local VectorStore hydrated (1.2GB)
+                </motion.div>
+                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 2.3}}>
+                  [OK] Swarm initialized with 8 idle cores.
+                </motion.div>
+                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 3.2}} className="text-white mt-4">
+                  {"{"}"status": "awaiting_connection", "client": "none"{"}"}
+                </motion.div>
+                
+                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 3.5}}>
+                  <br />
+                  <span className="text-white/40 delay-100 animate-pulse">_</span>
+                </motion.div>
              </div>
           </motion.div>
         </div>
-
       </div>
     </section>
   );

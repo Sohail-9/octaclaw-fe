@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Zap, Cpu } from "lucide-react";
+import { ArrowRight, Terminal } from "lucide-react";
 import { useRef } from "react";
 
 export default function HeroSection({
@@ -22,97 +22,84 @@ export default function HeroSection({
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   return (
-    <section ref={sectionRef} id="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-20 px-6">
-      {/* ── Background Spatial Infrastructure ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
-        {/* Static Premium Glow */}
-        <div className="absolute w-[80vw] h-[80vw] max-w-4xl max-h-4xl bg-primary/10 blur-[120px] rounded-full" />
-
+    <section ref={sectionRef} id="hero" className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-20 px-6">
+      {/* ── Ultra-Minimal Background Glow ── */}
+      <div className="absolute inset-0 pointer-events-none flex items-start justify-center overflow-hidden">
+        {/* Sublime top spotlight */}
+        <div className="absolute top-[-20%] w-[100vw] h-[60vh] bg-primary/5 blur-[120px] rounded-[100%] opacity-60" />
         {/* Subtle grid layer */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: "linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-            backgroundPosition: "center center"
+            backgroundSize: "64px 64px",
+            backgroundPosition: "center top"
           }}
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 gap-12 items-center">
-          
-          {/* Left Content */}
-          <motion.div 
-            style={{ opacity, scale }} 
-            className="flex flex-col items-center text-center max-w-4xl mx-auto"
+      <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col items-center text-center">
+        <motion.div 
+          style={{ opacity, scale }} 
+          className="flex flex-col items-center w-full"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1.5 px-4 text-[11px] font-medium uppercase tracking-widest text-text-muted backdrop-blur-md mb-8"
           >
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/5 py-1.5 px-4 text-[10px] font-bold uppercase tracking-[0.4em] text-text-muted glass-micro-border"
-            >
-              <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              Cosmic Orchestrator
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-white font-heading leading-[0.95]"
-            >
-              Orchestrate. <br />
-              Execute. <span className="text-vivid-gradient italic">Scale.</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-8 max-w-xl text-xl sm:text-2xl text-[#CFC2D5] leading-snug font-medium"
-              style={{ fontFamily: "var(--font-manrope)" }}
-            >
-              Manage multi-agent swarms with spatial precision. The operating system for the next generation of AI workforce.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-12 flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
-            >
-              <LinkButton
-                href={primaryHref}
-                className="btn-premium flex items-center justify-center gap-3 text-lg px-8 py-4 rounded-full"
-                style={{ 
-                  background: "linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%)", 
-                  color: "#0c1324" 
-                }}
-              >
-                <Zap size={22} className="relative z-10 fill-current" />
-                <span className="relative z-10">{primaryLabel}</span>
-              </LinkButton>
-
-              <LinkButton
-                href={secondaryHref}
-                className="btn-premium-secondary glass flex items-center justify-center gap-3 text-lg px-8 py-4 rounded-full border-none shadow-none"
-              >
-                <Cpu size={22} className="text-secondary" />
-                <span className="text-text">{secondaryLabel}</span>
-                <ArrowRight size={20} className="group-hover/btn:translate-x-1 transition-transform text-secondary" />
-              </LinkButton>
-            </motion.div>
+            <div className="h-1.5 w-1.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(37,99,235,0.8)]" />
+            OctaClaw OS Platform
           </motion.div>
 
+          <motion.h1
+            initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
+            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-6xl sm:text-7xl lg:text-8xl font-medium tracking-[-0.03em] text-white font-heading leading-[1.05]"
+          >
+            The Operating System <br className="hidden sm:block" />
+            for <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-mid to-white">Agentic Workflows.</span>
+          </motion.h1>
 
-        </div>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mt-8 max-w-2xl text-xl sm:text-2xl text-text-muted leading-relaxed font-normal"
+            style={{ fontFamily: "var(--font-sans)" }}
+          >
+            Deploy high-fidelity DAG architectures with zero-latency checkpointing. Scale your intelligence, reliably.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-12 flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+          >
+            <LinkButton
+              href={primaryHref}
+              className="group flex items-center justify-center gap-3 text-sm px-8 py-4 rounded-full bg-white text-black font-semibold transition-all hover:bg-gray-100 min-w-[200px]"
+            >
+              <Terminal size={16} />
+              <span>{primaryLabel}</span>
+            </LinkButton>
+
+            <LinkButton
+              href={secondaryHref}
+              className="group flex items-center justify-center gap-2 text-sm px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all min-w-[200px]"
+            >
+              <span>{secondaryLabel}</span>
+              <ArrowRight size={16} className="text-text-muted group-hover:text-white transition-colors group-hover:translate-x-0.5" />
+            </LinkButton>
+          </motion.div>
+        </motion.div>
       </div>
-
 
     </section>
   );
@@ -122,7 +109,7 @@ function LinkButton({ href, children, className, style }: { href: string; childr
   return (
     <motion.a
       href={href}
-      whileHover={{ y: -4, scale: 1.02 }}
+      whileHover={{ y: -1 }}
       whileTap={{ scale: 0.98 }}
       className={className}
       style={style}
