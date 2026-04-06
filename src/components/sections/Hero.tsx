@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Terminal } from "lucide-react";
 import { useRef } from "react";
+import { MouseGlowGrid } from "@/components/ui/MouseGlowGrid";
 
 export default function HeroSection({
   primaryHref = "#waitlist",
@@ -26,19 +27,9 @@ export default function HeroSection({
 
   return (
     <section ref={sectionRef} id="hero" className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-32 pb-20 px-6">
-      {/* ── Ultra-Minimal Background Glow ── */}
-      <div className="absolute inset-0 pointer-events-none flex items-start justify-center overflow-hidden">
-        {/* Sublime top spotlight */}
-        <div className="absolute top-[-20%] w-[100vw] h-[60vh] bg-primary/5 blur-[120px] rounded-[100%] opacity-60" />
-        {/* Subtle grid layer */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: "linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-            backgroundPosition: "center top"
-          }}
-        />
+      {/* ── Interactive Background Glow ── */}
+      <div className="absolute inset-0 pointer-events-auto">
+        <MouseGlowGrid />
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col items-center text-center">

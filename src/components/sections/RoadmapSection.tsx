@@ -1,37 +1,37 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LineChart, BarChart3, TrendingUp, Code, Globe, Server } from "lucide-react";
+import { LineChart, TrendingUp, Code, Globe, Server } from "lucide-react";
 
 const PILLARS = [
   {
-    title: "Phase 1: Foundation",
-    metrics: "Target: MVP Resilience",
+    title: "Phase 1: Robust Local Execution (Current)",
+    metrics: "Graph-based DAG engine",
     icon: <Code className="text-white" size={20} />,
     items: [
-      "No-Code Visual Architect Dashboard",
-      "Comprehensive E2E Workflow Testing",
-      "Pre-built Industry Specific Templates",
+      "Local SQLite/JSON persistence",
+      "Worker-thread parallelism",
+      "Atomic checkpoints",
     ],
   },
   {
-    title: "Phase 2: Expansion",
-    metrics: "Target: Market Penetration",
+    title: "Phase 2: Enterprise Coordination Layer",
+    metrics: "Multi-user tenancy",
     icon: <Globe className="text-white" size={20} />,
     items: [
-      "Multi-Channel Slack/Email Adapters",
-      "Enterprise RBAC & Audit Logging",
-      "Model Agnostic Fallbacks (Anthropic/OpenAI)",
+      "Audit-ready logging (Reflexion)",
+      "Advanced tool permissioning",
+      "Cross-channel orchestration (Discord/Telegram integration)",
     ],
   },
   {
-    title: "Phase 3: Scale",
-    metrics: "Target: Network Effects",
+    title: "Phase 3: Globally Distributed Multi-Agent Swarm Matrix",
+    metrics: "Decentralized agent nodes",
     icon: <TrendingUp className="text-secondary" size={20} />,
     items: [
-      "Managed Cloud SaaS Hosted Platform",
-      "Swarm Execution Edge Distribution",
-      "Agent vs Agent Global Marketplace",
+      "Cross-region state synchronization",
+      "P2P swarm communication",
+      "High-availability enterprise workloads",
     ],
   },
 ];

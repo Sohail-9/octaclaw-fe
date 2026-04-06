@@ -364,3 +364,48 @@ h6 {
 .squircle-card {
   border-radius: 40px;
 }
+
+/* ── Magic Border / Shining Outline ── */
+@keyframes spin-gradient {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.magic-border-container {
+  position: relative;
+  border-radius: inherit;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.magic-border-container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 70%,
+    rgba(124, 58, 255, 0.6) 80%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  animation: spin-gradient 4s linear infinite;
+  z-index: 0;
+}
+
+.magic-border-content {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  border-radius: inherit;
+  margin: 1px; /* The border width */
+  height: calc(100% - 2px);
+  width: calc(100% - 2px);
+}

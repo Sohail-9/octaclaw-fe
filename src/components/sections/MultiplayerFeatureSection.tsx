@@ -40,7 +40,7 @@ export default function MultiplayerFeatureSection() {
             </h2>
             <div className="space-y-5 text-base sm:text-lg text-[#CFC2D5] leading-relaxed mb-8" style={{ fontFamily: "var(--font-manrope)" }}>
               <p>
-                Building complex agents shouldn't be a solo endeavor. OctaClaw introduces genuine multiplayer synchronization to CLI sessions.
+                Building complex agents shouldn&apos;t be a solo endeavor. OctaClaw introduces genuine multiplayer synchronization to CLI sessions.
               </p>
               <p>
                 Execute <kbd className="inline-flex items-center justify-center bg-white/10 border border-white/20 rounded text-xs font-bold text-[#e0b6ff] px-1.5 py-0.5" style={{ fontFamily: "var(--font-space-grotesk)" }}>octa sync --team</kbd> to stream agent terminal output directly to your colleagues. Your whole team watches the execution unfold live, with identical local states.
@@ -63,7 +63,7 @@ export default function MultiplayerFeatureSection() {
                 </div>
                 <div>
                   <h4 className="text-[#E5E2E3] text-sm font-semibold">Shared Context Memory</h4>
-                  <p className="text-xs text-[#CFC2D5] mt-0.5">Agents maintain state across different team members' machines.</p>
+                  <p className="text-xs text-[#CFC2D5] mt-0.5">Agents maintain state across different team members&apos; machines.</p>
                 </div>
               </div>
             </div>

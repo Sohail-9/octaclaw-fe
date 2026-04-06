@@ -16,6 +16,66 @@ const INITIAL_LOGS = [
   { time: "00:08", level: "success", node: "Agent:Reviewer", text: "Quality checks passed. DAG Execution Complete.", delay: 5500 },
 ];
 
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+
+function DecryptedText({ text, delayMs = 0 }: { text: string; delayMs?: number }) {
+  const [displayText, setDisplayText] = useState("");
+
+  useEffect(() => {
+    let iteration = 0;
+    let interval: NodeJS.Timeout | null = null;
+    
+    // Start decryption after delay
+    const startTimeout = setTimeout(() => {
+      interval = setInterval(() => {
+        setDisplayText(
+          text
+            .split("")
+            .map((char, index) => {
+              if (index < iteration) {
+                return text[index];
+              }
+              // Skip spaces
+              if (char === " ") return " ";
+              return CHARS[Math.floor(Math.random() * CHARS.length)];
+            })
+            .join("")
+        );
+
+        if (iteration >= text.length) {
+          if (interval) clearInterval(interval);
+        }
+
+        iteration += 1 / 2; // Speed of decryption
+      }, 30);
+    }, delayMs);
+
+    return () => {
+      clearTimeout(startTimeout);
+      if (interval) clearInterval(interval);
+    };
+  }, [text, delayMs]);
+
+  // Syntax Highlighting strings like 'Research' or "Writer"
+  const highlightRegex = /(['"].*?['"])/g;
+  const parts = displayText.split(highlightRegex);
+
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (part.match(highlightRegex)) {
+          return (
+            <span key={i} className="text-[#DEB7FF]">
+              {part}
+            </span>
+          );
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </>
+  );
+}
+
 export default function CosmicTerminalDemo({ mode = "execution" }: { mode?: "execution" | "multiplayer" }) {
   const [typedCommand, setTypedCommand] = useState("");
   const [showCommand, setShowCommand] = useState(false);
@@ -141,7 +201,7 @@ export default function CosmicTerminalDemo({ mode = "execution" }: { mode?: "exe
                         {log.node}
                       </span>
                       <span style={{ color: "#CFC2D5" }}>
-                        {log.text}
+                        <DecryptedText text={log.text} delayMs={200} />
                       </span>
                     </motion.div>
                   );

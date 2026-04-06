@@ -1,7 +1,6 @@
 import Script from "next/script";
 import { Navbar, Footer } from "@/components/layout";
 import HomeWaitlistHero from "@/components/sections/HomeWaitlistHero";
-import SpatialWorkspaceSection from "@/components/sections/SpatialWorkspace";
 
 export default function WaitlistPage() {
   const jsonLd = {

@@ -35,9 +35,9 @@ export default function HomeWaitlistHero() {
         setMessage("Access logged. Awaiting genesis sequence.");
       }
       setEmail("");
-    } catch (error: any) {
+    } catch (error: unknown) {
       setStatus("error");
-      setMessage(error.message || "Connection refused. Please try again.");
+      setMessage((error instanceof Error ? error.message : "Connection refused. Please try again."));
     }
   };
 
@@ -176,7 +176,7 @@ export default function HomeWaitlistHero() {
                   [OK] Swarm initialized with 8 idle cores.
                 </motion.div>
                 <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 3.2}} className="text-white mt-4">
-                  {"{"}"status": "awaiting_connection", "client": "none"{"}"}
+                  {"{"}&quot;status&quot;: &quot;awaiting_connection&quot;, &quot;client&quot;: &quot;none&quot;{"}"}
                 </motion.div>
                 
                 <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 3.5}}>

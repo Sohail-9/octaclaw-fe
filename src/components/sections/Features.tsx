@@ -35,35 +35,38 @@ export default function FeaturesSection() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
           
           {/* Main Feature: Graph Orchestration (Col Span 8) */}
+          {/* Main Feature: Graph Orchestration (Col Span 8) */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="md:col-span-8 group relative overflow-hidden rounded-[24px] bg-surface-low border border-white/5 p-8 sm:p-10 min-h-[360px] flex flex-col justify-between hover:border-white/10 transition-colors"
+            className="md:col-span-8 group relative overflow-hidden rounded-[24px] magic-border-container"
           >
-            <div className="relative z-10 max-w-lg">
-              <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 border border-white/10 group-hover:bg-white/10 transition-colors">
-                <GitBranch size={18} className="text-white" />
+            <div className="magic-border-content bg-surface-low p-8 sm:p-10 min-h-[360px] flex flex-col justify-between hover:bg-[#0c101c] transition-colors overflow-hidden">
+              <div className="relative z-10 max-w-lg">
+                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-6 border border-white/10 group-hover:bg-white/10 transition-colors shadow-lg">
+                  <GitBranch size={18} className="text-white" />
+                </div>
+                <h3 className="text-2xl font-medium text-white font-heading tracking-tight">Graph Orchestration</h3>
+                <p className="mt-3 text-text-muted text-base font-sans leading-relaxed">
+                  Execute non-linear task dependencies with automated error recovery. Built natively for parallel threads.
+                </p>
               </div>
-              <h3 className="text-2xl font-medium text-white font-heading tracking-tight">Graph Orchestration</h3>
-              <p className="mt-3 text-text-muted text-base font-sans leading-relaxed">
-                Execute non-linear task dependencies with automated error recovery. Built natively for parallel threads.
-              </p>
-            </div>
-            
-            {/* Visual Abstract Layer */}
-            <div className="absolute right-0 bottom-0 top-1/4 w-1/2 opacity-30 pointer-events-none group-hover:opacity-60 transition-opacity duration-700">
-               <div className="flex flex-col gap-2 font-mono text-[10px] text-white/50 p-6">
-                  <div className="bg-black/60 p-2.5 rounded-md border border-white/10 backdrop-blur-md w-4/5">
-                    "node": "Planner", "threads": 4
-                  </div>
-                  <div className="bg-black/60 p-2.5 rounded-md border border-white/10 backdrop-blur-md ml-4 w-4/5">
-                    "node": "Scraper", "depends": ["Planner"]
-                  </div>
-                  <div className="bg-black/60 p-2.5 rounded-md border border-secondary/30 backdrop-blur-md ml-8 w-4/5 text-secondary">
-                    "status": "Awaiting Execution"
-                  </div>
-               </div>
+              
+              {/* Visual Abstract Layer */}
+              <div className="absolute right-0 bottom-0 top-1/4 w-1/2 opacity-30 pointer-events-none group-hover:opacity-70 transition-opacity duration-700">
+                 <div className="flex flex-col gap-2 font-mono text-[10px] text-white/50 p-6">
+                    <div className="bg-black/60 p-2.5 rounded-md border border-white/10 backdrop-blur-md w-4/5 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                      &quot;node&quot;: &quot;Planner&quot;, &quot;threads&quot;: 4
+                    </div>
+                    <div className="bg-black/60 p-2.5 rounded-md border border-white/10 backdrop-blur-md ml-4 w-4/5 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                      &quot;node&quot;: &quot;Scraper&quot;, &quot;depends&quot;: [&quot;Planner&quot;]
+                    </div>
+                    <div className="bg-black/60 p-2.5 rounded-md border border-secondary/30 backdrop-blur-md ml-8 w-4/5 text-secondary shadow-[0_0_20px_rgba(37,99,235,0.2)]">
+                      &quot;status&quot;: &quot;Awaiting Execution&quot;
+                    </div>
+                 </div>
+              </div>
             </div>
           </motion.div>
 
