@@ -23,7 +23,7 @@ export default function Footer({ minimal = false }: FooterProps) {
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
             <Image
-              src="/logo-v2.png"
+              src="/logo.png"
               alt="OctaClaw logo"
               width={32}
               height={32}

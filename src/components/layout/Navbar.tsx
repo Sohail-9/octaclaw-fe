@@ -46,7 +46,7 @@ export default function Navbar({
           <div className="relative h-10 w-10 sm:h-11 sm:w-11">
             <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full scale-125 transition-opacity duration-500" style={{ opacity: scrolled ? 1 : 0 }} />
             <Image
-              src="/logo-v2.png"
+              src="/logo.png"
               alt="OctaClaw logo"
               fill
               className="object-contain relative z-10"

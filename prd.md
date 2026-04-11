@@ -38,7 +38,7 @@ Layout Structure:
    Minimal top navigation.
 
 Left:
-OctaClaw (Cute blue octopus logo)
+OctaClaw (Minimalist interlocking loops logo with original blue-purple gradient)
 
 Right:
 Product
@@ -70,7 +70,7 @@ Floating nodes connected by lines with subtle motion.
 
 Design style:
 Dark background (#0B0B0F)
-Gradient accent (purple → blue)
+Gradient accent (blue → purple)
 
 Layout:
 Centered text with animation behind or beside it.
@@ -145,8 +145,8 @@ Primary text:
 White
 
 Accent colors:
-Purple (#7C3AED)
-Blue (#3B82F6)
+Purple (#a855f7)
+vivid Accent (#c084fc)
 
 Typography:
 Inter
