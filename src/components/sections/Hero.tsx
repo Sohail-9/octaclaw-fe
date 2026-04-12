@@ -1,21 +1,11 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Terminal } from "lucide-react";
 import { useRef } from "react";
 import { MouseGlowGrid } from "@/components/ui/MouseGlowGrid";
+import HomeWaitlistHero from "./HomeWaitlistHero";
 
-export default function HeroSection({
-  primaryHref = "#waitlist",
-  secondaryHref = "#proximity",
-  primaryLabel = "Join the Priority Waitlist",
-  secondaryLabel = "Watch Demo",
-}: {
-  primaryHref?: string;
-  secondaryHref?: string;
-  primaryLabel?: string;
-  secondaryLabel?: string;
-}) {
+export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -33,11 +23,11 @@ export default function HeroSection({
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto w-full flex flex-col items-center text-center">
-        <motion.div 
-          style={{ opacity, scale }} 
+        <motion.div
+          style={{ opacity, scale }}
           className="flex flex-col items-center w-full"
         >
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -45,19 +35,19 @@ export default function HeroSection({
           >
             <div className="h-1.5 w-1.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(37,99,235,0.8)]" />
             OctaClaw OS Platform
-          </motion.div>
+          </motion.div> */}
 
           <motion.h1
             initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
             animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl sm:text-7xl lg:text-8xl font-medium tracking-[-0.03em] text-white font-heading leading-[1.05]"
+            className="text-xl sm:text-2xl lg:text-8xl font-medium tracking-[-0.03em] text-white font-heading leading-[1.05]"
           >
-            The Operating System <br className="hidden sm:block" />
-            for <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-mid to-white">Agentic Workflows.</span>
+            The Control Layer <br className="hidden sm:block" />
+            for AI <span className="text-transparent bg-clip-text bg-gradient-to-bl from-white/10 to-white"> Agents</span>
           </motion.h1>
 
-          <motion.p
+          {/* <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -65,30 +55,14 @@ export default function HeroSection({
             style={{ fontFamily: "var(--font-sans)" }}
           >
             Deploy high-fidelity DAG architectures with zero-latency checkpointing. Scale your intelligence, reliably.
-          </motion.p>
+          </motion.p> */}
+          <div className="w-full flex justify-center mt-6">
+            <HomeWaitlistHero />
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-12 flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
-          >
-            <LinkButton
-              href={primaryHref}
-              className="group flex items-center justify-center gap-3 text-sm px-8 py-4 rounded-full bg-white text-black font-semibold transition-all hover:bg-gray-100 min-w-[200px]"
-            >
-              <Terminal size={16} />
-              <span>{primaryLabel}</span>
-            </LinkButton>
 
-            <LinkButton
-              href={secondaryHref}
-              className="group flex items-center justify-center gap-2 text-sm px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all min-w-[200px]"
-            >
-              <span>{secondaryLabel}</span>
-              <ArrowRight size={16} className="text-text-muted group-hover:text-white transition-colors group-hover:translate-x-0.5" />
-            </LinkButton>
-          </motion.div>
+
+
         </motion.div>
       </div>
 
