@@ -56,7 +56,7 @@ export default function HeroSection() {
           >
             Deploy high-fidelity DAG architectures with zero-latency checkpointing. Scale your intelligence, reliably.
           </motion.p> */}
-          <div className="w-full flex justify-center mt-6">
+          <div className="w-full flex justify-center mt-10">
             <HomeWaitlistHero />
           </div>
 
