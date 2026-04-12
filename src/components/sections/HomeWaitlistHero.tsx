@@ -50,14 +50,14 @@ export default function HomeWaitlistHero() {
         className="relative w-full max-w-md"
       >
         <form onSubmit={handleSubmit} className="relative z-20 w-full">
-          <div className="group relative h-14 w-full rounded-full border border-white/15 bg-black/45 p-1 backdrop-blur-xl transition-all duration-300 hover:border-white/30 focus-within:border-cyan-300/60 focus-within:bg-black/55">
-            <div className="pointer-events-none absolute -inset-[1px] rounded-full bg-gradient-to-r from-cyan-300/25 via-sky-200/10 to-indigo-300/25 opacity-70 blur-[2px] transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100" />
+          <div className="group relative h-14 w-full rounded-full border border-black/25 bg-black/8 p-1 backdrop-blur-xl transition-all duration-300 hover:border-black/40 focus-within:border-black/55 focus-within:bg-black/12 dark:border-white/15 dark:bg-black/45 dark:hover:border-white/30 dark:focus-within:border-white/45 dark:focus-within:bg-black/55">
+            <div className="pointer-events-none absolute -inset-[1px] rounded-full bg-gradient-to-r from-black/30 via-black/12 to-black/30 opacity-70 blur-[2px] transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 dark:from-white/14 dark:via-white/6 dark:to-white/14" />
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
-              className="h-full w-full rounded-full bg-transparent pl-5 pr-36 text-sm text-white outline-none transition-colors duration-300 placeholder:text-text-muted/60"
+              className="h-full w-full rounded-full bg-transparent pl-5 pr-36 text-sm text-black/85 outline-none transition-colors duration-300 placeholder:text-black/45 dark:text-white dark:placeholder:text-white/50"
               disabled={status === "loading" || status === "success"}
             />
             <button
