@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import { Logo } from "@/components/ui/Logo";
 import { Moon, Sun } from "lucide-react";
 
 export default function Navbar() {
@@ -46,11 +46,11 @@ export default function Navbar() {
       >
         <Link
           href="/"
-          className="flex items-center gap-3 text-xl font-bold tracking-tight"
+          className="flex items-center gap-1.5 text-xl font-bold tracking-tight"
           style={{ fontFamily: "var(--font-heading)" }}
         >
-          <div className="relative w-8 h-8 flex-shrink-0">
-            <Image src="/logo.png" alt="octaClaw Logo" fill className="object-contain" />
+          <div className="relative w-8 h-8 flex-shrink-0 flex items-center justify-center">
+            <Logo />
           </div>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#81e6d9] to-[#63b3ed]">Octaclaw</span>
         </Link>

@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   keywords: ["octaclaw", "agent dag", "agent orchestration", "Spatial Workspace", "debugging"],
   metadataBase: new URL("https://octaclaw.com"),
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: "/logo_v2.png",
+    apple: "/logo_v2.png",
   },
   alternates: {
     canonical: "/",
@@ -47,20 +47,18 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
-    description:
-      "Most AI tools are built for solo use. OctaClaw is built for teams.",
+    title: "OctaClaw | Agentic Orchestration OS",
+    description: "The spatial intelligence layer for high-performance AI agent teams.",
     url: "https://octaclaw.com",
     siteName: "OctaClaw",
-    images: [{ url: "/logo.png", width: 800, height: 800 }],
+    images: [{ url: "/logo_v2.png", width: 800, height: 800 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
-    description:
-      "Most AI tools are built for solo use. OctaClaw is built for teams.",
-    images: ["/logo.png"],
+    title: "OctaClaw | Agentic Orchestration OS",
+    description: "The spatial intelligence layer for high-performance AI agent teams.",
+    images: ["/logo_v2.png"],
   },
 };
 

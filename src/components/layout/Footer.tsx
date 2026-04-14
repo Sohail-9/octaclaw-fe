@@ -1,6 +1,5 @@
 import { Github, Linkedin, Twitter } from "lucide-react";
-
-import Image from "next/image";
+import { Logo } from "@/components/ui/Logo";
 
 type FooterProps = {
   minimal?: boolean;
@@ -21,14 +20,8 @@ export default function Footer({ minimal = false }: FooterProps) {
     <footer className="relative py-20 border-t border-border-subtle bg-bg-surface text-text-main">
       <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-3">
-            <Image
-              src="/logo.png"
-              alt="OctaClaw logo"
-              width={32}
-              height={32}
-              className="object-contain"
-            />
+          <div className="flex items-center gap-1.5">
+            <Logo />
             <span className="text-2xl text-text-main font-bold tracking-tight font-heading">
               OctaClaw
             </span>
