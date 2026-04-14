@@ -73,8 +73,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} ${syne.variable} ${spaceGrotesk.variable} antialiased`}>
-        <BackgroundEffects />
+      <body className={`${inter.variable} ${syne.variable} ${spaceGrotesk.variable} antialiased min-h-screen bg-bg-base text-text-main transition-colors duration-500`}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                let theme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+                document.body.setAttribute('data-theme', theme);
+              } catch (e) {}
+            `,
+          }}
+        />
         {children}
         <Analytics />
       </body>
