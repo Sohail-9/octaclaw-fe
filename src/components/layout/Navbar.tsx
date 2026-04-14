@@ -2,29 +2,34 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { Moon, Sun } from "lucide-react";
 
-type NavbarProps = {
-  logoHref?: string;
-  ctaHref?: string;
-  ctaLabel?: string;
-  ctaLabelMobile?: string;
-};
-
-export default function Navbar({
-  logoHref = "/",
-  ctaHref = "#waitlist",
-  ctaLabel = "Join Waitlist",
-  ctaLabelMobile,
-}: NavbarProps) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 18);
     window.addEventListener("scroll", onScroll, { passive: true });
+    
+    // Load theme
+    try {
+      const stored = localStorage.getItem("theme") as "dark" | "light" || "dark";
+      setTheme(stored);
+    } catch {}
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const cycleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.setAttribute("data-theme", next);
+    document.body.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  };
 
   return (
     <motion.header
@@ -34,42 +39,34 @@ export default function Navbar({
       className={`fixed top-4 left-0 right-0 z-50 transition-all duration-700 px-4 pointer-events-none`}
     >
       <nav
-        className={`max-w-5xl mx-auto h-16 flex items-center justify-between gap-3 px-6 rounded-2xl pointer-events-auto transition-all duration-500 border border-white/0 ${scrolled
-          ? "glass-card border-white/10 shadow-2xl py-2"
+        className={`max-w-7xl mx-auto h-16 flex items-center justify-between px-6 rounded-2xl pointer-events-auto transition-all duration-500 border ${scrolled
+          ? "bg-bg-surface/80 backdrop-blur-xl border-border-subtle shadow-2xl py-2"
           : "bg-transparent border-transparent py-4"
           }`}
       >
         <Link
-          href={logoHref}
-          className="min-w-0 inline-flex items-center gap-3 text-base sm:text-lg text-white font-black tracking-tight font-heading"
+          href="/"
+          className="flex items-center gap-3 text-xl font-bold tracking-tight"
+          style={{ fontFamily: "var(--font-heading)" }}
         >
-          <div className="relative h-10 w-10 sm:h-11 sm:w-11">
-            <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full scale-125 transition-opacity duration-500" style={{ opacity: scrolled ? 1 : 0 }} />
-            <Image
-              src="/logo.png"
-              alt="OctaClaw logo"
-              fill
-              className="object-contain relative z-10"
-            />
+          <div className="relative w-8 h-8 flex-shrink-0">
+            <Image src="/logo.png" alt="octaClaw Logo" fill className="object-contain" />
           </div>
-          <span className="hidden sm:inline truncate uppercase tracking-widest text-sm opacity-90">OctaClaw</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#81e6d9] to-[#63b3ed]">Octaclaw</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-text-muted">
-          {/* Internal links removed until features are live */}
+        {/* Action Right */}
+        <div className="flex items-center gap-4">
+           {/* Theme Toggler */}
+           <button
+             onClick={cycleTheme}
+             className="w-10 h-10 rounded-full flex items-center justify-center bg-bg-card border border-border-subtle text-text-muted hover:text-text-main transition-colors"
+             aria-label="Toggle Theme"
+           >
+             {theme === "dark" && <Sun size={18} />}
+             {theme === "light" && <Moon size={18} />}
+           </button>
         </div>
-
-        <Link
-          href={ctaHref}
-          className="relative group btn-primary inline-flex h-11 items-center justify-center whitespace-nowrap rounded-xl px-5 text-sm overflow-hidden"
-        >
-          <span className="relative z-10 sm:hidden">{ctaLabelMobile ?? ctaLabel}</span>
-          <span className="relative z-10 hidden sm:inline">{ctaLabel}</span>
-
-          {/* Subtle Pulse Effect */}
-          <div className="absolute inset-0 bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-          <div className="absolute -inset-1 bg-primary/30 blur-lg rounded-full animate-pulse opacity-0 group-hover:opacity-100 transition-opacity" />
-        </Link>
       </nav>
     </motion.header>
   );
