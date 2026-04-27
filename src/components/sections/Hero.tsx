@@ -5,48 +5,35 @@ import HomeWaitlistHero from "./HomeWaitlistHero";
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-32 pb-16 px-4 flex flex-col items-center justify-center text-center z-20">
-      
-      {/* Optional: Add a top badge if desired 
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1 px-3 text-[10px] font-medium uppercase tracking-widest text-text-muted backdrop-blur-md"
-      >
-        <div className="h-1.5 w-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-        NEXT GENERATION CONTROL
-      </motion.div>
-      */}
+    <section className="relative min-h-screen px-4 flex flex-col items-center justify-center text-center overflow-hidden">
+      {/* Subtle Background Graphic */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-20">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <motion.path
+              d="M 0 50 Q 25 45 50 50 T 100 50"
+              stroke="white"
+              strokeWidth="0.05"
+              fill="none"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 4, ease: "easeInOut" }}
+            />
+          </svg>
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/[0.02] blur-[100px] rounded-full" />
+      </div>
 
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-bold tracking-[-0.04em] text-text-main leading-[1.05] max-w-5xl mx-auto"
-        style={{ fontFamily: "var(--font-heading)" }}
-      >
-         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#81e6d9] via-[#63b3ed] to-[#b794f4]">Control layer</span><br />
-        for agents
-      </motion.h1>
-
-      <motion.p
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-6 sm:mt-8 max-w-2xl mx-auto text-lg sm:text-xl text-text-muted font-normal leading-relaxed"
-      >
-        A real-time spatial workspace for visual debugging and token optimization.
-      </motion.p>
-
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full flex justify-center mt-12 mb-16"
-      >
-        <HomeWaitlistHero />
-      </motion.div>
+      <div className="relative z-10 max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="flex justify-center"
+        >
+          <HomeWaitlistHero />
+        </motion.div>
+      </div>
     </section>
   );
 }

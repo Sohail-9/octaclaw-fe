@@ -52,20 +52,10 @@ export default function Navbar() {
           <div className="relative w-8 h-8 flex-shrink-0 flex items-center justify-center">
             <Logo />
           </div>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#81e6d9] to-[#63b3ed]">Octaclaw</span>
+          <span className="text-white font-bold tracking-tight">Octaclaw</span>
         </Link>
 
-        {/* Action Right */}
         <div className="flex items-center gap-4">
-           {/* Theme Toggler */}
-           <button
-             onClick={cycleTheme}
-             className="w-10 h-10 rounded-full flex items-center justify-center bg-bg-card border border-border-subtle text-text-muted hover:text-text-main transition-colors"
-             aria-label="Toggle Theme"
-           >
-             {theme === "dark" && <Sun size={18} />}
-             {theme === "light" && <Moon size={18} />}
-           </button>
         </div>
       </nav>
     </motion.header>

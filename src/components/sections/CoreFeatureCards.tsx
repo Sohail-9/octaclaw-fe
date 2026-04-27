@@ -85,8 +85,8 @@ export default function CoreFeatureCards() {
                  {/* Internal top gradient */}
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-text-main/10 to-transparent" />
 
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-bg-surface border border-border-subtle mb-6 group-hover:scale-110 group-hover:bg-[#81e6d9]/10 group-hover:border-[#81e6d9]/30 transition-all duration-300 shadow-[0_0_0_rgba(129,230,217,0)] group-hover:shadow-[0_0_15px_rgba(129,230,217,0.15)]">
-                  <card.icon className="w-5 h-5 text-text-main group-hover:text-[#81e6d9] transition-colors duration-300" />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/5 border border-white/10 mb-6 group-hover:scale-110 group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+                  <card.icon className="w-6 h-6 text-white transition-colors duration-300" />
                 </div>
                 
                 <h3 className="text-xl font-medium text-text-main mb-3" style={{ fontFamily: "var(--font-heading)" }}>
@@ -130,7 +130,7 @@ function CardSpotlight({ children }: { children: React.ReactNode }) {
         className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300 z-10"
         style={{
           opacity,
-          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, rgba(129, 230, 217, 0.15), transparent 40%)`,
+          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, rgba(255, 255, 255, 0.05), transparent 40%)`,
         }}
       />
       {children}

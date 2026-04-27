@@ -33,8 +33,8 @@ export default function HeroGraphic() {
         className="relative w-full max-w-5xl aspect-[16/7] md:aspect-[21/9] rounded-2xl sm:rounded-3xl border border-border-subtle bg-bg-surface/60 backdrop-blur-3xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.8)]"
       >
         {/* Glow Effects Behind Graphic */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-[#0891b2]/10 blur-[100px] rounded-full pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] bg-[#81e6d9]/10 blur-[80px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-white/5 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] bg-white/5 blur-[80px] rounded-full pointer-events-none" />
 
         {/* Ambient Grid overlay */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA0MCAwIEwgMCAwIDAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjAyKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
@@ -63,7 +63,7 @@ export default function HeroGraphic() {
               <motion.circle
                 key={`dot-${node.id}`}
                 r="2"
-                fill="#81e6d9"
+                fill="white"
                 initial={{ opacity: 0 }}
                 animate={{
                  opacity: [0, 1, 0],
@@ -81,7 +81,7 @@ export default function HeroGraphic() {
             
             <defs>
               <linearGradient id="gradientLine" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#81e6d9" />
+                <stop offset="0%" stopColor="white" />
                 <stop offset="100%" stopColor="transparent" />
               </linearGradient>
             </defs>
@@ -109,11 +109,11 @@ export default function HeroGraphic() {
               <motion.div 
                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                 className="absolute inset-0 bg-[#81e6d9] blur-xl rounded-full"
+                 className="absolute inset-0 bg-white/10 blur-xl rounded-full"
               />
               {/* Core */}
-              <div className="w-10 h-10 bg-bg-card border border-[#81e6d9] rounded-full flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(129,230,217,0.5)]">
-                <div className="w-3 h-3 bg-[#81e6d9] rounded-full" />
+              <div className="w-10 h-10 bg-black border border-white/20 rounded-full flex items-center justify-center relative z-10 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                <div className="w-3 h-3 bg-white rounded-full" />
               </div>
             </div>
           </motion.div>
@@ -130,12 +130,12 @@ export default function HeroGraphic() {
              >
                 <div className="relative w-full h-full flex items-center justify-center">
                   <motion.div 
-                    animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.5, 0.2] }}
+                    animate={{ scale: [1, 1.5, 1], opacity: [0.1, 0.3, 0.1] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: node.pulseDelay }}
-                    className="absolute inset-0 bg-[#0891b2] rounded-full blur-md"
+                    className="absolute inset-0 bg-white/10 rounded-full blur-md"
                   />
-                  <div className="w-4 h-4 rounded-full bg-bg-base border border-[#0891b2] z-10 flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-[#22d3ee]" />
+                  <div className="w-4 h-4 rounded-full bg-black border border-white/20 z-10 flex items-center justify-center">
+                    <div className="w-1 h-1 rounded-full bg-white/40" />
                   </div>
                 </div>
              </motion.div>

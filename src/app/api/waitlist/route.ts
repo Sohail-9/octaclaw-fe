@@ -71,7 +71,14 @@ export async function POST(request: NextRequest) {
     );
   } catch (error: unknown) {
     console.error("[waitlist] Unexpected error:", error);
-    return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : "Internal server error";
+    return NextResponse.json(
+      { 
+        success: false, 
+        error: process.env.NODE_ENV === "development" ? errorMessage : "Internal server error" 
+      }, 
+      { status: 500 }
+    );
   }
 }
 
