@@ -11,17 +11,7 @@ export default function AgentPage() {
       <HeroSection />
       <Footer />
 
-      {/* Trust & Team Signal */}
-      <div className="fixed bottom-8 right-8 z-50">
-        <a 
-          href="https://x.com/Suhail_S9" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-[10px] uppercase tracking-[0.3em] text-white/40 hover:text-white/80 transition-colors font-medium"
-        >
-          Built by Sohail
-        </a>
-      </div>
+
     </main>
   );
 }
