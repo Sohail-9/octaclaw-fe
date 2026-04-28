@@ -1,25 +1,39 @@
-import { Github, Linkedin, Twitter } from "lucide-react";
+import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 
-type FooterProps = {
-  minimal?: boolean;
-};
-
-export default function Footer({ minimal = false }: FooterProps) {
-  if (minimal) {
-    return (
-      <footer className="relative py-12 border-t border-white/5 surface-base">
-        <div className="max-w-7xl mx-auto px-6 text-center text-sm text-text-muted font-medium">
-          © {new Date().getFullYear()} OctaClaw
-        </div>
-      </footer>
-    );
-  }
-
+export default function Footer() {
   return (
-    <footer className="absolute bottom-8 left-0 right-0 z-20 flex justify-center px-6">
-      <div className="text-[10px] text-white/20 tracking-[0.2em] uppercase font-medium">
-        © {new Date().getFullYear()} Octaclaw. Built for the future.
+    <footer className="border-t border-border-subtle bg-bg-base">
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+          {/* Brand */}
+          <div className="flex flex-col gap-3">
+            <Link href="/" className="flex items-center gap-2">
+              <Logo className="w-6 h-6" />
+              <span className="text-sm font-bold tracking-tight text-text-main">OctaClaw</span>
+            </Link>
+            <p className="text-xs text-text-muted max-w-[220px] leading-relaxed">
+              The multi-agent orchestration runtime for builders.
+            </p>
+          </div>
+
+          {/* Links */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 text-sm text-text-muted">
+            <Link
+              href="#cta"
+              className="hover:text-text-main transition-colors duration-200"
+            >
+              Join Waitlist
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-10 pt-6 border-t border-border-subtle flex items-center justify-between">
+          <p className="text-xs text-text-muted">
+            © {new Date().getFullYear()} OctaClaw. All rights reserved.
+          </p>
+          <p className="text-xs text-text-muted">Built for the next generation of AI teams.</p>
+        </div>
       </div>
     </footer>
   );

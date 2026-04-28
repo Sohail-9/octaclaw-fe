@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Syne, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -9,24 +9,23 @@ const inter = Inter({
   display: "swap",
 });
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["500", "600", "700", "800"],
-  display: "swap",
-});
-
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
   display: "swap",
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "OctaClaw | A Spatial Workspace for Humans and AI Agents",
+  title: "OctaClaw | The Runtime for AI Agent Teams",
   description:
-    "Most AI tools are built for solo use. OctaClaw is built for teams — a live spatial environment where humans and agents work side by side.",
-  keywords: ["octaclaw", "agent dag", "agent orchestration", "Spatial Workspace", "debugging"],
+    "OctaClaw decomposes goals into parallel task DAGs and dispatches specialized agents concurrently. The multi-agent orchestration runtime for builders.",
+  keywords: ["octaclaw", "agent orchestration", "AI agents", "DAG execution", "multi-agent runtime", "LLM orchestration"],
   metadataBase: new URL("https://octaclaw.com"),
   icons: {
     icon: "/logo_v2.png",
@@ -47,8 +46,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "OctaClaw | Agentic Orchestration OS",
-    description: "The spatial intelligence layer for high-performance AI agent teams.",
+    title: "OctaClaw | The Runtime for AI Agent Teams",
+    description: "OctaClaw decomposes goals into parallel task DAGs and dispatches specialized agents concurrently.",
     url: "https://octaclaw.com",
     siteName: "OctaClaw",
     images: [{ url: "/logo_v2.png", width: 800, height: 800 }],
@@ -56,13 +55,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "OctaClaw | Agentic Orchestration OS",
-    description: "The spatial intelligence layer for high-performance AI agent teams.",
+    title: "OctaClaw | The Runtime for AI Agent Teams",
+    description: "OctaClaw decomposes goals into parallel task DAGs and dispatches specialized agents concurrently.",
     images: ["/logo_v2.png"],
   },
 };
-
-import BackgroundEffects from "@/components/layout/BackgroundEffects";
 
 export default function RootLayout({
   children,
@@ -71,7 +68,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${inter.variable} ${syne.variable} ${spaceGrotesk.variable} antialiased min-h-screen bg-bg-base text-text-main transition-colors duration-500`}>
+      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen bg-bg-base text-text-main transition-colors duration-500`}>
         <script
           dangerouslySetInnerHTML={{
             __html: `

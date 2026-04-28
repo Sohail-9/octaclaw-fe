@@ -43,33 +43,13 @@ export default function HomeWaitlistHero() {
   };
 
   return (
-    <div className="relative w-full max-w-[420px] px-2 flex flex-col items-center">
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.5 }}
-        className="text-[10px] tracking-[0.4em] text-white/40 mb-6 uppercase font-medium"
-      >
-        Early Access
-      </motion.div>
-      <form 
-        onSubmit={handleSubmit} 
-        className={`relative z-20 w-full flex items-center bg-white/[0.03] backdrop-blur-xl border rounded-full p-2.5 pl-7 transition-all duration-700 ${
-          isFocused ? "border-white/40 shadow-[0_0_40px_rgba(255,255,255,0.08)]" : "border-white/10"
+    <div className="relative w-full max-w-[440px] flex flex-col items-center gap-4">
+      <form
+        onSubmit={handleSubmit}
+        className={`relative z-20 w-full flex items-center bg-bg-surface border rounded-full p-2.5 pl-7 transition-all duration-300 ${
+          isFocused ? "border-border-focus shadow-[0_0_0_3px_var(--border-subtle)]" : "border-border-subtle"
         }`}
       >
-        {/* Pulsing inner glow when focused */}
-        <AnimatePresence>
-          {isFocused && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 rounded-full bg-white/[0.06] animate-pulse pointer-events-none"
-            />
-          )}
-        </AnimatePresence>
-
         <input
           type="email"
           value={email}
@@ -77,27 +57,23 @@ export default function HomeWaitlistHero() {
           onBlur={() => setIsFocused(false)}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
-          className="flex-1 bg-transparent text-lg text-white outline-none placeholder:text-white/20 font-medium min-w-0 autofill:bg-transparent"
-          style={{ 
-            WebkitBoxShadow: "0 0 0px 1000px transparent inset",
-            WebkitTextFillColor: "white",
-            transition: "background-color 5000s ease-in-out 0s"
+          className="flex-1 bg-transparent text-lg text-text-main outline-none placeholder:text-text-muted/40 font-medium min-w-0"
+          style={{
+            WebkitBoxShadow: "0 0 0px 1000px var(--bg-surface) inset",
+            WebkitTextFillColor: "var(--text-main)",
+            transition: "background-color 5000s ease-in-out 0s",
           }}
           disabled={status === "loading" || status === "success"}
         />
         <motion.button
           type="submit"
-          whileHover={{ 
-            scale: 1.05,
-            boxShadow: "0 0 30px rgba(255,255,255,0.25)",
-          }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
           disabled={status === "loading" || status === "success" || !email}
-          className="ml-2 shrink-0 rounded-full bg-white hover:bg-white transition-all py-4 px-10 text-base font-bold text-black disabled:cursor-not-allowed disabled:opacity-50 z-10 relative overflow-hidden group"
+          className="ml-2 shrink-0 rounded-full bg-text-main text-bg-base transition-all py-4 px-10 text-base font-bold disabled:cursor-not-allowed disabled:opacity-50 z-10 relative overflow-hidden group"
         >
-          {/* Liquid shimmer effect on hover */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/20 to-transparent -translate-x-[150%] group-hover:animate-[shimmer-btn_2s_infinite_linear]" />
-          
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-bg-base/10 to-transparent -translate-x-[150%] group-hover:animate-[shimmer-btn_2s_infinite_linear]" />
+
           <AnimatePresence mode="wait">
             {status === "idle" && (
               <motion.span key="txt" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
@@ -106,9 +82,9 @@ export default function HomeWaitlistHero() {
             )}
             {status === "loading" && (
               <motion.div key="spin" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-1.5 relative z-10">
-                <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "0ms" }} />
-                <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "150ms" }} />
-                <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "300ms" }} />
+                <span className="h-1.5 w-1.5 rounded-full bg-bg-base animate-pulse" style={{ animationDelay: "0ms" }} />
+                <span className="h-1.5 w-1.5 rounded-full bg-bg-base animate-pulse" style={{ animationDelay: "150ms" }} />
+                <span className="h-1.5 w-1.5 rounded-full bg-bg-base animate-pulse" style={{ animationDelay: "300ms" }} />
               </motion.div>
             )}
             {status === "success" && (
@@ -123,10 +99,12 @@ export default function HomeWaitlistHero() {
       <AnimatePresence>
         {message && (
           <motion.p
-            initial={{ opacity: 0, y: -5 }}
+            initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className={`absolute -bottom-10 left-0 right-0 text-center text-[10px] font-medium tracking-[0.1em] ${status === "success" ? "text-white/80" : "text-red-400"} uppercase`}
+            className={`text-center text-[11px] font-medium tracking-wide ${
+              status === "success" ? "text-emerald-500" : "text-red-400"
+            }`}
           >
             {message}
           </motion.p>
