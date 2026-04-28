@@ -2,105 +2,103 @@
 
 import { motion } from "framer-motion";
 import HomeWaitlistHero from "./HomeWaitlistHero";
-import TerminalDemo from "./TerminalDemo";
 
 const providers = ["Anthropic", "OpenAI", "Gemini", "Groq", "Grok"];
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
+  initial: { opacity: 0, y: 12 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] as const },
+  transition: { duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] as const },
 });
 
 export default function HeroSection() {
   return (
-    <section id="waitlist" className="relative min-h-screen flex flex-col items-center justify-start pt-36 pb-24 px-6 overflow-hidden">
-      {/* Subtle radial glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] opacity-[0.07]"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, transparent 70%)",
-        }}
-      />
+    <section id="waitlist" className="relative min-h-[85vh] flex flex-col items-center justify-center pt-20 pb-12 px-6 overflow-hidden bg-bg-base transition-colors duration-500">
+      
+      {/* Premium Mesh Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+        <div className="absolute inset-0 bg-bg-base" />
+        
+        {/* Soft Mesh Gradients */}
+        <div className="absolute -bottom-[20%] -left-[10%] w-[80%] h-[80%] bg-brand-secondary opacity-[0.15] dark:opacity-[0.1] blur-[120px] rounded-full animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[70%] h-[70%] bg-brand-primary opacity-[0.12] dark:opacity-[0.08] blur-[100px] rounded-full animate-pulse" style={{ animationDuration: '12s' }} />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-brand-primary opacity-[0.04] dark:opacity-[0.03] blur-[140px] rounded-full" />
+        
+        {/* Noise Texture Overlay */}
+        <div className="absolute inset-0 opacity-[0.3] dark:opacity-[0.15] bg-noise pointer-events-none mix-blend-overlay" />
 
-      {/* Badge */}
-      <motion.div {...fadeUp(0.1)} className="flex justify-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-surface px-4 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-text-muted uppercase">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          Private Beta
-        </span>
-      </motion.div>
+        {/* Subtle Engineering Grid */}
+        <div 
+          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]"
+          style={{
+            backgroundImage: "linear-gradient(var(--brand-primary) 1px, transparent 1px), linear-gradient(90deg, var(--brand-primary) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
+      </div>
 
-      {/* Headline */}
-      <motion.h1
-        {...fadeUp(0.2)}
-        className="mt-8 text-center text-5xl sm:text-6xl md:text-7xl font-bold tracking-[-0.04em] leading-[1.05] text-text-main max-w-4xl"
-      >
-        The runtime for
-        <br />
-        AI agent teams.
-      </motion.h1>
-
-      {/* Subtext */}
-      <motion.p
-        {...fadeUp(0.3)}
-        className="mt-6 text-center text-base sm:text-lg text-text-muted max-w-xl leading-relaxed"
-      >
-        OctaClaw orchestrates a parallel agent swarm through a dynamic TaskDAG,
-        enforcing resource-level safety and autonomous verification to resolve
-        complex goals across any tool.
-      </motion.p>
-
-      {/* Waitlist form */}
-      <motion.div {...fadeUp(0.4)} className="mt-10 w-full flex justify-center">
-        <HomeWaitlistHero />
-      </motion.div>
-
-      {/* LLM providers */}
-      <motion.div
-        {...fadeUp(0.5)}
-        className="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2"
-      >
-        <span className="text-[11px] text-text-muted tracking-wider uppercase font-medium mr-1">
-          Works with
-        </span>
-        {providers.map((p) => (
-          <span
-            key={p}
-            className="inline-flex items-center h-6 px-2.5 rounded-md border border-border-subtle bg-bg-surface text-[11px] font-semibold text-text-muted/70 tracking-tight"
-          >
-            {p}
+      <div className="relative z-10 w-full max-w-4xl flex flex-col items-center">
+        {/* Compact Badge */}
+        <motion.div {...fadeUp(0.1)} className="flex justify-center mb-6">
+          <span className="inline-flex items-center gap-2 rounded-full border border-brand-primary/20 bg-brand-primary/5 px-3 py-1 text-[10px] font-bold tracking-[0.1em] text-brand-primary uppercase shadow-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-primary animate-pulse" />
+            v3.0.4-Stable
           </span>
-        ))}
-      </motion.div>
+        </motion.div>
 
-      {/* Technical credibility strip */}
-      <motion.div
-        {...fadeUp(0.6)}
-        className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
-      >
-        {[
-          { label: "TaskDAG scheduler" },
-          { label: "parallel-first runtime" },
-          { label: "MCP-native" },
-          { label: "local-first" },
-        ].map(({ label }, i, arr) => (
-          <span key={label} className="flex items-center gap-6">
-            <span className="text-[11px] font-mono text-text-muted/50 tracking-wide">
-              {label}
+        {/* Compact & Tight Headline */}
+        <motion.h1
+          {...fadeUp(0.2)}
+          className="text-center text-5xl sm:text-6xl md:text-8xl font-bold tracking-[-0.05em] leading-[0.95] text-text-main"
+        >
+          Build scalable
+          <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Products with AI</span>
+        </motion.h1>
+
+        {/* Compact Waitlist section */}
+        <motion.div {...fadeUp(0.3)} className="mt-8 w-full flex flex-col items-center gap-6">
+          <div className="w-full max-w-md">
+            <HomeWaitlistHero />
+          </div>
+          
+          {/* LLM providers - Tightened */}
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 opacity-60">
+            <span className="text-[10px] text-text-muted tracking-wider uppercase font-bold mr-1 font-mono">
+              Works with
             </span>
-            {i < arr.length - 1 && (
-              <span className="text-text-muted/20 text-[10px]">·</span>
-            )}
-          </span>
-        ))}
-      </motion.div>
+            {providers.map((p) => (
+              <span
+                key={p}
+                className="inline-flex items-center h-5 px-2 rounded-md border border-border-subtle bg-bg-surface text-[9px] font-bold text-text-muted tracking-tight"
+              >
+                {p}
+              </span>
+            ))}
+          </div>
+        </motion.div>
 
-      {/* Agent Swarm Demo */}
-      <div className="mt-20 w-full max-w-5xl mx-auto">
-        <TerminalDemo />
+        {/* Technical credibility strip - Compacted */}
+        <motion.div
+          {...fadeUp(0.4)}
+          className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 opacity-50"
+        >
+          {[
+            { label: "TaskDAG scheduler" },
+            { label: "parallel-first runtime" },
+            { label: "MCP-native" },
+            { label: "local-first" },
+          ].map(({ label }, i, arr) => (
+            <span key={label} className="flex items-center gap-6">
+              <span className="text-[10px] font-mono text-text-muted tracking-tight font-bold">
+                {label}
+              </span>
+              {i < arr.length - 1 && (
+                <span className="text-text-muted/20 text-[10px]">·</span>
+              )}
+            </span>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

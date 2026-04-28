@@ -57,9 +57,6 @@ export default function Navbar() {
 
         {/* Nav links */}
         <div className="hidden md:flex items-center gap-7 text-sm font-medium text-text-muted">
-          <Link href="#features" className="hover:text-text-main transition-colors duration-200">
-            Features
-          </Link>
           <Link href="#howitworks" className="hover:text-text-main transition-colors duration-200">
             How it works
           </Link>
