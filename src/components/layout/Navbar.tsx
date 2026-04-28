@@ -1,97 +1,144 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Logo } from "@/components/ui/Logo";
-import { Moon, Sun, Github } from "lucide-react";
+import Image from "next/image";
+import { NeoButton } from "@/components/ui/neo/NeoButton";
+import { Sun, Moon, Menu, X, ArrowRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    try {
-      const stored = (localStorage.getItem("theme") as "dark" | "light") || "dark";
-      setTheme(stored);
-    } catch {}
-
-    return () => window.removeEventListener("scroll", onScroll);
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark";
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    }
   }, []);
 
-  const cycleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    document.body.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
   };
 
+  const navLinks = [
+    { name: "Features", href: "#features" },
+    { name: "Command Center", href: "#terminal" },
+    { name: "Waitlist", href: "#waitlist" },
+  ];
+
   return (
-    <motion.header
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-4 left-0 right-0 z-50 px-4 pointer-events-none"
-    >
-      <nav
-        className={`max-w-6xl mx-auto h-14 flex items-center justify-between px-5 rounded-xl pointer-events-auto transition-all duration-500 ${
-          scrolled
-            ? "bg-bg-surface/90 backdrop-blur-xl border border-border-subtle shadow-lg"
-            : "bg-transparent border border-transparent"
-        }`}
-      >
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-lg font-bold tracking-tight text-text-main"
-        >
-          <div className="relative w-7 h-7 flex-shrink-0">
-            <Logo className="w-7 h-7" />
-          </div>
-          <span>OctaClaw</span>
+    <nav className="fixed top-0 left-0 right-0 z-[100] bg-neo-bg/80 backdrop-blur-md border-b-2 border-neo-stroke/10 px-6 py-4 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2 group">
+          <Image
+            src="/logo_v2.png"
+            alt="OctaClaw"
+            width={32}
+            height={32}
+            className="h-8 w-8 object-contain group-hover:scale-110 transition-transform"
+          />
+          <span className="text-xl font-black uppercase tracking-tighter text-neo-stroke italic">
+            Octa<span className="text-neo-primary">Claw</span>
+          </span>
         </Link>
 
-        {/* Nav links */}
-        <div className="hidden md:flex items-center gap-7 text-sm font-medium text-text-muted">
-          <Link href="#features" className="hover:text-text-main transition-colors duration-200">
-            Features
-          </Link>
-          <Link href="#howitworks" className="hover:text-text-main transition-colors duration-200">
-            How it works
-          </Link>
+        {/* Desktop Links */}
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="text-[10px] font-black uppercase tracking-[0.2em] text-neo-stroke/40 hover:text-neo-primary transition-colors"
+            >
+              {item.name}
+            </Link>
+          ))}
         </div>
 
-        {/* Right side */}
-        <div className="flex items-center gap-3">
-          <a
-            href="https://github.com/0xLabs-Org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-8 h-8 flex items-center justify-center rounded-lg text-text-muted hover:text-text-main hover:bg-bg-card transition-all duration-200"
-            aria-label="GitHub"
-          >
-            <Github size={15} />
-          </a>
+        <div className="flex items-center gap-4">
           <button
-            onClick={cycleTheme}
-            className="w-8 h-8 flex items-center justify-center rounded-lg text-text-muted hover:text-text-main hover:bg-bg-card transition-all duration-200"
-            aria-label="Toggle theme"
+            onClick={toggleTheme}
+            className="w-10 h-10 border-2 border-neo-stroke flex items-center justify-center shadow-neo-sm bg-neo-surface hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all"
           >
-            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+            {theme === "light" ? <Moon className="w-4 h-4 text-neo-stroke" /> : <Sun className="w-4 h-4 text-neo-stroke" />}
           </button>
+          
+          <div className="hidden md:block">
+            <NeoButton size="sm" variant="primary">
+              Join Swarm
+            </NeoButton>
+          </div>
 
-          <Link
-            href="#waitlist"
-            className="hidden sm:inline-flex items-center h-9 px-4 rounded-lg bg-text-main text-bg-base text-sm font-semibold tracking-tight hover:opacity-85 transition-opacity duration-200"
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setIsMenuOpen(true)}
+            className="md:hidden w-10 h-10 border-2 border-neo-stroke flex items-center justify-center shadow-neo-sm bg-neo-primary hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all"
           >
-            Join Waitlist
-          </Link>
+            <Menu className="w-5 h-5 text-black" />
+          </button>
         </div>
-      </nav>
-    </motion.header>
+      </div>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[110] bg-neo-bg flex flex-col p-8 border-l-4 border-neo-stroke"
+          >
+            <div className="flex justify-between items-center mb-16">
+              <span className="text-xl font-black uppercase tracking-tighter italic">
+                Menu // <span className="text-neo-primary">Nav</span>
+              </span>
+              <button 
+                onClick={() => setIsMenuOpen(false)}
+                className="w-12 h-12 border-2 border-neo-stroke flex items-center justify-center shadow-neo-sm bg-neo-surface"
+              >
+                <X className="w-6 h-6 text-neo-stroke" />
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-8">
+              {navLinks.map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 + 0.2 }}
+                >
+                  <Link 
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-5xl font-black uppercase tracking-tighter italic text-neo-stroke hover:text-neo-primary transition-colors flex items-center justify-between group"
+                  >
+                    {item.name}
+                    <ArrowRight className="w-10 h-10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-auto">
+              <NeoButton 
+                className="w-full h-20 text-xl font-black uppercase italic"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Join Swarm Runtime
+              </NeoButton>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
 }

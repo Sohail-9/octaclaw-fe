@@ -1,115 +1,135 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
+import { NeoButton } from "@/components/ui/neo/NeoButton";
+import { NeoInput } from "@/components/ui/neo/NeoInput";
+import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function HomeWaitlistHero() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
-
-  const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     setStatus("loading");
-    setMessage("");
 
     try {
-      const res = await fetch("/api/waitlist", {
+      const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to initialize protocol.");
-      }
-
-      setStatus("success");
-      if (data.message === "Already on the waitlist") {
-        setMessage("Credentials verified. Already in queue.");
+      if (response.ok) {
+        setStatus("success");
+        setEmail("");
       } else {
-        setMessage("Welcome to Octaclaw.");
+        setStatus("error");
       }
-      setEmail("");
-    } catch (error: unknown) {
+    } catch (error) {
       setStatus("error");
-      setMessage((error instanceof Error ? error.message : "Connection refused. Please try again."));
     }
   };
 
   return (
-    <div className="relative w-full max-w-[440px] flex flex-col items-center gap-4">
-      <form
-        onSubmit={handleSubmit}
-        className={`relative z-20 w-full flex items-center bg-bg-surface border rounded-full p-2.5 pl-7 transition-all duration-300 ${
-          isFocused ? "border-border-focus shadow-[0_0_0_3px_var(--border-subtle)]" : "border-border-subtle"
-        }`}
-      >
-        <input
-          type="email"
-          value={email}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-          className="flex-1 bg-transparent text-lg text-text-main outline-none placeholder:text-text-muted/40 font-medium min-w-0"
-          style={{
-            WebkitBoxShadow: "0 0 0px 1000px var(--bg-surface) inset",
-            WebkitTextFillColor: "var(--text-main)",
-            transition: "background-color 5000s ease-in-out 0s",
-          }}
-          disabled={status === "loading" || status === "success"}
-        />
-        <motion.button
-          type="submit"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          disabled={status === "loading" || status === "success" || !email}
-          className="ml-2 shrink-0 rounded-full bg-text-main text-bg-base transition-all py-4 px-10 text-base font-bold disabled:cursor-not-allowed disabled:opacity-50 z-10 relative overflow-hidden group"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-bg-base/10 to-transparent -translate-x-[150%] group-hover:animate-[shimmer-btn_2s_infinite_linear]" />
-
-          <AnimatePresence mode="wait">
-            {status === "idle" && (
-              <motion.span key="txt" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
-                Join
-              </motion.span>
-            )}
-            {status === "loading" && (
-              <motion.div key="spin" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-1.5 relative z-10">
-                <span className="h-1.5 w-1.5 rounded-full bg-bg-base animate-pulse" style={{ animationDelay: "0ms" }} />
-                <span className="h-1.5 w-1.5 rounded-full bg-bg-base animate-pulse" style={{ animationDelay: "150ms" }} />
-                <span className="h-1.5 w-1.5 rounded-full bg-bg-base animate-pulse" style={{ animationDelay: "300ms" }} />
-              </motion.div>
-            )}
-            {status === "success" && (
-              <motion.span key="check" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
-                Joined
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.button>
-      </form>
-
-      <AnimatePresence>
-        {message && (
-          <motion.p
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            className={`text-center text-[11px] font-medium tracking-wide ${
-              status === "success" ? "text-emerald-500" : "text-red-400"
-            }`}
+    <div className="w-full max-w-md">
+      <AnimatePresence mode="wait">
+        {status === "success" ? (
+          <motion.div
+            key="success"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="w-full max-w-md mx-auto"
           >
-            {message}
-          </motion.p>
+            <div className="border-4 border-neo-primary bg-black p-6 shadow-neo overflow-hidden relative">
+              <div className="absolute top-0 left-0 w-full h-1 bg-neo-primary/20" />
+              <div className="font-mono text-[11px] space-y-2 uppercase">
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="text-neo-primary">
+                  [SYSTEM] Initializing Handshake...
+                </motion.div>
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="text-neo-primary">
+                  [AUTH] Verifying Identity...
+                </motion.div>
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="text-neo-primary">
+                  [NETWORK] Routing Swarm Access...
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.4, type: "spring" }}
+                  className="mt-8 p-4 border-2 border-neo-primary bg-neo-primary/10 text-center"
+                >
+                  <span className="text-2xl font-black italic glitch-hover cursor-default text-neo-primary">
+                    Access Granted
+                  </span>
+                </motion.div>
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2 }}
+                  className="text-center text-[9px] text-neo-primary/60 mt-4"
+                >
+                  Welcome to the runtime. Check your inbox for briefing.
+                </motion.p>
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.5 }}
+                  className="mt-6 flex justify-center"
+                >
+                  <NeoButton
+                    variant="outline"
+                    size="sm"
+                    className="border-neo-primary/20 text-neo-primary/60 hover:text-neo-primary"
+                    onClick={() => setStatus("idle")}
+                  >
+                    Add another agent
+                  </NeoButton>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        ) : (
+          <motion.form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4 p-2 bg-neo-surface border-2 border-neo-stroke shadow-neo"
+          >
+            <div className="flex flex-col md:flex-row gap-2">
+              <NeoInput
+                type="email"
+                placeholder="Enter Ur Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="bg-transparent border-none shadow-none focus:translate-x-0 focus:translate-y-0 text-sm h-14"
+              />
+              <NeoButton
+                type="submit"
+                disabled={status === "loading"}
+                className="h-14 md:w-auto w-full group"
+              >
+                {status === "loading" ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <>
+                    Join <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                  </>
+                )}
+              </NeoButton>
+            </div>
+            {status === "error" && (
+              <p className="text-red-400 text-[10px] font-black uppercase tracking-widest ml-2">
+                System Error. Try again.
+              </p>
+            )}
+          </motion.form>
         )}
       </AnimatePresence>
+      <p className="mt-4 text-center text-[10px] text-gray-500 font-black uppercase tracking-[0.2em]">
+        Limited Slots Available
+      </p>
     </div>
   );
 }

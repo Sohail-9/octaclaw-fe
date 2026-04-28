@@ -22,9 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OctaClaw | The Runtime for AI Agent Teams",
+  title: "OctaClaw // The Parallel Agent Swarm Runtime",
   description:
-    "OctaClaw decomposes goals into parallel task DAGs and dispatches specialized agents concurrently. The multi-agent orchestration runtime for builders.",
+    "High-performance multi-agent orchestration for complex developer goals. Built for scale, safety, and speed with TaskDAG technology.",
   keywords: ["octaclaw", "agent orchestration", "AI agents", "DAG execution", "multi-agent runtime", "LLM orchestration"],
   metadataBase: new URL("https://octaclaw.com"),
   icons: {
@@ -46,20 +46,22 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "OctaClaw | The Runtime for AI Agent Teams",
-    description: "OctaClaw decomposes goals into parallel task DAGs and dispatches specialized agents concurrently.",
+    title: "OctaClaw // The Parallel Agent Swarm Runtime",
+    description: "High-performance multi-agent orchestration for complex developer goals. Built for scale, safety, and speed.",
     url: "https://octaclaw.com",
     siteName: "OctaClaw",
-    images: [{ url: "/logo_v2.png", width: 800, height: 800 }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "OctaClaw | The Runtime for AI Agent Teams",
-    description: "OctaClaw decomposes goals into parallel task DAGs and dispatches specialized agents concurrently.",
-    images: ["/logo_v2.png"],
+    title: "OctaClaw // The Parallel Agent Swarm Runtime",
+    description: "High-performance multi-agent orchestration for complex developer goals.",
+    images: ["/og-image.png"],
   },
 };
+
+import { CyberGrid } from "@/components/layout/CyberGrid";
 
 export default function RootLayout({
   children,
@@ -68,7 +70,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen bg-bg-base text-text-main transition-colors duration-500`}>
+      <body suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased min-h-screen bg-bg-base text-text-main transition-colors duration-500 relative`}>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -80,6 +82,12 @@ export default function RootLayout({
             `,
           }}
         />
+        
+        {/* Cyber Effects Layer */}
+        <CyberGrid />
+        <div className="cyber-overlay" />
+        <div className="noise-grain" />
+
         {children}
         <Analytics />
       </body>

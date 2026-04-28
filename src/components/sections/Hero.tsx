@@ -1,106 +1,73 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 import HomeWaitlistHero from "./HomeWaitlistHero";
 import TerminalDemo from "./TerminalDemo";
 
 const providers = ["Anthropic", "OpenAI", "Gemini", "Groq", "Grok"];
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] as const },
-});
-
 export default function HeroSection() {
   return (
-    <section id="waitlist" className="relative min-h-screen flex flex-col items-center justify-start pt-36 pb-24 px-6 overflow-hidden">
-      {/* Subtle radial glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] opacity-[0.07]"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, transparent 70%)",
-        }}
-      />
+    <section id="waitlist" className="relative min-h-screen flex flex-col items-center justify-start pt-36 pb-24 px-6 overflow-hidden text-neo-stroke">
 
-      {/* Badge */}
-      <motion.div {...fadeUp(0.1)} className="flex justify-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-bg-surface px-4 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-text-muted uppercase">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          Private Beta
-        </span>
-      </motion.div>
 
       {/* Headline */}
       <motion.h1
-        {...fadeUp(0.2)}
-        className="mt-8 text-center text-5xl sm:text-6xl md:text-7xl font-bold tracking-[-0.04em] leading-[1.05] text-text-main max-w-4xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="mt-12 text-center text-5xl sm:text-7xl md:text-8xl font-black tracking-[-0.04em] leading-[0.95] text-neo-stroke max-w-5xl uppercase italic glitch-hover cursor-default"
       >
-        The runtime for
-        <br />
-        AI agent teams.
+        The runtime for<br />
+        <span className="text-neo-primary">AI agent teams.</span>
       </motion.h1>
 
-      {/* Subtext */}
+      {/* Subtext - New technical copy */}
       <motion.p
-        {...fadeUp(0.3)}
-        className="mt-6 text-center text-base sm:text-lg text-text-muted max-w-xl leading-relaxed"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="mt-10 text-center text-base sm:text-lg text-neo-stroke/70 max-w-3xl font-bold uppercase tracking-tight leading-snug"
       >
-        OctaClaw orchestrates a parallel agent swarm through a dynamic TaskDAG,
-        enforcing resource-level safety and autonomous verification to resolve
-        complex goals across any tool.
+        OctaClaw orchestrates a parallel agent swarm through a dynamic <span className="text-neo-secondary">TaskDAG</span>, enforcing resource-level safety and autonomous verification to resolve complex goals across any tool.
       </motion.p>
 
       {/* Waitlist form */}
-      <motion.div {...fadeUp(0.4)} className="mt-10 w-full flex justify-center">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3 }}
+        className="mt-12 w-full flex justify-center z-10"
+      >
         <HomeWaitlistHero />
       </motion.div>
 
-      {/* LLM providers */}
+      {/* LLM providers - Neo Style */}
       <motion.div
-        {...fadeUp(0.5)}
-        className="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className="mt-16 flex flex-wrap items-center justify-center gap-4"
       >
-        <span className="text-[11px] text-text-muted tracking-wider uppercase font-medium mr-1">
-          Works with
+        <span className="text-[10px] text-neo-stroke/40 tracking-[0.2em] uppercase font-black mr-2">
+          Compatible With
         </span>
         {providers.map((p) => (
           <span
             key={p}
-            className="inline-flex items-center h-6 px-2.5 rounded-md border border-border-subtle bg-bg-surface text-[11px] font-semibold text-text-muted/70 tracking-tight"
+            className="px-3 py-1 border border-neo-stroke/20 bg-neo-surface text-[10px] font-black text-neo-stroke/60 tracking-widest uppercase"
           >
             {p}
           </span>
         ))}
       </motion.div>
 
-      {/* Technical credibility strip */}
-      <motion.div
-        {...fadeUp(0.6)}
-        className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
-      >
-        {[
-          { label: "TaskDAG scheduler" },
-          { label: "parallel-first runtime" },
-          { label: "MCP-native" },
-          { label: "local-first" },
-        ].map(({ label }, i, arr) => (
-          <span key={label} className="flex items-center gap-6">
-            <span className="text-[11px] font-mono text-text-muted/50 tracking-wide">
-              {label}
-            </span>
-            {i < arr.length - 1 && (
-              <span className="text-text-muted/20 text-[10px]">·</span>
-            )}
-          </span>
-        ))}
-      </motion.div>
-
-      {/* Agent Swarm Demo */}
-      <div className="mt-20 w-full max-w-5xl mx-auto">
-        <TerminalDemo />
+      {/* Terminal Demo - Boxed in Neo Style */}
+      <div className="mt-32 w-full max-w-6xl mx-auto px-4 relative">
+          <div className="absolute -top-4 -left-4 w-12 h-12 border-t-4 border-l-4 border-neo-primary z-20" />
+          <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-4 border-r-4 border-neo-secondary z-20" />
+          <TerminalDemo />
       </div>
     </section>
   );

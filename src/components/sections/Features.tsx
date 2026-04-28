@@ -1,173 +1,93 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GitBranch, Database, Shield, GlobeLock, Users } from "lucide-react";
+import { NeoCard } from "@/components/ui/neo/NeoCard";
+import { Zap, Shield, Cpu, Share2, Terminal, Brain } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const cardBase =
-  "group relative overflow-hidden rounded-[20px] border border-border-subtle bg-bg-card p-8 hover:border-border-focus transition-colors duration-300";
+const features = [
+  {
+    title: "Parallel First",
+    description: "Multi-agent swarm executes tasks concurrently. 10x faster than linear chains.",
+    icon: Zap,
+    color: "bg-neo-primary"
+  },
+  {
+    title: "Safe Runtime",
+    description: "Sandboxed execution with automated verification at every step.",
+    icon: Shield,
+    color: "bg-neo-secondary"
+  },
+  {
+    title: "MCP Native",
+    description: "Built-in support for Model Context Protocol. Works with any tool, any repo.",
+    icon: Terminal,
+    color: "bg-neo-accent"
+  },
+  {
+    title: "Swarm Logic",
+    description: "Self-healing orchestrator that re-plans on the fly if an agent fails.",
+    icon: Cpu,
+    color: "bg-neo-primary"
+  },
+  {
+    title: "Memory Layer",
+    description: "The primary context-retention engine. Persists complex agent states and project memory across sessions.",
+    icon: Brain,
+    color: "bg-neo-accent"
+  },
+  {
+    title: "Collaborative",
+    description: "Distributed worker queues allow agent teams to scale infinitely.",
+    icon: Share2,
+    color: "bg-neo-accent"
+  }
+];
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="relative py-24 sm:py-32 px-6">
+    <section className="py-32 px-6 bg-neo-bg text-neo-stroke">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 sm:mb-20">
-          <motion.h2
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl font-bold text-text-main tracking-tight max-w-md"
-          >
-            Built for real
-            <br />
-            <span className="text-text-muted">agent throughput.</span>
-          </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, x: 10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-sm text-sm text-text-muted leading-relaxed"
-        >
-          Not wrappers. Not chains. A first-class parallel execution engine
-          with an OctaClaw scheduler, retry logic, and token optimization built in.
-        </motion.p>
+        <div className="mb-20">
+          <div className="inline-block px-4 py-1 mb-6 bg-neo-surface border-2 border-neo-stroke shadow-neo-sm font-black uppercase text-[10px] tracking-[0.3em]">
+            Core Capabilities
+          </div>
+          <h2 className="text-5xl sm:text-7xl font-black uppercase tracking-tighter italic text-neo-stroke leading-none">
+            Built for <span className="text-neo-secondary">Scale.</span><br />
+            Hardened for <span className="text-neo-primary">Production.</span>
+          </h2>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-
-          {/* Main card — Graph Orchestration */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className={`md:col-span-8 ${cardBase} min-h-[340px] flex flex-col justify-between`}
-          >
-            <div className="relative z-10 max-w-md">
-              <div className="w-10 h-10 rounded-lg bg-bg-surface flex items-center justify-center mb-6 border border-border-subtle group-hover:border-border-focus transition-colors">
-                <GitBranch size={18} className="text-text-main" />
-              </div>
-              <h3 className="text-2xl font-bold text-text-main tracking-tight">
-                Autonomous Orchestration
-              </h3>
-              <p className="mt-3 text-text-muted text-sm leading-relaxed">
-                Break any goal into a parallel swarm of agents. Dependencies
-                are respected automatically — parallel tasks run concurrently, serial
-                ones wait. Built-in retry on failure.
-              </p>
-            </div>
-
-            {/* Code visual */}
-            <div className="mt-8 font-mono text-[11px] text-text-muted/50 space-y-1.5">
-              <div className="bg-bg-surface px-3 py-2 rounded-lg border border-border-subtle w-4/5">
-                <span className="text-text-muted/30">node</span>{" "}
-                <span className="text-text-main/50">&quot;Planner&quot;</span>
-                {" "}threads: 4
-              </div>
-              <div className="bg-bg-surface px-3 py-2 rounded-lg border border-border-subtle ml-5 w-4/5">
-                <span className="text-text-muted/30">node</span>{" "}
-                <span className="text-text-main/50">&quot;Scraper&quot;</span>
-                {" "}depends: [&quot;Planner&quot;]
-              </div>
-              <div className="bg-bg-surface px-3 py-2 rounded-lg border border-border-focus ml-10 w-4/5 text-emerald-400/60">
-                status: running
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Swarm Specialists */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className={`md:col-span-4 ${cardBase} flex flex-col justify-between`}
-          >
-            <div>
-              <div className="w-10 h-10 rounded-lg bg-bg-surface flex items-center justify-center mb-6 border border-border-subtle group-hover:border-border-focus transition-colors">
-                <Users size={18} className="text-text-main" />
-              </div>
-              <h3 className="text-xl font-bold text-text-main tracking-tight">
-                Swarm Specialists
-              </h3>
-              <p className="mt-3 text-text-muted text-sm leading-relaxed">
-                Deploy role-based agents each with isolated context and purpose.
-              </p>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-2">
-              {["Architect", "Builder", "Reviewer", "Planner", "Synthesizer", "Tester"].map((role) => (
-                <span
-                  key={role}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-bg-surface border border-border-subtle text-[11px] font-mono font-medium text-text-muted/70"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
-                  {role}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.15 }}
-            className={`md:col-span-4 ${cardBase} flex flex-col items-center text-center justify-center`}
-          >
-            <div className="mb-5 text-text-muted group-hover:text-text-main transition-colors duration-300">
-              <Database strokeWidth={1.5} size={28} />
-            </div>
-            <h3 className="text-lg font-bold text-text-main tracking-tight">
-              Semantic Graph Memory
-            </h3>
-            <p className="mt-2 text-text-muted text-sm leading-relaxed">
-              A recursive graph engine that extracts entities and relations into a persistent knowledge matrix. Move beyond basic chat history into a self-evolving semantic brain.
-            </p>
-          </motion.div>
-
-          {/* Durable States */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className={`md:col-span-4 ${cardBase} flex flex-col items-center text-center justify-center`}
-          >
-            <div className="mb-5 text-text-muted group-hover:text-text-main transition-colors duration-300">
-              <Shield strokeWidth={1.5} size={28} />
-            </div>
-            <h3 className="text-lg font-bold text-text-main tracking-tight">
-              Durable States
-            </h3>
-            <p className="mt-2 text-text-muted text-sm leading-relaxed">
-              Checkpoint-based workflow states allow deterministic resumption on
-              any runtime fault.
-            </p>
-          </motion.div>
-
-          {/* Zero-Trust */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.25 }}
-            className={`md:col-span-4 ${cardBase} flex flex-col items-center text-center justify-center`}
-          >
-            <div className="mb-5 text-text-muted group-hover:text-text-main transition-colors duration-300">
-              <GlobeLock strokeWidth={1.5} size={28} />
-            </div>
-            <h3 className="text-lg font-bold text-text-main tracking-tight">
-              Local-First
-            </h3>
-            <p className="mt-2 text-text-muted text-sm leading-relaxed">
-              Run entirely on-premise. No data leaves your infrastructure.
-              MCP-compatible for custom tool integrations.
-            </p>
-          </motion.div>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, i) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+            >
+              <NeoCard 
+                variant="surface" 
+                className="h-full border-neo-stroke/10 group hover:border-neo-primary transition-all duration-300 hover:translate-y-[-4px]"
+              >
+                <div className="flex flex-col h-full">
+                  <div className={cn(
+                    "w-12 h-12 border-2 border-neo-stroke flex items-center justify-center mb-6 shadow-neo-sm transition-transform group-hover:scale-110 group-hover:rotate-3",
+                    feature.color
+                  )}>
+                    <feature.icon className="w-6 h-6 text-black" />
+                  </div>
+                  <h3 className="text-xl font-black uppercase tracking-tight mb-4 italic">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-neo-stroke/60 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </NeoCard>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

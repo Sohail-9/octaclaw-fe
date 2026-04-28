@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Terminal, Shield, Cpu, Zap, Activity, Database, CheckCircle2 } from "lucide-react";
 
 type AgentStatus = "idle" | "running" | "done";
 
@@ -18,9 +20,9 @@ interface AgentState {
 }
 
 const AGENT_META = [
-  { role: "Architect", model: "opus-4-6",    accent: "#22d3ee" },
-  { role: "Builder",   model: "sonnet-4-6",  accent: "#a78bfa" },
-  { role: "Tester",    model: "haiku-4-5",   accent: "#fbbf24" },
+  { role: "ARCHITECT", model: "OPUS-4", color: "text-neo-primary" },
+  { role: "BUILDER", model: "SONNET-4", color: "text-neo-secondary" },
+  { role: "TESTER", model: "HAIKU-4", color: "text-neo-accent" },
 ] as const;
 
 const EMPTY_AGENT: AgentState = { status: "idle", lines: [] };
@@ -28,11 +30,11 @@ const EMPTY_AGENT: AgentState = { status: "idle", lines: [] };
 let lineId = 0;
 
 export default function TerminalDemo() {
-  const [cycle, setCycle]           = useState(0);
+  const [cycle, setCycle] = useState(0);
   const [headerPhase, setHeaderPhase] = useState(0);
-  const [agents, setAgents]         = useState<AgentState[]>([EMPTY_AGENT, EMPTY_AGENT, EMPTY_AGENT]);
+  const [agents, setAgents] = useState<AgentState[]>([EMPTY_AGENT, EMPTY_AGENT, EMPTY_AGENT]);
   const [memoryLine, setMemoryLine] = useState<string | null>(null);
-  const [complete, setComplete]     = useState(false);
+  const [complete, setComplete] = useState(false);
 
   const pushLine = (idx: number, kind: LogLine["kind"], text: string) => {
     const id = ++lineId;
@@ -60,62 +62,45 @@ export default function TerminalDemo() {
     const t = (ms: number, fn: () => void) => setTimeout(fn, ms);
 
     const timers = [
-      // ── Header ────────────────────────────────────────────────
-      t(400,  () => setHeaderPhase(1)),
+      t(400, () => setHeaderPhase(1)),
       t(1000, () => setHeaderPhase(2)),
       t(1700, () => setHeaderPhase(3)),
-
-      // ── Agents mount (idle) ───────────────────────────────────
       t(2400, () => setAgents([EMPTY_AGENT, EMPTY_AGENT, EMPTY_AGENT])),
-
-      // ── All agents → running simultaneously ───────────────────
       t(2900, () => {
         setStatus(0, "running");
         setStatus(1, "running");
         setStatus(2, "running");
       }),
-
-      // ── Agent 0: Architect ─────────────────────────────────────
-      t(3200, () => pushLine(0, "tool", 'read_file("package.json") → 847 b')),
-      t(4000, () => pushLine(0, "info", "Analyzing auth requirements...")),
-      t(4900, () => pushLine(0, "tool", 'write_file("schema.sql") → 2.1 kb')),
+      t(3200, () => pushLine(0, "tool", 'READ("package.json") -> 847B')),
+      t(4000, () => pushLine(0, "info", "ANALYZING AUTH REQUIREMENTS...")),
+      t(4900, () => pushLine(0, "tool", 'WRITE("schema.sql") -> 2.1KB')),
       t(5600, () => {
-        pushLine(0, "success", "Schema ready · pushed to shared memory");
+        pushLine(0, "success", "SCHEMA READY // SYNCED TO MEMORY");
         setStatus(0, "done", "2.7s");
       }),
-
-      // ── Agent 1: Builder (depends on Architect) ────────────────
-      t(3200, () => pushLine(1, "dim",  "Waiting on Architect's schema...")),
-      t(5700, () => pushLine(1, "info", "Schema received ✓  starting impl")),
-      t(6400, () => pushLine(1, "tool", 'read_file("app/middleware.ts") → 3.4 kb')),
-      t(7200, () => pushLine(1, "tool", 'write_file("lib/oauth.ts") → OK')),
-      t(8000, () => pushLine(1, "tool", 'write_file("lib/session.ts") → OK')),
+      t(3200, () => pushLine(1, "dim", "WAITING FOR ARCHITECT SCHEMA...")),
+      t(5700, () => pushLine(1, "info", "SCHEMA RECEIVED // STARTING IMPL")),
+      t(6400, () => pushLine(1, "tool", 'READ("app/middleware.ts") -> 3.4KB')),
+      t(7200, () => pushLine(1, "tool", 'WRITE("lib/oauth.ts") -> OK')),
+      t(8000, () => pushLine(1, "tool", 'WRITE("lib/session.ts") -> OK')),
       t(8600, () => {
-        pushLine(1, "success", "2 files written · endpoints live");
+        pushLine(1, "success", "ENDPOINTS LIVE // 2 FILES WRITTEN");
         setStatus(1, "done", "5.7s");
       }),
-
-      // ── Agent 2: Tester (runs fully in parallel) ───────────────
-      t(3200, () => pushLine(2, "info", "Analyzing endpoint contracts")),
-      t(4100, () => pushLine(2, "info", "Generating test matrix · 14 cases")),
-      t(5800, () => pushLine(2, "tool", 'run_cmd("vitest --run auth.spec")')),
-      t(7300, () => pushLine(2, "info", "14 / 14 passed ✓")),
+      t(3200, () => pushLine(2, "info", "ANALYZING CONTRACTS")),
+      t(4100, () => pushLine(2, "info", "GENERATING TEST MATRIX (14 CASES)")),
+      t(5800, () => pushLine(2, "tool", 'EXEC("vitest auth.spec")')),
+      t(7300, () => pushLine(2, "info", "14/14 PASSED ✓")),
       t(8900, () => {
-        pushLine(2, "success", "0 failures · coverage 94%");
+        pushLine(2, "success", "COVERAGE 94% // 0 FAILURES");
         setStatus(2, "done", "6.0s");
       }),
-
-      // ── Semantic memory update ─────────────────────────────────
       t(5800, () =>
         setMemoryLine(
-          "◆ Memory  →  14 entities extracted · auth-schema, jwt-config, session-store, oauth-flow ..."
+          "MEM_LAYER: 14 ENTITIES EXTRACTED // AUTH_SCHEMA, JWT_CONFIG, OAUTH_FLOW"
         )
       ),
-
-      // ── Completion bar ─────────────────────────────────────────
       t(9400, () => setComplete(true)),
-
-      // ── Restart ────────────────────────────────────────────────
       t(16000, () => setCycle((c) => c + 1)),
     ];
 
@@ -124,180 +109,166 @@ export default function TerminalDemo() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
-      className="w-full max-w-5xl mx-auto rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] shadow-[0_0_80px_rgba(0,0,0,0.5)]"
+      className="w-full max-w-6xl mx-auto border-4 border-neo-stroke bg-neo-bg shadow-neo relative overflow-hidden group"
     >
-      {/* ── Title bar ─────────────────────────────────────────── */}
-      <div className="flex items-center justify-between px-5 py-3 bg-white/[0.025] border-b border-white/[0.06]">
-        <div className="flex items-center gap-3">
-          <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-[#ff5f57]/80" />
-            <div className="w-3 h-3 rounded-full bg-[#febc2e]/80" />
-            <div className="w-3 h-3 rounded-full bg-[#28c840]/80" />
+      {/* ── Cyber Header ─────────────────────────────────────────── */}
+      <div className="flex items-center justify-between px-6 py-4 bg-neo-surface border-b-4 border-neo-stroke">
+        <div className="flex items-center gap-6">
+          <div className="flex gap-2">
+            <div className="w-4 h-4 bg-neo-stroke" />
+            <div className="w-4 h-4 bg-neo-primary" />
+            <div className="w-4 h-4 bg-neo-secondary" />
           </div>
-          <span className="text-white/25 text-[11px] font-mono tracking-widest uppercase">
-            octaclaw · agent swarm
-          </span>
+          <div className="flex items-center gap-3 font-mono">
+            <Activity className="w-4 h-4 text-neo-primary animate-pulse" />
+            <span className="text-[11px] font-black tracking-[0.3em] uppercase text-neo-stroke/60">
+              Swarm Command Center
+            </span>
+          </div>
         </div>
-        <div className="flex items-center gap-4 font-mono text-[10px] text-white/20">
-          {AGENT_META.map((m) => (
-            <span key={m.role} style={{ color: m.accent + "55" }}>{m.role}</span>
-          ))}
+        <div className="flex items-center gap-6 font-mono text-[10px] font-black text-neo-stroke/40">
+          <div className="flex items-center gap-2">
+            <Database className="w-3 h-3" />
+            MEMORY_SYNC: ACTIVE
+          </div>
+          <div className="flex items-center gap-2">
+            <Cpu className="w-3 h-3" />
+            CORE_USAGE: 88%
+          </div>
         </div>
       </div>
 
-      {/* ── Goal / Planner header ──────────────────────────────── */}
-      <div className="px-6 py-4 space-y-1.5 border-b border-white/[0.05]">
-        <AnimatePresence>
-          {headerPhase >= 1 && (
-            <motion.div key="session" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              className="flex items-center gap-2 font-mono text-[12px]"
-            >
-              <span className="text-emerald-400">●</span>
-              <span className="text-white/35">session-7f3a</span>
-              <span className="text-white/15">·</span>
-              <span className="text-white/35">~/acme-corp</span>
-              <span className="text-white/15">·</span>
-              <span className="text-white/35">main ✓</span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {headerPhase >= 2 && (
-            <motion.div key="goal" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              className="font-mono text-[13px] pt-0.5"
-            >
-              <span className="text-white/25">Goal  →  </span>
-              <span className="text-white/80">&quot;Build OAuth2 authentication end-to-end&quot;</span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {headerPhase >= 3 && (
-            <motion.div key="planner" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] text-white/30 pt-0.5"
-            >
-              <span>◆ Planner → parallel_task</span>
-              <span className="text-white/10">·</span>
-              <span>TaskDAG compiled</span>
-              <span className="text-white/10">·</span>
-              <span>3 threads · model-routed</span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
-      {/* ── Agent columns ─────────────────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.05]">
-        {AGENT_META.map((meta, i) => {
-          const agent = agents[i];
-          return (
-            <div key={meta.role} className="p-5 min-h-[160px] sm:min-h-[200px] flex flex-col gap-3">
-              {/* Agent label + model */}
-              <div className="flex items-center justify-between">
-                <span
-                  className="font-mono text-[11px] font-bold tracking-wide"
-                  style={{ color: meta.accent }}
-                >
-                  {meta.role}
-                </span>
-                <span className="font-mono text-[10px] text-white/20">{meta.model}</span>
+      <div className="flex h-[450px]">
+        {/* ── TaskDAG Sidebar ────────────────────────────────────── */}
+        <div className="w-48 border-r-4 border-neo-stroke bg-neo-bg/50 p-6 flex flex-col gap-6">
+          <span className="text-[10px] font-black uppercase tracking-widest text-neo-stroke/40">TaskDAG Graph</span>
+          <div className="flex flex-col gap-4">
+            {["INIT", "PLAN", "SWARM", "DONE"].map((step, i) => (
+              <div key={step} className="flex items-center gap-3">
+                <div className={cn(
+                  "w-3 h-3 border-2 border-neo-stroke",
+                  i < headerPhase + 1 ? "bg-neo-primary" : "bg-transparent"
+                )} />
+                <span className={cn(
+                  "text-[10px] font-black uppercase tracking-widest font-mono",
+                  i < headerPhase + 1 ? "text-neo-stroke" : "text-neo-stroke/20"
+                )}>{step}</span>
               </div>
+            ))}
+          </div>
+          <div className="mt-auto border-2 border-neo-stroke p-3 bg-neo-surface">
+            <div className="text-[9px] font-black text-neo-stroke/40 uppercase mb-1">Status</div>
+            <div className="text-[11px] font-black text-neo-primary uppercase">Parallel Ready</div>
+          </div>
+        </div>
 
-              {/* Status */}
-              <div className="h-4 flex items-center">
-                {agent.status === "idle" && (
-                  <span className="font-mono text-[10px] text-white/15 uppercase tracking-widest">idle</span>
-                )}
-                {agent.status === "running" && (
-                  <span className="flex items-center gap-1.5">
-                    <motion.span
-                      className="h-1.5 w-1.5 rounded-full"
-                      style={{ backgroundColor: meta.accent }}
-                      animate={{ opacity: [1, 0.2, 1] }}
+        {/* ── Main Command Output ────────────────────────────────── */}
+        <div className="flex-1 flex flex-col">
+          {/* Active Goal */}
+          <div className="px-8 py-6 border-b-4 border-neo-stroke/10">
+            <AnimatePresence>
+              {headerPhase >= 1 && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="font-mono space-y-2">
+                  <div className="flex items-center gap-3 text-[10px] font-black text-neo-secondary uppercase tracking-[0.2em]">
+                    <Shield className="w-4 h-4" />
+                    Protocol Session: 0x7F3A
+                  </div>
+                  <h2 className="text-xl font-black uppercase text-neo-stroke italic">
+                    <span className="text-neo-stroke/30 mr-3">&gt;</span>
+                    "BUILD OAUTH2 AUTH END-TO-END"
+                  </h2>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Agent Columns */}
+          <div className="flex-1 grid grid-cols-3 divide-x-4 divide-neo-stroke/10 bg-neo-surface/30">
+            {AGENT_META.map((meta, i) => (
+              <div key={meta.role} className="p-6 flex flex-col gap-4">
+                <div className="flex items-center justify-between">
+                  <span className={cn("text-[11px] font-black uppercase tracking-widest", meta.color)}>
+                    {meta.role}
+                  </span>
+                  <div className="px-2 py-0.5 border-2 border-neo-stroke text-[8px] font-black text-neo-stroke/40">
+                    {meta.model}
+                  </div>
+                </div>
+
+                {/* Status Bar */}
+                <div className="h-6 flex items-center gap-3">
+                  {agents[i].status === "running" && (
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1], opacity: [1, 0.5, 1] }}
                       transition={{ duration: 1, repeat: Infinity }}
+                      className={cn("w-2 h-2", meta.color.replace('text', 'bg'))}
                     />
-                    <span
-                      className="font-mono text-[10px] uppercase tracking-widest"
-                      style={{ color: meta.accent + "88" }}
-                    >
-                      running
-                    </span>
+                  )}
+                  {agents[i].status === "done" && <CheckCircle2 className="w-4 h-4 text-neo-primary" />}
+                  <span className={cn(
+                    "text-[10px] font-black uppercase tracking-widest",
+                    agents[i].status === "running" ? meta.color : "text-neo-stroke/20"
+                  )}>
+                    {agents[i].status} {agents[i].elapsed && `// ${agents[i].elapsed}`}
                   </span>
-                )}
-                {agent.status === "done" && (
-                  <span className="flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                    <span className="font-mono text-[10px] text-emerald-400/70 uppercase tracking-widest">
-                      done · {agent.elapsed}
-                    </span>
-                  </span>
-                )}
-              </div>
+                </div>
 
-              {/* Log stream */}
-              <div className="flex-1 space-y-1.5 font-mono text-[11px] leading-snug">
-                <AnimatePresence>
-                  {agent.lines.map((line) => (
+                {/* Log Stream */}
+                <div className="flex-1 font-mono text-[10px] space-y-2 uppercase leading-tight overflow-hidden">
+                  {agents[i].lines.map((line) => (
                     <motion.div
                       key={line.id}
-                      initial={{ opacity: 0, x: -4 }}
+                      initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.22 }}
-                      className={
-                        line.kind === "tool"
-                          ? "text-violet-300/65"
-                          : line.kind === "success"
-                          ? "text-emerald-400/75"
-                          : line.kind === "dim"
-                          ? "text-white/18"
-                          : "text-white/40"
-                      }
+                      className={cn(
+                        line.kind === "tool" ? "text-neo-secondary" :
+                          line.kind === "success" ? "text-neo-primary" :
+                            line.kind === "dim" ? "opacity-20" : "opacity-60"
+                      )}
                     >
-                      {line.kind === "tool"    ? <span className="text-white/20 mr-1">&gt;</span>   : null}
-                      {line.kind === "success" ? <span className="text-emerald-400 mr-1">✓</span>   : null}
+                      {line.kind === "tool" && <span className="mr-2 text-neo-stroke/20">$</span>}
                       {line.text}
                     </motion.div>
                   ))}
-                </AnimatePresence>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* ── Semantic memory bar ────────────────────────────────── */}
-      <AnimatePresence>
-        {memoryLine && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="px-6 py-2.5 border-t border-white/[0.05] font-mono text-[11px] text-white/25 truncate"
-          >
-            {memoryLine}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ── Completion footer ──────────────────────────────────── */}
+      {/* ── Footer Stats ─────────────────────────────────────────── */}
       <AnimatePresence>
         {complete && (
           <motion.div
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="px-6 py-3.5 border-t border-white/[0.06] flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[12px]"
+            initial={{ height: 0 }}
+            animate={{ height: "auto" }}
+            className="border-t-4 border-neo-stroke bg-neo-primary px-8 py-4 flex justify-between items-center"
           >
-            <span className="text-yellow-400">✦</span>
-            <span className="text-white/55">Complete · 6.0s wall clock</span>
-            <span className="text-white/15">·</span>
-            <span className="text-emerald-400/65">saved ~6.4s vs sequential</span>
-            <span className="text-white/15">·</span>
-            <span className="text-white/30">3,841 tokens · 1,204 saved</span>
+            <div className="flex gap-8">
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-black/40 uppercase">Time Saved</span>
+                <span className="text-xl font-black text-black">6.4s / 52%</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-black/40 uppercase">Efficiency</span>
+                <span className="text-xl font-black text-black">3.2x Parallel</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-[11px] font-black text-black uppercase tracking-widest italic">Swarm Sequence Complete</span>
+              <div className="w-8 h-8 bg-black border-2 border-neo-stroke flex items-center justify-center">
+                <Zap className="w-4 h-4 text-neo-primary fill-neo-primary" />
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Scanline Effect */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%]" />
     </motion.div>
   );
 }
