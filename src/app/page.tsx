@@ -3,7 +3,6 @@ import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/Hero";
 import FeaturesSection from "@/components/sections/Features";
 import HowItWorksSection from "@/components/sections/HowItWorks";
-import CTASection from "@/components/sections/CTA";
 
 export default function Page() {
   return (
@@ -12,7 +11,6 @@ export default function Page() {
       <HeroSection />
       <FeaturesSection />
       <HowItWorksSection />
-      <CTASection />
       <Footer />
     </main>
   );

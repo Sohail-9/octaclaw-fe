@@ -20,7 +20,7 @@ export default function Footer() {
           {/* Links */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 text-sm text-text-muted">
             <Link
-              href="#cta"
+              href="#waitlist"
               className="hover:text-text-main transition-colors duration-200"
             >
               Join Waitlist

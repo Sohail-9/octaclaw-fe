@@ -94,9 +94,19 @@ export default function FeaturesSection() {
                 Swarm Specialists
               </h3>
               <p className="mt-3 text-text-muted text-sm leading-relaxed">
-                Deploy role-based agents — Builder, Reviewer, Planner, Synthesizer
-                — each with isolated context and purpose.
+                Deploy role-based agents each with isolated context and purpose.
               </p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {["Architect", "Builder", "Reviewer", "Planner", "Synthesizer", "Tester"].map((role) => (
+                <span
+                  key={role}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-bg-surface border border-border-subtle text-[11px] font-mono font-medium text-text-muted/70"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
+                  {role}
+                </span>
+              ))}
             </div>
           </motion.div>
 

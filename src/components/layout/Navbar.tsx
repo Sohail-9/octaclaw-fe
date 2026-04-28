@@ -85,7 +85,7 @@ export default function Navbar() {
           </button>
 
           <Link
-            href="#cta"
+            href="#waitlist"
             className="hidden sm:inline-flex items-center h-9 px-4 rounded-lg bg-text-main text-bg-base text-sm font-semibold tracking-tight hover:opacity-85 transition-opacity duration-200"
           >
             Join Waitlist

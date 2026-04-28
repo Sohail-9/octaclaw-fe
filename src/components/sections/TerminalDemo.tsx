@@ -190,11 +190,11 @@ export default function TerminalDemo() {
       </div>
 
       {/* ── Agent columns ─────────────────────────────────────── */}
-      <div className="grid grid-cols-3 divide-x divide-white/[0.05] overflow-x-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.05]">
         {AGENT_META.map((meta, i) => {
           const agent = agents[i];
           return (
-            <div key={meta.role} className="p-5 min-w-[200px] min-h-[200px] flex flex-col gap-3">
+            <div key={meta.role} className="p-5 min-h-[160px] sm:min-h-[200px] flex flex-col gap-3">
               {/* Agent label + model */}
               <div className="flex items-center justify-between">
                 <span

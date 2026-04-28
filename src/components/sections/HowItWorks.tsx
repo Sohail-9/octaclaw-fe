@@ -7,7 +7,7 @@ const steps = [
     phase: "01",
     title: "Goal Ingestion",
     description:
-      "Submit a natural-language goal through the CLI, HTTP API, or a distributed worker queue. OctaClaw normalizes the input for the Sovereign engine.",
+      "Submit a natural-language goal through the CLI, HTTP API, or a distributed worker queue. OctaClaw normalizes the input for the planning engine.",
   },
   {
     phase: "02",
@@ -46,6 +46,28 @@ export default function HowItWorksSection() {
             <br />
             <span className="text-text-muted">in one command.</span>
           </motion.h2>
+        </div>
+
+        {/* Flow connector — desktop only */}
+        <div className="hidden md:flex items-center justify-between mb-6 px-1">
+          {steps.map((step, index) => (
+            <div key={step.phase} className="flex items-center flex-1">
+              <div className="flex items-center gap-2.5">
+                <span className="w-6 h-6 rounded-full border border-border-focus bg-bg-surface flex items-center justify-center font-mono text-[10px] font-bold text-text-muted/60">
+                  {step.phase}
+                </span>
+                <span className="text-[11px] font-mono text-text-muted/40 uppercase tracking-widest">
+                  {step.title}
+                </span>
+              </div>
+              {index < steps.length - 1 && (
+                <div className="flex-1 flex items-center mx-4">
+                  <div className="flex-1 h-px bg-border-subtle" />
+                  <span className="text-text-muted/25 text-[10px] mx-1">›</span>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border-subtle rounded-2xl overflow-hidden border border-border-subtle">
