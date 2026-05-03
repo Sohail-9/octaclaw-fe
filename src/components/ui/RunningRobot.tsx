@@ -11,7 +11,14 @@ interface RunningRobotProps {
 export default function RunningRobot({ className, variant = "running" }: RunningRobotProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isBlinking, setIsBlinking] = useState(false);
+  const [isJumping, setIsJumping] = useState(false);
   const robotRef = useRef<HTMLDivElement>(null);
+
+  const handlePetClick = () => {
+    if (isJumping) return;
+    setIsJumping(true);
+    setTimeout(() => setIsJumping(false), 600);
+  };
 
   // Mouse tracking motion values
   const mouseX = useMotionValue(0);
@@ -58,11 +65,23 @@ export default function RunningRobot({ className, variant = "running" }: Running
       className={`relative cursor-pointer group w-14 h-16 ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handlePetClick}
     >
       {/* Robot Body Container */}
       <motion.div 
         className="relative w-full h-full"
         style={{ rotateX: tiltX, rotateY: tiltY }}
+        animate={{
+          y: isJumping ? -30 : 0,
+          rotate: isJumping ? 360 : 0,
+          scale: isJumping ? 1.2 : 1,
+        }}
+        transition={{
+          duration: 0.6,
+          type: "spring",
+          stiffness: 260,
+          damping: 20
+        }}
       >
         
         {/* Antenna / Key Shape from Screenshot - Now with "Waving" animation */}
