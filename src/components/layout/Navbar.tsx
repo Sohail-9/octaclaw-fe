@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
-import { Moon, Sun, Github } from "lucide-react";
+import { Moon, Sun, Linkedin } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -65,13 +65,13 @@ export default function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-3">
           <a
-            href="https://github.com/0xLabs-Org"
+            href="https://www.linkedin.com/company/octaclaw/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-8 h-8 flex items-center justify-center rounded-lg text-text-muted hover:text-text-main hover:bg-bg-card transition-all duration-200"
-            aria-label="GitHub"
+            aria-label="LinkedIn"
           >
-            <Github size={15} />
+            <Linkedin size={15} />
           </a>
           <button
             onClick={cycleTheme}

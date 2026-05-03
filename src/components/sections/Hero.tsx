@@ -6,6 +6,46 @@ import RunningRobot from "../ui/RunningRobot";
 
 const providers = ["Anthropic", "OpenAI", "Gemini", "Groq", "Grok"];
 
+import { useState, useEffect } from "react";
+
+const CHARS = "ABCDEFGHJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+
+const useScrambleText = (text: string, delay: number = 0) => {
+  const [display, setDisplay] = useState("");
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    let iteration = 0;
+    const interval = 30; // ms
+    const totalIterations = 15;
+    
+    setTimeout(() => {
+      const timer = setInterval(() => {
+        setDisplay(
+          text
+            .split("")
+            .map((char, index) => {
+              if (index < iteration / (totalIterations / text.length)) {
+                return text[index];
+              }
+              return CHARS[Math.floor(Math.random() * CHARS.length)];
+            })
+            .join("")
+        );
+
+        if (iteration >= totalIterations) {
+          clearInterval(timer);
+          setDisplay(text);
+          setIsComplete(true);
+        }
+        iteration += 1;
+      }, interval);
+    }, delay);
+  }, [text, delay]);
+
+  return display;
+};
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 12 },
   animate: { opacity: 1, y: 0 },
@@ -13,6 +53,9 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function HeroSection() {
+  const line1 = useScrambleText("Build scalable", 200);
+  const line2 = useScrambleText("Products with AI", 600);
+
   return (
     <section id="waitlist" className="relative min-h-[85vh] flex flex-col items-center justify-center pt-20 pb-12 px-6 overflow-hidden bg-bg-base transition-colors duration-500">
       
@@ -46,10 +89,12 @@ export default function HeroSection() {
         >
           <span className="inline-flex items-center gap-4 sm:gap-6 align-middle">
             <RunningRobot className="scale-[0.8] sm:scale-[1.1] md:scale-[1.5] -ml-2 sm:-ml-4 sm:mr-2" variant="running" />
-            <span>Build scalable</span>
+            <span className="font-mono">{line1}</span>
           </span>
           <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Products with AI</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary font-mono">
+            {line2}
+          </span>
         </motion.h1>
 
         {/* Compact Waitlist section */}
@@ -81,9 +126,9 @@ export default function HeroSection() {
         >
           {[
             { label: "TaskDAG scheduler" },
-            { label: "parallel-first runtime" },
-            { label: "MCP-native" },
-            { label: "local-first" },
+            { label: "token-optimized metrics" },
+            { label: "MCP control plane" },
+            { label: "recursive memory store" },
           ].map(({ label }, i, arr) => (
             <span key={label} className="flex items-center gap-6">
               <span className="text-[10px] font-mono text-text-muted tracking-tight font-bold">

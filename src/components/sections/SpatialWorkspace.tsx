@@ -8,10 +8,10 @@ export default function SpatialWorkspaceSection() {
     <section id="spatial-workspace" className="relative py-20 sm:py-32 px-6 overflow-hidden">
       {/* Background glow for the section */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-[#7c3aff]/10 blur-[120px] rounded-full pointer-events-none" />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
-          
+
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -29,7 +29,7 @@ export default function SpatialWorkspaceSection() {
             <p className="text-lg sm:text-lg text-[#dfdaf0] leading-relaxed mb-8">
               OctaClaw gives your team and agents one unified orchestration graph. You can see every active run, jump into any node, discuss issues in context, and move from alert to fix without switching tools.
             </p>
-            
+
             <ul className="space-y-4">
               {[
                 "Visualize complex multi-agent DAGs instantly",
@@ -54,10 +54,10 @@ export default function SpatialWorkspaceSection() {
           >
             {/* Grid Pattern */}
             <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0)', backgroundSize: '24px 24px' }} />
-            
+
             {/* Mock Nodes - built with pure CSS/Tailwind */}
             <div className="relative w-full h-full min-h-[350px]">
-              
+
               {/* Connection Lines (SVG) */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
                 <path d="M 20% 30% C 35% 30%, 35% 55%, 50% 55%" fill="none" stroke="#7c3aff" strokeWidth="2" strokeDasharray="4 4" className="animate-pulse opacity-60" />
@@ -66,7 +66,7 @@ export default function SpatialWorkspaceSection() {
               </svg>
 
               {/* Node 1 - Source */}
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, -4, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                 className="absolute top-[30%] left-[20%] -translate-x-1/2 -translate-y-1/2 z-10 w-[140px] sm:w-[160px] rounded-xl border border-emerald-500/20 bg-black/60 backdrop-blur-md p-3 sm:p-4 shadow-lg"
@@ -82,7 +82,7 @@ export default function SpatialWorkspaceSection() {
               </motion.div>
 
               {/* Node 2 - Processing Agent */}
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, 4, 0] }}
                 transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1 }}
                 className="absolute top-[55%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-10 w-[160px] sm:w-[180px] rounded-xl border border-[#7c3aff]/50 bg-[#7c3aff]/10 backdrop-blur-md p-3 sm:p-4 shadow-[0_0_30px_rgba(124,58,255,0.2)]"
@@ -104,7 +104,7 @@ export default function SpatialWorkspaceSection() {
               </motion.div>
 
               {/* Node 3 - Human Review */}
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, -3, 0] }}
                 transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
                 className="absolute top-[30%] left-[80%] -translate-x-1/2 -translate-y-1/2 z-10 w-[150px] sm:w-[170px] rounded-xl border border-yellow-500/30 bg-yellow-500/10 backdrop-blur-md p-3 sm:p-4 shadow-lg outline outline-1 outline-yellow-500/10 outline-offset-4"
@@ -121,7 +121,7 @@ export default function SpatialWorkspaceSection() {
               </motion.div>
 
               {/* Node 4 - Storage */}
-              <motion.div 
+              <motion.div
                 animate={{ y: [0, 5, 0] }}
                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 2 }}
                 className="absolute top-[80%] left-[80%] -translate-x-1/2 -translate-y-1/2 z-10 w-[140px] sm:w-[160px] rounded-xl border border-white/10 bg-black/40 backdrop-blur-md p-3 sm:p-4 shadow-lg hover:border-white/20 transition-colors cursor-pointer"
@@ -132,7 +132,7 @@ export default function SpatialWorkspaceSection() {
                 </div>
                 <div className="text-[10px] text-[#c9c2df]/60 font-mono">Idle</div>
               </motion.div>
-              
+
             </div>
           </motion.div>
 

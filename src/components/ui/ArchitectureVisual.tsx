@@ -130,16 +130,16 @@ export default function ArchitectureVisual() {
             System Phase {activeStep + 1}
           </div>
           <h3 className="text-3xl font-bold text-text-main mb-4 font-heading tracking-tight">
-            {activeStep === 0 && "Parsing Intent"}
-            {activeStep === 1 && "Optimizing DAG"}
-            {activeStep === 2 && "Swarm Dispatch"}
-            {activeStep === 3 && "Memory Synthesis"}
+            {activeStep === 0 && "Intent Compilation"}
+            {activeStep === 1 && "TaskDAG Optimization"}
+            {activeStep === 2 && "Bun-Native Execution"}
+            {activeStep === 3 && "JSON-Store Synthesis"}
           </h3>
           <p className="text-text-muted text-sm font-mono leading-relaxed max-w-xl">
-            {activeStep === 0 && "The runtime converts high-level user instructions into deterministic execution plans, ensuring no ambiguity in agent directives."}
-            {activeStep === 1 && "Tasks are analyzed for dependencies and parallelized into a Directed Acyclic Graph, minimizing execution time."}
-            {activeStep === 2 && "Agents are spawned concurrently across secure sandboxes, each specialized for a specific node in the task graph."}
-            {activeStep === 3 && "Findings are recursively integrated back into the semantic memory graph, building a persistent knowledge base for the team."}
+            {activeStep === 0 && "Natural language is compiled into deterministic Bun-optimized instructions, ensuring zero-latency startup for cold agent spawns."}
+            {activeStep === 1 && "The core scheduler analyzes dependencies and parallelizes tasks into a DAG, optimized for high-throughput Fintech and technical workflows."}
+            {activeStep === 2 && "Specialized agents are dispatched concurrently within secure sandboxes, executing with the raw speed of the Bun runtime engine."}
+            {activeStep === 3 && "Execution findings are recursively distilled into a persistent JSON-store knowledge matrix, building a long-term memory for your team."}
           </p>
         </div>
       </motion.div>

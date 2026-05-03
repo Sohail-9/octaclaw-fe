@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import AgentIDCard from "../ui/AgentIDCard";
 
 export default function HomeWaitlistHero() {
   const [email, setEmail] = useState("");
+  const [savedEmail, setSavedEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -14,6 +16,7 @@ export default function HomeWaitlistHero() {
     e.preventDefault();
     if (!email) return;
     setStatus("loading");
+    setSavedEmail(email);
     setMessage("");
 
     try {
@@ -46,9 +49,8 @@ export default function HomeWaitlistHero() {
     <div className="relative w-full max-w-[440px] flex flex-col items-center gap-4">
       <form
         onSubmit={handleSubmit}
-        className={`relative z-20 w-full flex items-center bg-bg-surface border rounded-full p-2.5 pl-7 transition-all duration-300 ${
-          isFocused ? "border-border-focus shadow-[0_0_0_3px_var(--border-subtle)]" : "border-border-subtle"
-        }`}
+        className={`relative z-20 w-full flex items-center bg-bg-surface border rounded-full p-2.5 pl-7 transition-all duration-300 ${isFocused ? "border-border-focus shadow-[0_0_0_3px_var(--border-subtle)]" : "border-border-subtle"
+          }`}
       >
         <input
           type="email"
@@ -97,17 +99,28 @@ export default function HomeWaitlistHero() {
       </form>
 
       <AnimatePresence>
+        {status === "success" && (
+          <AgentIDCard
+            email={savedEmail}
+            onDismiss={() => setStatus("idle")}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
         {message && (
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className={`text-center text-[11px] font-medium tracking-wide ${
-              status === "success" ? "text-emerald-500" : "text-red-400"
-            }`}
+            className="flex flex-col items-center gap-2"
           >
-            {message}
-          </motion.p>
+            <p className={`text-center text-[11px] font-mono font-bold tracking-widest uppercase ${status === "success" ? "text-brand-primary" : "text-red-400"
+              }`}>
+              {status === "success" && "[SUCCESS] "}
+              {message}
+            </p>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

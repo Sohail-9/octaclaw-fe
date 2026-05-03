@@ -26,6 +26,14 @@ export default function MouseFollowingPet() {
   const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
   const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
+  // Separate springs for followers to create the "Swarm" trail
+  const f1X = useSpring(mouseX, { stiffness: 40, damping: 25 });
+  const f1Y = useSpring(mouseY, { stiffness: 40, damping: 25 });
+  const f2X = useSpring(mouseX, { stiffness: 30, damping: 30 });
+  const f2Y = useSpring(mouseY, { stiffness: 30, damping: 30 });
+  const f3X = useSpring(mouseX, { stiffness: 20, damping: 35 });
+  const f3Y = useSpring(mouseY, { stiffness: 20, damping: 35 });
+
   const triggerSwarm = () => {
     if (isSwarming) return;
     setIsSwarming(true);
@@ -66,7 +74,25 @@ export default function MouseFollowingPet() {
         </div>
       </motion.div>
 
-      {/* Swarm Agents */}
+      {/* Swarm Followers (Subtle shadow agents) */}
+      {isMounted && (
+        <>
+          <motion.div
+            className="fixed top-0 left-0 w-1 h-1 bg-brand-primary/30 rounded-full z-[9999] pointer-events-none"
+            style={{ x: f1X, y: f1Y }}
+          />
+          <motion.div
+            className="fixed top-0 left-0 w-1 h-1 bg-brand-primary/20 rounded-full z-[9999] pointer-events-none"
+            style={{ x: f2X, y: f2Y }}
+          />
+          <motion.div
+            className="fixed top-0 left-0 w-1 h-1 bg-brand-primary/10 rounded-full z-[9999] pointer-events-none"
+            style={{ x: f3X, y: f3Y }}
+          />
+        </>
+      )}
+
+      {/* Swarm Agents (On click) */}
       <AnimatePresence>
         {isSwarming && Array.from({ length: 6 }).map((_, i) => (
           <motion.div
