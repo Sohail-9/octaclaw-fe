@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import MouseFollowingPet from "@/components/ui/MouseFollowingPet";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -81,6 +82,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <MouseFollowingPet />
         <Analytics />
       </body>
     </html>
