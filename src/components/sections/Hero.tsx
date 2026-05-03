@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import HomeWaitlistHero from "./HomeWaitlistHero";
+import RunningRobot from "../ui/RunningRobot";
 
 const providers = ["Anthropic", "OpenAI", "Gemini", "Groq", "Grok"];
 
@@ -38,20 +39,15 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-10 w-full max-w-4xl flex flex-col items-center">
-        {/* Compact Badge */}
-        <motion.div {...fadeUp(0.1)} className="flex justify-center mb-6">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-primary/20 bg-brand-primary/5 px-3 py-1 text-[10px] font-bold tracking-[0.1em] text-brand-primary uppercase shadow-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-primary animate-pulse" />
-            v3.0.4-Stable
-          </span>
-        </motion.div>
-
         {/* Compact & Tight Headline */}
         <motion.h1
           {...fadeUp(0.2)}
-          className="text-center text-5xl sm:text-6xl md:text-8xl font-bold tracking-[-0.05em] leading-[0.95] text-text-main"
+          className="text-center text-5xl sm:text-6xl md:text-8xl font-bold tracking-[-0.05em] leading-[0.95] text-text-main flex flex-col items-center sm:block"
         >
-          Build scalable
+          <span className="inline-flex items-center gap-4 sm:gap-6 align-middle">
+            <RunningRobot className="scale-[0.8] sm:scale-[1.1] md:scale-[1.5] -ml-2 sm:-ml-4 sm:mr-2" variant="running" />
+            <span>Build scalable</span>
+          </span>
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Products with AI</span>
         </motion.h1>

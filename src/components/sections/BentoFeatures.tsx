@@ -33,6 +33,7 @@ import {
   Eye,
   Link2
 } from "lucide-react";
+import RunningRobot from "../ui/RunningRobot";
 
 export default function BentoFeatures() {
   const [activeStep, setActiveStep] = useState(0);
@@ -103,7 +104,8 @@ export default function BentoFeatures() {
                     <span className="text-brand-primary font-bold">READY</span>
                     <span className="text-text-muted animate-pulse">|</span>
                   </div>
-                  <div className="flex gap-1.5">
+                  <div className="flex gap-1.5 items-center">
+                    <RunningRobot className="scale-[0.25] -mr-4 opacity-50 group-hover:opacity-100 transition-opacity" variant="running" />
                     <div className="w-1.5 h-1.5 rounded-full bg-red-500/40" />
                     <div className="w-1.5 h-1.5 rounded-full bg-green-500/40" />
                   </div>
@@ -273,7 +275,10 @@ export default function BentoFeatures() {
                     }}
                     className="w-12 h-12 rounded-full border border-brand-primary/40 bg-brand-primary/10 flex items-center justify-center relative z-20 transition-all"
                   >
-                    <Share2 size={16} className={memoryActive > 0 ? "text-brand-primary" : "text-text-muted"} />
+                    <div className="relative">
+                      <Share2 size={16} className={memoryActive > 0 ? "text-brand-primary" : "text-text-muted"} />
+                      <RunningRobot className="absolute -top-6 -right-6 scale-[0.3] opacity-0 group-hover:opacity-100 transition-opacity" variant="static" />
+                    </div>
                   </motion.div>
 
                   {/* Interactive Satellite Nodes */}
@@ -366,6 +371,7 @@ export default function BentoFeatures() {
               </div>
               <div className="text-[9px] font-mono text-brand-primary font-bold">LOCAL_FIRST</div>
             </div>
+            <RunningRobot className="absolute bottom-2 right-2 scale-[0.35] opacity-20 group-hover:opacity-60 transition-all group-hover:translate-x-[-10px]" variant="running" />
             <h3 className="text-lg font-bold font-heading text-text-main mb-2">Data Sovereignty</h3>
             <p className="text-text-muted text-xs font-mono leading-relaxed">
               Run entire swarms on-premise. Your data never crosses a trust boundary.
