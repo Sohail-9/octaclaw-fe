@@ -40,7 +40,7 @@ export default function RunningRobot({ className, variant = "running" }: Running
       const rect = robotRef.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      
+
       // Calculate relative distance
       mouseX.set(e.clientX - centerX);
       mouseY.set(e.clientY - centerY);
@@ -60,7 +60,7 @@ export default function RunningRobot({ className, variant = "running" }: Running
   }, []);
 
   return (
-    <div 
+    <div
       ref={robotRef}
       className={`relative cursor-pointer group w-14 h-16 ${className}`}
       onMouseEnter={() => setIsHovered(true)}
@@ -68,7 +68,7 @@ export default function RunningRobot({ className, variant = "running" }: Running
       onClick={handlePetClick}
     >
       {/* Robot Body Container */}
-      <motion.div 
+      <motion.div
         className="relative w-full h-full"
         style={{ rotateX: tiltX, rotateY: tiltY }}
         animate={{
@@ -83,9 +83,9 @@ export default function RunningRobot({ className, variant = "running" }: Running
           damping: 20
         }}
       >
-        
+
         {/* Antenna / Key Shape from Screenshot - Now with "Waving" animation */}
-        <motion.div 
+        <motion.div
           className="absolute -top-5 right-1 flex flex-col items-end origin-bottom z-10"
           animate={{
             rotate: isHovered ? [0, 15, -15, 15, 0] : [0, 5, 0],
@@ -103,9 +103,9 @@ export default function RunningRobot({ className, variant = "running" }: Running
 
         {/* Main Body */}
         <div className="w-14 h-12 bg-[#262626] border-[3px] border-[#404040] rounded-sm flex flex-col items-center justify-center relative overflow-hidden shadow-2xl z-0">
-          
+
           {/* Eyes - Now track the mouse */}
-          <motion.div 
+          <motion.div
             className="flex gap-2.5 mb-1.5"
             style={{ x: eyeX, y: eyeY }}
           >
@@ -129,7 +129,7 @@ export default function RunningRobot({ className, variant = "running" }: Running
           <div className="w-8 h-[2px] bg-[#333] rounded-full mt-1" />
 
           {/* Internal Scanline */}
-          <motion.div 
+          <motion.div
             className="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-transparent h-4 w-full"
             animate={{
               top: ["-100%", "200%"]

@@ -8,6 +8,7 @@ export default function Page() {
     <main className="bg-bg-base min-h-screen relative font-sans selection:bg-white/20 selection:text-white">
       <Navbar />
       <HeroSection />
+      
       <BentoFeatures />
       <Footer />
     </main>
