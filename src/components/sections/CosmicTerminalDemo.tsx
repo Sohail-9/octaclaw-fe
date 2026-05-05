@@ -4,16 +4,16 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const INITIAL_LOGS = [
-  { time: "00:00", level: "system", node: "DAG_Runner", text: "Compiled 3 workflow nodes. Initializing swarm...", delay: 500 },
-  { time: "00:01", level: "info", node: "Agent:Research", text: "Booting semantic search tools...", delay: 800 },
-  { time: "00:01", level: "info", node: "Agent:Writer", text: "Awaiting Research dependency...", delay: 900 },
-  { time: "00:02", level: "network", node: "Agent:Research", text: "Querying vector database endpoints...", delay: 1400 },
-  { time: "00:04", level: "success", node: "Agent:Research", text: "Context retrieved. Yielding payload to graph.", delay: 2200 },
-  { time: "00:04", level: "status", node: "DAG_Runner", text: "Node 'Research' complete. Parralelizing 'Writer' & 'Reviewer'.", delay: 2400 },
-  { time: "00:05", level: "info", node: "Agent:Writer", text: "Context received. Synthesizing draft...", delay: 3000 },
-  { time: "00:05", level: "info", node: "Agent:Reviewer", text: "Analyzing semantic parameters...", delay: 3200 },
-  { time: "00:07", level: "success", node: "Agent:Writer", text: "Draft generated. Passing to Reviewer.", delay: 4500 },
-  { time: "00:08", level: "success", node: "Agent:Reviewer", text: "Quality checks passed. DAG Execution Complete.", delay: 5500 },
+  { time: "00:00", level: "system", node: "Pipeline", text: "Compiled 3 pipeline nodes. Initializing environment...", delay: 500 },
+  { time: "00:01", level: "info", node: "Agent:Terraform", text: "Booting cloud provider plugins...", delay: 800 },
+  { time: "00:01", level: "info", node: "Agent:K8sDeploy", text: "Awaiting Terraform dependency...", delay: 900 },
+  { time: "00:02", level: "network", node: "Agent:Terraform", text: "Querying AWS infrastructure state...", delay: 1400 },
+  { time: "00:04", level: "success", node: "Agent:Terraform", text: "Resources provisioned. Yielding state to graph.", delay: 2200 },
+  { time: "00:04", level: "status", node: "Pipeline", text: "Node 'Terraform' complete. Parallelizing 'K8sDeploy' & 'Monitor'.", delay: 2400 },
+  { time: "00:05", level: "info", node: "Agent:K8sDeploy", text: "Context received. Applying manifests...", delay: 3000 },
+  { time: "00:05", level: "info", node: "Agent:Monitor", text: "Analyzing health check endpoints...", delay: 3200 },
+  { time: "00:07", level: "success", node: "Agent:K8sDeploy", text: "Pods running. Passing to Monitor.", delay: 4500 },
+  { time: "00:08", level: "success", node: "Agent:Monitor", text: "Services stable. Pipeline Execution Complete.", delay: 5500 },
 ];
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
@@ -83,7 +83,7 @@ export default function CosmicTerminalDemo({ mode = "execution" }: { mode?: "exe
 
   useEffect(() => {
     // Type out the command
-    const command = mode === "execution" ? "octa run swarm.yaml" : "octa sync --team";
+    const command = mode === "execution" ? "octa run pipeline.yaml" : "octa sync --team";
     let i = 0;
     const typeInterval = setInterval(() => {
       setTypedCommand(command.slice(0, i + 1));

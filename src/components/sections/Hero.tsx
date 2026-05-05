@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import HomeWaitlistHero from "./HomeWaitlistHero";
 import DarioAgent from "../ui/DarioAgent";
 import { useState, useEffect } from "react";
+import { Spotlight } from "../ui/spotlight";
 
 const providers = ["Anthropic", "OpenAI", "Gemini", "Groq", "Grok"];
 const CHARS = "ABCDEFGHJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
@@ -51,13 +52,14 @@ const fadeUp = (delay = 0) => ({
 });
 
 export default function HeroSection() {
-  const line1 = useScrambleText("Multi-agent", 200);
-  const line2 = useScrambleText("Orchestration", 600);
+  const line1 = useScrambleText("DevOps AI", 200);
+  const line2 = useScrambleText("Agents", 600);
 
   return (
     <section id="waitlist" className="relative min-h-[85vh] flex flex-col items-center justify-center pt-20 pb-12 px-6 overflow-hidden bg-bg-base transition-colors duration-500">
       
-      {/* Background Gradients */}
+      {/* Background Gradients & Spotlight */}
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="var(--brand-primary)" />
       <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
         <div className="absolute inset-0 bg-bg-base" />
         <div className="absolute -bottom-[20%] -left-[10%] w-[80%] h-[80%] bg-brand-secondary opacity-[0.15] dark:opacity-[0.1] blur-[120px] rounded-full animate-pulse" />
@@ -83,7 +85,7 @@ export default function HeroSection() {
           {...fadeUp(0.3)}
           className="mt-6 text-center text-lg sm:text-xl text-text-muted max-w-2xl leading-relaxed"
         >
-          OctaClaw is a dependency-driven, governance-controlled multi-agent orchestration engine designed for verifiable, staged execution of complex goals via a managed task DAG.
+          OctaClaw is a visual orchestration engine for DevOps teams. Build, deploy, and manage specialized AI agents that automate your CI/CD pipelines, monitor infrastructure, and resolve incidents.
         </motion.p>
 
         <motion.div {...fadeUp(0.4)} className="mt-8 w-full flex flex-col items-center gap-6">

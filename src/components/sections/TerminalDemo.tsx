@@ -18,9 +18,9 @@ interface AgentState {
 }
 
 const AGENT_META = [
-  { role: "Architect", model: "opus-4-6",    accent: "#22d3ee" },
-  { role: "Builder",   model: "sonnet-4-6",  accent: "#a78bfa" },
-  { role: "Tester",    model: "haiku-4-5",   accent: "#fbbf24" },
+  { role: "Provisioner", model: "infra-ops-1",    accent: "#22d3ee" },
+  { role: "Deployer",   model: "ci-cd-bot",  accent: "#a78bfa" },
+  { role: "Monitor",    model: "sre-agent-1",   accent: "#fbbf24" },
 ] as const;
 
 const EMPTY_AGENT: AgentState = { status: "idle", lines: [] };
@@ -75,40 +75,40 @@ export default function TerminalDemo() {
         setStatus(2, "running");
       }),
 
-      // ── Agent 0: Architect ─────────────────────────────────────
-      t(3200, () => pushLine(0, "tool", 'read_file("package.json") → 847 b')),
-      t(4000, () => pushLine(0, "info", "Analyzing auth requirements...")),
-      t(4900, () => pushLine(0, "tool", 'write_file("schema.sql") → 2.1 kb')),
+      // ── Agent 0: Provisioner ─────────────────────────────────────
+      t(3200, () => pushLine(0, "tool", 'read_file("docker-compose.yml") → 847 b')),
+      t(4000, () => pushLine(0, "info", "Analyzing infrastructure requirements...")),
+      t(4900, () => pushLine(0, "tool", 'run_cmd("terraform plan -out=tfplan") → OK')),
       t(5600, () => {
-        pushLine(0, "success", "Schema ready · pushed to shared memory");
+        pushLine(0, "success", "Infrastructure plan generated · pushed to state");
         setStatus(0, "done", "2.7s");
       }),
 
-      // ── Agent 1: Builder (depends on Architect) ────────────────
-      t(3200, () => pushLine(1, "dim",  "Waiting on Architect's schema...")),
-      t(5700, () => pushLine(1, "info", "Schema received ✓  starting impl")),
-      t(6400, () => pushLine(1, "tool", 'read_file("app/middleware.ts") → 3.4 kb')),
-      t(7200, () => pushLine(1, "tool", 'write_file("lib/oauth.ts") → OK')),
-      t(8000, () => pushLine(1, "tool", 'write_file("lib/session.ts") → OK')),
+      // ── Agent 1: Deployer (depends on Provisioner) ────────────────
+      t(3200, () => pushLine(1, "dim",  "Waiting on Provisioner's tfplan...")),
+      t(5700, () => pushLine(1, "info", "Plan received ✓  starting deployment")),
+      t(6400, () => pushLine(1, "tool", 'run_cmd("kubectl apply -f k8s/") → 3 resources')),
+      t(7200, () => pushLine(1, "tool", 'run_cmd("helm upgrade --install api ./chart") → OK')),
+      t(8000, () => pushLine(1, "tool", 'info("Deploying frontend containers") → OK')),
       t(8600, () => {
-        pushLine(1, "success", "2 files written · endpoints live");
+        pushLine(1, "success", "Containers running · ingress active");
         setStatus(1, "done", "5.7s");
       }),
 
-      // ── Agent 2: Tester (runs fully in parallel) ───────────────
-      t(3200, () => pushLine(2, "info", "Analyzing endpoint contracts")),
-      t(4100, () => pushLine(2, "info", "Generating test matrix · 14 cases")),
-      t(5800, () => pushLine(2, "tool", 'run_cmd("vitest --run auth.spec")')),
-      t(7300, () => pushLine(2, "info", "14 / 14 passed ✓")),
+      // ── Agent 2: Monitor (runs fully in parallel) ───────────────
+      t(3200, () => pushLine(2, "info", "Monitoring health checks & logs")),
+      t(4100, () => pushLine(2, "info", "Running e2e integration tests")),
+      t(5800, () => pushLine(2, "tool", 'run_cmd("k6 run load-test.js")')),
+      t(7300, () => pushLine(2, "info", "Latency < 200ms · 0 errors")),
       t(8900, () => {
-        pushLine(2, "success", "0 failures · coverage 94%");
+        pushLine(2, "success", "Deployment stable · monitoring detached");
         setStatus(2, "done", "6.0s");
       }),
 
       // ── Semantic memory update ─────────────────────────────────
       t(5800, () =>
         setMemoryLine(
-          "◆ Memory  →  14 entities extracted · auth-schema, jwt-config, session-store, oauth-flow ..."
+          "◆ Memory  →  Deployment metrics logged · staging-cluster, pod-autoscaler, ingress-controller ..."
         )
       ),
 
@@ -138,7 +138,7 @@ export default function TerminalDemo() {
             <div className="w-3 h-3 rounded-full bg-[#28c840]/80" />
           </div>
           <span className="text-white/25 text-[11px] font-mono tracking-widest uppercase">
-            octaclaw · agent swarm
+            octaclaw · devops pipeline
           </span>
         </div>
         <div className="flex items-center gap-4 font-mono text-[10px] text-white/20">
@@ -158,7 +158,7 @@ export default function TerminalDemo() {
               <span className="text-emerald-400">●</span>
               <span className="text-white/35">session-7f3a</span>
               <span className="text-white/15">·</span>
-              <span className="text-white/35">~/acme-corp</span>
+              <span className="text-white/35">~/infrastructure-monorepo</span>
               <span className="text-white/15">·</span>
               <span className="text-white/35">main ✓</span>
             </motion.div>
@@ -170,7 +170,7 @@ export default function TerminalDemo() {
               className="font-mono text-[13px] pt-0.5"
             >
               <span className="text-white/25">Goal  →  </span>
-              <span className="text-white/80">&quot;Build OAuth2 authentication end-to-end&quot;</span>
+              <span className="text-white/80">&quot;Deploy auth microservice to staging cluster&quot;</span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -181,9 +181,9 @@ export default function TerminalDemo() {
             >
               <span>◆ Planner → parallel_task</span>
               <span className="text-white/10">·</span>
-              <span>TaskDAG compiled</span>
+              <span>Pipeline DAG compiled</span>
               <span className="text-white/10">·</span>
-              <span>3 threads · model-routed</span>
+              <span>3 agents · parallel execution</span>
             </motion.div>
           )}
         </AnimatePresence>

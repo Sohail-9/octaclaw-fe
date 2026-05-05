@@ -21,20 +21,20 @@ export default function SpatialWorkspaceSection() {
             className="max-w-xl"
           >
             <div className="inline-flex rounded-full border border-[#7c3aff]/30 bg-[#7c3aff]/10 px-3 py-1.5 text-sm font-medium text-[#c4a1ff] mb-6">
-              Execution Graphs
+              Infrastructure Graphs
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-5xl text-white font-medium tracking-tight mb-6 leading-tight">
-              The execution graph for <br className="hidden sm:block" /> humans and agents.
+              The CI/CD pipeline for <br className="hidden sm:block" /> humans and agents.
             </h2>
             <p className="text-lg sm:text-lg text-[#dfdaf0] leading-relaxed mb-8">
-              OctaClaw gives your team and agents one unified orchestration graph. You can see every active run, jump into any node, discuss issues in context, and move from alert to fix without switching tools.
+              OctaClaw gives your DevOps team and AI agents one unified orchestration graph. You can see every deployment, jump into any failed build, discuss infrastructure changes, and move from alert to fix instantly.
             </p>
 
             <ul className="space-y-4">
               {[
-                "Visualize complex multi-agent DAGs instantly",
-                "Approve or reject agent actions in real-time",
-                "Full state history and node-level replay"
+                "Visualize complex infrastructure pipelines instantly",
+                "Approve or reject deployments in real-time",
+                "Full state history and pipeline replay"
               ].map((item, i) => (
                 <li key={i} className="flex items-center text-[#c9c2df]">
                   <CheckCircle2 className="w-5 h-5 mr-3 text-[#7c3aff] shrink-0" />
@@ -90,12 +90,12 @@ export default function SpatialWorkspaceSection() {
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <div className="flex items-center gap-2">
                     <BrainCircuit size={14} className="text-[#c4a1ff]" />
-                    <span className="text-[11px] sm:text-xs font-semibold text-white">Syntax Agent</span>
+                    <span className="text-[11px] sm:text-xs font-semibold text-white">Deploy Agent</span>
                   </div>
                   <div className="w-2 h-2 rounded-full bg-[#7c3aff] animate-pulse" />
                 </div>
                 <div className="flex justify-between items-center text-[10px] text-[#c9c2df] mb-1">
-                  <span>Parsing inputs...</span>
+                  <span>Deploying...</span>
                   <span className="font-mono">68%</span>
                 </div>
                 <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">

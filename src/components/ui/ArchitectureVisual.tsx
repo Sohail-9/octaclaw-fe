@@ -7,8 +7,8 @@ import RunningRobot from "./RunningRobot";
 
 const steps = [
   { id: "input", icon: Terminal, label: "Intent Input", desc: "Natural language goals" },
-  { id: "planner", icon: Brain, label: "TaskDAG Planner", desc: "Decomposing into parallel tasks" },
-  { id: "runtime", icon: Cpu, label: "Active Runtime", desc: "Executing agent swarms" },
+  { id: "planner", icon: Brain, label: "Pipeline Planner", desc: "Decomposing into DevOps tasks" },
+  { id: "runtime", icon: Cpu, label: "Active Runtime", desc: "Executing DevOps agents" },
   { id: "memory", icon: Share2, label: "Semantic Memory", desc: "Persistent knowledge sync" },
 ];
 
@@ -131,15 +131,15 @@ export default function ArchitectureVisual() {
           </div>
           <h3 className="text-3xl font-bold text-text-main mb-4 font-heading tracking-tight">
             {activeStep === 0 && "Intent Compilation"}
-            {activeStep === 1 && "TaskDAG Optimization"}
+            {activeStep === 1 && "Pipeline Optimization"}
             {activeStep === 2 && "Bun-Native Execution"}
-            {activeStep === 3 && "JSON-Store Synthesis"}
+            {activeStep === 3 && "Audit Log Synthesis"}
           </h3>
           <p className="text-text-muted text-sm font-mono leading-relaxed max-w-xl">
             {activeStep === 0 && "Natural language is compiled into deterministic Bun-optimized instructions, ensuring zero-latency startup for cold agent spawns."}
-            {activeStep === 1 && "The core scheduler analyzes dependencies and parallelizes tasks into a DAG, optimized for high-throughput Fintech and technical workflows."}
-            {activeStep === 2 && "Specialized agents are dispatched concurrently within secure sandboxes, executing with the raw speed of the Bun runtime engine."}
-            {activeStep === 3 && "Execution findings are recursively distilled into a persistent JSON-store knowledge matrix, building a long-term memory for your team."}
+            {activeStep === 1 && "The core scheduler analyzes dependencies and parallelizes tasks into a DAG, optimized for high-throughput CI/CD and infrastructure workflows."}
+            {activeStep === 2 && "Specialized DevOps agents are dispatched concurrently within secure sandboxes, executing with the raw speed of the Bun runtime engine."}
+            {activeStep === 3 && "Execution findings are recursively distilled into a persistent JSON-store knowledge matrix, building a long-term incident memory for your team."}
           </p>
         </div>
       </motion.div>

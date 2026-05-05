@@ -6,18 +6,18 @@ import { GitBranch, Cuboid, Zap } from "lucide-react";
 
 const cards = [
   {
-    title: "Parallel Swarm",
-    description: "Highly dynamic multi-agent swarm runtime. Complex tasks are orchestrated through the OctaClaw matrix, allowing for recursive agent fanning and massive concurrency.",
+    title: "Parallel Pipelines",
+    description: "Highly dynamic multi-agent runtime. Infrastructure provisioning and testing are orchestrated through the OctaClaw matrix, allowing for massive concurrency.",
     icon: GitBranch,
   },
   {
-    title: "Spatial Control",
-    description: "Real-time visual debugging in a spatial workspace. Inspect agent nodes as they execute, tracing every token and decision path instantly.",
+    title: "Infrastructure Visualization",
+    description: "Real-time visual debugging in a spatial workspace. Inspect agent nodes as they manage environments, tracing every decision path instantly.",
     icon: Cuboid,
   },
   {
-    title: "Cost Optimization",
-    description: "A three-layer engine reducing token usage by up to 50-60%. Maximize agent intelligence while minimizing operational overhead.",
+    title: "Resource Optimization",
+    description: "A three-layer engine reducing cloud token and compute usage by up to 50-60%. Maximize agent efficiency while minimizing operational overhead.",
     icon: Zap,
   }
 ];

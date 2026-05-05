@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { Terminal } from "lucide-react";
 
 const commands = [
-  { cmd: "octa init", desc: "scaffold workspace" },
-  { cmd: "octa chat", desc: "interactive session" },
-  { cmd: "octa run [recipe]", desc: "run predefined DAG" },
-  { cmd: "octa doctor", desc: "validate config" },
-  { cmd: "octa logs", desc: "stream background agent logs" },
+  { cmd: "octa init", desc: "scaffold infrastructure workspace" },
+  { cmd: "octa chat", desc: "interactive DevOps assistant" },
+  { cmd: "octa run [recipe]", desc: "run deployment pipeline" },
+  { cmd: "octa doctor", desc: "validate terraform & k8s manifests" },
+  { cmd: "octa logs", desc: "stream pipeline agent logs" },
 ];
 
 export default function CLIReferenceSection() {

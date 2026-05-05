@@ -84,7 +84,7 @@ export default function BentoFeatures() {
           <motion.h2
             className="text-4xl sm:text-5xl font-bold tracking-tight text-text-main mb-6 font-heading"
           >
-            The Architecture of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">Intelligence</span>.
+            The Architecture of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary">DevOps Automation</span>.
           </motion.h2>
         </div>
 

@@ -6,9 +6,9 @@ import { useState } from "react";
 
 const steps = [
   { title: "1. Install Globally", code: "npm i -g octaclaw" },
-  { title: "2. Scaffold Workspace", code: "octa init" },
-  { title: "3. Run Agent DAG", code: "octa run code-review" },
-  { title: "4. Chat Instantly", code: "octa chat" },
+  { title: "2. Setup Infrastructure", code: "octa init" },
+  { title: "3. Run Pipeline", code: "octa run deploy-staging" },
+  { title: "4. Chat with SRE", code: "octa chat" },
 ];
 
 export default function QuickStartSection() {
@@ -39,7 +39,7 @@ export default function QuickStartSection() {
             transition={{ delay: 0.1 }}
             className="mt-4 text-lg text-text-muted"
           >
-            From zero to multi-agent deployment in seconds.
+            From zero to automated CI/CD deployment in seconds.
           </motion.p>
         </div>
 

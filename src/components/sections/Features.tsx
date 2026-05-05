@@ -21,7 +21,7 @@ export default function FeaturesSection() {
           >
             Built for real
             <br />
-            <span className="text-text-muted">agent throughput.</span>
+            <span className="text-text-muted">DevOps throughput.</span>
           </motion.h2>
 
         <motion.p
@@ -31,8 +31,8 @@ export default function FeaturesSection() {
           transition={{ duration: 0.6 }}
           className="max-w-sm text-sm text-text-muted leading-relaxed"
         >
-          Not wrappers. Not chains. A first-class parallel execution engine
-          with an OctaClaw scheduler, retry logic, and token optimization built in.
+          Not simple wrappers. A first-class parallel execution engine
+          with an infrastructure scheduler, automatic rollbacks, and compliance built in.
         </motion.p>
         </div>
 
@@ -51,12 +51,12 @@ export default function FeaturesSection() {
                 <GitBranch size={18} className="text-text-main" />
               </div>
               <h3 className="text-2xl font-bold text-text-main tracking-tight">
-                Autonomous Orchestration
+                Pipeline Orchestration
               </h3>
               <p className="mt-3 text-text-muted text-sm leading-relaxed">
-                Break any goal into a parallel swarm of agents. Dependencies
-                are respected automatically — parallel tasks run concurrently, serial
-                ones wait. Built-in retry on failure.
+                Break any goal into parallel deployment pipelines. Infrastructure dependencies
+                are respected automatically — independent services deploy concurrently, serial
+                ones wait. Built-in rollback on failure.
               </p>
             </div>
 
@@ -69,7 +69,7 @@ export default function FeaturesSection() {
               </div>
               <div className="bg-bg-surface px-3 py-2 rounded-lg border border-border-subtle ml-5 w-4/5">
                 <span className="text-text-muted/30">node</span>{" "}
-                <span className="text-text-main/50">&quot;Scraper&quot;</span>
+                <span className="text-text-main/50">&quot;K8sDeploy&quot;</span>
                 {" "}depends: [&quot;Planner&quot;]
               </div>
               <div className="bg-bg-surface px-3 py-2 rounded-lg border border-border-focus ml-10 w-4/5 text-emerald-400/60">
@@ -91,14 +91,14 @@ export default function FeaturesSection() {
                 <Users size={18} className="text-text-main" />
               </div>
               <h3 className="text-xl font-bold text-text-main tracking-tight">
-                Swarm Specialists
+                SRE Specialists
               </h3>
               <p className="mt-3 text-text-muted text-sm leading-relaxed">
-                Deploy role-based agents each with isolated context and purpose.
+                Deploy role-based DevOps agents each with isolated context and permissions.
               </p>
             </div>
             <div className="mt-8 flex flex-wrap gap-2">
-              {["Architect", "Builder", "Reviewer", "Planner", "Synthesizer", "Tester"].map((role) => (
+              {["Terraform", "Kubernetes", "Security", "Monitor", "Network", "Database"].map((role) => (
                 <span
                   key={role}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-bg-surface border border-border-subtle text-[11px] font-mono font-medium text-text-muted/70"
@@ -121,10 +121,10 @@ export default function FeaturesSection() {
               <Database strokeWidth={1.5} size={28} />
             </div>
             <h3 className="text-lg font-bold text-text-main tracking-tight">
-              Semantic Graph Memory
+              Infrastructure Memory
             </h3>
             <p className="mt-2 text-text-muted text-sm leading-relaxed">
-              A recursive graph engine that extracts entities and relations into a persistent knowledge matrix. Move beyond basic chat history into a self-evolving semantic brain.
+              A recursive engine that maps your cloud architecture into a persistent knowledge matrix. Move beyond static configs into a self-evolving semantic brain of your infrastructure.
             </p>
           </motion.div>
 

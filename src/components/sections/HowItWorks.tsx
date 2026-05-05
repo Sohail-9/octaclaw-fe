@@ -5,21 +5,21 @@ import { motion } from "framer-motion";
 const steps = [
   {
     phase: "01",
-    title: "Goal Ingestion",
+    title: "DevOps Intent Ingestion",
     description:
-      "Submit a natural-language goal through the CLI, HTTP API, or a distributed worker queue. OctaClaw normalizes the input for the planning engine.",
+      "Submit a natural-language goal like 'deploy to staging' through the CLI or API. OctaClaw normalizes the input into infrastructure tasks.",
   },
   {
     phase: "02",
-    title: "OctaClaw Planning",
+    title: "Pipeline Planning",
     description:
-      "The Planner classifies intent into Conversational, Direct, or Parallel paths. It selects the optimal strategy for the OctaClaw engine.",
+      "The Planner breaks down intent into CI/CD, Provisioning, and Testing paths. It selects the optimal strategy for cloud deployment.",
   },
   {
     phase: "03",
-    title: "Swarm Execution",
+    title: "Agent Execution",
     description:
-      "The Scheduler drives a dynamic swarm of specialized agents. Parallel tasks execute concurrently with automated retries and final result synthesis.",
+      "The Scheduler drives specialized DevOps agents. Parallel infrastructure tasks execute concurrently with automated rollbacks on failure.",
   },
 ];
 
@@ -42,7 +42,7 @@ export default function HowItWorksSection() {
             viewport={{ once: true }}
             className="text-4xl sm:text-5xl font-bold tracking-tight text-text-main"
           >
-            From goal to output
+            From intent to production
             <br />
             <span className="text-text-muted">in one command.</span>
           </motion.h2>
