@@ -1,91 +1,86 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
-import { Moon, Sun, Linkedin } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [visible, setVisible] = useState(true);
+  const { scrollY } = useScroll();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 150) {
+      setVisible(false);
+    } else {
+      setVisible(true);
+    }
+    setScrolled(latest > 20);
+  });
 
-    try {
-      const stored = (localStorage.getItem("theme") as "dark" | "light") || "dark";
-      setTheme(stored);
-    } catch {}
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const cycleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    document.body.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-  };
+  const navItems = [
+    { label: "Platform", href: "#features" },
+    { label: "How It Works", href: "#features" },
+  ];
 
   return (
     <motion.header
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-4 left-0 right-0 z-50 px-4 pointer-events-none"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{
+        y: visible ? 0 : -100,
+        opacity: visible ? 1 : 0,
+      }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-6 left-0 right-0 z-50 px-4 flex justify-center"
     >
       <nav
-        className={`max-w-6xl mx-auto h-14 flex items-center justify-between px-5 rounded-xl pointer-events-auto transition-all duration-500 ${
+        className={`w-full max-w-5xl h-14 flex items-center justify-between px-6 rounded-2xl transition-all duration-500 ${
           scrolled
-            ? "bg-bg-surface/90 backdrop-blur-xl border border-border-subtle shadow-lg"
-            : "bg-transparent border border-transparent"
+            ? "bg-[#050505]/80 backdrop-blur-xl border border-white/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
+            : "bg-white/[0.03] backdrop-blur-md border border-white/[0.05]"
         }`}
       >
         {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-lg font-bold tracking-tight text-text-main"
-        >
-          <div className="relative w-7 h-7 flex-shrink-0">
-            <Logo className="w-7 h-7" />
-          </div>
-          <span>OctaClaw</span>
+        <Link href="/" className="flex items-center gap-3 group">
+          <Logo className="w-7 h-7 transition-transform duration-500 group-hover:rotate-6 invert" />
+          <span className="uppercase tracking-[0.25em] font-bold text-[10px] text-white/70 group-hover:text-white transition-colors duration-300">
+            OctaClaw
+          </span>
         </Link>
 
         {/* Nav links */}
-        <div className="hidden md:flex items-center gap-7 text-sm font-medium text-text-muted">
-          <Link href="#howitworks" className="hover:text-text-main transition-colors duration-200">
-            How it works
-          </Link>
+        <div className="hidden md:flex items-center gap-10">
+          {navItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/30 hover:text-white transition-colors duration-300 relative group/link"
+            >
+              {item.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-violet-400 transition-all duration-300 group-hover/link:w-full" />
+            </Link>
+          ))}
         </div>
 
-        {/* Right side */}
-        <div className="flex items-center gap-3">
+        {/* Right */}
+        <div className="flex items-center gap-5">
           <a
             href="https://www.linkedin.com/company/octaclaw/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-8 h-8 flex items-center justify-center rounded-lg text-text-muted hover:text-text-main hover:bg-bg-card transition-all duration-200"
-            aria-label="LinkedIn"
+            className="hidden sm:flex items-center text-white/20 hover:text-white/70 transition-colors duration-300"
           >
-            <Linkedin size={15} />
+            <Linkedin size={16} strokeWidth={1.5} />
           </a>
-          <button
-            onClick={cycleTheme}
-            className="w-8 h-8 flex items-center justify-center rounded-lg text-text-muted hover:text-text-main hover:bg-bg-card transition-all duration-200"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-          </button>
 
           <Link
             href="#waitlist"
-            className="hidden sm:inline-flex items-center h-9 px-4 rounded-lg bg-text-main text-bg-base text-sm font-semibold tracking-tight hover:opacity-85 transition-opacity duration-200"
+            className="inline-flex items-center h-9 px-5 rounded-full bg-white text-black text-[10px] font-bold uppercase tracking-[0.1em] hover:bg-white/90 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] active:scale-95"
           >
-            Join Waitlist
+            Early Access
           </Link>
         </div>
       </nav>

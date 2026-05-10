@@ -13,49 +13,21 @@
   --color-text-muted: var(--text-muted);
   --color-border-subtle: var(--border-subtle);
   --color-border-focus: var(--border-focus);
-
-  /* Component color tokens */
-  --color-primary: #ffffff;
-  --color-primary-light: rgba(255, 255, 255, 0.5);
-  --color-secondary: #888888;
-  --color-surface-low: var(--bg-card);
-  --color-cyber-mint: #6ee7b7;
   --color-brand-primary: var(--brand-primary);
   --color-brand-secondary: var(--brand-secondary);
 }
 
-[data-theme="light"] {
-  --bg-base: #ffffff;
-  --bg-surface: #fafafa;
-  --bg-card: #f5f5f5;
-  --bg-card-hover: #eeeeee;
-  --text-main: #000000;
-  --text-muted: #666666;
-  --border-subtle: #eeeeee;
-  --border-focus: #dddddd;
-  --accent-primary: #000000;
-  --accent-secondary: #666666;
-  --brand-primary: #059669;
-  /* Darker emerald for light mode */
-  --brand-secondary: #4f46e5;
-  /* Darker indigo for light mode */
-}
-
-[data-theme="dark"] {
-  --bg-base: #0d0d0d;
-  --bg-surface: #141414;
-  --bg-card: #1a1a1a;
-  --bg-card-hover: #222222;
-  --text-main: #ffffff;
-  --text-muted: #888888;
-  --border-subtle: #222222;
-  --border-focus: #333333;
-  --accent-primary: #ffffff;
-  --accent-secondary: #888888;
-  --brand-primary: #6ee7b7;
-  /* Cyber mint for dark mode */
-  --brand-secondary: #6366f1;
-  /* Electric indigo for dark mode */
+:root {
+  --bg-base: #050505;
+  --bg-surface: #0a0a0a;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.06);
+  --text-main: #f9fafb;
+  --text-muted: rgba(249, 250, 251, 0.45);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-focus: rgba(139, 92, 246, 0.5);
+  --brand-primary: #8b5cf6;
+  --brand-secondary: #10b981;
 }
 
 html,
@@ -67,185 +39,138 @@ body {
   background-color: var(--bg-base);
   color: var(--text-main);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-@keyframes play-sprite {
-  from { background-position-x: 0px; }
-  to { background-position-x: calc(var(--sprite-end) * 1px); }
-}
-
-body::after {
+/* Subtle noise grain on dark bg */
+body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.03;
-  z-index: 9999;
+  opacity: 0.025;
+  z-index: 100;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
+  letter-spacing: -0.05em;
+  line-height: 1;
 }
 
-@keyframes text-shimmer {
-  0% {
-    background-position: -200% 0;
-  }
+/* Scrollbars */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 10px; }
+::selection { background: rgba(139, 92, 246, 0.25); }
 
-  100% {
-    background-position: 200% 0;
-  }
+/* ─── Glassmorphism (Dark) ────────────────────────────────── */
+
+.glass-dark {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-@keyframes shimmer-btn {
-  0% {
-    transform: translateX(-100%);
-  }
+/* ─── Dotted Grid (Dark) ──────────────────────────────────── */
 
-  100% {
-    transform: translateX(100%);
-  }
+.dotted-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-/* Base styling scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-}
+/* ─── Shiny Text (Dark) ───────────────────────────────────── */
 
-::-webkit-scrollbar-track {
-  background: var(--bg-base);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(124, 58, 255, 0.45);
-  border-radius: 4px;
-}
-
-::selection {
-  background: rgba(129, 230, 217, 0.3);
-  color: var(--text-main);
-}
-
-/* ─── Component utilities ─────────────────────────────────── */
-
-.bg-surface-low {
-  background-color: var(--bg-card);
-}
-
-.text-secondary {
-  color: var(--text-muted);
-}
-
-.text-cyber-mint {
-  color: #6ee7b7;
-}
-
-.text-vivid-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+.shiny-text {
+  background: linear-gradient(
+    120deg,
+    #f9fafb 30%,
+    #8b5cf6 45%,
+    #10b981 55%,
+    #f9fafb 70%
+  );
+  background-size: 200% 100%;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: shiny-flow 5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  color: transparent;
+  display: inline-block;
 }
 
-/* Glassmorphism card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-radius: 20px;
+@keyframes shiny-flow {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
-.glass-micro-border {
-  border: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.top-edge-highlight {
-  border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
-}
-
-/* Premium CTA button — theme-aware */
-.btn-premium {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  height: 56px;
-  padding: 0 1.75rem;
-  border-radius: 10px;
-  background: var(--accent-primary);
-  color: var(--bg-base);
-  font-weight: 700;
-  font-size: 0.9375rem;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.15s ease;
-}
-
-.btn-premium:hover:not(:disabled) {
-  opacity: 0.85;
-  transform: translateY(-1px);
-}
-
-.btn-premium:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* Gradient border card wrapper */
-.magic-border-container {
-  padding: 1px;
-  border-radius: 25px;
-  background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.02) 50%,
-      rgba(255, 255, 255, 0.07) 100%);
-}
-
-.magic-border-content {
-  border-radius: 24px;
-  overflow: hidden;
-}
-
-@keyframes progress-bar {
-  0% {
-    width: 15%;
-  }
-
-  100% {
-    width: 85%;
-  }
-}
-
-.animate-progress {
-  animation: progress-bar 3.5s ease-in-out infinite alternate;
-}
+/* ─── Spotlight Animation ─────────────────────────────────── */
 
 @keyframes spotlight {
   0% {
     opacity: 0;
-    transform: translate(-72%, -62%) scale(0.5);
+    transform: translate(-72%, -62%) skewX(10deg);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%,-40%) scale(1);
+    transform: translate(-50%, -40%) skewX(0deg);
   }
 }
 
 .animate-spotlight {
-  animation: spotlight 2s ease .75s 1 forwards;
+  animation: spotlight 2s ease 0.5s 1 forwards;
+}
+
+/* ─── Infinite Scroll (InfiniteMovingCards) ───────────────── */
+
+@keyframes infinite-scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
+}
+
+/* ─── Hero gradient border glow ──────────────────────────── */
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--bg-surface), var(--bg-surface)) padding-box,
+    linear-gradient(135deg, #8b5cf6, #10b981) border-box;
+  border: 1px solid transparent;
+}
+
+/* ─── Moving border shimmer btn ──────────────────────────── */
+
+@keyframes shimmer-btn {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+
+/* ─── Pulse ring ──────────────────────────────────────────── */
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+/* ─── Float ───────────────────────────────────────────────── */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }

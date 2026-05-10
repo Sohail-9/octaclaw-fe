@@ -1,15 +1,18 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/Hero";
-import BentoFeatures from "@/components/sections/BentoFeatures";
+import FeaturesSection from "@/components/sections/Features";
+import HowItWorksSection from "@/components/sections/EfficiencySection";
+import CTASection from "@/components/sections/CTASection";
 
 export default function Page() {
   return (
-    <main className="bg-bg-base min-h-screen relative font-sans selection:bg-white/20 selection:text-white">
+    <main className="bg-[#050505] min-h-screen relative font-sans overflow-x-hidden selection:bg-violet-500/20 selection:text-violet-200">
       <Navbar />
       <HeroSection />
-      
-      <BentoFeatures />
+      <FeaturesSection />
+      <HowItWorksSection />
+      <CTASection />
       <Footer />
     </main>
   );

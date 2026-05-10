@@ -2,106 +2,116 @@
 
 import { motion } from "framer-motion";
 import HomeWaitlistHero from "./HomeWaitlistHero";
-import DarioAgent from "../ui/DarioAgent";
-import { useState, useEffect } from "react";
-import { Spotlight } from "../ui/spotlight";
-
-const providers = ["Anthropic", "OpenAI", "Gemini", "Groq", "Grok"];
-const CHARS = "ABCDEFGHJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
-
-const useScrambleText = (text: string, delay: number = 0) => {
-  const [display, setDisplay] = useState("");
-  const [isComplete, setIsComplete] = useState(false);
-
-  useEffect(() => {
-    let iteration = 0;
-    const interval = 30;
-    const totalIterations = 15;
-    
-    setTimeout(() => {
-      const timer = setInterval(() => {
-        setDisplay(
-          text
-            .split("")
-            .map((char, index) => {
-              if (index < iteration / (totalIterations / text.length)) {
-                return text[index];
-              }
-              return CHARS[Math.floor(Math.random() * CHARS.length)];
-            })
-            .join("")
-        );
-
-        if (iteration >= totalIterations) {
-          clearInterval(timer);
-          setDisplay(text);
-          setIsComplete(true);
-        }
-        iteration += 1;
-      }, interval);
-    }, delay);
-  }, [text, delay]);
-
-  return display;
-};
+import { Spotlight } from "@/components/ui/Spotlight";
+import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 12 },
+  initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] as const },
+  transition: { duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] as const },
 });
 
+const providers = [
+  { name: "Anthropic Claude" },
+  { name: "OpenAI GPT-4o" },
+  { name: "Google Gemini" },
+  { name: "Groq LLaMA" },
+  { name: "xAI Grok" },
+  { name: "Mistral" },
+  { name: "Cohere" },
+  { name: "Meta LLaMA" },
+];
+
 export default function HeroSection() {
-  const line1 = useScrambleText("DevOps AI", 200);
-  const line2 = useScrambleText("Agents", 600);
-
   return (
-    <section id="waitlist" className="relative min-h-[85vh] flex flex-col items-center justify-center pt-20 pb-12 px-6 overflow-hidden bg-bg-base transition-colors duration-500">
-      
-      {/* Background Gradients & Spotlight */}
-      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="var(--brand-primary)" />
-      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-        <div className="absolute inset-0 bg-bg-base" />
-        <div className="absolute -bottom-[20%] -left-[10%] w-[80%] h-[80%] bg-brand-secondary opacity-[0.15] dark:opacity-[0.1] blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute -bottom-[10%] -right-[10%] w-[70%] h-[70%] bg-brand-primary opacity-[0.12] dark:opacity-[0.08] blur-[100px] rounded-full animate-pulse" />
-      </div>
+    <section
+      id="waitlist"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-24 px-6 overflow-hidden bg-[#050505]"
+    >
+      {/* Spotlights */}
+      <Spotlight
+        className="-top-40 left-0 md:left-60 md:-top-20"
+        fill="rgba(139, 92, 246, 0.6)"
+      />
+      <Spotlight
+        className="top-10 right-0 md:right-40"
+        fill="rgba(16, 185, 129, 0.35)"
+      />
 
-      <div className="relative z-10 w-full max-w-4xl flex flex-col items-center">
-        <motion.h1
-          {...fadeUp(0.2)}
-          className="text-center text-5xl sm:text-6xl md:text-8xl font-bold tracking-[-0.05em] leading-[0.95] text-text-main flex flex-col items-center sm:block"
-        >
-          <span className="inline-flex items-center gap-4 sm:gap-6 align-middle">
-            <DarioAgent className="-ml-2 sm:-ml-4 sm:mr-2 scale-[0.5] sm:scale-[0.7] md:scale-[1]" state="run_right" />
-            <span className="font-mono">{line1}</span>
-          </span>
-          <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-secondary font-mono">
-            {line2}
-          </span>
-        </motion.h1>
+      {/* Dotted grid */}
+      <div className="absolute inset-0 dotted-grid opacity-100 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_80%)]" />
 
-        <motion.p 
-          {...fadeUp(0.3)}
-          className="mt-6 text-center text-lg sm:text-xl text-text-muted max-w-2xl leading-relaxed"
-        >
-          OctaClaw is a visual orchestration engine for DevOps teams. Build, deploy, and manage specialized AI agents that automate your CI/CD pipelines, monitor infrastructure, and resolve incidents.
-        </motion.p>
+      {/* Ambient blobs */}
+      <div className="absolute top-[-10%] left-[-5%] w-[45%] h-[50%] bg-violet-600/[0.07] blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[0%] right-[-5%] w-[40%] h-[45%] bg-emerald-600/[0.06] blur-[120px] rounded-full pointer-events-none" />
 
-        <motion.div {...fadeUp(0.4)} className="mt-8 w-full flex flex-col items-center gap-6">
-          <div className="w-full max-w-md">
-            <HomeWaitlistHero />
-          </div>
-          
-          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 opacity-60">
-            {providers.map((p) => (
-              <span key={p} className="inline-flex items-center h-5 px-2 rounded-md border border-border-subtle bg-bg-surface text-[9px] font-bold text-text-muted">
-                {p}
-              </span>
-            ))}
+      <div className="relative z-10 w-full max-w-5xl flex flex-col items-center">
+
+        {/* Badge */}
+        <motion.div {...fadeUp(0)} className="mb-10">
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/50">
+              Multi-Agent AI Platform
+            </span>
           </div>
         </motion.div>
+
+        {/* Headline */}
+        <motion.div {...fadeUp(0.1)} className="text-center mb-8">
+          <h1 className="text-6xl sm:text-8xl md:text-[9rem] font-bold tracking-[-0.07em] leading-[0.85] text-white uppercase font-heading">
+            Intelligence,
+            <br />
+            <span className="shiny-text">Orchestrated.</span>
+          </h1>
+        </motion.div>
+
+        {/* Subtitle */}
+        <motion.p
+          {...fadeUp(0.2)}
+          className="text-center text-lg sm:text-xl text-white/40 max-w-2xl leading-relaxed font-normal tracking-tight mb-14"
+        >
+          Deploy autonomous AI swarms that collaborate, reason, and execute —
+          across any model, any workflow, at any scale.
+        </motion.p>
+
+        {/* Waitlist form */}
+        <motion.div {...fadeUp(0.3)} className="w-full max-w-md">
+          <HomeWaitlistHero />
+        </motion.div>
+
+        {/* Scroll hint */}
+        <motion.div
+          {...fadeUp(0.5)}
+          className="mt-10 flex flex-col items-center gap-2 text-white/20"
+        >
+          <div className="flex flex-col items-center gap-1">
+            <div className="w-[1px] h-8 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+          </div>
+          <span className="text-[9px] uppercase tracking-[0.3em] font-bold">Scroll</span>
+        </motion.div>
       </div>
+
+      {/* Provider ticker */}
+      <motion.div
+        {...fadeUp(0.6)}
+        className="absolute bottom-10 left-0 right-0"
+      >
+        <div className="flex items-center justify-center gap-4 mb-4">
+          <span className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-bold">
+            Compatible with
+          </span>
+        </div>
+        <InfiniteMovingCards
+          items={providers}
+          direction="left"
+          speed="slow"
+          className="mx-auto"
+        />
+      </motion.div>
     </section>
   );
 }

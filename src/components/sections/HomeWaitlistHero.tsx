@@ -2,21 +2,17 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import AgentIDCard from "../ui/AgentIDCard";
 
 export default function HomeWaitlistHero() {
   const [email, setEmail] = useState("");
-  const [savedEmail, setSavedEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
-
   const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     setStatus("loading");
-    setSavedEmail(email);
     setMessage("");
 
     try {
@@ -29,28 +25,33 @@ export default function HomeWaitlistHero() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to initialize protocol.");
+        throw new Error(data.error || "Request failed.");
       }
 
       setStatus("success");
-      if (data.message === "Already on the waitlist") {
-        setMessage("Credentials verified. Already in queue.");
-      } else {
-        setMessage("Welcome to Octaclaw.");
-      }
+      setMessage(
+        data.message === "Already on the waitlist"
+          ? "Already in queue — we'll be in touch."
+          : "You're in. Welcome to OctaClaw."
+      );
       setEmail("");
     } catch (error: unknown) {
       setStatus("error");
-      setMessage((error instanceof Error ? error.message : "Connection refused. Please try again."));
+      setMessage(
+        error instanceof Error ? error.message : "Something went wrong. Try again."
+      );
     }
   };
 
   return (
-    <div className="relative w-full max-w-[440px] flex flex-col items-center gap-4">
+    <div className="relative w-full flex flex-col items-center gap-4">
       <form
         onSubmit={handleSubmit}
-        className={`relative z-20 w-full flex items-center bg-bg-surface border rounded-full p-2.5 pl-7 transition-all duration-300 ${isFocused ? "border-border-focus shadow-[0_0_0_3px_var(--border-subtle)]" : "border-border-subtle"
-          }`}
+        className={`relative z-20 w-full flex items-center rounded-full p-1.5 pl-6 transition-all duration-300 ${
+          isFocused
+            ? "shadow-[0_0_0_2px_rgba(139,92,246,0.5)] bg-white/[0.07] border border-violet-500/30"
+            : "bg-white/[0.05] border border-white/[0.08]"
+        }`}
       >
         <input
           type="email"
@@ -59,38 +60,41 @@ export default function HomeWaitlistHero() {
           onBlur={() => setIsFocused(false)}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
-          className="flex-1 bg-transparent text-lg text-text-main outline-none placeholder:text-text-muted/40 font-medium min-w-0"
+          className="flex-1 bg-transparent text-base text-white outline-none placeholder:text-white/25 font-medium min-w-0"
           style={{
-            WebkitBoxShadow: "0 0 0px 1000px var(--bg-surface) inset",
-            WebkitTextFillColor: "var(--text-main)",
-            transition: "background-color 5000s ease-in-out 0s",
+            WebkitBoxShadow: "0 0 0px 1000px transparent inset",
+            WebkitTextFillColor: "white",
+            caretColor: "#8b5cf6",
           }}
           disabled={status === "loading" || status === "success"}
         />
+
         <motion.button
           type="submit"
-          whileHover={{ scale: 1.03 }}
+          whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
           disabled={status === "loading" || status === "success" || !email}
-          className="ml-2 shrink-0 rounded-full bg-text-main text-bg-base transition-all py-4 px-10 text-base font-bold disabled:cursor-not-allowed disabled:opacity-50 z-10 relative overflow-hidden group"
+          className="ml-2 shrink-0 rounded-full bg-white text-black py-3.5 px-8 text-[13px] font-bold tracking-tight disabled:cursor-not-allowed disabled:opacity-40 relative overflow-hidden group transition-all duration-300 hover:bg-white/90"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-bg-base/10 to-transparent -translate-x-[150%] group-hover:animate-[shimmer-btn_2s_infinite_linear]" />
-
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-[150%] group-hover:animate-[shimmer-btn_1.5s_infinite_linear]" />
           <AnimatePresence mode="wait">
             {status === "idle" && (
-              <motion.span key="txt" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
-                Join
+              <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
+                Get Early Access
               </motion.span>
             )}
             {status === "loading" && (
-              <motion.div key="spin" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-1.5 relative z-10">
-                <span className="h-1.5 w-1.5 rounded-full bg-bg-base animate-pulse" style={{ animationDelay: "0ms" }} />
-                <span className="h-1.5 w-1.5 rounded-full bg-bg-base animate-pulse" style={{ animationDelay: "150ms" }} />
-                <span className="h-1.5 w-1.5 rounded-full bg-bg-base animate-pulse" style={{ animationDelay: "300ms" }} />
+              <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-1 relative z-10">
+                <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "0ms" }} />
+                <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "150ms" }} />
+                <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "300ms" }} />
               </motion.div>
             )}
             {status === "success" && (
-              <motion.span key="check" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
+              <motion.span key="success" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10 flex items-center gap-2">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
                 Joined
               </motion.span>
             )}
@@ -99,30 +103,23 @@ export default function HomeWaitlistHero() {
       </form>
 
       <AnimatePresence>
-        {status === "success" && (
-          <AgentIDCard
-            email={savedEmail}
-            onDismiss={() => setStatus("idle")}
-          />
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
         {message && (
-          <motion.div
+          <motion.p
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center gap-2"
+            className={`text-center text-xs font-medium tracking-wide ${
+              status === "success" ? "text-emerald-400" : "text-red-400"
+            }`}
           >
-            <p className={`text-center text-[11px] font-mono font-bold tracking-widest uppercase ${status === "success" ? "text-brand-primary" : "text-red-400"
-              }`}>
-              {status === "success" && "[SUCCESS] "}
-              {message}
-            </p>
-          </motion.div>
+            {message}
+          </motion.p>
         )}
       </AnimatePresence>
+
+      <p className="text-[10px] text-white/20 font-medium tracking-wide">
+        No spam. Unsubscribe any time.
+      </p>
     </div>
   );
 }
