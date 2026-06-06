@@ -55,7 +55,12 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   letter-spacing: -0.05em;
@@ -63,10 +68,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Scrollbars */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 10px; }
-::selection { background: rgba(139, 92, 246, 0.25); }
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.25);
+}
 
 /* ─── Glassmorphism (Dark) ────────────────────────────────── */
 
@@ -87,13 +104,11 @@ h1, h2, h3, h4, h5, h6 {
 /* ─── Shiny Text (Dark) ───────────────────────────────────── */
 
 .shiny-text {
-  background: linear-gradient(
-    120deg,
-    #f9fafb 30%,
-    #8b5cf6 45%,
-    #10b981 55%,
-    #f9fafb 70%
-  );
+  background: linear-gradient(120deg,
+      #f9fafb 30%,
+      #8b5cf6 45%,
+      #10b981 55%,
+      #f9fafb 70%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -103,8 +118,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes shiny-flow {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* ─── Spotlight Animation ─────────────────────────────────── */
@@ -114,6 +134,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
     transform: translate(-72%, -62%) skewX(10deg);
   }
+
   100% {
     opacity: 1;
     transform: translate(-50%, -40%) skewX(0deg);
@@ -133,8 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .animate-infinite-scroll {
-  animation: infinite-scroll var(--animation-duration, 40s)
-    var(--animation-direction, forwards) linear infinite;
+  animation: infinite-scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
 }
 
 /* ─── Hero gradient border glow ──────────────────────────── */
@@ -149,15 +169,27 @@ h1, h2, h3, h4, h5, h6 {
 /* ─── Moving border shimmer btn ──────────────────────────── */
 
 @keyframes shimmer-btn {
-  0% { transform: translateX(-150%); }
-  100% { transform: translateX(150%); }
+  0% {
+    transform: translateX(-150%);
+  }
+
+  100% {
+    transform: translateX(150%);
+  }
 }
 
 /* ─── Pulse ring ──────────────────────────────────────────── */
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.8); opacity: 0.8; }
-  100% { transform: scale(2); opacity: 0; }
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
 
 .animate-pulse-ring {
@@ -167,8 +199,15 @@ h1, h2, h3, h4, h5, h6 {
 /* ─── Float ───────────────────────────────────────────────── */
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .animate-float {

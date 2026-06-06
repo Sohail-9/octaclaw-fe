@@ -47,11 +47,10 @@ export default function HomeWaitlistHero() {
     <div className="relative w-full flex flex-col items-center gap-4">
       <form
         onSubmit={handleSubmit}
-        className={`relative z-20 w-full flex items-center rounded-full p-1.5 pl-6 transition-all duration-300 ${
-          isFocused
+        className={`relative z-20 w-full flex items-center rounded-full p-1.5 pl-6 transition-all duration-300 ${isFocused
             ? "shadow-[0_0_0_2px_rgba(139,92,246,0.5)] bg-white/[0.07] border border-violet-500/30"
             : "bg-white/[0.05] border border-white/[0.08]"
-        }`}
+          }`}
       >
         <input
           type="email"
@@ -108,9 +107,8 @@ export default function HomeWaitlistHero() {
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className={`text-center text-xs font-medium tracking-wide ${
-              status === "success" ? "text-emerald-400" : "text-red-400"
-            }`}
+            className={`text-center text-xs font-medium tracking-wide ${status === "success" ? "text-emerald-400" : "text-red-400"
+              }`}
           >
             {message}
           </motion.p>

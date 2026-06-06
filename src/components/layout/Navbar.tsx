@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { Linkedin } from "lucide-react";
+
+import GooeyNav from "@/components/ui/GooeyNav";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,8 +24,8 @@ export default function Navbar() {
   });
 
   const navItems = [
-    { label: "Platform", href: "#features" },
-    { label: "How It Works", href: "#features" },
+    { label: "Platform", href: "#platform" },
+    { label: "How It Works", href: "#how-it-works" },
   ];
 
   return (
@@ -37,11 +39,10 @@ export default function Navbar() {
       className="fixed top-6 left-0 right-0 z-50 px-4 flex justify-center"
     >
       <nav
-        className={`w-full max-w-5xl h-14 flex items-center justify-between px-6 rounded-2xl transition-all duration-500 ${
-          scrolled
+        className={`w-full max-w-5xl h-14 flex items-center justify-between px-6 rounded-2xl transition-all duration-500 ${scrolled
             ? "bg-[#050505]/80 backdrop-blur-xl border border-white/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
             : "bg-white/[0.03] backdrop-blur-md border border-white/[0.05]"
-        }`}
+          }`}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
@@ -52,17 +53,8 @@ export default function Navbar() {
         </Link>
 
         {/* Nav links */}
-        <div className="hidden md:flex items-center gap-10">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/30 hover:text-white transition-colors duration-300 relative group/link"
-            >
-              {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-px bg-violet-400 transition-all duration-300 group-hover/link:w-full" />
-            </Link>
-          ))}
+        <div className="hidden md:flex items-center">
+          <GooeyNav items={navItems} />
         </div>
 
         {/* Right */}

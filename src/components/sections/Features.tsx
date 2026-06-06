@@ -10,6 +10,7 @@ import {
   Layers,
   Zap,
 } from "lucide-react";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 const features = [
   {
@@ -58,7 +59,7 @@ export default function FeaturesSection() {
   return (
     <section
       id="features"
-      className="py-32 px-6 relative overflow-hidden bg-[#050505]"
+      className="pt-16 pb-32 px-6 relative overflow-hidden bg-[#050505]"
     >
       {/* Subtle divider top */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -107,32 +108,29 @@ export default function FeaturesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.08 }}
               className={cn(
-                "group relative rounded-3xl border border-white/[0.06] bg-white/[0.02] overflow-hidden flex flex-col transition-all duration-500 hover:border-white/[0.12] hover:bg-white/[0.04]",
+                "group relative rounded-3xl border border-white/[0.06] bg-white/[0.02] overflow-hidden flex flex-col transition-all duration-500 hover:border-white/[0.12]",
                 f.colSpan
               )}
             >
-              {/* Hover glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-600/[0.04] via-transparent to-emerald-600/[0.03]" />
-              </div>
-
-              {/* Visual area */}
-              <div className="flex-1 p-6 flex items-center justify-center overflow-hidden min-h-[12rem]">
-                {f.visual}
-              </div>
-
-              {/* Content */}
-              <div className="p-8 pt-4 border-t border-white/[0.04]">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center mb-4 group-hover:border-white/[0.12] transition-all duration-300">
-                  {f.icon}
+              <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.12)" className="w-full h-full flex flex-col flex-1">
+                {/* Visual area */}
+                <div className="flex-1 p-6 flex items-center justify-center overflow-hidden min-h-[12rem] relative z-10">
+                  {f.visual}
                 </div>
-                <h3 className="text-lg font-bold text-white uppercase tracking-tight mb-2">
-                  {f.title}
-                </h3>
-                <p className="text-white/40 text-sm leading-relaxed">
-                  {f.description}
-                </p>
-              </div>
+
+                {/* Content */}
+                <div className="p-8 pt-4 border-t border-white/[0.04] relative z-10">
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center mb-4 group-hover:border-white/[0.12] transition-all duration-300">
+                    {f.icon}
+                  </div>
+                  <h3 className="text-lg font-bold text-white uppercase tracking-tight mb-2 font-heading">
+                    {f.title}
+                  </h3>
+                  <p className="text-white/40 text-sm leading-relaxed">
+                    {f.description}
+                  </p>
+                </div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

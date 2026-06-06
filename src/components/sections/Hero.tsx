@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import HomeWaitlistHero from "./HomeWaitlistHero";
 import { Spotlight } from "@/components/ui/Spotlight";
 import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
+import { SpatialNetwork } from "@/components/ui/SpatialNetwork";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -37,6 +38,9 @@ export default function HeroSection() {
         className="top-10 right-0 md:right-40"
         fill="rgba(16, 185, 129, 0.35)"
       />
+
+      {/* Spatial Agent Network background */}
+      <SpatialNetwork />
 
       {/* Dotted grid */}
       <div className="absolute inset-0 dotted-grid opacity-100 pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_80%)]" />

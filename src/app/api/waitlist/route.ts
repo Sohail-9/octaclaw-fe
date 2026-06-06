@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ensureWaitlistTable, getSql } from "@/lib/db";
+import { getSql } from "@/lib/db";
 import { sendAdminWaitlistNotification, sendWaitlistConfirmation } from "@/lib/email/service";
 import { validateEmail } from "@/lib/validation";
 
@@ -12,6 +12,11 @@ type WaitlistRow = {
   ip_address: string | null;
   user_agent: string | null;
 };
+
+// Simple in-memory token bucket rate limiter
+const ipRequestCounts = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 5; // 5 submissions per minute per IP
 
 export async function POST(request: NextRequest) {
   try {
@@ -30,7 +35,26 @@ export async function POST(request: NextRequest) {
       null;
     const userAgent = request.headers.get("user-agent") ?? null;
 
-    await ensureWaitlistTable();
+    // Apply Rate Limiting
+    if (ipAddress) {
+      const now = Date.now();
+      const ipRecord = ipRequestCounts.get(ipAddress);
+      if (ipRecord) {
+        if (now > ipRecord.resetTime) {
+          ipRequestCounts.set(ipAddress, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+        } else {
+          ipRecord.count += 1;
+          if (ipRecord.count > MAX_REQUESTS_PER_WINDOW) {
+            return NextResponse.json(
+              { success: false, error: "Too many requests. Please try again in a minute." },
+              { status: 429 }
+            );
+          }
+        }
+      } else {
+        ipRequestCounts.set(ipAddress, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS });
+      }
+    }
 
     const sql = getSql();
 
@@ -51,12 +75,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const confirmation = await sendWaitlistConfirmation(normalizedEmail);
+    // Parallelize email sending to reduce latency
+    const [confirmation, adminNotice] = await Promise.all([
+      sendWaitlistConfirmation(normalizedEmail),
+      sendAdminWaitlistNotification({ email: normalizedEmail }),
+    ]);
+
     if (!confirmation.success) {
       console.warn("[waitlist] Confirmation email failed:", confirmation.error);
     }
-
-    const adminNotice = await sendAdminWaitlistNotification({ email: normalizedEmail });
     if (!adminNotice.success) {
       console.warn("[waitlist] Admin notification failed:", adminNotice.error);
     }
@@ -92,8 +119,6 @@ export async function GET(request: NextRequest) {
   if (!adminSecret || secret !== adminSecret) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-
-  await ensureWaitlistTable();
 
   const sql = getSql();
 

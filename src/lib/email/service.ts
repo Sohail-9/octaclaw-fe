@@ -2,6 +2,8 @@ import nodemailer from "nodemailer";
 import { adminWaitlistNotificationTemplate } from "./templates/adminNotification";
 import { waitlistConfirmationTemplate } from "./templates/waitlistConfirmation";
 
+let cachedTransporter: nodemailer.Transporter | null = null;
+
 function getMailerConfig() {
   const user = process.env.GOOGLE_APP_USER;
   const pass = process.env.GOOGLE_APP_PASSWORD;
@@ -10,12 +12,14 @@ function getMailerConfig() {
     return { ok: false as const, error: "Missing GOOGLE_APP_USER / GOOGLE_APP_PASSWORD" };
   }
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: { user, pass },
-  });
+  if (!cachedTransporter) {
+    cachedTransporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user, pass },
+    });
+  }
 
-  return { ok: true as const, transporter, user };
+  return { ok: true as const, transporter: cachedTransporter, user };
 }
 
 export async function sendWaitlistConfirmation(toEmail: string) {

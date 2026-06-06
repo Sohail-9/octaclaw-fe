@@ -41,10 +41,10 @@ export default function Footer() {
             <div className="flex items-start gap-16 sm:gap-24">
               <div className="flex flex-col gap-5">
                 <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/20">Platform</span>
-                <Link href="#features" className="text-[13px] font-medium text-white/40 hover:text-white transition-colors duration-300">
-                  Intelligence
+                <Link href="#platform" className="text-[13px] font-medium text-white/40 hover:text-white transition-colors duration-300">
+                  Platform
                 </Link>
-                <Link href="#features" className="text-[13px] font-medium text-white/40 hover:text-white transition-colors duration-300">
+                <Link href="#how-it-works" className="text-[13px] font-medium text-white/40 hover:text-white transition-colors duration-300">
                   How It Works
                 </Link>
               </div>

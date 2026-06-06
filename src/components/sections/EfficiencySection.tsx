@@ -35,7 +35,7 @@ const steps = [
 
 export default function EfficiencySection() {
   return (
-    <section className="py-32 px-6 relative overflow-hidden bg-[#050505]">
+    <section id="how-it-works" className="py-32 px-6 relative overflow-hidden bg-[#050505]">
       {/* Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
@@ -140,7 +140,7 @@ function DefineVisual() {
           <span className="text-[10px] font-mono text-white/30 uppercase tracking-wider">Goal</span>
         </div>
         <p className="text-sm text-white/60 leading-relaxed font-light">
-          "Research competitors, draft a 10-page market analysis, and create an executive summary."
+          &ldquo;Research competitors, draft a 10-page market analysis, and create an executive summary.&rdquo;
         </p>
       </div>
       <div className="flex items-center gap-2 px-4">
