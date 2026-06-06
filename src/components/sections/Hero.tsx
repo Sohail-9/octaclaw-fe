@@ -27,16 +27,16 @@ export default function HeroSection() {
   return (
     <section
       id="waitlist"
-      className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-24 px-6 overflow-hidden bg-[#050505]"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-24 px-6 overflow-hidden bg-white"
     >
       {/* Spotlights */}
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
-        fill="rgba(139, 92, 246, 0.6)"
+        fill="rgba(139, 92, 246, 0.15)"
       />
       <Spotlight
         className="top-10 right-0 md:right-40"
-        fill="rgba(16, 185, 129, 0.35)"
+        fill="rgba(16, 185, 129, 0.1)"
       />
 
       {/* Spatial Agent Network background */}
@@ -53,12 +53,12 @@ export default function HeroSection() {
 
         {/* Badge */}
         <motion.div {...fadeUp(0)} className="mb-10">
-          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm">
+          <div className="flex items-center gap-2.5 px-4 py-2 rounded-full border border-zinc-200 bg-zinc-50">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/50">
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-zinc-500">
               Multi-Agent AI Platform
             </span>
           </div>
@@ -66,7 +66,7 @@ export default function HeroSection() {
 
         {/* Headline */}
         <motion.div {...fadeUp(0.1)} className="text-center mb-8">
-          <h1 className="text-6xl sm:text-8xl md:text-[9rem] font-bold tracking-[-0.07em] leading-[0.85] text-white uppercase font-heading">
+          <h1 className="text-6xl sm:text-8xl md:text-[9rem] font-bold tracking-[-0.07em] leading-[0.85] text-zinc-950 uppercase font-heading">
             Intelligence,
             <br />
             <span className="shiny-text">Orchestrated.</span>
@@ -76,7 +76,7 @@ export default function HeroSection() {
         {/* Subtitle */}
         <motion.p
           {...fadeUp(0.2)}
-          className="text-center text-lg sm:text-xl text-white/40 max-w-2xl leading-relaxed font-normal tracking-tight mb-14"
+          className="text-center text-lg sm:text-xl text-zinc-500 max-w-2xl leading-relaxed font-normal tracking-tight mb-14"
         >
           Deploy autonomous AI swarms that collaborate, reason, and execute —
           across any model, any workflow, at any scale.
@@ -90,10 +90,10 @@ export default function HeroSection() {
         {/* Scroll hint */}
         <motion.div
           {...fadeUp(0.5)}
-          className="mt-10 flex flex-col items-center gap-2 text-white/20"
+          className="mt-10 flex flex-col items-center gap-2 text-zinc-400"
         >
           <div className="flex flex-col items-center gap-1">
-            <div className="w-[1px] h-8 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+            <div className="w-[1px] h-8 bg-gradient-to-b from-transparent via-zinc-200 to-transparent" />
           </div>
           <span className="text-[9px] uppercase tracking-[0.3em] font-bold">Scroll</span>
         </motion.div>
@@ -105,7 +105,7 @@ export default function HeroSection() {
         className="absolute bottom-10 left-0 right-0"
       >
         <div className="flex items-center justify-center gap-4 mb-4">
-          <span className="text-[9px] uppercase tracking-[0.3em] text-white/20 font-bold">
+          <span className="text-[9px] uppercase tracking-[0.3em] text-zinc-400 font-bold">
             Compatible with
           </span>
         </div>

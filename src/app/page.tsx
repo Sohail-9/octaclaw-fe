@@ -7,7 +7,7 @@ import CTASection from "@/components/sections/CTASection";
 
 export default function Page() {
   return (
-    <main className="bg-[#050505] min-h-screen relative font-sans overflow-x-hidden selection:bg-violet-500/20 selection:text-violet-200">
+    <main className="bg-white min-h-screen relative font-sans overflow-x-hidden selection:bg-violet-500/20 selection:text-violet-200">
       <Navbar />
       <HeroSection />
       <DashboardShowcase />

@@ -6,9 +6,9 @@ import HomeWaitlistHero from "./HomeWaitlistHero";
 
 export default function CTASection() {
   return (
-    <section className="relative py-40 px-6 overflow-hidden bg-[#050505]">
+    <section className="relative py-40 px-6 overflow-hidden bg-white">
       {/* Top divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-200/60 to-transparent" />
 
       {/* Background beams */}
       <BackgroundBeams />
@@ -25,7 +25,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="px-4 py-1.5 rounded-full border border-white/[0.06] bg-white/[0.03] text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-10"
+          className="px-4 py-1.5 rounded-full border border-zinc-200 bg-zinc-50 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 mb-10"
         >
           Early Access
         </motion.div>
@@ -35,7 +35,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-5xl sm:text-7xl font-bold tracking-[-0.05em] text-white uppercase font-heading leading-[0.85] mb-8"
+          className="text-5xl sm:text-7xl font-bold tracking-[-0.05em] text-zinc-950 uppercase font-heading leading-[0.85] mb-8"
         >
           Ready to deploy
           <br />
@@ -47,7 +47,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-white/40 text-lg max-w-lg leading-relaxed mb-14"
+          className="text-zinc-500 text-lg max-w-lg leading-relaxed mb-14"
         >
           Join the waitlist and be among the first teams to orchestrate
           intelligent agent swarms at production scale.
@@ -77,10 +77,10 @@ export default function CTASection() {
             { value: "100%", label: "Audit trail" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-1">
-              <span className="text-3xl font-bold text-white font-heading tracking-tight">
+              <span className="text-3xl font-bold text-zinc-950 font-heading tracking-tight">
                 {stat.value}
               </span>
-              <span className="text-[11px] text-white/30 uppercase tracking-[0.2em] font-bold">
+              <span className="text-[11px] text-zinc-400 uppercase tracking-[0.2em] font-bold">
                 {stat.label}
               </span>
             </div>

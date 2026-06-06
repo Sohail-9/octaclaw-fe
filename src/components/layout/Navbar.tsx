@@ -40,14 +40,14 @@ export default function Navbar() {
     >
       <nav
         className={`w-full max-w-5xl h-14 flex items-center justify-between px-6 rounded-2xl transition-all duration-500 ${scrolled
-            ? "bg-[#050505]/80 backdrop-blur-xl border border-white/[0.08] shadow-[0_8px_30px_rgba(0,0,0,0.4)]"
-            : "bg-white/[0.03] backdrop-blur-md border border-white/[0.05]"
+            ? "bg-white/80 backdrop-blur-xl border border-zinc-200/50 shadow-[0_8px_30px_rgba(0,0,0,0.05)]"
+            : "bg-zinc-50/40 backdrop-blur-md border border-zinc-200/50"
           }`}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <Logo className="w-7 h-7 transition-transform duration-500 group-hover:rotate-6 invert" />
-          <span className="uppercase tracking-[0.25em] font-bold text-[10px] text-white/70 group-hover:text-white transition-colors duration-300">
+          <Logo className="w-7 h-7 transition-transform duration-500 group-hover:rotate-6" />
+          <span className="uppercase tracking-[0.25em] font-bold text-[10px] text-zinc-600 group-hover:text-zinc-950 transition-colors duration-300 font-heading">
             OctaClaw
           </span>
         </Link>
@@ -63,14 +63,14 @@ export default function Navbar() {
             href="https://www.linkedin.com/company/octaclaw/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:flex items-center text-white/20 hover:text-white/70 transition-colors duration-300"
+            className="hidden sm:flex items-center text-zinc-400 hover:text-zinc-700 transition-colors duration-300"
           >
             <Linkedin size={16} strokeWidth={1.5} />
           </a>
 
           <Link
             href="#waitlist"
-            className="inline-flex items-center h-9 px-5 rounded-full bg-white text-black text-[10px] font-bold uppercase tracking-[0.1em] hover:bg-white/90 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] active:scale-95"
+            className="inline-flex items-center h-9 px-5 rounded-full bg-zinc-950 text-white text-[10px] font-bold uppercase tracking-[0.1em] hover:bg-zinc-900 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.08)] active:scale-95"
           >
             Early Access
           </Link>

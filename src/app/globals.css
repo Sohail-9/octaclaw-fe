@@ -18,14 +18,14 @@
 }
 
 :root {
-  --bg-base: #050505;
-  --bg-surface: #0a0a0a;
-  --bg-card: rgba(255, 255, 255, 0.03);
-  --bg-card-hover: rgba(255, 255, 255, 0.06);
-  --text-main: #f9fafb;
-  --text-muted: rgba(249, 250, 251, 0.45);
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-focus: rgba(139, 92, 246, 0.5);
+  --bg-base: #ffffff;
+  --bg-surface: #fafafa;
+  --bg-card: rgba(0, 0, 0, 0.02);
+  --bg-card-hover: rgba(0, 0, 0, 0.04);
+  --text-main: #09090b;
+  --text-muted: rgba(9, 9, 11, 0.5);
+  --border-subtle: rgba(9, 9, 11, 0.06);
+  --border-focus: rgba(139, 92, 246, 0.4);
   --brand-primary: #8b5cf6;
   --brand-secondary: #10b981;
 }
@@ -77,7 +77,7 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
@@ -97,7 +97,7 @@ h6 {
 /* ─── Dotted Grid (Dark) ──────────────────────────────────── */
 
 .dotted-grid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(9, 9, 11, 0.04) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -105,10 +105,10 @@ h6 {
 
 .shiny-text {
   background: linear-gradient(120deg,
-      #f9fafb 30%,
+      #09090b 30%,
       #8b5cf6 45%,
       #10b981 55%,
-      #f9fafb 70%);
+      #09090b 70%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;

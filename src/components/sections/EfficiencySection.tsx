@@ -35,9 +35,9 @@ const steps = [
 
 export default function EfficiencySection() {
   return (
-    <section id="how-it-works" className="py-32 px-6 relative overflow-hidden bg-[#050505]">
+    <section id="how-it-works" className="py-32 px-6 relative overflow-hidden bg-white">
       {/* Divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-200/60 to-transparent" />
 
       {/* Subtle background glow */}
       <div className="absolute inset-0 pointer-events-none">
@@ -52,7 +52,7 @@ export default function EfficiencySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="px-4 py-1.5 rounded-full border border-white/[0.06] bg-white/[0.03] text-[10px] font-bold uppercase tracking-[0.3em] text-white/30 mb-8"
+            className="px-4 py-1.5 rounded-full border border-zinc-200 bg-zinc-50 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 mb-8"
           >
             How It Works
           </motion.div>
@@ -61,17 +61,17 @@ export default function EfficiencySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-[-0.05em] text-white uppercase font-heading leading-[0.85] mb-6"
+            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-[-0.05em] text-zinc-950 uppercase font-heading leading-[0.85] mb-6"
           >
             Three steps to<br />
-            <span className="text-white/20">autonomy.</span>
+            <span className="text-zinc-400 font-heading">autonomy.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/40 text-lg max-w-xl leading-relaxed"
+            className="text-zinc-500 text-lg max-w-xl leading-relaxed"
           >
             From intent to execution in seconds — no pipelines to configure, no
             agents to babysit.
@@ -91,31 +91,31 @@ export default function EfficiencySection() {
               <MovingBorder
                 duration={4000 + i * 500}
                 containerClassName="h-full rounded-3xl"
-                className="bg-[#080808]"
+                className="bg-white"
                 borderGradient={`radial-gradient(circle, ${step.gradient})`}
               >
                 <div className="p-8 h-full flex flex-col min-h-[26rem]">
                   {/* Step number */}
                   <div className="flex items-center justify-between mb-8">
-                    <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/20 font-mono">
+                    <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-zinc-400 font-mono">
                       {step.number}
                     </span>
-                    <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/15 border border-white/[0.06] rounded-full px-3 py-1">
+                    <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-500 border border-zinc-200 bg-zinc-50 rounded-full px-3 py-1">
                       {step.detail}
                     </span>
                   </div>
 
                   {/* Visual */}
-                  <div className="flex-1 flex items-center justify-center mb-8 rounded-2xl border border-white/[0.04] bg-white/[0.015] overflow-hidden min-h-[10rem]">
+                  <div className="flex-1 flex items-center justify-center mb-8 rounded-2xl border border-zinc-200 bg-zinc-50/50 overflow-hidden min-h-[10rem]">
                     {step.visual}
                   </div>
 
                   {/* Text */}
                   <div>
-                    <h3 className="text-2xl font-bold text-white uppercase tracking-tight mb-3">
+                    <h3 className="text-2xl font-bold text-zinc-950 uppercase tracking-tight mb-3 font-heading">
                       {step.title}
                     </h3>
-                    <p className="text-white/40 text-sm leading-relaxed">
+                    <p className="text-zinc-500 text-sm leading-relaxed">
                       {step.description}
                     </p>
                   </div>
@@ -134,12 +134,12 @@ export default function EfficiencySection() {
 function DefineVisual() {
   return (
     <div className="w-full p-5 space-y-3">
-      <div className="rounded-xl border border-white/[0.05] bg-white/[0.02] p-4">
+      <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <div className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-          <span className="text-[10px] font-mono text-white/30 uppercase tracking-wider">Goal</span>
+          <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Goal</span>
         </div>
-        <p className="text-sm text-white/60 leading-relaxed font-light">
+        <p className="text-sm text-zinc-700 leading-relaxed font-light">
           &ldquo;Research competitors, draft a 10-page market analysis, and create an executive summary.&rdquo;
         </p>
       </div>
@@ -150,7 +150,7 @@ function DefineVisual() {
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
           className="w-4 h-4 rounded-full border-t border-violet-400 border-r border-transparent"
         />
-        <span className="text-[10px] font-mono text-white/20">parsing...</span>
+        <span className="text-[10px] font-mono text-zinc-400">parsing...</span>
       </div>
       <div className="grid grid-cols-3 gap-2">
         {["Research", "Analysis", "Writing"].map((t, i) => (
@@ -159,7 +159,7 @@ function DefineVisual() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: i * 0.3 + 0.5 }}
-            className="rounded-lg border border-violet-500/20 bg-violet-500/[0.05] p-2 text-center text-[9px] font-bold text-violet-400 uppercase tracking-wider"
+            className="rounded-lg border border-violet-500/20 bg-violet-500/10 p-2 text-center text-[9px] font-bold text-violet-400 uppercase tracking-wider"
           >
             {t}
           </motion.div>
@@ -184,11 +184,11 @@ function AssembleVisual() {
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: i * 0.15 + 0.2, duration: 0.4 }}
-          className="flex items-center gap-3 px-4 py-2.5 rounded-xl border border-white/[0.05] bg-white/[0.02]"
+          className="flex items-center gap-3 px-4 py-2.5 rounded-xl border border-zinc-200 bg-zinc-50"
         >
-          <div className={`w-2 h-2 rounded-full flex-shrink-0 ${a.active ? "bg-emerald-400 animate-pulse" : "bg-white/20"}`} />
-          <span className="flex-1 text-[11px] font-bold uppercase tracking-widest text-white/50">{a.name}</span>
-          <span className={`text-[9px] font-bold uppercase tracking-wider ${a.active ? "text-emerald-400" : "text-white/20"}`}>
+          <div className={`w-2 h-2 rounded-full flex-shrink-0 ${a.active ? "bg-emerald-400 animate-pulse" : "bg-zinc-250 bg-zinc-200"}`} />
+          <span className="flex-1 text-[11px] font-bold uppercase tracking-widest text-zinc-700">{a.name}</span>
+          <span className={`text-[9px] font-bold uppercase tracking-wider ${a.active ? "text-emerald-500" : "text-zinc-400"}`}>
             {a.active ? "Ready" : "Standby"}
           </span>
         </motion.div>
@@ -201,9 +201,9 @@ function ExecuteVisual() {
   return (
     <div className="w-full p-5 space-y-3">
       <div className="flex items-center justify-between mb-1">
-        <span className="text-[10px] font-mono text-white/30">execution progress</span>
+        <span className="text-[10px] font-mono text-zinc-400">execution progress</span>
         <motion.span
-          className="text-[10px] font-bold font-mono text-emerald-400"
+          className="text-[10px] font-bold font-mono text-emerald-600"
           animate={{ opacity: [1, 0.4, 1] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >
@@ -220,21 +220,21 @@ function ExecuteVisual() {
           <div className="flex items-center justify-between text-[9px] font-mono">
             <div className="flex items-center gap-2">
               {task.done ? (
-                <svg className="w-3 h-3 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <svg className="w-3 h-3 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               ) : (
-                <div className={`w-2 h-2 rounded-full border ${task.progress > 0 ? "border-sky-400" : "border-white/20"}`} />
+                <div className={`w-2 h-2 rounded-full border ${task.progress > 0 ? "border-sky-400" : "border-zinc-300"}`} />
               )}
-              <span className="text-white/40">{task.label}</span>
+              <span className="text-zinc-500">{task.label}</span>
             </div>
-            <span className={task.done ? "text-emerald-400" : task.progress > 0 ? "text-sky-400" : "text-white/20"}>
+            <span className={task.done ? "text-emerald-500" : task.progress > 0 ? "text-sky-400" : "text-zinc-400"}>
               {task.progress}%
             </span>
           </div>
-          <div className="h-1 rounded-full bg-white/[0.04] overflow-hidden">
+          <div className="h-1 rounded-full bg-zinc-100 overflow-hidden">
             <motion.div
-              className={`h-full rounded-full ${task.done ? "bg-emerald-500" : task.progress > 0 ? "bg-sky-500" : "bg-white/10"}`}
+              className={`h-full rounded-full ${task.done ? "bg-emerald-500" : task.progress > 0 ? "bg-sky-500" : "bg-zinc-200"}`}
               initial={{ width: "0%" }}
               animate={{ width: `${task.progress}%` }}
               transition={{ duration: 1.5, delay: 0.3 }}

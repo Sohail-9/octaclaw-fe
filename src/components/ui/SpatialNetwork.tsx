@@ -64,7 +64,7 @@ export const SpatialNetwork = () => {
         vy: (Math.random() - 0.5) * 0.25,
         radius: 2,
         label: "",
-        color: "#ffffff",
+        color: "#09090b",
         pulse: 0,
       });
     }
@@ -138,7 +138,7 @@ export const SpatialNetwork = () => {
 
           if (dist < 150) {
             const alpha = (150 - dist) / 150 * 0.08;
-            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            ctx.strokeStyle = `rgba(9, 9, 11, ${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(n1.x, n1.y);
@@ -153,7 +153,7 @@ export const SpatialNetwork = () => {
                 tx: n2.x,
                 ty: n2.y,
                 progress: 0,
-                color: n1.label ? n1.color : "#ffffff",
+                color: n1.label ? n1.color : "#09090b",
               });
             }
           }
@@ -181,7 +181,7 @@ export const SpatialNetwork = () => {
 
         // Node Label
         if (n1.label) {
-          ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+          ctx.fillStyle = "rgba(9, 9, 11, 0.5)";
           ctx.font = "bold 9px var(--font-mono, monospace)";
           ctx.fillText(n1.label.toUpperCase(), n1.x + 12, n1.y + 3);
         }
@@ -231,7 +231,7 @@ export const SpatialNetwork = () => {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none opacity-45"
-      style={{ mixBlendMode: "screen" }}
+      style={{ mixBlendMode: "multiply" }}
     />
   );
 };

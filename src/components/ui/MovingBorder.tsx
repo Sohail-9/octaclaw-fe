@@ -94,7 +94,7 @@ export function MovingBorder({
       </div>
 
       {/* Static border */}
-      <div className="absolute inset-0 rounded-[inherit] border border-white/[0.06]" />
+      <div className="absolute inset-0 rounded-[inherit] border border-zinc-200/60" />
 
       {/* Content */}
       <div className={cn("relative z-10 h-full rounded-[inherit]", className)}>

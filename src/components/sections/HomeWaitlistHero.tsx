@@ -48,8 +48,8 @@ export default function HomeWaitlistHero() {
       <form
         onSubmit={handleSubmit}
         className={`relative z-20 w-full flex items-center rounded-full p-1.5 pl-6 transition-all duration-300 ${isFocused
-            ? "shadow-[0_0_0_2px_rgba(139,92,246,0.5)] bg-white/[0.07] border border-violet-500/30"
-            : "bg-white/[0.05] border border-white/[0.08]"
+            ? "shadow-[0_0_0_2px_rgba(139,92,246,0.15)] bg-zinc-50 border border-violet-500/40"
+            : "bg-zinc-100/50 border border-zinc-200/80"
           }`}
       >
         <input
@@ -59,10 +59,10 @@ export default function HomeWaitlistHero() {
           onBlur={() => setIsFocused(false)}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
-          className="flex-1 bg-transparent text-base text-white outline-none placeholder:text-white/25 font-medium min-w-0"
+          className="flex-1 bg-transparent text-base text-zinc-950 outline-none placeholder:text-zinc-400 font-medium min-w-0"
           style={{
             WebkitBoxShadow: "0 0 0px 1000px transparent inset",
-            WebkitTextFillColor: "white",
+            WebkitTextFillColor: "#09090b",
             caretColor: "#8b5cf6",
           }}
           disabled={status === "loading" || status === "success"}
@@ -73,9 +73,9 @@ export default function HomeWaitlistHero() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
           disabled={status === "loading" || status === "success" || !email}
-          className="ml-2 shrink-0 rounded-full bg-white text-black py-3.5 px-8 text-[13px] font-bold tracking-tight disabled:cursor-not-allowed disabled:opacity-40 relative overflow-hidden group transition-all duration-300 hover:bg-white/90"
+          className="ml-2 shrink-0 rounded-full bg-zinc-950 text-white py-3.5 px-8 text-[13px] font-bold tracking-tight disabled:cursor-not-allowed disabled:opacity-40 relative overflow-hidden group transition-all duration-300 hover:bg-zinc-900"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-[150%] group-hover:animate-[shimmer-btn_1.5s_infinite_linear]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] group-hover:animate-[shimmer-btn_1.5s_infinite_linear]" />
           <AnimatePresence mode="wait">
             {status === "idle" && (
               <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
@@ -84,9 +84,9 @@ export default function HomeWaitlistHero() {
             )}
             {status === "loading" && (
               <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-1 relative z-10">
-                <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "0ms" }} />
-                <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "150ms" }} />
-                <span className="h-1.5 w-1.5 rounded-full bg-black animate-pulse" style={{ animationDelay: "300ms" }} />
+                <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" style={{ animationDelay: "0ms" }} />
+                <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" style={{ animationDelay: "150ms" }} />
+                <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" style={{ animationDelay: "300ms" }} />
               </motion.div>
             )}
             {status === "success" && (
@@ -107,7 +107,7 @@ export default function HomeWaitlistHero() {
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className={`text-center text-xs font-medium tracking-wide ${status === "success" ? "text-emerald-400" : "text-red-400"
+            className={`text-center text-xs font-medium tracking-wide ${status === "success" ? "text-emerald-600" : "text-red-600"
               }`}
           >
             {message}
@@ -115,7 +115,7 @@ export default function HomeWaitlistHero() {
         )}
       </AnimatePresence>
 
-      <p className="text-[10px] text-white/20 font-medium tracking-wide">
+      <p className="text-[10px] text-zinc-400 font-medium tracking-wide">
         No spam. Unsubscribe any time.
       </p>
     </div>
