@@ -5,7 +5,6 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { Linkedin } from "lucide-react";
-
 import GooeyNav from "@/components/ui/GooeyNav";
 
 export default function Navbar() {
@@ -25,27 +24,26 @@ export default function Navbar() {
 
   const navItems = [
     { label: "Platform", href: "#platform" },
+    { label: "Capabilities", href: "#features" },
     { label: "How It Works", href: "#how-it-works" },
   ];
 
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
-      animate={{
-        y: visible ? 0 : -100,
-        opacity: visible ? 1 : 0,
-      }}
+      animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className="fixed top-6 left-0 right-0 z-50 px-4 flex justify-center"
     >
       <nav
-        className={`w-full max-w-5xl h-14 flex items-center justify-between px-6 rounded-2xl transition-all duration-500 ${scrolled
-            ? "bg-white/80 backdrop-blur-xl border border-zinc-200/50 shadow-[0_8px_30px_rgba(0,0,0,0.05)]"
-            : "bg-zinc-50/40 backdrop-blur-md border border-zinc-200/50"
-          }`}
+        className={`w-full max-w-5xl h-14 flex items-center justify-between px-6 rounded-2xl transition-all duration-500 ${
+          scrolled
+            ? "bg-white/85 backdrop-blur-xl border border-zinc-200/70 shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
+            : "bg-white/50 backdrop-blur-md border border-zinc-200/50"
+        }`}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
           <Logo className="w-7 h-7 transition-transform duration-500 group-hover:rotate-6" />
           <span className="uppercase tracking-[0.25em] font-bold text-[10px] text-zinc-600 group-hover:text-zinc-950 transition-colors duration-300 font-heading">
             OctaClaw
@@ -58,7 +56,7 @@ export default function Navbar() {
         </div>
 
         {/* Right */}
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-4 flex-shrink-0">
           <a
             href="https://www.linkedin.com/company/octaclaw/"
             target="_blank"
@@ -70,7 +68,7 @@ export default function Navbar() {
 
           <Link
             href="#waitlist"
-            className="inline-flex items-center h-9 px-5 rounded-full bg-zinc-950 text-white text-[10px] font-bold uppercase tracking-[0.1em] hover:bg-zinc-900 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.08)] active:scale-95"
+            className="inline-flex items-center h-9 px-5 rounded-full bg-zinc-950 text-white text-[10px] font-bold uppercase tracking-[0.1em] hover:bg-zinc-800 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.1)] active:scale-95"
           >
             Early Access
           </Link>

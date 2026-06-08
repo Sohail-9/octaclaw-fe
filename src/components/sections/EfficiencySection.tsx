@@ -37,11 +37,11 @@ export default function EfficiencySection() {
   return (
     <section id="how-it-works" className="py-32 px-6 relative overflow-hidden bg-white">
       {/* Divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-200/60 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-200/80 to-transparent" />
 
-      {/* Subtle background glow */}
+      {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-violet-600/[0.04] rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-violet-600/[0.03] rounded-full blur-[140px]" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -63,7 +63,8 @@ export default function EfficiencySection() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-[-0.05em] text-zinc-950 uppercase font-heading leading-[0.85] mb-6"
           >
-            Three steps to<br />
+            Three steps to
+            <br />
             <span className="text-zinc-400 font-heading">autonomy.</span>
           </motion.h2>
           <motion.p
@@ -106,7 +107,7 @@ export default function EfficiencySection() {
                   </div>
 
                   {/* Visual */}
-                  <div className="flex-1 flex items-center justify-center mb-8 rounded-2xl border border-zinc-200 bg-zinc-50/50 overflow-hidden min-h-[10rem]">
+                  <div className="flex-1 flex items-center justify-center mb-8 rounded-2xl border border-zinc-200/80 bg-zinc-50/50 overflow-hidden min-h-[10rem]">
                     {step.visual}
                   </div>
 
@@ -134,21 +135,21 @@ export default function EfficiencySection() {
 function DefineVisual() {
   return (
     <div className="w-full p-5 space-y-3">
-      <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
+      <div className="rounded-xl border border-zinc-200 bg-white p-4">
         <div className="flex items-center gap-2 mb-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-          <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Goal</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
+          <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Goal</span>
         </div>
         <p className="text-sm text-zinc-700 leading-relaxed font-light">
           &ldquo;Research competitors, draft a 10-page market analysis, and create an executive summary.&rdquo;
         </p>
       </div>
       <div className="flex items-center gap-2 px-4">
-        <div className="flex-1 h-px bg-gradient-to-r from-violet-500/30 to-transparent" />
+        <div className="flex-1 h-px bg-gradient-to-r from-violet-400/40 to-transparent" />
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="w-4 h-4 rounded-full border-t border-violet-400 border-r border-transparent"
+          className="w-4 h-4 rounded-full border-t border-violet-500 border-r border-transparent"
         />
         <span className="text-[10px] font-mono text-zinc-400">parsing...</span>
       </div>
@@ -159,7 +160,7 @@ function DefineVisual() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: i * 0.3 + 0.5 }}
-            className="rounded-lg border border-violet-500/20 bg-violet-500/10 p-2 text-center text-[9px] font-bold text-violet-400 uppercase tracking-wider"
+            className="rounded-lg border border-violet-200 bg-violet-50 p-2 text-center text-[9px] font-bold text-violet-600 uppercase tracking-wider"
           >
             {t}
           </motion.div>
@@ -177,18 +178,28 @@ function AssembleVisual() {
     { name: "Critic", active: true },
   ];
   return (
-    <div className="w-full p-5 space-y-3">
+    <div className="w-full p-5 space-y-2.5">
       {agents.map((a, i) => (
         <motion.div
           key={a.name}
           initial={{ x: -20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: i * 0.15 + 0.2, duration: 0.4 }}
-          className="flex items-center gap-3 px-4 py-2.5 rounded-xl border border-zinc-200 bg-zinc-50"
+          className="flex items-center gap-3 px-4 py-2.5 rounded-xl border border-zinc-200 bg-white"
         >
-          <div className={`w-2 h-2 rounded-full flex-shrink-0 ${a.active ? "bg-emerald-400 animate-pulse" : "bg-zinc-250 bg-zinc-200"}`} />
-          <span className="flex-1 text-[11px] font-bold uppercase tracking-widest text-zinc-700">{a.name}</span>
-          <span className={`text-[9px] font-bold uppercase tracking-wider ${a.active ? "text-emerald-500" : "text-zinc-400"}`}>
+          <div
+            className={`w-2 h-2 rounded-full flex-shrink-0 ${
+              a.active ? "bg-emerald-500 animate-pulse" : "bg-zinc-300"
+            }`}
+          />
+          <span className="flex-1 text-[11px] font-bold uppercase tracking-widest text-zinc-700">
+            {a.name}
+          </span>
+          <span
+            className={`text-[9px] font-bold uppercase tracking-wider ${
+              a.active ? "text-emerald-600" : "text-zinc-400"
+            }`}
+          >
             {a.active ? "Ready" : "Standby"}
           </span>
         </motion.div>
@@ -224,17 +235,35 @@ function ExecuteVisual() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               ) : (
-                <div className={`w-2 h-2 rounded-full border ${task.progress > 0 ? "border-sky-400" : "border-zinc-300"}`} />
+                <div
+                  className={`w-2 h-2 rounded-full border ${
+                    task.progress > 0 ? "border-sky-500" : "border-zinc-300"
+                  }`}
+                />
               )}
               <span className="text-zinc-500">{task.label}</span>
             </div>
-            <span className={task.done ? "text-emerald-500" : task.progress > 0 ? "text-sky-400" : "text-zinc-400"}>
+            <span
+              className={
+                task.done
+                  ? "text-emerald-600"
+                  : task.progress > 0
+                  ? "text-sky-600"
+                  : "text-zinc-400"
+              }
+            >
               {task.progress}%
             </span>
           </div>
           <div className="h-1 rounded-full bg-zinc-100 overflow-hidden">
             <motion.div
-              className={`h-full rounded-full ${task.done ? "bg-emerald-500" : task.progress > 0 ? "bg-sky-500" : "bg-zinc-200"}`}
+              className={`h-full rounded-full ${
+                task.done
+                  ? "bg-emerald-500"
+                  : task.progress > 0
+                  ? "bg-sky-500"
+                  : "bg-zinc-200"
+              }`}
               initial={{ width: "0%" }}
               animate={{ width: `${task.progress}%` }}
               transition={{ duration: 1.5, delay: 0.3 }}

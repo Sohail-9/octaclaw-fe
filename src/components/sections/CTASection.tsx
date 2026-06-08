@@ -1,22 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
 import HomeWaitlistHero from "./HomeWaitlistHero";
 
 export default function CTASection() {
   return (
-    <section className="relative py-40 px-6 overflow-hidden bg-white">
+    <section id="waitlist" className="relative py-40 px-6 overflow-hidden bg-zinc-50/60">
       {/* Top divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-200/60 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-200/80 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-200/80 to-transparent" />
 
-      {/* Background beams */}
-      <BackgroundBeams />
-
-      {/* Center glow */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[50%] h-[50%] bg-violet-600/[0.06] rounded-full blur-[100px]" />
-        <div className="absolute w-[30%] h-[30%] bg-emerald-600/[0.05] rounded-full blur-[80px] translate-y-10" />
+      {/* Soft background gradient */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-violet-600/[0.05] rounded-full blur-[140px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30%] h-[30%] bg-emerald-600/[0.04] rounded-full blur-[80px] translate-y-10" />
       </div>
 
       <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center text-center">
@@ -25,7 +22,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="px-4 py-1.5 rounded-full border border-zinc-200 bg-zinc-50 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 mb-10"
+          className="px-4 py-1.5 rounded-full border border-zinc-200 bg-white text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 mb-10"
         >
           Early Access
         </motion.div>
@@ -39,7 +36,7 @@ export default function CTASection() {
         >
           Ready to deploy
           <br />
-          <span className="shiny-text">your first swarm?</span>
+          <span className="text-zinc-400">your first swarm?</span>
         </motion.h2>
 
         <motion.p
@@ -72,15 +69,15 @@ export default function CTASection() {
           className="mt-16 flex flex-wrap items-center justify-center gap-12"
         >
           {[
-            { value: "10x", label: "Faster than manual" },
-            { value: "∞", label: "Parallel agents" },
-            { value: "100%", label: "Audit trail" },
+            { value: "10x", label: "Faster than sequential", accent: "text-violet-600" },
+            { value: "∞", label: "Parallel agents", accent: "text-emerald-600" },
+            { value: "100%", label: "Audit trail", accent: "text-sky-600" },
           ].map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center gap-1">
-              <span className="text-3xl font-bold text-zinc-950 font-heading tracking-tight">
+            <div key={stat.label} className="flex flex-col items-center gap-1.5">
+              <span className={`text-3xl font-bold font-heading tracking-tight ${stat.accent}`}>
                 {stat.value}
               </span>
-              <span className="text-[11px] text-zinc-400 uppercase tracking-[0.2em] font-bold">
+              <span className="text-[10px] text-zinc-500 uppercase tracking-[0.2em] font-bold">
                 {stat.label}
               </span>
             </div>

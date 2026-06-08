@@ -31,7 +31,7 @@ export default function HomeWaitlistHero() {
       setStatus("success");
       setMessage(
         data.message === "Already on the waitlist"
-          ? "Already in queue — we'll be in touch."
+          ? "Already in queue — we'll be in touch soon."
           : "You're in. Welcome to OctaClaw."
       );
       setEmail("");
@@ -44,13 +44,14 @@ export default function HomeWaitlistHero() {
   };
 
   return (
-    <div className="relative w-full flex flex-col items-center gap-4">
+    <div className="relative w-full flex flex-col items-center gap-3">
       <form
         onSubmit={handleSubmit}
-        className={`relative z-20 w-full flex items-center rounded-full p-1.5 pl-6 transition-all duration-300 ${isFocused
-            ? "shadow-[0_0_0_2px_rgba(139,92,246,0.15)] bg-zinc-50 border border-violet-500/40"
-            : "bg-zinc-100/50 border border-zinc-200/80"
-          }`}
+        className={`relative z-20 w-full flex items-center rounded-full p-1.5 pl-6 transition-all duration-300 ${
+          isFocused
+            ? "shadow-[0_0_0_3px_rgba(139,92,246,0.15)] bg-white border border-violet-400/50"
+            : "bg-zinc-100/70 border border-zinc-200"
+        }`}
       >
         <input
           type="email"
@@ -58,8 +59,8 @@ export default function HomeWaitlistHero() {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-          className="flex-1 bg-transparent text-base text-zinc-950 outline-none placeholder:text-zinc-400 font-medium min-w-0"
+          placeholder="Enter your work email"
+          className="flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-400 font-medium min-w-0"
           style={{
             WebkitBoxShadow: "0 0 0px 1000px transparent inset",
             WebkitTextFillColor: "#09090b",
@@ -73,7 +74,7 @@ export default function HomeWaitlistHero() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
           disabled={status === "loading" || status === "success" || !email}
-          className="ml-2 shrink-0 rounded-full bg-zinc-950 text-white py-3.5 px-8 text-[13px] font-bold tracking-tight disabled:cursor-not-allowed disabled:opacity-40 relative overflow-hidden group transition-all duration-300 hover:bg-zinc-900"
+          className="ml-2 shrink-0 rounded-full bg-zinc-950 text-white py-3.5 px-8 text-[13px] font-bold tracking-tight disabled:cursor-not-allowed disabled:opacity-40 relative overflow-hidden group transition-all duration-300 hover:bg-zinc-800"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] group-hover:animate-[shimmer-btn_1.5s_infinite_linear]" />
           <AnimatePresence mode="wait">
@@ -94,7 +95,7 @@ export default function HomeWaitlistHero() {
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-                Joined
+                Joined!
               </motion.span>
             )}
           </AnimatePresence>
@@ -107,8 +108,9 @@ export default function HomeWaitlistHero() {
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className={`text-center text-xs font-medium tracking-wide ${status === "success" ? "text-emerald-600" : "text-red-600"
-              }`}
+            className={`text-center text-xs font-medium tracking-wide ${
+              status === "success" ? "text-emerald-600" : "text-red-500"
+            }`}
           >
             {message}
           </motion.p>
@@ -116,7 +118,7 @@ export default function HomeWaitlistHero() {
       </AnimatePresence>
 
       <p className="text-[10px] text-zinc-400 font-medium tracking-wide">
-        No spam. Unsubscribe any time.
+        No spam · Cancel any time · Join 500+ developers
       </p>
     </div>
   );

@@ -19,12 +19,12 @@
 
 :root {
   --bg-base: #ffffff;
-  --bg-surface: #fafafa;
+  --bg-surface: #f8f8fc;
   --bg-card: rgba(0, 0, 0, 0.02);
   --bg-card-hover: rgba(0, 0, 0, 0.04);
   --text-main: #09090b;
   --text-muted: rgba(9, 9, 11, 0.5);
-  --border-subtle: rgba(9, 9, 11, 0.06);
+  --border-subtle: rgba(9, 9, 11, 0.07);
   --border-focus: rgba(139, 92, 246, 0.4);
   --brand-primary: #8b5cf6;
   --brand-secondary: #10b981;
@@ -42,7 +42,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle noise grain on dark bg */
+/* Subtle noise grain */
 body::before {
   content: "";
   position: fixed;
@@ -82,33 +82,36 @@ h6 {
 }
 
 ::selection {
-  background: rgba(139, 92, 246, 0.25);
+  background: rgba(139, 92, 246, 0.2);
+  color: #09090b;
 }
 
-/* ─── Glassmorphism (Dark) ────────────────────────────────── */
+/* ─── Glassmorphism ──────────────────────────────────────── */
 
-.glass-dark {
-  background: rgba(255, 255, 255, 0.03);
+.glass-light {
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(24px) saturate(150%);
   -webkit-backdrop-filter: blur(24px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* ─── Dotted Grid (Dark) ──────────────────────────────────── */
+/* ─── Dotted Grid ─────────────────────────────────────────── */
 
 .dotted-grid {
-  background-image: radial-gradient(rgba(9, 9, 11, 0.04) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(9, 9, 11, 0.045) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
-/* ─── Shiny Text (Dark) ───────────────────────────────────── */
+/* ─── Shiny Text ──────────────────────────────────────────── */
 
 .shiny-text {
-  background: linear-gradient(120deg,
-      #09090b 30%,
-      #8b5cf6 45%,
-      #10b981 55%,
-      #09090b 70%);
+  background: linear-gradient(
+    120deg,
+    #09090b 30%,
+    #8b5cf6 45%,
+    #10b981 55%,
+    #09090b 70%
+  );
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -121,7 +124,6 @@ h6 {
   0% {
     background-position: 200% 0;
   }
-
   100% {
     background-position: -200% 0;
   }
@@ -134,7 +136,6 @@ h6 {
     opacity: 0;
     transform: translate(-72%, -62%) skewX(10deg);
   }
-
   100% {
     opacity: 1;
     transform: translate(-50%, -40%) skewX(0deg);
@@ -145,7 +146,7 @@ h6 {
   animation: spotlight 2s ease 0.5s 1 forwards;
 }
 
-/* ─── Infinite Scroll (InfiniteMovingCards) ───────────────── */
+/* ─── Infinite Scroll ─────────────────────────────────────── */
 
 @keyframes infinite-scroll {
   to {
@@ -154,10 +155,11 @@ h6 {
 }
 
 .animate-infinite-scroll {
-  animation: infinite-scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+  animation: infinite-scroll var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
 }
 
-/* ─── Hero gradient border glow ──────────────────────────── */
+/* ─── Gradient border ─────────────────────────────────────── */
 
 .gradient-border {
   position: relative;
@@ -166,16 +168,31 @@ h6 {
   border: 1px solid transparent;
 }
 
-/* ─── Moving border shimmer btn ──────────────────────────── */
+/* ─── Shimmer btn ─────────────────────────────────────────── */
 
 @keyframes shimmer-btn {
   0% {
     transform: translateX(-150%);
   }
-
   100% {
     transform: translateX(150%);
   }
+}
+
+/* ─── Float ───────────────────────────────────────────────── */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
 /* ─── Pulse ring ──────────────────────────────────────────── */
@@ -185,7 +202,6 @@ h6 {
     transform: scale(0.8);
     opacity: 0.8;
   }
-
   100% {
     transform: scale(2);
     opacity: 0;
@@ -196,20 +212,11 @@ h6 {
   animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
 }
 
-/* ─── Float ───────────────────────────────────────────────── */
+/* ─── Code syntax highlight colours ──────────────────────── */
 
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
+.token-keyword { color: #c084fc; }
+.token-string  { color: #34d399; }
+.token-comment { color: #52525b; }
+.token-func    { color: #60a5fa; }
+.token-var     { color: #f1f5f9; }
+.token-num     { color: #fb923c; }

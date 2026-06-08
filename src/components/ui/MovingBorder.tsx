@@ -49,7 +49,6 @@ export function MovingBorder({
 
   return (
     <div className={cn("relative p-[1px] rounded-2xl overflow-hidden", containerClassName)}>
-      {/* The SVG border path (invisible, just for measurement) */}
       <div className="absolute inset-0 rounded-[inherit]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +64,6 @@ export function MovingBorder({
             ref={pathRef}
           />
         </svg>
-        {/* The moving glow dot */}
         <motion.div
           style={{
             position: "absolute",
@@ -94,7 +92,7 @@ export function MovingBorder({
       </div>
 
       {/* Static border */}
-      <div className="absolute inset-0 rounded-[inherit] border border-zinc-200/60" />
+      <div className="absolute inset-0 rounded-[inherit] border border-zinc-200/80" />
 
       {/* Content */}
       <div className={cn("relative z-10 h-full rounded-[inherit]", className)}>
