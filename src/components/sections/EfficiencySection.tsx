@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MovingBorder } from "@/components/ui/MovingBorder";
+import Grainient from "@/components/ui/Grainient";
 
 const steps = [
   {
@@ -39,10 +40,15 @@ export default function EfficiencySection() {
       {/* Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-200/80 to-transparent" />
 
-      {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-violet-600/[0.03] rounded-full blur-[140px]" />
-      </div>
+      <Grainient
+        className="absolute inset-0 opacity-[0.18]"
+        color1="#7c3aed"
+        color2="#059669"
+        color3="#ffffff"
+        grainAmount={0.05}
+        warpStrength={0.5}
+        timeSpeed={0.1}
+      />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}

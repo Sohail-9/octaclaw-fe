@@ -27,9 +27,9 @@ export default function DashboardShowcase() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-[-0.05em] text-zinc-950 uppercase font-heading leading-[0.85] mb-6"
         >
-          Unified spatial
+          Your swarms.
           <br />
-          <span className="text-zinc-400 font-heading">execution environment.</span>
+          <span className="text-zinc-400 font-heading">Live, in one view.</span>
         </motion.h2>
 
         <motion.p
@@ -39,8 +39,8 @@ export default function DashboardShowcase() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-zinc-500 text-lg max-w-xl leading-relaxed mb-12"
         >
-          Track real-time agent communications, active task trees, and telemetry streams
-          under a high-performance orchestration canvas.
+          Watch every agent, task, and tool call in real time. Full observability
+          into your swarm — without touching a single config file.
         </motion.p>
 
         <DashboardMockup />

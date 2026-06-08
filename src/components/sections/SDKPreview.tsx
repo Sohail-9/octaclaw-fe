@@ -214,12 +214,14 @@ export default function SDKPreview() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex items-center gap-4"
             >
-              <Link
-                href="#waitlist"
-                className="inline-flex items-center h-11 px-7 rounded-full bg-zinc-950 text-white text-[13px] font-bold tracking-tight hover:bg-zinc-800 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.1)] active:scale-95"
-              >
-                Get Early Access
-              </Link>
+              <div className="p-[2px] rounded-full bg-gradient-to-r from-violet-500 via-fuchsia-400 to-emerald-400 shadow-[0_4px_24px_rgba(139,92,246,0.22)]">
+                <Link
+                  href="#waitlist"
+                  className="inline-flex items-center h-10 px-7 rounded-full bg-white text-zinc-900 text-[13px] font-bold tracking-tight hover:bg-zinc-50 transition-colors duration-200 active:scale-95"
+                >
+                  Get Early Access
+                </Link>
+              </div>
               <span className="text-[12px] text-zinc-400">Free during beta</span>
             </motion.div>
           </div>

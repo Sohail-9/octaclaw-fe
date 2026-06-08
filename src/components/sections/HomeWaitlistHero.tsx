@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { NoiseBackground } from "@/components/ui/NoiseBackground";
 
 export default function HomeWaitlistHero() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,63 +44,66 @@ export default function HomeWaitlistHero() {
   };
 
   return (
-    <div className="relative w-full flex flex-col items-center gap-3">
-      <form
-        onSubmit={handleSubmit}
-        className={`relative z-20 w-full flex items-center rounded-full p-1.5 pl-6 transition-all duration-300 ${
-          isFocused
-            ? "shadow-[0_0_0_3px_rgba(139,92,246,0.15)] bg-white border border-violet-400/50"
-            : "bg-zinc-100/70 border border-zinc-200"
-        }`}
+    <div className="relative w-full flex flex-col gap-3">
+      <NoiseBackground
+        containerClassName="w-full rounded-2xl p-1.5 md:rounded-full"
+        gradientColors={[
+          "rgb(124, 58, 237)",
+          "rgb(5, 150, 105)",
+          "rgb(250, 204, 21)",
+        ]}
+        noiseIntensity={0.1}
+        group={false}
       >
-        <input
-          type="email"
-          value={email}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your work email"
-          className="flex-1 bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-400 font-medium min-w-0"
-          style={{
-            WebkitBoxShadow: "0 0 0px 1000px transparent inset",
-            WebkitTextFillColor: "#09090b",
-            caretColor: "#8b5cf6",
-          }}
-          disabled={status === "loading" || status === "success"}
-        />
-
-        <motion.button
-          type="submit"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.97 }}
-          disabled={status === "loading" || status === "success" || !email}
-          className="ml-2 shrink-0 rounded-full bg-zinc-950 text-white py-3.5 px-8 text-[13px] font-bold tracking-tight disabled:cursor-not-allowed disabled:opacity-40 relative overflow-hidden group transition-all duration-300 hover:bg-zinc-800"
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-2 md:flex-row md:items-center bg-white/80 backdrop-blur-md rounded-xl md:rounded-full p-1.5"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[150%] group-hover:animate-[shimmer-btn_1.5s_infinite_linear]" />
-          <AnimatePresence mode="wait">
-            {status === "idle" && (
-              <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10">
-                Get Early Access
-              </motion.span>
-            )}
-            {status === "loading" && (
-              <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-1 relative z-10">
-                <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" style={{ animationDelay: "0ms" }} />
-                <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" style={{ animationDelay: "150ms" }} />
-                <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" style={{ animationDelay: "300ms" }} />
-              </motion.div>
-            )}
-            {status === "success" && (
-              <motion.span key="success" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="relative z-10 flex items-center gap-2">
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                Joined!
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.button>
-      </form>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your work email"
+            className="flex-1 bg-transparent px-5 py-3 text-sm text-zinc-900 outline-none placeholder:text-zinc-400 font-medium rounded-full"
+            style={{
+              WebkitBoxShadow: "0 0 0px 1000px rgba(255,255,255,0.01) inset",
+              WebkitTextFillColor: "#09090b",
+              caretColor: "#8b5cf6",
+            }}
+            disabled={status === "loading" || status === "success"}
+          />
+          <motion.button
+            type="submit"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
+            disabled={status === "loading" || status === "success" || !email}
+            className="rounded-full bg-zinc-950 text-white py-3 px-7 text-[13px] font-bold tracking-tight disabled:cursor-not-allowed disabled:opacity-40 transition-colors whitespace-nowrap flex-shrink-0 flex items-center justify-center"
+          >
+            <AnimatePresence mode="wait">
+              {status === "idle" && (
+                <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                  Get Early Access
+                </motion.span>
+              )}
+              {status === "loading" && (
+                <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-1">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" style={{ animationDelay: "0ms" }} />
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" style={{ animationDelay: "150ms" }} />
+                  <span className="h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" style={{ animationDelay: "300ms" }} />
+                </motion.div>
+              )}
+              {status === "success" && (
+                <motion.span key="success" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-2">
+                  <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Joined!
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </motion.button>
+        </form>
+      </NoiseBackground>
 
       <AnimatePresence>
         {message && (
@@ -117,8 +120,8 @@ export default function HomeWaitlistHero() {
         )}
       </AnimatePresence>
 
-      <p className="text-[10px] text-zinc-400 font-medium tracking-wide">
-        No spam · Cancel any time · Join 500+ developers
+      <p className="text-[10px] text-zinc-400 font-medium tracking-wide text-center">
+        No spam · Free during beta · No credit card required
       </p>
     </div>
   );

@@ -2,229 +2,133 @@
 
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { NoiseBackground } from "@/components/ui/NoiseBackground";
 
 interface Feature {
-  badge: string;
   title: string;
   description: string;
-  span: "large" | "small" | "half";
-  accent: string;
+  gradientColors: string[];
+  colSpanClass: string;
   visual: ReactNode;
 }
 
-const topFeatures: Feature[] = [
+const bentoFeatures: Feature[] = [
   {
-    badge: "Core Runtime",
     title: "Parallel DAG Execution",
     description:
       "Decompose any goal into directed acyclic task graphs. Specialist agents execute concurrently across independent lanes — eliminating bottlenecks by orders of magnitude.",
-    span: "large",
-    accent: "#8b5cf6",
+    gradientColors: ["rgb(221,214,254)", "rgb(196,181,253)", "rgb(245,243,255)"],
+    colSpanClass: "md:col-span-3",
     visual: <DAGVisual />,
   },
   {
-    badge: "Multi-Model",
     title: "Universal Model Router",
     description:
       "Route each agent to the optimal provider. One API across Anthropic, OpenAI, Gemini, Groq, and more. Swap models without changing your code.",
-    span: "small",
-    accent: "#10b981",
+    gradientColors: ["rgb(167,243,208)", "rgb(110,231,183)", "rgb(236,253,245)"],
+    colSpanClass: "md:col-span-2",
     visual: <ProvidersVisual />,
   },
   {
-    badge: "Resilience",
     title: "Zero-Config Recovery",
     description:
       "Automatic fault detection and re-instantiation. Swarms self-heal without human intervention — checkpointed states enable deterministic replay from any failure point.",
-    span: "small",
-    accent: "#0ea5e9",
+    gradientColors: ["rgb(186,230,253)", "rgb(125,211,252)", "rgb(240,249,255)"],
+    colSpanClass: "md:col-span-2",
     visual: <RecoveryVisual />,
   },
   {
-    badge: "Observability",
     title: "Real-Time Telemetry",
     description:
       "Every agent action, tool call, and message streamed live. Full structured traces with run IDs, diffs, and on-demand replay.",
-    span: "large",
-    accent: "#8b5cf6",
+    gradientColors: ["rgb(199,210,254)", "rgb(165,180,252)", "rgb(238,242,255)"],
+    colSpanClass: "md:col-span-3",
     visual: <TelemetryVisual />,
   },
 ];
 
 const bottomFeatures: Feature[] = [
   {
-    badge: "Reliability",
     title: "Deterministic Replay",
     description:
       "Every swarm run is checkpointed. Replay any execution from any point — for debugging, auditing, or compliance. No black boxes.",
-    span: "half",
-    accent: "#f59e0b",
+    gradientColors: ["rgb(254,240,138)", "rgb(253,224,71)", "rgb(255,251,235)"],
+    colSpanClass: "",
     visual: <ReplayVisual />,
   },
   {
-    badge: "Extensibility",
     title: "50+ Built-in Tools",
     description:
       "Web search, code execution, browser automation, file I/O, API calls, database queries — agents have a full toolkit out of the box.",
-    span: "half",
-    accent: "#10b981",
+    gradientColors: ["rgb(254,205,211)", "rgb(252,165,165)", "rgb(255,241,242)"],
+    colSpanClass: "",
     visual: <ToolsVisual />,
   },
 ];
 
-function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
-  const isLarge = feature.span === "large";
-
+function BentoCard({ feature, index }: { feature: Feature; index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className={cn(
-        "group relative rounded-2xl border border-zinc-200 bg-white overflow-hidden transition-all duration-500 hover:border-zinc-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.07)]",
-        isLarge ? "md:col-span-2" : "md:col-span-1"
-      )}
+      className={feature.colSpanClass}
     >
-      {/* Hover glow */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse 80% 50% at 50% 0%, ${feature.accent}08, transparent)`,
-        }}
-      />
-
-      <div className={cn("flex flex-col h-full", isLarge ? "p-8" : "p-6")}>
-        <span
-          className="self-start text-[9px] font-bold uppercase tracking-[0.25em] px-2.5 py-1 rounded-full border mb-6"
-          style={{
-            color: feature.accent,
-            borderColor: `${feature.accent}30`,
-            background: `${feature.accent}0a`,
-          }}
-        >
-          {feature.badge}
-        </span>
-
-        <div
-          className="rounded-xl border border-zinc-100 bg-zinc-50/50 overflow-hidden mb-6"
-          style={{ minHeight: isLarge ? "190px" : "155px" }}
-        >
-          {feature.visual}
+      <NoiseBackground
+        containerClassName="w-full h-full p-0 border-0"
+        gradientColors={feature.gradientColors}
+        noiseIntensity={0.1}
+        group={false}
+      >
+        <div className="flex flex-col h-full min-h-[18rem]">
+          <div className="flex-1 overflow-hidden">
+            {feature.visual}
+          </div>
+          <div className="p-6 md:p-8">
+            <h3 className="font-heading text-xl md:text-2xl font-bold text-zinc-950 tracking-tight">
+              {feature.title}
+            </h3>
+            <p className="mt-2 text-sm md:text-base text-zinc-600 leading-relaxed">
+              {feature.description}
+            </p>
+          </div>
         </div>
-
-        <div className="mt-auto">
-          <h3 className={cn("font-bold text-zinc-950 uppercase tracking-tight font-heading mb-2.5", isLarge ? "text-2xl" : "text-lg")}>
-            {feature.title}
-          </h3>
-          <p className={cn("text-zinc-500 leading-relaxed", isLarge ? "text-sm" : "text-xs")}>
-            {feature.description}
-          </p>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-function HalfCard({ feature, index }: { feature: Feature; index: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.6, delay: index * 0.12 }}
-      className="group relative rounded-2xl border border-zinc-200 bg-white overflow-hidden transition-all duration-500 hover:border-zinc-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.07)]"
-    >
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse 80% 50% at 50% 0%, ${feature.accent}08, transparent)`,
-        }}
-      />
-
-      <div className="flex flex-col md:flex-row h-full p-6 gap-6">
-        <div
-          className="rounded-xl border border-zinc-100 bg-zinc-50/50 overflow-hidden flex items-center justify-center flex-shrink-0 md:w-48"
-          style={{ minHeight: "130px" }}
-        >
-          {feature.visual}
-        </div>
-        <div className="flex flex-col justify-center">
-          <span
-            className="self-start text-[9px] font-bold uppercase tracking-[0.25em] px-2.5 py-1 rounded-full border mb-4"
-            style={{
-              color: feature.accent,
-              borderColor: `${feature.accent}30`,
-              background: `${feature.accent}0a`,
-            }}
-          >
-            {feature.badge}
-          </span>
-          <h3 className="text-lg font-bold text-zinc-950 uppercase tracking-tight font-heading mb-2">
-            {feature.title}
-          </h3>
-          <p className="text-xs text-zinc-500 leading-relaxed">{feature.description}</p>
-        </div>
-      </div>
+      </NoiseBackground>
     </motion.div>
   );
 }
 
 export default function FeaturesBento() {
   return (
-    <section id="features" className="py-24 px-6 relative overflow-hidden bg-white">
+    <section id="features" className="py-24 px-4 md:px-6 bg-white">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-200/80 to-transparent" />
 
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] bg-violet-600/[0.025] rounded-full blur-[140px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col items-center text-center mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="px-4 py-1.5 rounded-full border border-zinc-200 bg-zinc-50 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 mb-8"
-          >
-            Capabilities
-          </motion.div>
+        <div className="flex items-center gap-3 mb-10 md:mb-12 justify-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-[-0.05em] text-zinc-950 uppercase font-heading leading-[0.85] mb-6"
+            transition={{ duration: 0.6 }}
+            className="font-heading font-medium tracking-normal text-4xl md:text-5xl text-zinc-950 text-center"
           >
-            Built for production
-            <br />
-            <span className="text-zinc-400">from day one.</span>
+            What OctaClaw can do
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-zinc-500 text-lg max-w-xl leading-relaxed"
-          >
-            Every layer of the stack engineered for real-world AI orchestration at scale.
-          </motion.p>
         </div>
 
-        {/* Top asymmetric bento */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          {topFeatures.map((f, i) => (
-            <FeatureCard key={i} feature={f} index={i} />
+        {/* 5-col bento grid: Row1 [3+2], Row2 [2+3] */}
+        <div className="grid grid-cols-1 gap-4 md:auto-rows-[18rem] md:grid-cols-5 mb-4">
+          {bentoFeatures.map((f, i) => (
+            <BentoCard key={i} feature={f} index={i} />
           ))}
         </div>
 
         {/* Bottom 2-col */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {bottomFeatures.map((f, i) => (
-            <HalfCard key={i} feature={f} index={i} />
+            <BentoCard key={i} feature={{ ...f, colSpanClass: "" }} index={bentoFeatures.length + i} />
           ))}
         </div>
       </div>
