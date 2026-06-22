@@ -37,7 +37,12 @@ const steps = [
 
 export default function EfficiencySection() {
   return (
-    <section id="how-it-works" className="py-28 px-6 relative overflow-hidden">
+    <section id="how-it-works" className="py-28 px-6 relative overflow-hidden bg-white">
+      {/* Edge fades blend white section into #f8f7ff page bg */}
+      <div className="absolute inset-x-0 top-0 h-20 pointer-events-none z-10"
+        style={{ background: "linear-gradient(to bottom, #f8f7ff, transparent)" }} />
+      <div className="absolute inset-x-0 bottom-0 h-20 pointer-events-none z-10"
+        style={{ background: "linear-gradient(to top, #f8f7ff, transparent)" }} />
       <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(124,58,237,0.12), transparent)" }} />
 
       <div className="max-w-6xl mx-auto">

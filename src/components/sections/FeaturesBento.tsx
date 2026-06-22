@@ -7,6 +7,16 @@ export default function FeaturesBento() {
     <section id="features" className="relative py-28 px-4 md:px-6 overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(124,58,237,0.15), transparent)" }} />
 
+      {/* Ambient background orbs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-24 -left-44 w-[580px] h-[580px] rounded-full blur-[140px]"
+          style={{ background: "rgba(139,92,246,0.08)" }} />
+        <div className="absolute top-1/2 -right-44 w-[500px] h-[500px] rounded-full blur-[140px]"
+          style={{ background: "rgba(52,211,153,0.07)" }} />
+        <div className="absolute bottom-10 left-1/3 w-[420px] h-[420px] rounded-full blur-[120px]"
+          style={{ background: "rgba(99,102,241,0.06)" }} />
+      </div>
+
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}

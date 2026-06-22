@@ -78,8 +78,14 @@ export default function Footer() {
         {/* Wordmark */}
         <div className="-mx-6 md:-mx-10 overflow-hidden border-t border-zinc-100">
           <div className="flex h-[4.5rem] md:h-[9rem] items-center justify-center px-4 md:px-0">
-            <p className="w-full truncate text-center font-heading font-black tracking-tight select-none leading-none text-zinc-200"
-              style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)" }}>
+            <p className="w-full truncate text-center font-heading font-black tracking-tight select-none leading-none"
+              style={{
+                fontSize: "clamp(3.5rem, 10vw, 9rem)",
+                background: "linear-gradient(135deg, rgba(167,139,250,0.45) 0%, rgba(212,212,216,0.28) 35%, rgba(212,212,216,0.22) 65%, rgba(52,211,153,0.40) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}>
               OCTACLAW
             </p>
           </div>

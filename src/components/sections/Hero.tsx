@@ -161,12 +161,14 @@ export default function HeroSection() {
         {/* Dot grid on hero bg */}
         <div className="absolute inset-0 dotted-grid opacity-50" />
         {/* Soft gradient orbs */}
-        <div className="absolute -top-20 left-1/4 w-[500px] h-[500px] rounded-full blur-[100px]"
-          style={{ background: "rgba(139,92,246,0.20)" }} />
-        <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full blur-[100px]"
-          style={{ background: "rgba(52,211,153,0.16)" }} />
-        <div className="absolute bottom-0 left-0 w-[350px] h-[350px] rounded-full blur-[80px]"
-          style={{ background: "rgba(147,197,253,0.18)" }} />
+        <div className="absolute -top-20 left-1/4 w-[560px] h-[560px] rounded-full blur-[110px]"
+          style={{ background: "rgba(139,92,246,0.28)" }} />
+        <div className="absolute top-1/4 right-0 w-[450px] h-[450px] rounded-full blur-[110px]"
+          style={{ background: "rgba(52,211,153,0.22)" }} />
+        <div className="absolute bottom-0 left-0 w-[380px] h-[380px] rounded-full blur-[90px]"
+          style={{ background: "rgba(147,197,253,0.22)" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[140px]"
+          style={{ background: "rgba(245,208,254,0.14)" }} />
       </div>
 
       {/* Content */}

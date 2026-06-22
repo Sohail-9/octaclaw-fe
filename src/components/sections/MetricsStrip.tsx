@@ -1,10 +1,47 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, useInView, useMotionValue, animate } from "framer-motion";
+
+function Counter({ prefix, num, suffix, delay }: { prefix: string; num: number; suffix: string; delay: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const count = useMotionValue(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(count, num, {
+      duration: 1.8,
+      delay,
+      ease: "easeOut",
+      onUpdate(v) {
+        if (ref.current) ref.current.textContent = `${prefix}${Math.round(v)}${suffix}`;
+      },
+    });
+    return () => controls.stop();
+  }, [inView, count, num, prefix, suffix, delay]);
+
+  return <span ref={ref}>{prefix}0{suffix}</span>;
+}
+
+function InfinityReveal({ delay }: { delay: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  return (
+    <motion.span
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.4, filter: "blur(10px)" }}
+      animate={inView ? { opacity: 1, scale: 1, filter: "blur(0px)" } : {}}
+      transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
+    >
+      ∞
+    </motion.span>
+  );
+}
 
 const metrics = [
   {
-    value: "<150ms",
+    prefix: "<", num: 150 as number | null, suffix: "ms",
     label: "DAG planning latency",
     clayClass: "clay-violet",
     icon: (
@@ -14,7 +51,7 @@ const metrics = [
     ),
   },
   {
-    value: "∞",
+    prefix: "", num: null as number | null, suffix: "∞",
     label: "Parallel agent lanes",
     clayClass: "clay-emerald",
     icon: (
@@ -24,7 +61,7 @@ const metrics = [
     ),
   },
   {
-    value: "8+",
+    prefix: "", num: 8 as number | null, suffix: "+",
     label: "Model providers",
     clayClass: "clay-sky",
     icon: (
@@ -34,7 +71,7 @@ const metrics = [
     ),
   },
   {
-    value: "100%",
+    prefix: "", num: 100 as number | null, suffix: "%",
     label: "Deterministic replay",
     clayClass: "clay-amber",
     icon: (
@@ -61,12 +98,20 @@ export default function MetricsStrip() {
                 transition={{ duration: 0.5, delay: i * 0.09, type: "spring", stiffness: 200, damping: 20 }}
                 className="flex flex-col items-center text-center gap-4"
               >
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${m.clayClass}`}>
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 6 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 14 }}
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center ${m.clayClass}`}
+                >
                   {m.icon}
-                </div>
+                </motion.div>
                 <div>
                   <div className="text-3xl font-bold font-heading text-zinc-950 tracking-tight mb-1">
-                    {m.value}
+                    {m.num !== null ? (
+                      <Counter prefix={m.prefix} num={m.num} suffix={m.suffix} delay={i * 0.12} />
+                    ) : (
+                      <InfinityReveal delay={i * 0.12} />
+                    )}
                   </div>
                   <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400">
                     {m.label}
