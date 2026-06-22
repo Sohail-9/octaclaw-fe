@@ -259,17 +259,21 @@ export default function HomeWaitlistHero() {
       </AnimatePresence>
 
       {/* Trust line */}
-      <div className="flex items-center justify-center gap-3 text-[10px] font-medium text-zinc-400">
-        <span className="flex items-center gap-1">
-          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <div className="flex items-center justify-center gap-2 flex-wrap">
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full glass-pill text-[10px] font-medium text-zinc-500">
+          <svg className="w-3 h-3 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
           No spam
         </span>
-        <span className="text-zinc-200">·</span>
-        <span>Free during beta</span>
-        <span className="text-zinc-200">·</span>
-        <span>No credit card</span>
+        <span className="text-zinc-200 text-[10px]">·</span>
+        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full glass-pill-emerald text-[10px] font-medium text-emerald-700">
+          Free during beta
+        </span>
+        <span className="text-zinc-200 text-[10px]">·</span>
+        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full glass-pill text-[10px] font-medium text-zinc-500">
+          No credit card
+        </span>
       </div>
     </div>
   );

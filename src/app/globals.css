@@ -17,13 +17,12 @@
 }
 
 :root {
-  /* Warm off-white base — like Prettiflow's #f9f8f8 but with OctaClaw's violet tint */
-  --bg-base: #f8f7ff;
+  --bg-base: #f6f5ff;
   --bg-surface: #ffffff;
-  --text-main: #0d0b14;
-  --text-muted: rgba(13, 11, 20, 0.5);
-  --border-subtle: rgba(13, 11, 20, 0.07);
-  --border-focus: rgba(124, 58, 237, 0.4);
+  --text-main: #0d0b18;
+  --text-muted: rgba(13, 11, 24, 0.5);
+  --border-subtle: rgba(13, 11, 24, 0.07);
+  --border-focus: rgba(124, 58, 237, 0.45);
   --brand-primary: #7c3aed;
   --brand-secondary: #059669;
 }
@@ -33,14 +32,14 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #f8f7ff;
+  background-color: #f6f5ff;
   color: var(--text-main);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Film grain — universal subtle noise like Prettiflow */
+/* Film grain */
 body::before {
   content: "";
   position: fixed;
@@ -48,7 +47,7 @@ body::before {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.022;
+  opacity: 0.028;
   z-index: 9999;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   background-size: 256px 256px;
@@ -61,61 +60,116 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.05;
 }
 
-::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.10); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.18); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(124,58,237,0.32); }
 
 ::selection {
-  background: rgba(124, 58, 237, 0.15);
-  color: #0d0b14;
+  background: rgba(124, 58, 237, 0.18);
+  color: #0d0b18;
 }
 
 /* ══════════════════════════════════════════════════════════════
-   BENTO CARD SYSTEM — each card owns its color
-   Inspired by Prettiflow's per-card gradient approach
+   AURORA — page atmosphere layer (deepest plane)
+   Slow-drifting colored gradients, never competing with content
+   ══════════════════════════════════════════════════════════════ */
+
+@keyframes aurora-drift-a {
+  0%   { transform: translate(0px,    0px)   scale(1.00) rotate(0deg);   }
+  20%  { transform: translate(90px,  -70px)  scale(1.08) rotate(18deg);  }
+  45%  { transform: translate(-50px,  90px)  scale(0.93) rotate(-12deg); }
+  65%  { transform: translate(70px,   50px)  scale(1.06) rotate(25deg);  }
+  80%  { transform: translate(-90px, -50px)  scale(0.97) rotate(-6deg);  }
+  100% { transform: translate(0px,    0px)   scale(1.00) rotate(0deg);   }
+}
+@keyframes aurora-drift-b {
+  0%   { transform: translate(0px,    0px)   scale(1.00) rotate(0deg);   }
+  25%  { transform: translate(-80px,  60px)  scale(1.05) rotate(-20deg); }
+  50%  { transform: translate(60px,  -80px)  scale(0.95) rotate(14deg);  }
+  75%  { transform: translate(-40px,  40px)  scale(1.04) rotate(-8deg);  }
+  100% { transform: translate(0px,    0px)   scale(1.00) rotate(0deg);   }
+}
+
+.aurora-a { animation: aurora-drift-a 42s ease-in-out infinite; }
+.aurora-b { animation: aurora-drift-b 55s ease-in-out infinite; }
+.aurora-c { animation: aurora-drift-a 37s ease-in-out infinite reverse; animation-delay: -12s; }
+.aurora-d { animation: aurora-drift-b 48s ease-in-out infinite; animation-delay: -20s; }
+.aurora-e { animation: aurora-drift-a 62s ease-in-out infinite; animation-delay: -30s; }
+
+/* ══════════════════════════════════════════════════════════════
+   BENTO CARD SYSTEM
+   Each card is a frosted gradient slab — opaque, richly layered
    ══════════════════════════════════════════════════════════════ */
 
 /* Dark hero card — deep violet-to-emerald, white text */
 .bento-dark {
-  background: linear-gradient(140deg, #0f0229 0%, #2e0d6e 38%, #0c3628 70%, #001a12 100%);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.30), 0 8px 20px rgba(0, 0, 0, 0.18);
+  background: linear-gradient(140deg, #0e0120 0%, #2e0d6e 35%, #0c3628 68%, #001810 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.36),
+    0 12px 28px rgba(0, 0, 0, 0.20),
+    inset 0 2px 0 rgba(255, 255, 255, 0.12),
+    inset 2px 0 0 rgba(255, 255, 255, 0.05);
   color: #ffffff;
 }
 
-/* Light colored cards */
 .bento-violet {
-  background: linear-gradient(145deg, #f5f3ff 0%, #ede9fe 55%, #c4b5fd 100%);
-  border: 1px solid rgba(167, 139, 250, 0.28);
-  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(145deg, #faf8ff 0%, #ede9fe 40%, #c4b5fd 75%, #a78bfa 100%);
+  border: 1px solid rgba(167, 139, 250, 0.38);
+  box-shadow:
+    0 20px 56px rgba(124, 58, 237, 0.18),
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    inset 0 2px 0 rgba(255, 255, 255, 0.92),
+    inset 2px 0 0 rgba(255, 255, 255, 0.50);
 }
 .bento-emerald {
-  background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 55%, #6ee7b7 100%);
-  border: 1px solid rgba(52, 211, 153, 0.28);
-  box-shadow: 0 8px 32px rgba(5, 150, 105, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(145deg, #f0fdf9 0%, #d1fae5 40%, #6ee7b7 75%, #34d399 100%);
+  border: 1px solid rgba(52, 211, 153, 0.36);
+  box-shadow:
+    0 20px 56px rgba(5, 150, 105, 0.16),
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    inset 0 2px 0 rgba(255, 255, 255, 0.92),
+    inset 2px 0 0 rgba(255, 255, 255, 0.50);
 }
 .bento-amber {
-  background: linear-gradient(145deg, #fffbeb 0%, #fef3c7 55%, #fcd34d 100%);
-  border: 1px solid rgba(251, 191, 36, 0.28);
-  box-shadow: 0 8px 32px rgba(217, 119, 6, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(145deg, #fffdf0 0%, #fef3c7 40%, #fcd34d 75%, #fbbf24 100%);
+  border: 1px solid rgba(251, 191, 36, 0.36);
+  box-shadow:
+    0 20px 56px rgba(217, 119, 6, 0.16),
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    inset 0 2px 0 rgba(255, 255, 255, 0.92),
+    inset 2px 0 0 rgba(255, 255, 255, 0.50);
 }
 .bento-sky {
-  background: linear-gradient(145deg, #f0f9ff 0%, #e0f2fe 55%, #7dd3fc 100%);
-  border: 1px solid rgba(125, 211, 252, 0.30);
-  box-shadow: 0 8px 32px rgba(14, 165, 233, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(145deg, #f0fbff 0%, #e0f2fe 40%, #7dd3fc 75%, #38bdf8 100%);
+  border: 1px solid rgba(125, 211, 252, 0.38);
+  box-shadow:
+    0 20px 56px rgba(14, 165, 233, 0.16),
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    inset 0 2px 0 rgba(255, 255, 255, 0.92),
+    inset 2px 0 0 rgba(255, 255, 255, 0.50);
 }
 .bento-indigo {
-  background: linear-gradient(145deg, #eef2ff 0%, #e0e7ff 55%, #a5b4fc 100%);
-  border: 1px solid rgba(165, 180, 252, 0.30);
-  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(145deg, #f4f5ff 0%, #e0e7ff 40%, #a5b4fc 75%, #818cf8 100%);
+  border: 1px solid rgba(165, 180, 252, 0.38);
+  box-shadow:
+    0 20px 56px rgba(99, 102, 241, 0.16),
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    inset 0 2px 0 rgba(255, 255, 255, 0.92),
+    inset 2px 0 0 rgba(255, 255, 255, 0.50);
 }
 .bento-rose {
-  background: linear-gradient(145deg, #fff1f2 0%, #ffe4e6 55%, #fda4af 100%);
-  border: 1px solid rgba(253, 164, 175, 0.30);
-  box-shadow: 0 8px 32px rgba(244, 63, 94, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(145deg, #fff5f6 0%, #ffe4e6 40%, #fda4af 75%, #fb7185 100%);
+  border: 1px solid rgba(253, 164, 175, 0.38);
+  box-shadow:
+    0 20px 56px rgba(244, 63, 94, 0.16),
+    0 6px 16px rgba(0, 0, 0, 0.06),
+    inset 0 2px 0 rgba(255, 255, 255, 0.92),
+    inset 2px 0 0 rgba(255, 255, 255, 0.50);
 }
 
-/* Noise overlay for textured cards — apply as child div */
+/* Noise overlay for textured cards */
 .card-noise {
   position: absolute;
   inset: 0;
@@ -124,90 +178,156 @@ h1, h2, h3, h4, h5, h6 {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
   mix-blend-mode: overlay;
-  opacity: 0.06;
+  opacity: 0.07;
 }
 
 /* ══════════════════════════════════════════════════════════════
-   CLAYMORPHISM — vivid 3D icons and badges
+   CLAYMORPHISM — vivid tactile icons, buttons, badges
+   The "action plane" — most visually dominant
    ══════════════════════════════════════════════════════════════ */
 
-.clay-card {
-  background: #ffffff;
-  border-radius: 24px;
-  box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.10),
-    0 8px 20px rgba(0, 0, 0, 0.07),
-    inset 0 4px 12px rgba(255, 255, 255, 0.95),
-    inset 0 -3px 8px rgba(0, 0, 0, 0.05);
-}
-
 .clay-violet {
-  background: linear-gradient(145deg, #c4b5fd 0%, #8b5cf6 55%, #7c3aed 100%);
+  background: linear-gradient(145deg, #ddd6fe 0%, #a78bfa 28%, #8b5cf6 58%, #7c3aed 100%);
   box-shadow:
-    0 16px 48px rgba(124, 58, 237, 0.45),
-    0 6px 14px rgba(124, 58, 237, 0.28),
-    inset 0 3px 10px rgba(255, 255, 255, 0.45),
-    inset 0 -3px 8px rgba(0, 0, 0, 0.20);
+    0 22px 60px rgba(124, 58, 237, 0.56),
+    0 8px 22px rgba(124, 58, 237, 0.32),
+    0 2px 6px rgba(124, 58, 237, 0.18),
+    inset 0 4px 12px rgba(255, 255, 255, 0.55),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.24);
   color: #ffffff;
 }
 .clay-emerald {
-  background: linear-gradient(145deg, #6ee7b7 0%, #34d399 50%, #059669 100%);
+  background: linear-gradient(145deg, #a7f3d0 0%, #6ee7b7 28%, #34d399 58%, #059669 100%);
   box-shadow:
-    0 16px 48px rgba(5, 150, 105, 0.42),
-    0 6px 14px rgba(5, 150, 105, 0.24),
-    inset 0 3px 10px rgba(255, 255, 255, 0.45),
-    inset 0 -3px 8px rgba(0, 0, 0, 0.16);
+    0 22px 60px rgba(5, 150, 105, 0.50),
+    0 8px 22px rgba(5, 150, 105, 0.28),
+    0 2px 6px rgba(5, 150, 105, 0.16),
+    inset 0 4px 12px rgba(255, 255, 255, 0.55),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.20);
   color: #ffffff;
 }
 .clay-sky {
-  background: linear-gradient(145deg, #7dd3fc 0%, #38bdf8 50%, #0284c7 100%);
+  background: linear-gradient(145deg, #bae6fd 0%, #7dd3fc 28%, #38bdf8 58%, #0284c7 100%);
   box-shadow:
-    0 16px 48px rgba(14, 165, 233, 0.42),
-    0 6px 14px rgba(14, 165, 233, 0.24),
-    inset 0 3px 10px rgba(255, 255, 255, 0.45),
-    inset 0 -3px 8px rgba(0, 0, 0, 0.16);
+    0 22px 60px rgba(14, 165, 233, 0.50),
+    0 8px 22px rgba(14, 165, 233, 0.28),
+    0 2px 6px rgba(14, 165, 233, 0.16),
+    inset 0 4px 12px rgba(255, 255, 255, 0.55),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.20);
   color: #ffffff;
 }
 .clay-amber {
-  background: linear-gradient(145deg, #fcd34d 0%, #fbbf24 50%, #d97706 100%);
+  background: linear-gradient(145deg, #fde68a 0%, #fcd34d 28%, #fbbf24 58%, #d97706 100%);
   box-shadow:
-    0 16px 48px rgba(217, 119, 6, 0.42),
-    0 6px 14px rgba(217, 119, 6, 0.24),
-    inset 0 3px 10px rgba(255, 255, 255, 0.48),
-    inset 0 -3px 8px rgba(0, 0, 0, 0.16);
+    0 22px 60px rgba(217, 119, 6, 0.50),
+    0 8px 22px rgba(217, 119, 6, 0.28),
+    0 2px 6px rgba(217, 119, 6, 0.16),
+    inset 0 4px 12px rgba(255, 255, 255, 0.58),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.20);
   color: #ffffff;
 }
 .clay-rose {
-  background: linear-gradient(145deg, #fda4af 0%, #fb7185 50%, #e11d48 100%);
+  background: linear-gradient(145deg, #fecdd3 0%, #fda4af 28%, #fb7185 58%, #e11d48 100%);
   box-shadow:
-    0 16px 48px rgba(225, 29, 72, 0.40),
-    0 6px 14px rgba(225, 29, 72, 0.22),
-    inset 0 3px 10px rgba(255, 255, 255, 0.45),
-    inset 0 -3px 8px rgba(0, 0, 0, 0.18);
+    0 22px 60px rgba(225, 29, 72, 0.48),
+    0 8px 22px rgba(225, 29, 72, 0.26),
+    0 2px 6px rgba(225, 29, 72, 0.14),
+    inset 0 4px 12px rgba(255, 255, 255, 0.52),
+    inset 0 -4px 10px rgba(0, 0, 0, 0.22);
   color: #ffffff;
 }
 
 /* ══════════════════════════════════════════════════════════════
-   GLASS — only for nav / badges / pills
+   GLASSMORPHISM — overlay plane
+   Nav, cards, badges, form containers
    ══════════════════════════════════════════════════════════════ */
 
+/* Standard pill — nav badges, provider pills */
 .glass-pill {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.86);
   box-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.07),
+    inset 0 1.5px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+}
+
+/* Color-tinted pill variants */
+.glass-pill-violet {
+  background: rgba(245, 243, 255, 0.78);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(167, 139, 250, 0.40);
+  box-shadow:
+    0 4px 16px rgba(124, 58, 237, 0.10),
+    inset 0 1.5px 0 rgba(255, 255, 255, 1);
+}
+.glass-pill-emerald {
+  background: rgba(236, 253, 245, 0.78);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(52, 211, 153, 0.38);
+  box-shadow:
+    0 4px 16px rgba(5, 150, 105, 0.10),
+    inset 0 1.5px 0 rgba(255, 255, 255, 1);
+}
+.glass-pill-sky {
+  background: rgba(240, 249, 255, 0.78);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(125, 211, 252, 0.40);
+  box-shadow:
+    0 4px 16px rgba(14, 165, 233, 0.10),
     inset 0 1.5px 0 rgba(255, 255, 255, 1);
 }
 
-/* ─── Dot grid ──────────────────────────────────────────────── */
+/* Frosted glass card — major section containers */
+.glass-card {
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(40px) saturate(220%);
+  -webkit-backdrop-filter: blur(40px) saturate(220%);
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.08),
+    0 10px 28px rgba(0, 0, 0, 0.05),
+    inset 0 2px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   NEUMORPHISM — infrastructure plane
+   Inner surfaces, containers, tracks — the quiet chassis
+   ══════════════════════════════════════════════════════════════ */
+
+/* Standard neumorphic surface — use inside bento cards */
+.neo-surface {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    4px 4px 14px rgba(0, 0, 0, 0.07),
+    -2px -2px 10px rgba(255, 255, 255, 0.90),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Deeper neumorphic surface — inset/pressed feel */
+.neo-inset {
+  background: rgba(248, 246, 255, 0.70);
+  border: 1px solid rgba(255, 255, 255, 0.60);
+  box-shadow:
+    inset 3px 3px 10px rgba(0, 0, 0, 0.06),
+    inset -2px -2px 8px rgba(255, 255, 255, 0.85),
+    0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* ─── Dot grid ─────────────────────────────────────────────── */
 .dotted-grid {
-  background-image: radial-gradient(rgba(13, 11, 20, 0.055) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(13, 11, 24, 0.06) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
-/* ─── Gradient text ─────────────────────────────────────────── */
+/* ─── Gradient text ──────────────────────────────────────────*/
 .text-gradient {
   background: linear-gradient(135deg, #7c3aed 0%, #059669 100%);
   -webkit-background-clip: text;
@@ -215,7 +335,7 @@ h1, h2, h3, h4, h5, h6 {
   color: transparent;
 }
 
-/* ─── Animations ────────────────────────────────────────────── */
+/* ─── Animations ─────────────────────────────────────────────*/
 @keyframes infinite-scroll {
   to { transform: translate(calc(-50% - 0.5rem)); }
 }
@@ -260,4 +380,28 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes shimmer-btn {
   0%   { transform: translateX(-150%); }
   100% { transform: translateX(150%); }
+}
+
+/* Animated flowing gradient — for headline accent text */
+@keyframes gradient-flow {
+  0%   { background-position: 0% center; }
+  50%  { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+.animate-gradient-text {
+  background-size: 250% auto;
+  animation: gradient-flow 5s ease-in-out infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────*/
+@media (prefers-reduced-motion: reduce) {
+  .aurora-a, .aurora-b, .aurora-c, .aurora-d, .aurora-e,
+  .animate-blob, .animate-float, .animate-infinite-scroll,
+  .animate-dash-flow, .animate-dash-flow-slow,
+  .animate-gradient-text {
+    animation: none !important;
+  }
 }

@@ -26,7 +26,7 @@ export default function FeaturesBento() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-zinc-600 mb-7 glass-pill"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-zinc-600 mb-7 glass-pill-violet"
           >
             Capabilities
           </motion.div>
@@ -56,9 +56,10 @@ export default function FeaturesBento() {
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ y: -5 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7 }}
-          className="w-full rounded-3xl overflow-hidden mb-4 relative bento-dark"
+          className="w-full rounded-3xl overflow-hidden mb-4 relative bento-dark cursor-default"
         >
           <div className="card-noise" />
 
@@ -133,9 +134,10 @@ export default function FeaturesBento() {
               key={i}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -5 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.55, delay: i * 0.09 }}
-              className={`rounded-2xl overflow-hidden flex flex-col relative ${f.bentoClass}`}
+              className={`rounded-2xl overflow-hidden flex flex-col relative cursor-default ${f.bentoClass}`}
             >
               <div className="card-noise" />
               <div className="flex-1 min-h-[11rem] overflow-hidden relative z-10">
@@ -176,9 +178,10 @@ export default function FeaturesBento() {
               key={i}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -5 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
-              className={`rounded-2xl overflow-hidden flex flex-col relative ${f.bentoClass}`}
+              className={`rounded-2xl overflow-hidden flex flex-col relative cursor-default ${f.bentoClass}`}
             >
               <div className="card-noise" />
               <div className="flex-1 min-h-[11rem] overflow-hidden relative z-10">
@@ -278,8 +281,8 @@ function ProvidersVisual() {
         <motion.div key={p.name}
           initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: i * 0.06 + 0.2 }}
-          className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/60 border border-black/[0.05]"
-          style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
+          className="flex items-center gap-2.5 px-3 py-2 rounded-xl neo-surface"
+          style={{ borderLeft: `3px solid ${p.color}40` }}
         >
           <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: p.color }} />
           <span className="text-[10px] font-mono text-zinc-700 flex-1">{p.name}</span>
@@ -308,7 +311,8 @@ function RecoveryVisual() {
         <motion.div key={step.label}
           initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.35, delay: i * 0.18 + 0.2 }}
-          className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border border-black/[0.05] ${step.bg}`}
+          className={`flex items-center gap-3 px-3 py-2.5 rounded-xl neo-surface ${step.bg}`}
+          style={step.status === "active" ? { borderLeft: "3px solid #f59e0b", boxShadow: "0 0 12px rgba(245,158,11,0.18), 4px 4px 14px rgba(0,0,0,0.07), -2px -2px 10px rgba(255,255,255,0.90), inset 0 1px 0 rgba(255,255,255,0.95)" } : undefined}
         >
           {step.status === "done"    && <svg className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
           {step.status === "active"  && <motion.div className={`w-2 h-2 rounded-full flex-shrink-0 ${step.dot}`} animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 0.9, repeat: Infinity }} />}
@@ -334,7 +338,7 @@ function TelemetryVisual() {
   ];
   return (
     <div className="w-full h-full flex flex-col" style={{ minHeight: "190px" }}>
-      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-black/[0.06] flex-shrink-0 bg-white/50">
+      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-black/[0.06] flex-shrink-0 neo-surface rounded-t-2xl">
         <div className="flex gap-1.5">
           <div className="w-2 h-2 rounded-full bg-rose-400/70" />
           <div className="w-2 h-2 rounded-full bg-amber-400/70" />
@@ -343,7 +347,7 @@ function TelemetryVisual() {
         <span className="ml-2 text-[9px] font-mono text-zinc-500 flex-1">live telemetry</span>
         <motion.span className="text-[8px] font-mono text-emerald-600 font-bold" animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }}>● LIVE</motion.span>
       </div>
-      <div className="flex-1 overflow-hidden relative bg-white/25">
+      <div className="flex-1 overflow-hidden relative neo-inset mx-1 mb-1 rounded-b-2xl">
         <motion.div animate={{ y: ["0%", "-50%"] }} transition={{ duration: 16, repeat: Infinity, ease: "linear" }}>
           {[...logs, ...logs].map((log, i) => (
             <div key={i} className="flex items-start gap-2 px-4 py-1.5 border-b border-black/[0.04]">
@@ -364,7 +368,7 @@ function ReplayVisual() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-5 gap-5">
       <div className="w-full flex items-center gap-2">
-        <div className="flex-1 h-2 rounded-full bg-white/60 overflow-hidden" style={{ boxShadow: "inset 0 1px 3px rgba(0,0,0,0.08)" }}>
+        <div className="flex-1 h-2 rounded-full overflow-hidden neo-inset">
           <motion.div className="h-full rounded-full" style={{ background: "linear-gradient(to right, #6366f1, #818cf8)" }}
             initial={{ width: "0%" }} animate={{ width: "68%" }} transition={{ duration: 1.5, delay: 0.3 }} />
         </div>
@@ -414,8 +418,9 @@ function ToolsVisual() {
       {tools.map((t, i) => (
         <motion.span key={t.name}
           initial={{ opacity: 0, scale: 0.75, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+          whileHover={{ scale: 1.1, y: -2 }}
           transition={{ duration: 0.35, delay: i * 0.07 + 0.2, type: "spring", stiffness: 260, damping: 18 }}
-          className={`text-[9px] font-mono font-bold uppercase tracking-wide px-2.5 py-1.5 rounded-xl ${t.c}`}
+          className={`text-[9px] font-mono font-bold uppercase tracking-wide px-2.5 py-1.5 rounded-xl cursor-default ${t.c}`}
         >
           {t.name}
         </motion.span>

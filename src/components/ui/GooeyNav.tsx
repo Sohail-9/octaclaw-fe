@@ -105,6 +105,13 @@ const GooeyNav = ({
   };
 
   const handleClick = (e: any, index: number) => {
+    if (typeof e.preventDefault === "function") e.preventDefault();
+    const href: string = items[index]?.href ?? "";
+    if (href.startsWith("#")) {
+      const el = document.getElementById(href.slice(1));
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+
     const liEl = e.currentTarget;
     if (activeIndex === index) return;
 

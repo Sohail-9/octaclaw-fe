@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 
 function SDKEarlyAccessButton() {
   const [shimmer, setShimmer] = useState(false);
   return (
-    <Link href="#cta">
+    <button onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}>
       <motion.span
         onHoverStart={() => { setShimmer(true); setTimeout(() => setShimmer(false), 600); }}
         whileTap={{ scale: 0.96 }}
@@ -35,7 +34,7 @@ function SDKEarlyAccessButton() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
         </motion.svg>
       </motion.span>
-    </Link>
+    </button>
   );
 }
 
@@ -98,14 +97,14 @@ export default function SDKPreview() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
-          {/* Left: copy */}
-          <div>
+          {/* Left: copy — glass card */}
+          <div className="rounded-3xl p-8 glass-card">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="inline-flex px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-600 mb-8 glass-pill"
+              className="inline-flex px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-600 mb-8 glass-pill-violet"
             >
               Developer Experience
             </motion.div>
@@ -146,14 +145,19 @@ export default function SDKPreview() {
                 "Built-in retry, checkpointing, and replay",
                 "OpenTelemetry compatible trace exports",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-[13px] text-zinc-600">
+                <motion.li
+                  key={item}
+                  whileHover={{ x: 4 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="flex items-center gap-3 text-[13px] text-zinc-600 cursor-default"
+                >
                   <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 clay-emerald">
                     <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   {item}
-                </li>
+                </motion.li>
               ))}
             </motion.ul>
 
@@ -165,8 +169,8 @@ export default function SDKPreview() {
               className="flex items-center gap-4"
             >
               <SDKEarlyAccessButton />
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-pill text-[11px] font-semibold text-zinc-600">
-                <svg className="w-3 h-3 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-pill-emerald text-[11px] font-semibold text-emerald-700">
+                <svg className="w-3 h-3 text-emerald-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                 Free during beta
               </span>
             </motion.div>
@@ -201,10 +205,10 @@ export default function SDKPreview() {
                     <button
                       key={t}
                       onClick={() => setTab(t)}
-                      className={`px-4 py-3 text-[11px] font-mono font-bold uppercase tracking-wider transition-all duration-200 border-b-2 ${
+                      className={`px-4 py-2.5 text-[11px] font-mono font-bold uppercase tracking-wider transition-all duration-200 rounded-t-md ${
                         tab === t
-                          ? "text-violet-400 border-violet-500"
-                          : "text-zinc-600 border-transparent hover:text-zinc-400"
+                          ? "text-violet-300 bg-white/[0.08] border-b-2 border-violet-500"
+                          : "text-zinc-600 border-b-2 border-transparent hover:text-zinc-400"
                       }`}
                     >
                       {t}

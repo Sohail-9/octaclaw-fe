@@ -85,21 +85,26 @@ const metrics = [
 export default function MetricsStrip() {
   return (
     <section className="relative">
-      <div className="border-y border-zinc-100/80"
-        style={{ background: "rgba(255,255,255,0.80)", backdropFilter: "blur(8px)" }}>
-        <div className="max-w-5xl mx-auto px-6 py-14">
+      <div
+        style={{
+          background: "rgba(255,255,255,0.60)",
+          backdropFilter: "blur(32px) saturate(200%)",
+          WebkitBackdropFilter: "blur(32px) saturate(200%)",
+        }}>
+        <div className="max-w-5xl mx-auto px-6 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {metrics.map((m, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -3 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.09, type: "spring", stiffness: 200, damping: 20 }}
-                className="flex flex-col items-center text-center gap-4"
+                className="flex flex-col items-center text-center gap-4 rounded-2xl p-6 neo-surface"
               >
                 <motion.div
-                  whileHover={{ scale: 1.1, rotate: 6 }}
+                  whileHover={{ scale: 1.12, rotate: 8 }}
                   transition={{ type: "spring", stiffness: 320, damping: 14 }}
                   className={`w-16 h-16 rounded-2xl flex items-center justify-center ${m.clayClass}`}
                 >

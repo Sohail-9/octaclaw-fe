@@ -13,12 +13,12 @@ export default function CTASection() {
         <div className="absolute inset-0 dotted-grid opacity-30" />
         {/* Top accent line */}
         <div className="absolute inset-x-0 top-0 h-px"
-          style={{ background: "linear-gradient(to right, transparent, rgba(124,58,237,0.30), transparent)" }} />
+          style={{ background: "linear-gradient(to right, transparent, rgba(124,58,237,0.48), rgba(52,211,153,0.32), transparent)" }} />
         {/* Soft orbs */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-[100px]"
-          style={{ background: "rgba(139,92,246,0.18)" }} />
+          style={{ background: "rgba(139,92,246,0.24)" }} />
         <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full blur-[90px]"
-          style={{ background: "rgba(52,211,153,0.18)" }} />
+          style={{ background: "rgba(52,211,153,0.22)" }} />
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10 flex flex-col items-center text-center">
@@ -29,7 +29,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 mb-8 glass-pill"
+          className="inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 mb-8 glass-pill-emerald"
         >
           <span className="relative flex h-2 w-2 flex-shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -73,50 +73,23 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.22, type: "spring", stiffness: 150, damping: 20 }}
-          className="w-full max-w-lg rounded-3xl p-8 relative overflow-hidden"
-          style={{
-            background: "rgba(255,255,255,0.75)",
-            backdropFilter: "blur(32px) saturate(180%)",
-            WebkitBackdropFilter: "blur(32px) saturate(180%)",
-            border: "1px solid rgba(255,255,255,0.90)",
-            boxShadow: "0 24px 64px rgba(124,58,237,0.10), 0 8px 20px rgba(0,0,0,0.05), inset 0 2px 0 rgba(255,255,255,1)",
-          }}
+          className="w-full max-w-lg rounded-3xl p-8 relative overflow-hidden glass-card"
         >
-          <div className="absolute inset-x-0 top-0 h-px"
+          {/* Static top reflection */}
+          <div className="absolute inset-x-0 top-0 h-px pointer-events-none"
             style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.95), transparent)" }} />
+          {/* Shimmer sweep on enter */}
+          <motion.div
+            className="absolute inset-x-0 top-0 h-px pointer-events-none"
+            style={{ background: "linear-gradient(to right, transparent, rgba(139,92,246,0.7), rgba(52,211,153,0.5), transparent)" }}
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: [0, 1, 1, 0] }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.4, delay: 0.4, ease: "easeInOut" }}
+          />
           <HomeWaitlistHero />
         </motion.div>
 
-        {/* Trust row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-3"
-        >
-          {[
-            {
-              label: "No credit card required",
-              icon: <svg className="w-3.5 h-3.5 text-zinc-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>,
-            },
-            {
-              label: "5-minute setup",
-              icon: <svg className="w-3.5 h-3.5 text-zinc-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="12" cy="12" r="10" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" /></svg>,
-            },
-            {
-              label: "Free during beta",
-              icon: <svg className="w-3.5 h-3.5 text-zinc-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>,
-            },
-          ].map((item) => (
-            <div key={item.label}
-              className="flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill"
-            >
-              {item.icon}
-              <span className="text-[12px] text-zinc-600 font-medium">{item.label}</span>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

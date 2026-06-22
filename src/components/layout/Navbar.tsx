@@ -1,27 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { Linkedin } from "lucide-react";
 import GooeyNav from "@/components/ui/GooeyNav";
 
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
+
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [visible, setVisible] = useState(true);
-  const [shimmer, setShimmer] = useState(false);
+  const [scrolled, setScrolled]   = useState(false);
+  const [visible, setVisible]     = useState(true);
+  const [shimmer, setShimmer]     = useState(false);
+  const [menuOpen, setMenuOpen]   = useState(false);
 
   const triggerShimmer = () => {
     setShimmer(true);
     setTimeout(() => setShimmer(false), 600);
   };
-  const { scrollY } = useScroll();
 
+  const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     if (latest > previous && latest > 150) {
       setVisible(false);
+      setMenuOpen(false);
     } else {
       setVisible(true);
     }
@@ -38,15 +44,16 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: visible ? 0 : -120, opacity: 1 }}
       transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-      className="fixed left-0 right-0 top-3 z-50 flex w-full justify-center px-3 md:top-6 md:px-4"
+      className="fixed left-0 right-0 top-3 z-50 flex w-full flex-col items-center px-3 md:top-6 md:px-4"
     >
+      {/* ── Main pill ── */}
       <motion.nav
         animate={{
-          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.72)" : "rgba(255, 255, 255, 0)",
-          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "blur(0px)",
-          borderColor: scrolled ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0)",
+          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.78)" : "rgba(255, 255, 255, 0)",
+          backdropFilter: scrolled ? "blur(32px) saturate(220%)" : "blur(0px)",
+          borderColor: scrolled ? "rgba(167, 139, 250, 0.28)" : "rgba(255, 255, 255, 0)",
           boxShadow: scrolled
-            ? "inset 0 1px 0px rgba(255,255,255,0.9), 0 0 9px rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.07)"
+            ? "inset 0 2px 0 rgba(255,255,255,1), 0 2px 12px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.07), 0 1px 0 rgba(124,58,237,0.05)"
             : "none",
         }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -64,13 +71,14 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Nav links */}
+        {/* Desktop nav links */}
         <div className="relative z-10 hidden md:flex items-center">
           <GooeyNav items={navItems} />
         </div>
 
-        {/* Right */}
-        <div className="relative z-10 flex items-center gap-4 flex-shrink-0">
+        {/* Right side */}
+        <div className="relative z-10 flex items-center gap-3 flex-shrink-0">
+          {/* LinkedIn — hidden on small mobile */}
           <a
             href="https://www.linkedin.com/company/octaclaw/"
             target="_blank"
@@ -81,7 +89,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop CTA */}
-          <Link href="#waitlist" className="hidden md:block">
+          <button className="hidden md:block" onClick={() => scrollTo("cta")}>
             <motion.span
               onHoverStart={triggerShimmer}
               whileTap={{ scale: 0.95 }}
@@ -91,7 +99,6 @@ export default function Navbar() {
                 boxShadow: "0 6px 18px rgba(124,58,237,0.22), 0 2px 6px rgba(124,58,237,0.12), inset 0 2px 5px rgba(255,255,255,0.45), inset 0 -2px 5px rgba(0,0,0,0.20)",
               }}
             >
-              {/* Shimmer sweep */}
               <motion.span
                 key={shimmer ? "on" : "off"}
                 className="absolute inset-0 pointer-events-none"
@@ -110,23 +117,68 @@ export default function Navbar() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
               </motion.svg>
             </motion.span>
-          </Link>
+          </button>
 
-          {/* Mobile CTA */}
-          <Link href="#waitlist" className="md:hidden">
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden flex flex-col justify-center gap-[5px] p-2 -mr-1 rounded-xl hover:bg-white/40 transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle navigation menu"
+          >
             <motion.span
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center h-9 px-4 rounded-full text-white text-xs font-bold"
-              style={{
-                background: "linear-gradient(145deg, #c4b5fd 0%, #8b5cf6 55%, #7c3aed 100%)",
-                boxShadow: "0 6px 16px rgba(124,58,237,0.40), inset 0 1.5px 4px rgba(255,255,255,0.40)",
-              }}
-            >
-              Early Access
-            </motion.span>
-          </Link>
+              animate={menuOpen ? { rotate: 45, y: 5.5 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.22 }}
+              className="block w-[18px] h-[1.5px] bg-zinc-700 rounded-full origin-center"
+            />
+            <motion.span
+              animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.18 }}
+              className="block w-[18px] h-[1.5px] bg-zinc-700 rounded-full"
+            />
+            <motion.span
+              animate={menuOpen ? { rotate: -45, y: -5.5 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.22 }}
+              className="block w-[18px] h-[1.5px] bg-zinc-700 rounded-full origin-center"
+            />
+          </button>
         </div>
       </motion.nav>
+
+      {/* ── Mobile drawer ── */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.97 }}
+            transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
+            className="mt-2 w-full max-w-5xl rounded-2xl p-3 md:hidden glass-card"
+          >
+            <div className="flex flex-col gap-1">
+              {navItems.map(({ label, href }) => (
+                <button
+                  key={href}
+                  onClick={() => { scrollTo(href.slice(1)); setMenuOpen(false); }}
+                  className="text-left px-4 py-3 rounded-xl text-[14px] font-semibold text-zinc-700 hover:bg-white/60 hover:text-zinc-950 transition-colors duration-150"
+                >
+                  {label}
+                </button>
+              ))}
+              <div className="h-px bg-zinc-100/80 my-1 mx-1" />
+              <button
+                onClick={() => { scrollTo("cta"); setMenuOpen(false); }}
+                className="mx-1 py-3 rounded-xl text-[14px] font-bold text-white text-center"
+                style={{
+                  background: "linear-gradient(145deg, #c4b5fd 0%, #8b5cf6 55%, #7c3aed 100%)",
+                  boxShadow: "0 8px 22px rgba(124,58,237,0.28), inset 0 2px 5px rgba(255,255,255,0.45), inset 0 -2px 5px rgba(0,0,0,0.20)",
+                }}
+              >
+                Get Early Access →
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

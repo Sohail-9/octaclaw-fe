@@ -37,12 +37,7 @@ const steps = [
 
 export default function EfficiencySection() {
   return (
-    <section id="how-it-works" className="py-28 px-6 relative overflow-hidden bg-white">
-      {/* Edge fades blend white section into #f8f7ff page bg */}
-      <div className="absolute inset-x-0 top-0 h-20 pointer-events-none z-10"
-        style={{ background: "linear-gradient(to bottom, #f8f7ff, transparent)" }} />
-      <div className="absolute inset-x-0 bottom-0 h-20 pointer-events-none z-10"
-        style={{ background: "linear-gradient(to top, #f8f7ff, transparent)" }} />
+    <section id="how-it-works" className="py-28 px-6 relative overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(124,58,237,0.12), transparent)" }} />
 
       <div className="max-w-6xl mx-auto">
@@ -53,7 +48,7 @@ export default function EfficiencySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-zinc-600 mb-7 glass-pill"
+            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-zinc-600 mb-7 glass-pill-sky"
           >
             How It Works
           </motion.div>
@@ -81,9 +76,25 @@ export default function EfficiencySection() {
 
         {/* Steps */}
         <div className="relative">
-          {/* Connector line */}
-          <div className="hidden md:block absolute top-[3.25rem] left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px"
-            style={{ background: "linear-gradient(to right, rgba(167,139,250,0.4), rgba(52,211,153,0.4), rgba(56,189,248,0.4))" }} />
+          {/* Connector line with traveling dot */}
+          <div className="hidden md:block absolute top-[3.2rem] left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-[2px] overflow-visible">
+            {/* Glow underlayer */}
+            <div className="absolute inset-0"
+              style={{ background: "linear-gradient(to right, rgba(167,139,250,0.55), rgba(52,211,153,0.55), rgba(56,189,248,0.55))", filter: "blur(2px)" }} />
+            {/* Crisp line */}
+            <div className="absolute inset-0"
+              style={{ background: "linear-gradient(to right, rgba(167,139,250,0.70), rgba(52,211,153,0.70), rgba(56,189,248,0.70))" }} />
+            {/* Traveling dot */}
+            <motion.div
+              className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full -ml-1.5"
+              style={{
+                background: "radial-gradient(circle, #c4b5fd, #6ee7b7)",
+                boxShadow: "0 0 10px rgba(167,139,250,0.90), 0 0 20px rgba(52,211,153,0.50)",
+              }}
+              animate={{ left: ["0%", "100%"] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", repeatDelay: 0.8 }}
+            />
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {steps.map((step, i) => (
@@ -97,9 +108,13 @@ export default function EfficiencySection() {
               >
                 {/* Clay step number circle */}
                 <div className="hidden md:flex relative z-10 justify-center mb-8">
-                  <div className={`w-14 h-14 rounded-full flex items-center justify-center ${step.clayClass}`}>
+                  <motion.div
+                    whileHover={{ scale: 1.12, rotate: 10 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 14 }}
+                    className={`w-14 h-14 rounded-full flex items-center justify-center cursor-default ${step.clayClass}`}
+                  >
                     <span className="font-heading text-sm font-black text-white">{step.number}</span>
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Bento card */}
@@ -121,8 +136,7 @@ export default function EfficiencySection() {
                   </div>
 
                   {/* Visual */}
-                  <div className="relative z-10 mx-6 mt-4 mb-0 rounded-2xl overflow-hidden min-h-[10rem] bg-white/50 flex items-center"
-                    style={{ border: "1px solid rgba(255,255,255,0.80)", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
+                  <div className="relative z-10 mx-6 mt-4 mb-0 rounded-2xl overflow-hidden min-h-[10rem] neo-surface flex items-center"
                   >
                     {step.visual}
                   </div>
@@ -151,7 +165,7 @@ export default function EfficiencySection() {
 function DefineVisual() {
   return (
     <div className="w-full p-5 space-y-3">
-      <div className="rounded-2xl p-4 bg-white/80" style={{ border: "1px solid rgba(167,139,250,0.20)", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
+      <div className="rounded-2xl p-4 neo-surface">
         <div className="flex items-center gap-2 mb-3">
           <div className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
           <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Goal Input</span>
@@ -195,8 +209,7 @@ function AssembleVisual() {
         <motion.div key={a.name}
           initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }}
           transition={{ delay: i * 0.15 + 0.2, duration: 0.4 }}
-          className="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/70"
-          style={{ border: "1px solid rgba(52,211,153,0.15)", boxShadow: "0 2px 6px rgba(0,0,0,0.03)" }}
+          className="flex items-center gap-3 px-4 py-2.5 rounded-xl neo-surface"
         >
           <div className={`w-6 h-6 rounded-lg flex-shrink-0 flex items-center justify-center ${a.active ? a.clayClass : "bg-zinc-200"}`}>
             <motion.div className="w-1.5 h-1.5 rounded-full bg-white"
@@ -246,7 +259,7 @@ function ExecuteVisual() {
               {task.progress}%
             </span>
           </div>
-          <div className="h-1.5 rounded-full overflow-hidden bg-white/80" style={{ boxShadow: "inset 0 1px 3px rgba(0,0,0,0.06)" }}>
+          <div className="h-1.5 rounded-full overflow-hidden neo-inset">
             <motion.div
               className={`h-full rounded-full ${task.done ? "bg-emerald-500" : task.progress > 0 ? "bg-sky-500" : "bg-transparent"}`}
               style={(!task.done && task.progress > 0) ? { background: "linear-gradient(to right, #38bdf8, #818cf8)" } : {}}

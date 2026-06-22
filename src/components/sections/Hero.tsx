@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import HomeWaitlistHero from "./HomeWaitlistHero";
 import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
 
 const providerRow1 = [
@@ -128,9 +126,11 @@ function HeroTerminal() {
         transition={{ duration: 0.6, delay: 1.5, type: "spring", stiffness: 200, damping: 16 }}
         className="absolute -bottom-5 -right-2 md:right-6 z-10 flex items-center gap-3 rounded-2xl px-4 py-3"
         style={{
-          background: "white",
-          boxShadow: "0 20px 48px rgba(0,0,0,0.14), 0 6px 16px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,1)",
-          border: "1px solid rgba(0,0,0,0.06)",
+          background: "rgba(255,255,255,0.85)",
+          backdropFilter: "blur(40px) saturate(220%)",
+          WebkitBackdropFilter: "blur(40px) saturate(220%)",
+          boxShadow: "0 24px 56px rgba(0,0,0,0.12), 0 6px 16px rgba(0,0,0,0.07), 0 2px 4px rgba(52,211,153,0.12), inset 0 2px 0 rgba(255,255,255,1), inset 0 -1px 0 rgba(0,0,0,0.02)",
+          border: "1px solid rgba(255,255,255,0.90)",
         }}
       >
         <div className="w-8 h-8 rounded-full flex-shrink-0 clay-emerald flex items-center justify-center">
@@ -179,8 +179,15 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-8 inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 glass-pill"
+          className="mb-8 inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 glass-pill-emerald relative overflow-hidden"
         >
+          {/* Recurring shimmer sweep */}
+          <motion.span
+            className="absolute inset-0 pointer-events-none rounded-full"
+            style={{ background: "linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.65) 50%, transparent 80%)" }}
+            animate={{ x: ["-130%", "130%"] }}
+            transition={{ duration: 0.85, delay: 1.8, repeat: Infinity, repeatDelay: 4.5, ease: "easeInOut" }}
+          />
           <span className="relative flex h-2 w-2 flex-shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -205,7 +212,7 @@ export default function HeroSection() {
           </span>
         </motion.h1>
 
-        {/* Subtitle — one clean line */}
+        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -244,8 +251,9 @@ export default function HeroSection() {
               key={label}
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.06, y: -2 }}
               transition={{ duration: 0.4, delay: 0.32 + i * 0.08, type: "spring", stiffness: 260, damping: 18 }}
-              className={`flex items-center gap-2 pl-2 pr-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-wide text-white ${cls}`}
+              className={`flex items-center gap-2 pl-2 pr-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-wide text-white cursor-default ${cls}`}
             >
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/20 flex-shrink-0">
                 {icon}
@@ -255,14 +263,34 @@ export default function HeroSection() {
           ))}
         </motion.div>
 
-        {/* Waitlist form */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full max-w-md mb-5"
+          transition={{ duration: 0.6, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-6"
         >
-          <HomeWaitlistHero />
+          <button
+            onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
+            className="relative overflow-hidden flex items-center gap-2.5 rounded-full px-7 py-3.5 text-white text-[14px] font-bold tracking-tight group"
+            style={{
+              background: "linear-gradient(145deg, #c4b5fd 0%, #8b5cf6 55%, #7c3aed 100%)",
+              boxShadow: "0 8px 24px rgba(124,58,237,0.30), 0 2px 8px rgba(124,58,237,0.15), inset 0 2px 5px rgba(255,255,255,0.45), inset 0 -2px 5px rgba(0,0,0,0.20)",
+            }}
+          >
+            <motion.span
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.50) 50%, transparent 70%)" }}
+              initial={{ x: "-110%" }}
+              animate={{ x: "110%" }}
+              transition={{ duration: 0.7, delay: 1.4, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
+            />
+            Get Early Access
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+              className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+            </svg>
+          </button>
         </motion.div>
 
         {/* Social proof */}
@@ -270,20 +298,23 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.44 }}
-          className="flex items-center gap-5 mb-12"
+          className="flex items-center gap-3 mb-12 flex-wrap justify-center"
         >
-          <p className="text-sm text-zinc-400">
-            Join{" "}
-            <span className="font-semibold text-zinc-600">400+</span>{" "}
-            engineers on the waitlist
-          </p>
-          <span className="text-zinc-300">|</span>
-          <Link href="#features" className="text-[13px] font-medium text-zinc-500 hover:text-zinc-800 transition-colors inline-flex items-center gap-1.5 group">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-pill text-[12px] font-medium text-zinc-600">
+            <svg className="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span className="font-semibold text-zinc-700">400+</span> engineers on the waitlist
+          </span>
+          <button
+            onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full glass-pill text-[12px] font-medium text-zinc-600 hover:text-zinc-900 transition-colors group"
+          >
             See capabilities
-            <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="w-3 h-3 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </Link>
+          </button>
         </motion.div>
 
         <HeroTerminal />
@@ -296,9 +327,14 @@ export default function HeroSection() {
         transition={{ duration: 0.8, delay: 0.9 }}
         className="relative z-10 pb-16 overflow-hidden"
       >
-        <p className="text-center text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-semibold mb-5 mt-10">
-          Routes to any model provider
-        </p>
+        <div className="flex justify-center mb-5 mt-10">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-[10px] font-semibold uppercase tracking-[0.25em] text-zinc-500">
+            <svg className="w-3 h-3 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+            </svg>
+            Routes to any model provider
+          </span>
+        </div>
         <InfiniteMovingCards items={[...providerRow1, ...providerRow2]} direction="left" speed="slow" />
       </motion.div>
     </section>
