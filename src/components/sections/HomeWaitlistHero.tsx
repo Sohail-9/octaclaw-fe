@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { NoiseBackground } from "@/components/ui/NoiseBackground";
 
 export default function HomeWaitlistHero() {
   const [email, setEmail]     = useState("");
@@ -47,16 +46,21 @@ export default function HomeWaitlistHero() {
   return (
     <div className="relative w-full flex flex-col gap-4">
 
-      {/* Outer rotating gradient border */}
-      <NoiseBackground
-        containerClassName="w-full rounded-2xl p-[2px]"
-        gradientColors={["rgb(124, 58, 237)", "rgb(5, 150, 105)", "rgb(250, 204, 21)"]}
-        noiseIntensity={0.08}
-        group={false}
-      >
+      {/* Gradient border wrapper — idle: soft, focused: vivid */}
+      <div className="relative w-full rounded-2xl p-px overflow-hidden">
+        {/* Idle border gradient */}
+        <div className="absolute inset-0"
+          style={{ background: "linear-gradient(135deg, rgba(167,139,250,0.55) 0%, rgba(196,181,253,0.28) 35%, rgba(110,231,183,0.48) 70%, rgba(52,211,153,0.52) 100%)" }} />
+        {/* Focus border gradient — fades in */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{ opacity: focused ? 1 : 0 }}
+          transition={{ duration: 0.22 }}
+          style={{ background: "linear-gradient(135deg, #8b5cf6 0%, #c4b5fd 35%, #6ee7b7 70%, #34d399 100%)" }}
+        />
         <form
           onSubmit={handleSubmit}
-          className="relative rounded-[14px] overflow-hidden"
+          className="relative z-10 rounded-[14px] overflow-hidden"
           style={{
             background: "rgba(255,255,255,0.97)",
             boxShadow: "0 4px 24px rgba(124,58,237,0.08), inset 0 1px 0 rgba(255,255,255,1)",
@@ -228,7 +232,7 @@ export default function HomeWaitlistHero() {
             </div>
           </div>
         </form>
-      </NoiseBackground>
+      </div>
 
       {/* Status message */}
       <AnimatePresence>
