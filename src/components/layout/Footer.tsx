@@ -78,13 +78,13 @@ export default function Footer() {
         {/* Wordmark */}
         <div className="-mx-6 md:-mx-10 overflow-hidden border-t border-zinc-100">
           <div className="flex h-[4.5rem] md:h-[9rem] items-center justify-center px-4 md:px-0">
-            <p className="w-full truncate text-center font-heading font-black tracking-tight select-none leading-none text-zinc-100"
+            <p className="w-full truncate text-center font-heading font-black tracking-tight select-none leading-none text-zinc-200"
               style={{ fontSize: "clamp(3.5rem, 10vw, 9rem)" }}>
               OCTACLAW
             </p>
           </div>
           <div className="flex items-center justify-between px-6 md:px-10 py-4 border-t border-zinc-100">
-            <p className="text-[11px] text-zinc-400">© 2025 OctaClaw. All rights reserved.</p>
+            <p className="text-[11px] text-zinc-400">© 2026 OctaClaw. All rights reserved.</p>
             <p className="text-[11px] text-zinc-400">Built for engineers who ship.</p>
           </div>
         </div>

@@ -105,7 +105,7 @@ export default function HomeWaitlistHero() {
                 onChange={(e) => setEmail(e.target.value)}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
-                placeholder="your@company.com"
+                placeholder="Enter your email"
                 className="flex-1 min-w-0 bg-transparent text-[14px] font-medium text-zinc-900 outline-none placeholder:text-zinc-400"
                 style={{
                   WebkitBoxShadow: "0 0 0px 1000px rgba(255,255,255,0.01) inset",

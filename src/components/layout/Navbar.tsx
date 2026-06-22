@@ -88,7 +88,7 @@ export default function Navbar() {
               className="relative overflow-hidden flex items-center gap-2 cursor-pointer rounded-full px-5 py-2 text-white text-[13px] font-bold tracking-tight"
               style={{
                 background: "linear-gradient(145deg, #c4b5fd 0%, #8b5cf6 55%, #7c3aed 100%)",
-                boxShadow: "0 8px 24px rgba(124,58,237,0.45), 0 3px 8px rgba(124,58,237,0.28), inset 0 2px 5px rgba(255,255,255,0.45), inset 0 -2px 5px rgba(0,0,0,0.20)",
+                boxShadow: "0 6px 18px rgba(124,58,237,0.22), 0 2px 6px rgba(124,58,237,0.12), inset 0 2px 5px rgba(255,255,255,0.45), inset 0 -2px 5px rgba(0,0,0,0.20)",
               }}
             >
               {/* Shimmer sweep */}

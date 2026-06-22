@@ -14,7 +14,7 @@ function SDKEarlyAccessButton() {
         className="relative overflow-hidden inline-flex items-center gap-2.5 h-11 px-7 rounded-full text-white text-[13px] font-bold tracking-tight cursor-pointer"
         style={{
           background: "linear-gradient(145deg, #c4b5fd 0%, #8b5cf6 55%, #7c3aed 100%)",
-          boxShadow: "0 14px 40px rgba(124,58,237,0.45), 0 5px 12px rgba(124,58,237,0.28), inset 0 2px 6px rgba(255,255,255,0.45), inset 0 -2px 6px rgba(0,0,0,0.20)",
+          boxShadow: "0 8px 24px rgba(124,58,237,0.22), 0 3px 8px rgba(124,58,237,0.12), inset 0 2px 6px rgba(255,255,255,0.45), inset 0 -2px 6px rgba(0,0,0,0.20)",
         }}
       >
         <motion.span
