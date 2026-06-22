@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import confetti from "canvas-confetti";
 
 export default function HomeWaitlistHero() {
   const [email, setEmail]     = useState("");
@@ -31,6 +32,13 @@ export default function HomeWaitlistHero() {
           : "You're in. Welcome to OctaClaw."
       );
       setEmail("");
+      confetti({
+        particleCount: 120,
+        spread: 72,
+        origin: { y: 0.6 },
+        colors: ["#8b5cf6", "#c4b5fd", "#a78bfa", "#10b981", "#6ee7b7", "#34d399"],
+        disableForReducedMotion: true,
+      });
     } catch (error: unknown) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Something went wrong. Try again.");

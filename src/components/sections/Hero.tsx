@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
 
 const providerRow1 = [
@@ -148,8 +149,16 @@ function HeroTerminal() {
 }
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const terminalRotateX = useTransform(scrollYProgress, [0, 0.55], [10, 0]);
+  const terminalScale   = useTransform(scrollYProgress, [0, 0.55], [0.93, 1.0]);
+
   return (
-    <section id="waitlist" className="relative overflow-hidden">
+    <section ref={sectionRef} id="waitlist" className="relative overflow-hidden">
 
       {/* Hero background shape — like Prettiflow's hero_bg */}
       <div
@@ -317,7 +326,11 @@ export default function HeroSection() {
           </button>
         </motion.div>
 
-        <HeroTerminal />
+        <div style={{ perspective: "1200px" }} className="w-full">
+          <motion.div style={{ rotateX: terminalRotateX, scale: terminalScale }}>
+            <HeroTerminal />
+          </motion.div>
+        </div>
       </div>
 
       {/* Provider marquee — like Prettiflow's logo marquee */}
