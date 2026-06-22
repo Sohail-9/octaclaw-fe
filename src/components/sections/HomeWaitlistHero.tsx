@@ -106,7 +106,7 @@ export default function HomeWaitlistHero() {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
                 placeholder="Enter your email"

@@ -63,7 +63,7 @@ export default function Footer() {
             <div className="flex flex-col gap-5">
               <h4 className="font-heading font-bold text-zinc-400 text-[10px] tracking-[0.18em] uppercase">Company</h4>
               <div className="flex flex-col gap-3">
-                <Link href="#waitlist"                className="text-zinc-500 text-sm hover:text-zinc-950 transition-colors duration-200">Early Access</Link>
+                <Link href="#cta"                     className="text-zinc-500 text-sm hover:text-zinc-950 transition-colors duration-200">Early Access</Link>
                 <Link href="mailto:contact@octaclaw.com" className="text-zinc-500 text-sm hover:text-zinc-950 transition-colors duration-200">Contact</Link>
                 <span className="text-zinc-300 text-sm cursor-default flex items-center gap-1.5">
                   Blog

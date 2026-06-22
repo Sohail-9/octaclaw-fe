@@ -7,7 +7,7 @@ import Link from "next/link";
 function SDKEarlyAccessButton() {
   const [shimmer, setShimmer] = useState(false);
   return (
-    <Link href="#waitlist">
+    <Link href="#cta">
       <motion.span
         onHoverStart={() => { setShimmer(true); setTimeout(() => setShimmer(false), 600); }}
         whileTap={{ scale: 0.96 }}
@@ -165,7 +165,10 @@ export default function SDKPreview() {
               className="flex items-center gap-4"
             >
               <SDKEarlyAccessButton />
-              <span className="text-[12px] text-zinc-400">Free during beta</span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-pill text-[11px] font-semibold text-zinc-600">
+                <svg className="w-3 h-3 text-zinc-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                Free during beta
+              </span>
             </motion.div>
           </div>
 

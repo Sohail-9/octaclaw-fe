@@ -96,14 +96,23 @@ export default function CTASection() {
           className="mt-8 flex flex-wrap items-center justify-center gap-3"
         >
           {[
-            { icon: "🔒", label: "No credit card required" },
-            { icon: "⚡", label: "5-minute setup" },
-            { icon: "🚀", label: "Free during beta" },
+            {
+              label: "No credit card required",
+              icon: <svg className="w-3.5 h-3.5 text-zinc-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>,
+            },
+            {
+              label: "5-minute setup",
+              icon: <svg className="w-3.5 h-3.5 text-zinc-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><circle cx="12" cy="12" r="10" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" /></svg>,
+            },
+            {
+              label: "Free during beta",
+              icon: <svg className="w-3.5 h-3.5 text-zinc-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>,
+            },
           ].map((item) => (
             <div key={item.label}
               className="flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill"
             >
-              <span className="text-sm">{item.icon}</span>
+              {item.icon}
               <span className="text-[12px] text-zinc-600 font-medium">{item.label}</span>
             </div>
           ))}
