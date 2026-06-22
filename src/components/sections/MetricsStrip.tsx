@@ -3,34 +3,75 @@
 import { motion } from "framer-motion";
 
 const metrics = [
-  { value: "<150ms", label: "DAG planning time", accent: "text-violet-600" },
-  { value: "∞", label: "Parallel agents", accent: "text-emerald-600" },
-  { value: "8+", label: "Model providers", accent: "text-sky-600" },
-  { value: "100%", label: "Deterministic replay", accent: "text-amber-600" },
+  {
+    value: "<150ms",
+    label: "DAG planning latency",
+    clayClass: "clay-violet",
+    icon: (
+      <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
+  {
+    value: "∞",
+    label: "Parallel agent lanes",
+    clayClass: "clay-emerald",
+    icon: (
+      <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+      </svg>
+    ),
+  },
+  {
+    value: "8+",
+    label: "Model providers",
+    clayClass: "clay-sky",
+    icon: (
+      <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+      </svg>
+    ),
+  },
+  {
+    value: "100%",
+    label: "Deterministic replay",
+    clayClass: "clay-amber",
+    icon: (
+      <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+    ),
+  },
 ];
 
 export default function MetricsStrip() {
   return (
     <section className="relative">
-      <div className="border-y border-zinc-200/70 bg-zinc-50/50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-violet-50/60 via-transparent to-emerald-50/40 pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-6 py-10 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 md:divide-x divide-zinc-200/60">
+      <div className="border-y border-zinc-100/80"
+        style={{ background: "rgba(255,255,255,0.80)", backdropFilter: "blur(8px)" }}>
+        <div className="max-w-5xl mx-auto px-6 py-14">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {metrics.map((m, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="flex flex-col items-center text-center gap-1.5 px-4"
+                transition={{ duration: 0.5, delay: i * 0.09, type: "spring", stiffness: 200, damping: 20 }}
+                className="flex flex-col items-center text-center gap-4"
               >
-                <span className={`text-3xl sm:text-4xl font-bold font-heading tracking-tight tabular-nums ${m.accent}`}>
-                  {m.value}
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-zinc-500">
-                  {m.label}
-                </span>
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${m.clayClass}`}>
+                  {m.icon}
+                </div>
+                <div>
+                  <div className="text-3xl font-bold font-heading text-zinc-950 tracking-tight mb-1">
+                    {m.value}
+                  </div>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400">
+                    {m.label}
+                  </span>
+                </div>
               </motion.div>
             ))}
           </div>

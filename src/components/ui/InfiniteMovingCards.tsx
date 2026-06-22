@@ -73,16 +73,15 @@ export const InfiniteMovingCards = ({
         {items.map((item, idx) => (
           <li
             key={idx}
-            className="flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-zinc-200 bg-white shrink-0"
+            className="flex items-center gap-2.5 px-5 py-2.5 rounded-full shrink-0 glass-pill"
           >
-            {item.logo && (
-              <span className="text-zinc-500">{item.logo}</span>
-            )}
-            <span className="text-[11px] font-semibold text-zinc-500 tracking-wide">
+            {item.logo && <span>{item.logo}</span>}
+            <span className="text-[11px] font-semibold text-zinc-700 tracking-wide">
               {item.name}
             </span>
             {item.tag && (
-              <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 border border-zinc-200 bg-zinc-50 rounded-full px-2 py-0.5">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-500 rounded-full px-2 py-0.5"
+                style={{ border: "1px solid rgba(255,255,255,0.55)", background: "rgba(255,255,255,0.30)" }}>
                 {item.tag}
               </span>
             )}

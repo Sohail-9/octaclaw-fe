@@ -2,61 +2,111 @@
 
 import { motion } from "framer-motion";
 import HomeWaitlistHero from "./HomeWaitlistHero";
-import Grainient from "@/components/ui/Grainient";
 
 export default function CTASection() {
   return (
-    <section id="waitlist" className="relative flex w-full flex-col items-center justify-center overflow-hidden px-4 py-16 md:px-6 md:py-32 rounded-t-[1.5rem] md:rounded-t-[2rem]">
-
-      {/* Grainient WebGL background */}
-      <div className="absolute inset-0 z-0 opacity-[0.4] pointer-events-none">
-        <Grainient
-          color1="#9f7aea"
-          color2="#34d399"
-          color3="#e0f2fe"
-          timeSpeed={0.1}
-          zoom={1.5}
-          grainAmount={0.08}
-          className="w-full h-full"
-        />
+    <section id="cta" className="py-28 px-6 relative overflow-hidden">
+      {/* Rich gradient section background — Prettiflow CTA style */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0"
+          style={{ background: "linear-gradient(160deg, #f5f3ff 0%, #ede9fe 30%, #d1fae5 65%, #ecfdf5 100%)" }} />
+        <div className="absolute inset-0 dotted-grid opacity-30" />
+        {/* Top accent line */}
+        <div className="absolute inset-x-0 top-0 h-px"
+          style={{ background: "linear-gradient(to right, transparent, rgba(124,58,237,0.30), transparent)" }} />
+        {/* Soft orbs */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-[100px]"
+          style={{ background: "rgba(139,92,246,0.18)" }} />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full blur-[90px]"
+          style={{ background: "rgba(52,211,153,0.18)" }} />
       </div>
 
-      {/* Sliding gradient blobs — mirrors hero */}
-      <motion.div
-        initial={{ x: "-100%", opacity: 0 }}
-        whileInView={{ x: "-40%", opacity: 0.7 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        className="pointer-events-none absolute left-0 top-[10%] z-[1] hidden w-[480px] h-[480px] md:block rounded-full blur-[60px]"
-        style={{ background: "radial-gradient(ellipse at center, rgba(167,139,250,0.5) 0%, transparent 70%)" }}
-      />
-      <motion.div
-        initial={{ x: "100%", opacity: 0 }}
-        whileInView={{ x: "40%", opacity: 0.6 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: "easeOut", delay: 0.1 }}
-        className="pointer-events-none absolute bottom-[15%] right-0 z-[1] hidden w-[420px] h-[420px] md:block rounded-full blur-[60px]"
-        style={{ background: "radial-gradient(ellipse at center, rgba(52,211,153,0.4) 0%, transparent 70%)" }}
-      />
+      <div className="max-w-4xl mx-auto relative z-10 flex flex-col items-center text-center">
 
-      <div className="relative z-20 flex max-w-3xl flex-col items-center text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+        {/* Eyebrow */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-8 font-serif text-3xl font-normal tracking-tight text-zinc-950 md:mb-10 md:text-6xl leading-[1.1]"
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2.5 rounded-full px-4 py-1.5 mb-8 glass-pill"
         >
-          Build your next AI system with&nbsp;OctaClaw.
+          <span className="relative flex h-2 w-2 flex-shrink-0">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+          </span>
+          <span className="text-[11px] font-semibold text-zinc-600 tracking-wide">
+            Private beta now open
+          </span>
+        </motion.div>
+
+        {/* Headline */}
+        <motion.h2
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          className="font-heading font-bold text-4xl sm:text-5xl lg:text-[3.8rem] text-zinc-950 leading-[1.06] tracking-tight mb-6"
+        >
+          Build your next AI system
+          <br />
+          <span className="bg-gradient-to-r from-violet-600 via-violet-500 to-emerald-500 bg-clip-text text-transparent">
+            with OctaClaw.
+          </span>
         </motion.h2>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="w-full max-w-xl px-1 md:px-0"
+          transition={{ duration: 0.6, delay: 0.16 }}
+          className="text-lg text-zinc-500 leading-relaxed max-w-md mb-12"
         >
+          Join the engineers already building production multi-agent systems
+          with the runtime that doesn&apos;t break.
+        </motion.p>
+
+        {/* Form card */}
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.22, type: "spring", stiffness: 150, damping: 20 }}
+          className="w-full max-w-lg rounded-3xl p-8 relative overflow-hidden"
+          style={{
+            background: "rgba(255,255,255,0.75)",
+            backdropFilter: "blur(32px) saturate(180%)",
+            WebkitBackdropFilter: "blur(32px) saturate(180%)",
+            border: "1px solid rgba(255,255,255,0.90)",
+            boxShadow: "0 24px 64px rgba(124,58,237,0.10), 0 8px 20px rgba(0,0,0,0.05), inset 0 2px 0 rgba(255,255,255,1)",
+          }}
+        >
+          <div className="absolute inset-x-0 top-0 h-px"
+            style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.95), transparent)" }} />
           <HomeWaitlistHero />
+        </motion.div>
+
+        {/* Trust row */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-8 flex flex-wrap items-center justify-center gap-3"
+        >
+          {[
+            { icon: "🔒", label: "No credit card required" },
+            { icon: "⚡", label: "5-minute setup" },
+            { icon: "🚀", label: "Free during beta" },
+          ].map((item) => (
+            <div key={item.label}
+              className="flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill"
+            >
+              <span className="text-sm">{item.icon}</span>
+              <span className="text-[12px] text-zinc-600 font-medium">{item.label}</span>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

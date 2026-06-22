@@ -6,11 +6,16 @@ import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { Linkedin } from "lucide-react";
 import GooeyNav from "@/components/ui/GooeyNav";
-import { NoiseBackground } from "@/components/ui/NoiseBackground";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [shimmer, setShimmer] = useState(false);
+
+  const triggerShimmer = () => {
+    setShimmer(true);
+    setTimeout(() => setShimmer(false), 600);
+  };
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -24,7 +29,6 @@ export default function Navbar() {
   });
 
   const navItems = [
-    { label: "Platform", href: "#platform" },
     { label: "Capabilities", href: "#features" },
     { label: "How It Works", href: "#how-it-works" },
   ];
@@ -38,19 +42,18 @@ export default function Navbar() {
     >
       <motion.nav
         animate={{
-          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.25)" : "rgba(255, 255, 255, 0)",
-          backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
-          borderColor: scrolled ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 255, 255, 0)",
+          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.72)" : "rgba(255, 255, 255, 0)",
+          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "blur(0px)",
+          borderColor: scrolled ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0)",
           boxShadow: scrolled
-            ? "inset 0 1px 0px rgba(255,255,255,0.75), 0 0 9px rgba(0,0,0,0.05), 0 3px 8px rgba(0,0,0,0.08)"
+            ? "inset 0 1px 0px rgba(255,255,255,0.9), 0 0 9px rgba(0,0,0,0.04), 0 4px 20px rgba(0,0,0,0.07)"
             : "none",
         }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className="relative flex h-14 w-full max-w-5xl items-center justify-between overflow-hidden rounded-full border px-4 md:h-16 md:px-6"
       >
-        {/* Subtle highlight when scrolled */}
         {scrolled && (
-          <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-70" />
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/50 via-transparent to-transparent opacity-70" />
         )}
 
         {/* Logo */}
@@ -77,30 +80,50 @@ export default function Navbar() {
             <Linkedin size={16} strokeWidth={1.5} />
           </a>
 
-          <NoiseBackground
-            containerClassName="hidden md:block w-fit rounded-full p-1"
-            gradientColors={["rgb(124, 58, 237)", "rgb(5, 150, 105)", "rgb(250, 204, 21)"]}
-            noiseIntensity={0.1}
-            group={false}
-          >
-            <Link href="#waitlist">
+          {/* Desktop CTA */}
+          <Link href="#waitlist" className="hidden md:block">
+            <motion.span
+              onHoverStart={triggerShimmer}
+              whileTap={{ scale: 0.95 }}
+              className="relative overflow-hidden flex items-center gap-2 cursor-pointer rounded-full px-5 py-2 text-white text-[13px] font-bold tracking-tight"
+              style={{
+                background: "linear-gradient(145deg, #c4b5fd 0%, #8b5cf6 55%, #7c3aed 100%)",
+                boxShadow: "0 8px 24px rgba(124,58,237,0.45), 0 3px 8px rgba(124,58,237,0.28), inset 0 2px 5px rgba(255,255,255,0.45), inset 0 -2px 5px rgba(0,0,0,0.20)",
+              }}
+            >
+              {/* Shimmer sweep */}
               <motion.span
-                className="group flex items-center gap-2 cursor-pointer rounded-full bg-gradient-to-r from-neutral-100 via-neutral-100 to-white px-5 py-2 text-zinc-950 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.8)_inset,0px_0.5px_1px_0px_rgba(0,0,0,0.15)] font-semibold text-sm transition-all duration-100 active:scale-95"
+                key={shimmer ? "on" : "off"}
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%)" }}
+                initial={{ x: "-110%" }}
+                animate={shimmer ? { x: "110%" } : { x: "-110%" }}
+                transition={{ duration: 0.55, ease: "easeInOut" }}
+              />
+              Early Access
+              <motion.svg
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                className="w-3.5 h-3.5 relative"
+                animate={{ x: [0, 2, 0], y: [0, -2, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
-                Early Access
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-4 h-4">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
-              </motion.span>
-            </Link>
-          </NoiseBackground>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </motion.svg>
+            </motion.span>
+          </Link>
 
           {/* Mobile CTA */}
-          <Link
-            href="#waitlist"
-            className="md:hidden flex items-center h-9 px-4 rounded-full bg-zinc-950 text-white text-xs font-bold"
-          >
-            Early Access
+          <Link href="#waitlist" className="md:hidden">
+            <motion.span
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center h-9 px-4 rounded-full text-white text-xs font-bold"
+              style={{
+                background: "linear-gradient(145deg, #c4b5fd 0%, #8b5cf6 55%, #7c3aed 100%)",
+                boxShadow: "0 6px 16px rgba(124,58,237,0.40), inset 0 1.5px 4px rgba(255,255,255,0.40)",
+              }}
+            >
+              Early Access
+            </motion.span>
           </Link>
         </div>
       </motion.nav>
