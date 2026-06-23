@@ -62,7 +62,7 @@ export default function Navbar() {
 
         {/* Logo — scroll to top */}
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
           className="relative z-10 flex items-center gap-3 group flex-shrink-0 cursor-pointer"
         >
           <Logo className="w-7 h-7 transition-transform duration-500 group-hover:rotate-6" />
