@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
-import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
 import { Linkedin } from "lucide-react";
 import GooeyNav from "@/components/ui/GooeyNav";
@@ -61,22 +60,16 @@ export default function Navbar() {
       >
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/30 via-transparent to-transparent" />
 
-        {/* Logo — scroll to top if already on home */}
-        <Link
-          href="/"
-          onClick={(e) => {
-            if (typeof window !== "undefined" && window.location.pathname === "/") {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }
-          }}
-          className="relative z-10 flex items-center gap-3 group flex-shrink-0"
+        {/* Logo — scroll to top */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="relative z-10 flex items-center gap-3 group flex-shrink-0 cursor-pointer"
         >
           <Logo className="w-7 h-7 transition-transform duration-500 group-hover:rotate-6" />
           <span className="uppercase tracking-[0.25em] font-bold text-[10px] text-zinc-700 group-hover:text-zinc-950 transition-colors duration-300 font-heading">
             OctaClaw
           </span>
-        </Link>
+        </button>
 
         {/* Desktop nav links */}
         <div className="relative z-10 hidden md:flex items-center">
