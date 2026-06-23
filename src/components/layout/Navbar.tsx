@@ -49,22 +49,29 @@ export default function Navbar() {
       {/* ── Main pill ── */}
       <motion.nav
         animate={{
-          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.78)" : "rgba(255, 255, 255, 0)",
-          backdropFilter: scrolled ? "blur(32px) saturate(220%)" : "blur(0px)",
-          borderColor: scrolled ? "rgba(167, 139, 250, 0.28)" : "rgba(255, 255, 255, 0)",
+          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.55)" : "rgba(255, 255, 255, 0.14)",
+          backdropFilter: "blur(28px) saturate(180%)",
+          borderColor: scrolled ? "rgba(255, 255, 255, 0.70)" : "rgba(255, 255, 255, 0.40)",
           boxShadow: scrolled
-            ? "inset 0 2px 0 rgba(255,255,255,1), 0 2px 12px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.07), 0 1px 0 rgba(124,58,237,0.05)"
-            : "none",
+            ? "inset 0 1px 0 rgba(255,255,255,0.85), 0 2px 16px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.06)"
+            : "inset 0 1px 0 rgba(255,255,255,0.60), 0 2px 8px rgba(0,0,0,0.03)",
         }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
-        className="relative flex h-14 w-full max-w-5xl items-center justify-between overflow-hidden rounded-full border px-4 md:h-16 md:px-6"
+        className="relative flex h-14 w-full max-w-5xl items-center justify-between overflow-hidden rounded-full border px-4 md:h-16 md:px-6 [backdrop-filter:blur(28px)_saturate(180%)] [-webkit-backdrop-filter:blur(28px)_saturate(180%)]"
       >
-        {scrolled && (
-          <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/50 via-transparent to-transparent opacity-70" />
-        )}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/30 via-transparent to-transparent" />
 
-        {/* Logo */}
-        <Link href="/" className="relative z-10 flex items-center gap-3 group flex-shrink-0">
+        {/* Logo — scroll to top if already on home */}
+        <Link
+          href="/"
+          onClick={(e) => {
+            if (typeof window !== "undefined" && window.location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+          className="relative z-10 flex items-center gap-3 group flex-shrink-0"
+        >
           <Logo className="w-7 h-7 transition-transform duration-500 group-hover:rotate-6" />
           <span className="uppercase tracking-[0.25em] font-bold text-[10px] text-zinc-700 group-hover:text-zinc-950 transition-colors duration-300 font-heading">
             OctaClaw

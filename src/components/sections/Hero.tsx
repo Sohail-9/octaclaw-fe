@@ -4,21 +4,32 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
 
+function mark(letters: string, bg: string) {
+  return (
+    <span
+      className="inline-flex items-center justify-center rounded-[5px] text-[8px] font-black text-white flex-shrink-0 leading-none"
+      style={{ background: bg, width: 20, height: 20 }}
+    >
+      {letters}
+    </span>
+  );
+}
+
 const providerRow1 = [
-  { name: "Anthropic Claude", logo: <span className="w-2 h-2 rounded-full bg-violet-500 inline-block" /> },
-  { name: "OpenAI GPT-4o",    logo: <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" /> },
-  { name: "Google Gemini",    logo: <span className="w-2 h-2 rounded-full bg-blue-500 inline-block" /> },
-  { name: "Groq LLaMA",       logo: <span className="w-2 h-2 rounded-full bg-amber-500 inline-block" /> },
-  { name: "Mistral AI",       logo: <span className="w-2 h-2 rounded-full bg-orange-500 inline-block" /> },
-  { name: "Cohere",           logo: <span className="w-2 h-2 rounded-full bg-sky-500 inline-block" /> },
+  { name: "Anthropic Claude", logo: mark("A",   "#191919") },
+  { name: "OpenAI GPT-4o",    logo: mark("GPT", "#10a37f") },
+  { name: "Google Gemini",    logo: mark("G",   "#4285F4") },
+  { name: "Groq",             logo: mark("G",   "#f55036") },
+  { name: "Mistral AI",       logo: mark("M",   "#FF6B35") },
+  { name: "Cohere",           logo: mark("C",   "#39a2cf") },
 ];
 const providerRow2 = [
-  { name: "xAI Grok",    logo: <span className="w-2 h-2 rounded-full bg-zinc-600 inline-block" /> },
-  { name: "Meta LLaMA",  logo: <span className="w-2 h-2 rounded-full bg-blue-600 inline-block" /> },
-  { name: "Perplexity",  logo: <span className="w-2 h-2 rounded-full bg-teal-500 inline-block" /> },
-  { name: "Together AI", logo: <span className="w-2 h-2 rounded-full bg-rose-500 inline-block" /> },
-  { name: "AWS Bedrock", logo: <span className="w-2 h-2 rounded-full bg-amber-600 inline-block" /> },
-  { name: "Azure AI",    logo: <span className="w-2 h-2 rounded-full bg-sky-600 inline-block" /> },
+  { name: "xAI Grok",    logo: mark("x",   "#111111") },
+  { name: "Meta LLaMA",  logo: mark("M",   "#0082FB") },
+  { name: "Perplexity",  logo: mark("P",   "#20B2AA") },
+  { name: "Together AI", logo: mark("T",   "#e84393") },
+  { name: "AWS Bedrock", logo: mark("AWS", "#FF9900") },
+  { name: "Azure AI",    logo: mark("Az",  "#0078D4") },
 ];
 
 const logs = [
