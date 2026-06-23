@@ -189,12 +189,14 @@ export default function SDKPreview() {
 
             <div className="relative rounded-2xl overflow-hidden"
               style={{
-                background: "#0d0d14",
-                border: "1px solid rgba(255,255,255,0.08)",
-                boxShadow: "0 32px 80px rgba(0,0,0,0.22), 0 8px 24px rgba(0,0,0,0.14)",
+                background: "rgba(11,11,18,0.84)",
+                backdropFilter: "blur(24px) saturate(160%)",
+                WebkitBackdropFilter: "blur(24px) saturate(160%)",
+                border: "1px solid rgba(255,255,255,0.10)",
+                boxShadow: "0 32px 80px rgba(0,0,0,0.22), 0 8px 24px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.08)",
               }}
             >
-              <div className="flex items-center border-b border-white/[0.06]" style={{ background: "#09090f" }}>
+              <div className="flex items-center border-b border-white/[0.07]" style={{ background: "rgba(7,7,14,0.90)" }}>
                 <div className="flex gap-1.5 px-4 py-3">
                   <div className="w-2.5 h-2.5 rounded-full bg-rose-500/70" />
                   <div className="w-2.5 h-2.5 rounded-full bg-amber-500/70" />

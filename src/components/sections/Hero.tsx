@@ -131,6 +131,28 @@ function HeroTerminal() {
         </div>
       </div>
 
+      {/* Floating "agents live" badge — top left */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.75, x: -12 }}
+        animate={{ opacity: 1, scale: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: 1.2, type: "spring", stiffness: 200, damping: 16 }}
+        className="absolute -top-4 left-4 md:left-6 z-10 flex items-center gap-2 rounded-xl px-3 py-2"
+        style={{
+          background: "rgba(255,255,255,0.82)",
+          backdropFilter: "blur(40px) saturate(220%)",
+          WebkitBackdropFilter: "blur(40px) saturate(220%)",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,1)",
+          border: "1px solid rgba(255,255,255,0.88)",
+        }}
+      >
+        <motion.span
+          className="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0"
+          animate={{ opacity: [1, 0.3, 1], scale: [1, 1.4, 1] }}
+          transition={{ duration: 1.6, repeat: Infinity }}
+        />
+        <span className="text-[11px] font-bold text-zinc-800">4 agents · Live</span>
+      </motion.div>
+
       {/* Floating completion badge */}
       <motion.div
         initial={{ opacity: 0, scale: 0.75, y: 12 }}
@@ -290,27 +312,38 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
           className="mb-6"
         >
-          <button
-            onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
-            className="relative overflow-hidden flex items-center gap-2.5 rounded-full px-7 py-3.5 text-white text-[14px] font-bold tracking-tight group"
-            style={{
-              background: "linear-gradient(145deg, #c4b5fd 0%, #8b5cf6 55%, #7c3aed 100%)",
-              boxShadow: "0 8px 24px rgba(124,58,237,0.30), 0 2px 8px rgba(124,58,237,0.15), inset 0 2px 5px rgba(255,255,255,0.45), inset 0 -2px 5px rgba(0,0,0,0.20)",
-            }}
-          >
-            <motion.span
-              className="absolute inset-0 pointer-events-none"
-              style={{ background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.50) 50%, transparent 70%)" }}
-              initial={{ x: "-110%" }}
-              animate={{ x: "110%" }}
-              transition={{ duration: 0.7, delay: 1.4, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
-            />
-            Get Early Access
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-              className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-            </svg>
-          </button>
+          {/* Rotating conic gradient border wrapper */}
+          <div className="relative p-[1.5px] rounded-full">
+            <div className="absolute inset-0 rounded-full overflow-hidden">
+              <motion.div
+                className="absolute w-[200%] h-[200%] -top-1/2 -left-1/2"
+                style={{ background: "conic-gradient(from 0deg, #c4b5fd, #8b5cf6, #34d399, #6ee7b7, #c4b5fd)" }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+              />
+            </div>
+            <button
+              onClick={() => document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" })}
+              className="relative overflow-hidden flex items-center gap-2.5 rounded-full px-7 py-3.5 text-white text-[14px] font-bold tracking-tight group"
+              style={{
+                background: "linear-gradient(145deg, #c4b5fd 0%, #8b5cf6 55%, #7c3aed 100%)",
+                boxShadow: "0 8px 24px rgba(124,58,237,0.30), 0 2px 8px rgba(124,58,237,0.15), inset 0 2px 5px rgba(255,255,255,0.45), inset 0 -2px 5px rgba(0,0,0,0.20)",
+              }}
+            >
+              <motion.span
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: "linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.50) 50%, transparent 70%)" }}
+                initial={{ x: "-110%" }}
+                animate={{ x: "110%" }}
+                transition={{ duration: 0.7, delay: 1.4, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
+              />
+              Get Early Access
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
+                className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+              </svg>
+            </button>
+          </div>
         </motion.div>
 
         {/* Social proof */}

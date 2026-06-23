@@ -396,6 +396,13 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
 }
 
+/* Glass-card noise texture */
+.glass-card {
+  background-image: url('/noise.svg');
+  background-blend-mode: soft-light;
+  background-size: 220px;
+}
+
 /* ─── Reduced motion ─────────────────────────────────────────*/
 @media (prefers-reduced-motion: reduce) {
   .aurora-a, .aurora-b, .aurora-c, .aurora-d, .aurora-e,

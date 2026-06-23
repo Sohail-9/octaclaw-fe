@@ -143,7 +143,10 @@ export default function FeaturesBento() {
               <div className="flex-1 min-h-[11rem] overflow-hidden relative z-10">
                 {f.visual}
               </div>
-              <div className="p-6 border-t border-black/[0.06] relative z-10">
+              <div className="relative z-10">
+                <div className="h-px" style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.75) 25%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0.55) 75%, transparent)" }} />
+              </div>
+              <div className="p-6 relative z-10">
                 <div className={`inline-flex items-center text-[9px] font-bold uppercase tracking-[0.2em] rounded-full px-2.5 py-1 mb-3 ${f.tagClass}`}>
                   {f.tag}
                 </div>
@@ -187,7 +190,10 @@ export default function FeaturesBento() {
               <div className="flex-1 min-h-[11rem] overflow-hidden relative z-10">
                 {f.visual}
               </div>
-              <div className="p-6 border-t border-black/[0.06] relative z-10">
+              <div className="relative z-10">
+                <div className="h-px" style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.75) 25%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0.55) 75%, transparent)" }} />
+              </div>
+              <div className="p-6 relative z-10">
                 <div className={`inline-flex items-center text-[9px] font-bold uppercase tracking-[0.2em] rounded-full px-2.5 py-1 mb-3 ${f.tagClass}`}>
                   {f.tag}
                 </div>

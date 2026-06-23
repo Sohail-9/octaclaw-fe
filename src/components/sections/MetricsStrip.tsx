@@ -90,6 +90,9 @@ export default function MetricsStrip() {
           background: "rgba(255,255,255,0.60)",
           backdropFilter: "blur(32px) saturate(200%)",
           WebkitBackdropFilter: "blur(32px) saturate(200%)",
+          borderTop: "1px solid rgba(255,255,255,0.85)",
+          borderBottom: "1px solid rgba(255,255,255,0.55)",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,1), 0 2px 24px rgba(0,0,0,0.04)",
         }}>
         <div className="max-w-5xl mx-auto px-6 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
