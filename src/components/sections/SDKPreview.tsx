@@ -38,48 +38,61 @@ function SDKEarlyAccessButton() {
   );
 }
 
-const pythonCode = `import asyncio
-from octaclaw import OctaClaw, Swarm
+type Tok = { t: string; c?: string };
+const kw  = (t: string): Tok => ({ t, c: "text-purple-400" });
+const id  = (t: string): Tok => ({ t, c: "text-sky-400" });
+const str = (t: string): Tok => ({ t, c: "text-emerald-400" });
+const num = (t: string): Tok => ({ t, c: "text-amber-400" });
+const cmt = (t: string): Tok => ({ t, c: "text-zinc-500 italic" });
+const op  = (t: string): Tok => ({ t, c: "text-zinc-500" });
+const df  = (t: string): Tok => ({ t, c: "text-zinc-300" });
 
-client = OctaClaw(api_key=os.environ["OCTACLAW_KEY"])
+const PY: Tok[][] = [
+  [kw("import"), df(" asyncio")],
+  [kw("from"), df(" octaclaw "), kw("import"), df(" "), id("OctaClaw"), op(", "), id("Swarm")],
+  [],
+  [id("client"), df(" = "), id("OctaClaw"), op("("), df("api_key="), id("os"), op("."), df("environ["), str('"OCTACLAW_KEY"'), op("])")],
+  [],
+  [cmt("# Define your goal in plain language")],
+  [id("result"), df(" = "), kw("await"), df(" "), id("client"), op("."), id("swarm"), op("."), id("run"), op("(")],
+  [df("    goal="), str('"Analyze Q4 competitor landscape and"')],
+  [df("         "), str('" produce an executive summary"'), op(",")],
+  [df("    model="), str('"claude-3-5-sonnet-20241022"'), op(",")],
+  [df("    parallel="), kw("True"), op(",")],
+  [df("    max_agents="), num("6"), op(",")],
+  [op(")")],
+  [],
+  [cmt("# Full telemetry available on every run")],
+  [id("print"), op("(f"), str('"✓ Completed in {result.elapsed_ms}ms"'), op(")")],
+  [id("print"), op("(f"), str('"✓ Agents used: {result.agent_count}"'), op(")")],
+  [id("print"), op("("), id("result"), op("."), df("summary"), op(")")],
+];
 
-# Define your goal in plain language
-result = await client.swarm.run(
-    goal="Analyze Q4 competitor landscape and"
-         " produce an executive summary",
-    model="claude-3-5-sonnet-20241022",
-    parallel=True,
-    max_agents=6,
-)
-
-# Full telemetry available on every run
-print(f"✓ Completed in {result.elapsed_ms}ms")
-print(f"✓ Agents used: {result.agent_count}")
-print(result.summary)`;
-
-const tsCode = `import { OctaClaw } from "@octaclaw/sdk";
-
-const client = new OctaClaw({
-  apiKey: process.env.OCTACLAW_KEY,
-});
-
-// Define your goal in plain language
-const result = await client.swarm.run({
-  goal: "Analyze Q4 competitor landscape and"
-      + " produce an executive summary",
-  model: "claude-3-5-sonnet-20241022",
-  parallel: true,
-  maxAgents: 6,
-});
-
-// Full telemetry available on every run
-console.log(\`✓ Completed in \${result.elapsedMs}ms\`);
-console.log(\`✓ Agents used: \${result.agentCount}\`);
-console.log(result.summary);`;
+const TS: Tok[][] = [
+  [kw("import"), df(" { "), id("OctaClaw"), df(" } "), kw("from"), df(" "), str('"@octaclaw/sdk"'), op(";")],
+  [],
+  [kw("const"), df(" "), id("client"), df(" = "), kw("new"), df(" "), id("OctaClaw"), op("({")],
+  [df("  apiKey: "), id("process"), op("."), df("env.OCTACLAW_KEY"), op(",")],
+  [op("});")],
+  [],
+  [cmt("// Define your goal in plain language")],
+  [kw("const"), df(" "), id("result"), df(" = "), kw("await"), df(" "), id("client"), op("."), id("swarm"), op("."), id("run"), op("({")],
+  [df("  goal: "), str('"Analyze Q4 competitor landscape and"')],
+  [df("      + "), str('" produce an executive summary"'), op(",")],
+  [df("  model: "), str('"claude-3-5-sonnet-20241022"'), op(",")],
+  [df("  parallel: "), kw("true"), op(",")],
+  [df("  maxAgents: "), num("6"), op(",")],
+  [op("});")],
+  [],
+  [cmt("// Full telemetry available on every run")],
+  [id("console"), op(".log("), str("`✓ Completed in ${result.elapsedMs}ms`"), op(");")],
+  [id("console"), op(".log("), str("`✓ Agents used: ${result.agentCount}`"), op(");")],
+  [id("console"), op(".log("), id("result"), op("."), df("summary"), op(");")],
+];
 
 export default function SDKPreview() {
   const [tab, setTab] = useState<"python" | "typescript">("python");
-  const code = tab === "python" ? pythonCode : tsCode;
+  const lines = tab === "python" ? PY : TS;
 
   return (
     <section className="py-24 px-6 relative overflow-hidden">
@@ -229,24 +242,17 @@ export default function SDKPreview() {
                     transition={{ duration: 0.2 }}
                     className="text-[13px] font-mono leading-[1.8] text-zinc-300"
                   >
-                    {code.split("\n").map((line, i) => (
+                    {lines.map((tokens, i) => (
                       <div key={i} className="min-h-[1.8em] flex">
                         <span className="w-7 flex-shrink-0 text-right text-zinc-700 mr-4 select-none text-[11px] leading-[1.8]">
                           {i + 1}
                         </span>
-                        <span
-                          className="flex-1"
-                          dangerouslySetInnerHTML={{
-                            __html: line
-                              .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-                              .replace(/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/g, '<span class="text-emerald-400">$1</span>')
-                              .replace(/(#.*$|\/\/.*$)/g, '<span class="text-zinc-600 italic">$1</span>')
-                              .replace(/\b(import|from|await|async|const|let|True|true|False|false|os|print|new|process|return)\b/g, '<span class="text-purple-400">$1</span>')
-                              .replace(/\b(OctaClaw|Swarm|client|swarm|run|log|console|result)\b/g, '<span class="text-sky-400">$1</span>')
-                              .replace(/\b(\d+)\b/g, '<span class="text-amber-400">$1</span>')
-                              .replace(/(`[^`]*`)/g, '<span class="text-emerald-400">$1</span>'),
-                          }}
-                        />
+                        <span className="flex-1">
+                          {tokens.length === 0
+                            ? <span>&nbsp;</span>
+                            : tokens.map((tok, j) => <span key={j} className={tok.c ?? "text-zinc-300"}>{tok.t}</span>)
+                          }
+                        </span>
                       </div>
                     ))}
                   </motion.pre>
